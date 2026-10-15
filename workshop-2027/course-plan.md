@@ -147,6 +147,13 @@
 | 模型生成数据 | 模型输出也是一种"被制造的数据" | DeepSeek API（配对提示审计） | 平台算法 |
 | 时间序列 | 口径变化与断点 | 上述来源中的历年指标 | 全部 |
 
+借鉴参考实验室的项目题目（详见 [lab-survey.md](lab-survey.md)）：
+- **街名里的性别**：以人名命名的街道中女性占多少（迁移自 MIT Data + Feminism Lab 的 Audit the Streets；OpenStreetMap 数据）
+- **谁被收藏**：博物馆馆藏和创作领域的性别与族裔构成（QSIDE 数据集）
+- **薪酬性别差距**：公开薪酬数据（借鉴 BU Justice Media co-Lab 的 UMass 报道）
+- **红线区与高温**：历史红线地图与地表温度（借鉴 BU Justice Media co-Lab）
+- **算法伤害案例拆解**：Data Harm Record（Cardiff Data Justice Lab）
+
 可选题目：注意力经济（"Who Pays for Free?"）作为平台算法组的可选方向，使用行业报告表格 + 标准化观察协议（详见原始大纲中的项目 B / C / D）。
 
 风险：Wikipedia / Wikidata 在中国大陆通常无法直接访问，不纳入目录；GitHub 访问不稳定，需准备国内可用的展示备选。
