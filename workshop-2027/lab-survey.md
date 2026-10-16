@@ -1,381 +1,236 @@
-# 参考实验室调研：课题方向、项目与数据来源
+# 参考实验室调研：完整研究、可用数据与研究方向
 
 > 用途：为「被计数的我们」工作坊寻找可借鉴的研究问题、方法和数据集。
-> 访问日期：2026-10-15。除特别注明外，内容整理自各实验室官网原文；项目、数据与成果的版权和署名归原机构及作者所有。
-> 标注 ⚠️ 的条目未能直接读取官网，信息来自二手资料，使用前需再核对。
+> 访问日期：2026-10-15 / 16。项目、数据与成果的版权和署名归原机构及作者所有。
+
+**分层标准**
+
+- **A 层 · 完整研究**：有公开发表的论文、报告或报道，研究过程（问题、数据、方法）和结论都可查，且与本课主题（数据与身份、代表性不足、算法决策）直接相关。
+- **B 层 · 可直接使用的数据库与工具**：公开、可下载或可在线使用。
+- **C 层 · 仅有方向**：只有研究方向介绍、项目立项描述或非研究性产出（工具包、行动手册、倡导地图），或者结论没能核实。可以作为灵感，但不宜当作课堂上的证据案例。
+
+**核实状态**
+
+- ✅ 已读论文摘要或报道原文
+- 🔎 原文页面无法访问，结论来自搜索到的摘要或二手报道，引用前需核对原文
 
 ---
 
-## 总览
+## A 层 · 完整研究（10 项）
 
-| # | 实验室 / 机构 | 所属 | 主要方向 | 与本课最相关的点 |
+### 性别与身份的代表性
+
+#### A1. Diversity of artists in major U.S. museums ✅
+
+- **出处**：Topaz, Klingenberg, Turek, Heggeseth, Harris & Blackwood, *PLOS ONE*, 2019 · [QSIDE Institute](https://qsideinstitute.org/qside-datasets/)
+- **问题**：美国大型博物馆馆藏中，艺术家的性别、族裔、地域和年代构成如何？
+- **数据**：爬取 18 家美国大型博物馆的公开线上目录
+- **方法**：抽样 10,000 条艺术家记录（9,000 多位不同艺术家）交给众包标注，分析 45,000 份回答，推断性别、族裔、地域来源和出生年代
+- **结论**：
+  - 总体上 85% 的艺术家是白人，87% 是男性
+  - 识别出代表性显著偏高或偏低的离群博物馆
+  - 博物馆收藏使命与艺术家多样性的关联很弱：想提高多样性的博物馆不必改变其时期或地域侧重
+- **与本课的连接**：Day 2–3；数据可以直接用于性别组项目，也能与本期的艺术方向对话
+- **链接**：[论文](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0212852) · [数据（QSIDE Datasets → OSF）](https://qsideinstitute.org/qside-datasets/)
+
+#### A2. Race- and gender-based under-representation of creative contributors: art, fashion, film, and music ✅
+
+- **出处**：Topaz, Higdon, Epps-Darling, Siau, Kerkhoff & Mendiratta, *Humanities and Social Sciences Communications*, 2022 · QSIDE
+- **问题**：当代艺术、高级时装、票房电影、流行音乐四个领域中，有影响力的创作者的性别与种族/族裔构成如何？交叉身份的情况如何？
+- **数据**：四个领域共约 4,700 名创作者；以美国社区调查（ACS）人口构成为基准
+- **结论**：
+  - 女性占美国人口 51%，但在当代艺术中占 28%，高级时装 45%，票房电影 27%，流行音乐 17%
+  - 被边缘化的种族/族裔群体占人口 39%，但在当代艺术、高级时装、票房电影中只占约一半（22%、22%、19%）
+  - 黑人音乐人的代表性较高（48%），但作者强调代表性高不等于公平与包容
+  - 白人男性在四个领域都被过度代表，是其人口占比的 1.4–2 倍
+  - 作者指出：缺乏自我报告的人口数据；ACS 没有无性别、性别不一致、非二元、跨性别等类别，这些群体在基准中被抹去
+- **与本课的连接**：Day 2（分类即权力：基准人群本身就有缺失）、Day 3（代表性比值）
+- **链接**：[论文](https://www.nature.com/articles/s41599-022-01239-9) · Tableau 可视化：[艺术](https://public.tableau.com/app/profile/institute.for.the.quantitative.study.of.inclusion.diversity.and./viz/QSIDELifeWTRProject-ArtREV/QSIDE-LifeWTRContemporaryArtStory) / [时装](https://public.tableau.com/app/profile/institute.for.the.quantitative.study.of.inclusion.diversity.and./viz/QSIDELifeWTRProject-FashionREV/QSIDE-LifeWTRFashionStory) / [电影](https://public.tableau.com/app/profile/institute.for.the.quantitative.study.of.inclusion.diversity.and./viz/QSIDELifeWTRProject-FilmREV/QSIDE-LifeWTRFilmStory) / [音乐](https://public.tableau.com/app/profile/institute.for.the.quantitative.study.of.inclusion.diversity.and./viz/QSIDELifeWTRProject-MusicREV/QSIDE-LifeWTRMusicStory)
+
+#### A3. Gender Representation on Journal Editorial Boards in the Mathematical Sciences ✅
+
+- **出处**：Topaz & Sen, *PLOS ONE*, 2016 · QSIDE
+- **问题**：数学科学期刊编委会中女性占多少？与合理的基准相比如何？
+- **数据**：435 本期刊、13,067 个编委席位
+- **方法**：自行开发半自动性别推断方法，作者估计准确率为 97.5%；以美国博士授予院校数学系终身轨教职中女性约占 15% 为基准
+- **结论**：编委席位中女性占 8.9%，低于 15% 的基准；并识别出显著高于或低于平均水平的期刊、子领域、出版商和国家
+- **与本课的连接**：
+  - Day 3：最清楚的"样本占比 ÷ 基准占比"范例，基准的选择本身就是论证
+  - Day 2：用姓名推断性别的方法是现成的讨论题——准确率 97.5% 时，剩下的 2.5% 是谁？非二元性别的人在哪里？
+- **链接**：[论文](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0161357) · [可视化：统计学期刊编委性别构成](https://public.tableau.com/app/profile/institute.for.the.quantitative.study.of.inclusion.diversity.and./viz/GenderMakeupofStatisticsJournalEditors/GenderMakeupofStatisticsJournalEditors)
+
+#### A4. Temporal dynamics of faculty hiring in mathematics ✅
+
+- **出处**：FitzGerald, Huang, Leisman & Topaz, *Humanities and Social Sciences Communications*, 2023 · QSIDE
+- **问题**：数学领域博士授予院校的教职招聘网络如何随时间变化？谁能获得教职？
+- **数据**：150 所院校、七十年间超过 120,000 条记录
+- **方法**：网络分析，用 authority centrality 量化院系声望
+- **结论**：
+  - 数学博士授予数量与博士授予院校教职数量之间的差距随时间扩大
+  - 博士毕业院校声望的对数，与获得教职概率的对数近似线性相关
+  - 观察到获得教职的概率随时间下降，且女性低于男性（作者措辞为"关联"，不是因果）
+  - 1950–2019 年间，14 个精英院系主导了整个网络
+- **与本课的连接**：Day 3（相关与因果的措辞）；网络数据类型的示例
+- **链接**：[论文](https://www.nature.com/articles/s41599-023-01708-9)
+
+### 算法与决策
+
+#### A5. Algorithms in Judges' Hands: Incarceration and Inequity in Broward County, Florida 🔎
+
+- **出处**：Topaz 等，*UCLA Law Review* · QSIDE
+- **问题**：COMPAS 风险评估算法上线后，法官的监禁决定发生了什么变化？
+- **数据**：佛罗里达州 Broward County 在 COMPAS 上线前后超过 1 万条法院记录
+- **方法**：前后比较；有向无环图（DAG）建模
+- **结论**（据摘要与二手报道）：
+  - 被评为低风险的人，比上线前可比的人更少被监禁；高风险的人更多被监禁
+  - 总体监禁率下降，但不同种族之间的监禁差距扩大
+- **与本课的连接**：Day 4。阈值改变了谁被关押：总体期望值改善了，代价却分配得更不均
+- **链接**：[论文](https://www.uclalawreview.org/algorithms-in-judges-hands-incarceration-and-inequity-in-broward-county-florida/)
+
+#### A6. A large-scale analysis of racial disparities in police stops across the United States ✅
+
+- **出处**：Pierson, Simoiu, Overgoor, Corbett-Davies, Jenson, Shoemaker 等，*Nature Human Behaviour*, 2020 · [Stanford Open Policing Project](https://openpolicing.stanford.edu/)（Stanford Computational Journalism Lab 参与）
+- **问题**：美国警察的拦停和搜查决定是否存在种族偏见？
+- **数据**：全美近 1 亿次交通拦停记录
+- **方法**：
+  - **夜幕检验**（veil of darkness）：比较天黑前后黑人司机在被拦停者中的比例
+  - **阈值检验**（threshold test）：根据搜查率和搜出违禁品的比率，推断不同群体被搜查的门槛
+  - 大麻合法化作为政策变化的前后比较
+- **结论**：
+  - 日落后黑人司机被拦停的可能性降低，说明拦停决定存在偏见
+  - 搜查黑人和拉丁裔司机的门槛低于白人司机
+  - 大麻合法化后三个群体被搜查的次数都减少了，但针对黑人和拉丁裔的门槛仍然更低
+- **与本课的连接**：Day 4。两种检验都是零代码学员也能理解的识别思路；阈值检验与决策阈值直接对应
+- **链接**：[论文](https://www.nature.com/articles/s41562-020-0858-1) · [数据与教程](https://openpolicing.stanford.edu/)
+
+#### A7. What's "Up Next"? Investigating Algorithmic Recommendations on YouTube Across Issues and Over Time ✅
+
+- **出处**：Matamoros-Fernández, Gray, Bartolo, Burgess & Suzor, *Media and Communication*, 2021（开放获取；Joanne Gray 为 [Sydney CSS Lab](https://computational-social-science.sydney.edu.au/research/) 成员）
+- **问题**：YouTube"接下来播放"功能放大了什么类型的内容？平台声称的改进是否可以被观察到？
+- **数据**：以 "coronavirus"、"feminism"、"beauty" 三个关键词为起点，连续 6 周抓取搜索结果中排名靠前的视频及其元数据，并沿推荐链抓取三层推荐
+- **方法**："平台可观察性"（platform observability）框架，计算方法与质性分析结合
+- **结论**：
+  - 有证据表明 YouTube 在提升"权威"媒体
+  - 误导性和争议性内容仍然会被推荐
+  - 视频层面随时间呈现多样性，但频道层面有明显的"赢家"获得曝光加成
+  - 这些效应因议题而异
+- **与本课的连接**：Day 4；平台算法组可以直接照搬这套审计设计，把对象换成 DeepSeek 或国内平台的公开推荐页面
+- **链接**：[论文](https://www.cogitatiopress.com/mediaandcommunication/article/view/4184)
+
+#### A8. Automating Public Services: Learning from Cancelled Systems 🔎
+
+- **出处**：Redden, Brand, Sander & Warne, 2022 · [Data Justice Lab](https://datajusticelab.org/project/automating-public-services-learning-from-cancelled-systems/) 与 Carnegie UK
+- **问题**：为什么政府部门会暂停或取消算法和自动化决策系统？
+- **数据**：欧洲、澳大利亚、加拿大、新西兰、美国被暂停或取消的系统；欺诈检测、警务、儿童福利领域的深入案例
+- **方法**：案头范围研究、文件分析、访谈（✅ 据项目页）
+- **结论**（据报告摘要与二手报道）：
+  - 共分析 61 个被暂停或取消的系统，约一半与司法和警务有关，也有医疗和移民领域的系统
+  - 系统常因社区反对、法律诉讼或调查报道而被叫停
+  - 报告主张部署方应证明已评估潜在伤害且系统确实有效，即举证责任倒转
+- **与本课的连接**：Day 4 决策科学模块。系统被取消，意味着决策者重新估计了期望收益与期望代价
+- **链接**：[报告](https://carnegieuk.org/publication/automating-public-services-learning-from-cancelled-systems/) · [The Conversation 摘要](https://theconversation.com/governments-use-of-automated-decision-making-systems-reflects-systemic-issues-of-injustice-and-inequality-185953)
+
+### 缺失数据与反数据
+
+#### A9. Towards Intersectional Feminist and Participatory ML: A Case Study in Supporting Feminicide Counterdata Collection 🔎
+
+- **出处**：Suresh, Movva, Dogan, Bhargava, Cruxên, Martinez Cuba, Taurino, So & D'Ignazio，FAccT 2022 · [MIT Data + Feminism Lab](https://dataplusfeminism.mit.edu/)，Data Against Feminicide 项目
+- **问题**：如何与监测女性被杀害（feminicide）的活动者共同设计数据集和机器学习模型，以支持他们的反数据生产？
+- **数据**：新闻报道作为数据源（与 MediaCloud 合作）；**实验室本身不收集或汇总数据**（✅ 据实验室项目说明）
+- **方法**：
+  - 迭代的数据收集和标注，针对模型弱点，并质询"女性被杀害"这一概念的框定，包括谁被计数
+  - 按交叉身份而非统计多数来建模
+  - 定量、质性和参与式结合的多步骤评估
+- **结论**：这篇的结论偏反思性，不是定量发现。作者讨论了机器学习如何挑战权力、拥抱多元，也指出任何技术方案在面对持久的结构性不平等时都有内在局限
+- **与本课的连接**：Day 3。"官方数据缺席 → 社群生产反数据"的核心案例，过程最完整
+- **链接**：[论文（MIT DSpace）](https://dspace.mit.edu/handle/1721.1/146385) · [Counting Feminicide: Data Feminism in Action（MIT Press 开放阅读）](https://mitpressonpubpub.mitpress.mit.edu/counting-feminicide) · [Data Against Feminicide 网站](https://datoscontrafeminicidio.net/en/home-2/) · [News as Data for Activists](https://api-web.dataplusfeminism.mit.edu/uploads/a1df3e3809e843c4a6a0d86e5b579889.pdf)
+
+### 数据新闻成品
+
+#### A10. UMass Gender Pay Gap: Top paid men making nearly 30 percent more than female colleagues ✅
+
+- **出处**：CBS Boston 与 [Boston University Justice Media co-Lab](https://www.bu.edu/justice-media/) 合作，2022
+- **问题**：马萨诸塞大学被提醒存在性别薪酬差距三年后，差距是否改善？
+- **数据**：马萨诸塞州政府薪酬数据（非工会员工）
+- **方法**：比较各校区收入最高者中的女性人数；同一职位的薪酬比较；采访经济学者
+- **结论**：差距不仅没有改善，反而加大；2021 年几乎每个校区收入最高的 10 人中女性都明显少于一半，有两个校区只有 1 名女性
+- **与本课的连接**：Day 5；学员几天内可以复刻的题目尺度，也是"数据新闻短篇"的成品范例
+- **链接**：[报道](https://www.bu.edu/justice-media/2022/06/07/umass-gender-pay-gap-top-paid-men-making-nearly-30-percent-more-than-female-colleagues/)
+
+---
+
+## B 层 · 可直接使用的数据库与工具
+
+### 数据库
+
+| 名称 | 内容 | 规模 | 获取方式 | 对应 A 层研究 |
 |---|---|---|---|---|
-| 1 | [Data + Feminism Lab](https://dataplusfeminism.mit.edu/) | MIT DUSP | 性别与种族平等、空间与地方、反数据（counterdata） | 缺失数据、Audit the Streets、零代码数据素养工具 |
-| 2 | [QSIDE Institute](https://qsideinstitute.org/qside-datasets/) | 非营利研究机构 | Quantitative justice：司法、教育、艺术代表性、环境、健康 | 可直接下载的 OSF 数据集；艺术与学术界的性别代表性 |
-| 3 | [Ida B. Wells JUST Data Lab](https://www.thejustdatalab.com/)（[CDH@Princeton 介绍页](https://cdh.princeton.edu/engage/undergraduates/just-data-lab/)） | Princeton（Ruha Benjamin） | 学生 + 社区组织共创；医疗、住房、监控、教育 | 学生项目形式：与社区组织合作产出工具包 / playbook / zine |
-| 4 | [Data Justice Lab](https://datajusticelab.org/) | Cardiff / Goldsmiths / Western Ontario / Santiago de Compostela | 数据化与社会正义；公共服务自动化；公民评分 | Data Harm Record；被取消的算法系统 |
-| 5 | [Data Justice Research Centre](https://datajustice.ca/) | University of Calgary | 人口数据、数字档案、监控与隐私 | 人口普查的分类政治："谁被计数" |
-| 6 | [Human-Centered Data Science Lab](https://hcds-uoft.ca/) | University of Toronto | 公共部门算法问责：儿童福利、健康、AI 治理、语言模型偏见 | ADMAPS 审计清单；HCDS 教学工具包；BIBED 偏见数据集 |
-| 7 | [AFOG](https://afog.berkeley.edu/) | UC Berkeley School of Information | 算法公平与不透明；公共利益技术 | 课程大纲（INFO 188 等）；学生项目选题范例 |
-| 8 | [UCLA DataX](https://datax.ucla.edu/) | UCLA | Data Justice & Critical Data Studies（Safiya Noble 主持） | 领域关键词地图 |
-| 9 | [Sociotechnical Systems Research Lab](https://engineering.pitt.edu/subsites/Labs/sociotechnical-systems/home/) | University of Pittsburgh | 社会技术系统建模、健康干预、错误信息 | AI for Social Good 公开课程仓库；地区开放数据中心 |
-| 10 | [Computational Social Science Lab](https://computational-social-science.sydney.edu.au/) | University of Sydney | 数字主权、社交媒体话语、亚太 AI 性别偏见 | AI 与性别偏见（亚太）；零代码语料分析 |
-| 11 | [Stanford Computational Journalism Lab](https://cjlab.stanford.edu/)（2014–2022，现为 Big Local News） | Stanford | 计算新闻、地方数据、警务数据 | Stanford Open Policing Project；数据新闻教程 |
-| 12 | [Justice Media co-Lab](https://www.bu.edu/justice-media/) | Boston University | 计算调查报道，与真实新闻机构合作 | 学生数据新闻成品范例（薪酬性别差距、红线区与高温） |
-| 13 | [PIT-UN @ Penn（SNF Paideia）](https://snfpaideia.upenn.edu/initiatives/public-interest-technology-university-network/) | University of Pennsylvania | 公共利益技术网络 | 公共利益技术的定义与网络 ⚠️ |
-| 14 | [TILT](https://www.tilburguniversity.edu/about/schools/law/departments/tilt/research) | Tilburg University | 法律、技术与社会；Global Data Justice | 全球视角的数据正义框架 ⚠️ |
-| 15 | [Anti-Eviction Mapping Project](https://antievictionmap.com/) | 志愿者集体（湾区、洛杉矶、纽约） | 驱逐、绅士化、房东网络、口述史 | 批判制图 + 口述史 + 社区数据：最接近"成品展览"的范例 |
+| [QSIDE Datasets](https://qsideinstitute.org/qside-datasets/) | 博物馆艺术家多样性、创作领域代表性、数学编委性别、数学教职招聘、COMPAS 前后量刑、Superfund 场地与种族、Opportunity Youth（16–24 岁）等 | 视数据集而定 | OSF 下载；引用格式见各 OSF 仓库 | A1–A5 |
+| [JUSTFAIR](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0241381) | 联邦法院量刑决定，关联被告人口特征、罪名、刑期与判案法官 | 2001–2018 年近 60 万条 | 见论文的数据说明 | — |
+| [Stanford Open Policing Project](https://openpolicing.stanford.edu/) | 标准化的警察拦停记录 | 超过 2 亿条 | CSV 下载，附分析教程 | A6 |
+| [Data Harm Record](https://datajusticelab.org/project/data-harm-record/) | 算法系统已造成伤害的案例汇编，每条附原始来源 | 2017 年首发，2020 年更新 | 网页 | A8 |
+
+### 教学工具与资源
+
+| 名称 | 用途 | 来源 |
+|---|---|---|
+| [DataBasic.io](http://databasic.io) · [活动库](http://culture.databasic.io) | 零代码数据素养工具和活动，适合 Day 1 | MIT Data + Feminism Lab / Northeastern Data Culture Lab |
+| [HCDS Artifacts](https://hcds-uoft.ca/artifacts/) | ADMAPS 算法决策生命周期审计清单；HCDS 教学工具包；BIBED 偏见评估数据集 | Toronto Human-Centered Data Science Lab |
+| [Stanford CJ Lab 教程](https://cjlab.stanford.edu/initiatives/) | Search-Script-Scrape、OpenRefine、从 PDF 提取数据 | Stanford Computational Journalism Lab |
+| [AFOG 课程](https://afog.berkeley.edu/) | INFO 188 / 239 / 290 课程概述与样本大纲 | UC Berkeley |
+| [AI for Social Good 课程仓库](https://github.com/aminrahimian/ai-for-social-good) | 公开课程材料 | Pittsburgh Sociotechnical Systems Research Lab |
+| [QSIDE Data4Justice Curriculum](https://qsideinstitute.org/data4justice-curriculum/) | 数据正义课程 | QSIDE |
 
 ---
 
-## 1. Data + Feminism Lab（MIT）
+## C 层 · 仅有方向（灵感参考，不作为证据案例）
 
-来源：[dataplusfeminism.mit.edu](https://dataplusfeminism.mit.edu/)（项目信息来自实验室网站的公开项目接口）· 负责人：Catherine D'Ignazio
-
-实验室简介："uses data and computational methods to work towards gender and racial equity, particularly as they relate to space and place."
-
-| 项目 | 研究问题 / 方向 | 方法 | 数据来源 | 链接 |
-|---|---|---|---|---|
-| **Data Against Feminicide**（2020–） | 官方的女性被杀害数据缺失、不完整、有争议；活动者如何生产"反数据" | 女性主义参与式行动研究；与活动者共同设计 AI/ML 工具 | 新闻报道作为数据源（与 MediaCloud 合作）；**实验室本身不收集或汇总数据** | [项目网站](https://datoscontrafeminicidio.net/en/home-2/) · [Counting Feminicide（MIT Press）](https://mitpressonpubpub.mitpress.mit.edu/counting-feminicide) · [FAccT 2022 论文](https://dl.acm.org/doi/10.1145/3531146.3533132) · [News as Data for Activists](https://api-web.dataplusfeminism.mit.edu/uploads/a1df3e3809e843c4a6a0d86e5b579889.pdf) |
-| **Audit the Streets** | 城市的街名、纪念碑和雕像纪念了谁的历史，又遗漏、覆盖了谁 | 遗产景观审计、数据可视化、zine | 城市街道名称数据（剑桥市开放数据集）；哥伦布纪念物数据（与《华盛顿邮报》合作） | [Who's in your heritage landscape?（开放数据集）](https://medium.com/data-feminism-lab-mit/whos-in-your-heritage-landscape-ead78981efd6) · [WE NEVER WANTED HIM HERE（zine）](https://counter-columbus.dataplusfeminism.mit.edu/) · [Where Columbus Memorials Remain](https://wapo.st/3NniYzx) · [The Audit（论文）](http://api-web.dataplusfeminism.mit.edu/uploads/43acbf89c7e84d05936402012f3bbad8.pdf) |
-| **Feminist Hackathons** | 与女性身体有关的禁忌话题如何导致研究、数据和政策的缺失 | 黑客松作为参与式设计 | — | [Make the Breast Pump Not Suck（2018）](https://makethebreastpumpnotsuck2018.com/) · [CHI 2019 论文](https://www.academia.edu/40545845/Hackathons_as_Participatory_Design_Iterating_Feminist_Utopias) |
-| **Creative Data Literacy** | 数据技能分布不均；如何让公民社会会用数据 | 创意教学法、开源工具、活动库 | — | [DataBasic.io（零代码工具）](http://databasic.io) · [活动库](http://culture.databasic.io) · [Making Sense of Maps & Data 课程](https://cartinal.leventhalmap.org/guides/making-sense-maps-data/) |
-| **Feminist Smart Cities**（2023–） | 以"女性安全"为名的城市监控是否真的保护了女性和性少数群体 | 研究 + 数据可视化 | 印度 Safe Cities / Smart Cities 项目 | — |
-| **Co-design with Waking Women Healing Institute** | 原住民女性失踪与被害（MMIW/P）的社区行动网络 | 共同设计地图；数据库需求评估 | 社区团体名录 | [Mapping Networks of Community Defense](https://medium.com/data-feminism-lab-mit/mapping-networks-of-community-defense-for-mmiw-p-6a22b8c4f5aa) |
-
-**对本课的借鉴**
-- Day 1：用 DataBasic.io 的零代码工具（如 WTFcsv、WordCounter）做入门，适合人文学科学员。
-- Day 3：Data Against Feminicide 是"缺失数据 → 反数据"的核心案例。
-- 项目选项：**Audit the Streets 可以迁移成"街名里的性别"**。用 OpenStreetMap 街道数据统计一座城市以人名命名的街道中女性的比例，同时涉及性别、地理数据和身份，最终成果也天然适合展览。
-
----
-
-## 2. QSIDE Institute
-
-来源：[QSIDE Datasets](https://qsideinstitute.org/qside-datasets/)。所有数据集托管在 OSF，引用格式以各 OSF 仓库为准。
-
-QSIDE 自述的方向是 "quantitative justice"：用数据和数学科学量化、分析和应对社会不公。
-
-| 领域 | 数据集 | 研究问题 | 数据如何得来 |
+| 机构 / 项目 | 能看到的内容 | 未列入 A 层的原因 | 仍然可借鉴的点 |
 |---|---|---|---|
-| 艺术代表性 | **Artist Diversity in Museum Collections** | 美国 18 家大型博物馆馆藏中艺术家的性别、族裔、地域构成 | 爬取博物馆在线目录；抽样 10,000 条艺术家记录做众包标注（45,000 份回答） |
-| 艺术代表性 | **Race and Gender Representation Across Creative Fields** | 当代艺术、高级时装、票房电影、流行音乐中交叉身份的代表性 | 4,700 名创作者 |
-| 教育公平 | **Mathematical Sciences Editorial Board** | 435 个数学期刊编委会的性别构成 | 半自动性别推断（作者报告准确率约 97.5%） |
-| 教育公平 | **Temporal Dynamics of Faculty Hiring in Mathematics** | 数学系教职招聘网络的等级结构 | 150 所院校、7 个年代、超过 12 万条记录 |
-| 教育公平 | **Student-Teacher Race-Match** | 学生至少遇到一位同族裔教师的概率 | 德州 8,691 所公立学校的行政数据 |
-| 教育公平 | **Signatories on Public Letters on Diversity** | 支持或反对多样性声明的公开信签名者构成 | 众包推断人口特征 |
-| 司法 | **JUSTFAIR** | 联邦法院量刑决定 | 美国量刑委员会、联邦司法中心、PACER 等公开来源 |
-| 司法 | **Judicial Sentencing (Before and After COMPAS)** | 风险评估算法如何影响法官的监禁决定 | 佛罗里达州 Broward County |
-| 司法 | **Judicial Professional Background and Pretrial Detention** | 法官职业背景与审前羁押决定 | 近 7 万次传讯记录 |
-| 司法 | **NYC Jails COVID Discharge Policy** | 疫情释放政策的执行情况 | 约 35 万次羁押记录（2014–2020） |
-| 司法 | **Opportunity Youth** | 16–24 岁既不上学也不工作的青年 | 整合 ACS、AFCARS、FBI、BJS 等数据 |
-| 司法 | **Federalist Society's Public Engagements** | 保守派法律组织的公开活动网络 | 20,205 场活动（1984–2024） |
-| 环境正义 | **Superfund Site Race and Remediation** | 污染场地的清理是否存在种族差异 | 1,688 个 Superfund 场地 + 周边人口数据 |
-| 健康 | **U.S. Firearm Markets** | 各地枪支市场是否受共同的全国性因素驱动 | — |
-
-**对本课的借鉴**
-- 性别组可以直接使用 **Museum Collections** 和 **Creative Fields** 两个数据集，与本期的艺术方向形成呼应。
-- **编委会数据集的性别推断方法本身就是一个 Day 2 讨论题**：用姓名推断性别，准确率 97.5% 意味着什么？剩下的 2.5% 是谁？非二元性别的人在哪里？
-- Opportunity Youth 关注的 16–24 岁正是本课学员的年龄段，容易引起共鸣。
-- 方法范式：众包标注 + 公开目录爬取 + 交叉验证，这正是学员可以借助 coding agent 复刻的流程。
+| **MIT Data + Feminism Lab · Audit the Streets**（[剑桥街名数据集](https://medium.com/data-feminism-lab-mit/whos-in-your-heritage-landscape-ead78981efd6)、[哥伦布 zine](https://counter-columbus.dataplusfeminism.mit.edu/)、[与《华盛顿邮报》合作的可视化](https://wapo.st/3NniYzx)） | 遗产景观审计：街名和纪念物纪念了谁 | 剑桥街名部分找不到完整的方法和结论。剑桥市一份 [2020 年传单](https://www.finditcambridge.org/sites/default/files/registration/2020-07/CCSW_SummerSeries2020.pdf)称街名纪念的人中只有 7% 是女性，但未注明来源。哥伦布可视化是完整成品，但主题是殖民历史而非性别 | "街名里的性别"项目原型；zine 作为成果形式 |
+| MIT Data + Feminism Lab · 其他项目（Feminist Hackathons、Feminist Smart Cities、Waking Women Healing Institute 共同设计） | 项目描述与部分论文 | 研究阶段或产出为设计、工作坊 | 女性身体相关议题的数据缺失 |
+| **Ida B. Wells JUST Data Lab**（[网站](https://www.thejustdatalab.com/) · [CDH 介绍](https://cdh.princeton.edu/engage/undergraduates/just-data-lab/)） | 学生与社区组织合作，产出孕产妇心理健康手册、包容性检测工具包、租户手册、房东类型学信息图 | 产出是工具包和行动手册，不是研究结论 | 学生项目的产出形式；Data Feminism 七项原则的教学落地 |
+| **Data Justice Lab · Data Scores as Governance**（[项目页](https://datajusticelab.org/project/data-scores-as-governance/)） | 英国地方政府的"公民评分"；方法为信息公开申请、访谈、工作坊；有报告 | 报告的具体结论未核实 | 信息公开申请作为数据收集方法 |
+| **Data Justice Research Centre, Calgary**（[网站](https://datajustice.ca/)） | 三个研究方向：人口数据、数字档案、监控与隐私 | 只有方向描述 | [Population Data](https://datajustice.ca/2026/03/10/population-data/) 的问题陈述可直接用作 Day 2 的导引问题 |
+| **Human-Centered Data Science Lab, Toronto**（[Research](https://hcds-uoft.ca/research/)） | 儿童福利风险模型（CHI 2023 最佳论文）、加拿大 AI 登记册（FAccT 2026）、糖尿病风险模型公平性 | 论文存在，但摘要未核实；与"身份"主题的关联较间接 | ADMAPS 审计清单（见 B 层） |
+| **AFOG, UC Berkeley**（[Projects](https://afog.berkeley.edu/programs/projects)） | 2018–2021 学生项目：定向减肥广告的情感伤害、平台市场的算法公平、无家可归者服务匹配系统、招聘中的情绪识别等 | 大多是立项描述，看不到成果 | 平台算法组的选题灵感；[Burrell & Fourcade, "The Society of Algorithms"](https://www.annualreviews.org/doi/abs/10.1146/annurev-soc-090820-020800) 可作阅读材料 |
+| **UCLA DataX**（[Data Justice & Data in Society](https://datax.ucla.edu/data-and-justice)） | Safiya Noble 主持的 Data Justice 方向；领域关键词 | 机构框架，不是具体研究 | 领域关键词地图 |
+| **Sociotechnical Systems Research Lab, Pittsburgh**（[Projects](https://engineering.pitt.edu/subsites/Labs/sociotechnical-systems/projects/)） | 疫苗错误信息、阿片类药物模拟、NIH 数据共享政策后的隐私实践 | 只有项目标题 | 课程材料（见 B 层） |
+| **Computational Social Science Lab, Sydney** · AI and Gender Bias in the Asia Pacific（[Research](https://computational-social-science.sydney.edu.au/research/)） | 搜索和广告算法中的性别偏见如何影响女性获得 STEM 教育与职业机会 | 没找到研究成果 | 与平台算法组主题相关，可留意后续发表 |
+| **Stanford Computational Journalism Lab**（[网站](https://cjlab.stanford.edu/)，2014–2022） | Big Local News、California Civic Data Coalition 等 | 除 Open Policing（A6）外多为数据基础设施或教学 | 教程（见 B 层） |
+| **BU Justice Media co-Lab** 其他报道（[Projects](https://www.bu.edu/justice-media/projects/)） | 红线区与高温、电动车充电桩分布、PPP 贷款、警务逮捕数据等 | 已完成的报道，但未逐篇核实方法与数据来源 | 选题尺度参照；"红线区与高温"适合地理数据组 |
+| **PIT-UN @ Penn**（[页面](https://snfpaideia.upenn.edu/initiatives/public-interest-technology-university-network/)） | 公共利益技术大学网络，设在 SNF Paideia Program 下 | 机构网络；页面为动态加载，信息来自 [Penn Today](https://penntoday.upenn.edu/news/penn-joins-public-interest-technology-university-network) | 公共利益技术的定义（见 [AFOG](https://afog.berkeley.edu/programs/public-interest-tech)） |
+| **TILT, Tilburg** · Global Data Justice（[项目页](https://research.tilburguniversity.edu/en/projects/global-data-justice/)） | ERC 项目（2018–2023，Linnet Taylor），跨地区田野调查，构建全球数据治理框架 | 理论框架；TILT 官网对本环境返回 403 | Taylor 的数据正义框架可作 Day 1 或 Day 4 理论补充 |
+| **Anti-Eviction Mapping Project**（[网站](https://antievictionmap.com/) · [About](https://antievictionmap.com/about)） | 驱逐地图、Evictorbook 房东网络、地图集、口述史、纪录片、租户问卷 | 行动型批判制图，产出是倡导地图与叙事，不是研究结论 | Day 5 成品形式的最佳参照：量化地图 + 个体叙事 + 公共展示 |
 
 ---
 
-## 3. Ida B. Wells JUST Data Lab（Princeton）
+## D. 综合：可以迁移到本课的模式
 
-来源：[thejustdatalab.com](https://www.thejustdatalab.com/) · [CDH@Princeton 介绍页](https://cdh.princeton.edu/engage/undergraduates/just-data-lab/) · 创办人：Ruha Benjamin
+### 研究问题原型（仅引用 A 层）
 
-CDH 页面说明该实验室遵循 *Data Feminism* 的七项原则：examine power、challenge power、elevate emotion and embodiment、rethink binaries and hierarchies、embrace pluralism、consider context、make labor visible。
-
-**项目方向**（据官网导航）：Hospitals & Healthcare、Tests & Treatment、Housing & Neighborhoods、Education、Policing & Surveillance、Prisons、Work、Mutual Aid、Mourning & Mental Health、Digital IDs & Smart Cities、Digital Border Wall、Clearview AI、Algorithmic Accountability、Art & Alternative Futures、ShotSpotter Zine、Anonymous Was The Data（驻地艺术家 Chanika Svetvilas）
-
-| 团队 | 合作组织 | 产出 |
+| 本课方向 | 问题原型 | 依据 |
 |---|---|---|
-| [Hospitals & Healthcare](https://www.thejustdatalab.com/hospitals-healthcare) | Shades of Blue Project | 新冠时期黑人孕产妇心理健康教育手册；产后抑郁严重程度评估与就医导航工具 |
-| [Tests & Treatment](https://www.thejustdatalab.com/tests-treatment) | REDE4 Black Lives；Black Public Health Collective | 包容性检测工具包；网络研讨会摘要与参考文献 |
-| [Housing & Neighborhoods](https://www.thejustdatalab.com/housing-neighborhoods) | Anti-Eviction Mapping Project | 疫情期间租户行动手册；基于 AEMP 数据的房东类型学信息图 |
+| 性别 / 身份 | 谁被收藏、被署名、坐上编委席位？与基准相比差多少？ | A1、A2、A3 |
+| 性别 / 身份 | 基准人群本身是否已经抹去了某些身份？ | A2 |
+| 性别 / 身份 | 同岗位的薪酬差距有多大，是否在改善？ | A10 |
+| 算法决策 | 引入算法后，总体结果和群体间差距分别怎么变？ | A5 |
+| 算法决策 | 决策门槛是否因群体而不同？ | A6 |
+| 平台算法 | 推荐系统放大了谁？平台的说法能否被外部观察验证？ | A7 |
+| 算法治理 | 系统为什么被取消？谁推动了取消？ | A8 |
+| 缺失数据 | 官方数据缺席时，谁在生产反数据，如何生产？ | A9 |
 
-**对本课的借鉴**
-- 学生项目的产出形式（playbook、工具包、zine、信息图）不局限于学术论文，正适合唯理要求的"跨媒介成果"。
-- 项目由"社区伙伴提出需求 → 学生回应"驱动。本课可以简化为：每组为一个想象中或真实的读者对象（如患者组织、高中生、记者）设计作品。
+### 方法清单
 
----
-
-## 4. Data Justice Lab（Cardiff 等）
-
-来源：[datajusticelab.org](https://datajusticelab.org/) · [Projects](https://datajusticelab.org/projects/) · 联合主任：Lina Dencik、Arne Hintz、Joanna Redden、Emiliano Treré（*Data Justice*，Sage, 2022 的作者）
-
-| 项目 | 研究问题 | 方法 / 数据 |
+| 方法 | 例子 | 学员能否借助 coding agent 复刻 |
 |---|---|---|
-| [**Data Harm Record**](https://datajusticelab.org/project/data-harm-record/)（Redden, Brand & Terzieva，2017 年首发，2020 年更新） | 算法系统已经造成了哪些具体伤害 | 汇编已有研究与报道中的案例，每条附原始来源链接 |
-| [**Automating Public Services: Learning from Cancelled Systems**](https://datajusticelab.org/project/automating-public-services-learning-from-cancelled-systems/)（2022 年报告） | 为什么政府会暂停或取消算法决策系统 | 案头范围研究（欧洲、澳、加、新西兰、美）；欺诈检测、警务、儿童福利的案例研究；文件分析；访谈 |
-| [**Data Scores as Governance**](https://datajusticelab.org/project/data-scores-as-governance/) | 英国地方政府如何用"公民评分"分类公民、分配服务 | 信息公开申请（FOI）、访谈、利益相关方工作坊；可按地点、公司、部门检索的文件库 |
-| Towards Democratic Auditing | 公民如何参与和干预"评分社会" | — |
-| AIDEMOCRACY；DataECO | 大科技公司与民主；平台社会中的环境行动 | — |
-
-**对本课的借鉴**
-- Day 4：Data Harm Record 是现成的案例库，每组可以从中抽一个案例拆解"代理指标 → 决策 → 伤害"的链条。
-- **"被取消的系统"可以直接接决策科学模块**：一个系统被取消，说明决策者重新计算了期望收益和期望代价。让学员推测他们的计算是怎么变的。
-
----
-
-## 5. Data Justice Research Centre（University of Calgary）
-
-来源：[datajustice.ca](https://datajustice.ca/)
-
-| 研究领域 | 研究问题 |
-|---|---|
-| [Population Data](https://datajustice.ca/2026/03/10/population-data/) | 人口普查、健康调查、教育记录、生物识别系统如何给个人和社区分类，从而再生产结构性不平等？**谁被计数，类别如何构建，被排除在官方记录之外有什么后果？** |
-| [Digital Archives](https://datajustice.ca/2026/03/10/digital-archives/) | 归档实践如何决定谁的声音被保存、什么被记住或遗忘；社区数字档案作为抵抗 |
-| [Surveillance and Privacy](https://datajustice.ca/2026/03/10/surveillance-and-privacy/) | 从前数字时代到算法追踪，监控对种族化、低收入群体的不成比例影响 |
-
-**对本课的借鉴**
-- Population Data 的核心问题几乎就是本课的主线，可以直接引用为 Day 2 的问题陈述。
-- 可操作的练习：比较人口普查中性别、种族等类别在不同年份的变化，例如美国人口普查种族类别的历史演变。
-
----
-
-## 6. Human-Centered Data Science Lab（University of Toronto）
-
-来源：[hcds-uoft.ca](https://hcds-uoft.ca/) · [Research](https://hcds-uoft.ca/research/) · [Artifacts](https://hcds-uoft.ca/artifacts/) · 负责人：Shion Guha
-
-实验室自述："We study how public institutions use AI and algorithms, and hold them accountable." 工作分为四条线：Critique（审计已在使用的系统）、Construction（与社区共建替代方案）、Measurement（按受影响社区设定的标准检验系统）、Governance（研究决定哪些系统被使用的规则）。
-
-| 方向 | 研究问题 | 方法 / 数据 |
-|---|---|---|
-| 儿童福利 | 社工与预测性风险模型如何互动，自动化风险评分如何扭曲基层决策 | 长期田野；个案记录（casenote）的计算叙事分析（CHI 2023 最佳论文） |
-| AI 治理 | 政府如何采购、登记并为算法负责 | 文件分析：加拿大算法影响评估（AIA）、公共 AI 登记册（FAccT 2026 "Bureaucratic Silences"） |
-| 健康 | 参与式健康 AI；糖尿病风险模型的公平性 | 与 Peel Public Health、CIFAR 合作；患者评论 NLP（FairCareNLP） |
-| 语言与公平 | 语言模型中的偏见测量 | BIBED 孟加拉语身份偏见评估数据集 |
-
-**公开资源**（Zenodo / GitHub）
-- **ADMAPS Lifecycle Checklist**：贯穿系统生命周期的算法决策审计清单
-- **HCDS Pedagogy Toolkit**：人本数据科学的教学模块、幻灯片、代码 notebook 和教师指南
-- **BIBED**：跨文化 NLP 偏见审计数据集
-- **AsAP**：把机器学习的隐含假设写成可检视、可争辩的前提
-
-**对本课的借鉴**
-- Day 4 的 LLM 审计可以借用 ADMAPS 清单作为结构。
-- HCDS Pedagogy Toolkit 是现成的教学材料参考。
-- "一个公共登记册遗漏了什么"这种文件分析，零代码也能做，适合人文学科学员。
-
----
-
-## 7. Algorithmic Fairness and Opacity Group（UC Berkeley）
-
-来源：[afog.berkeley.edu](https://afog.berkeley.edu/) · [Projects](https://afog.berkeley.edu/programs/projects) · [Public Interest Tech](https://afog.berkeley.edu/programs/public-interest-tech) · 联合主任：Jenna Burrell、Deirdre Mulligan
-
-研究重点："AI On the Ground"（部署后的实际效果）；扩展负责任 AI 的"解决方案空间"，包括算法、界面、法律、组织流程和集体行动。
-
-**课程**（含公开大纲）：INFO 188 *Behind the Data: Humans and Values*；INFO 239 *Technology and Delegation*；INFO 290 *Building Data Products for Public Impact*
-
-**学生项目选题范例**（2018–2021，与 CTSP 合办）
-- 定向减肥广告对饮食障碍康复者的情感伤害（Gak & Olojo）
-- 平台市场中的算法公平：价格与质量如何因用户而异（Chong & Lurie）
-- 无家可归者与住房服务的"匹配"系统（Coordinated Entry System）
-- 招聘中的情绪与面部识别
-- 工作场所监控与算法中介
-- 中国社会信用体系中政府与企业的共同生产（Shazeda Ahmed，质性访谈）
-
-**推荐阅读**：Burrell & Fourcade, "The Society of Algorithms", *Annual Review of Sociology*（[链接](https://www.annualreviews.org/doi/abs/10.1146/annurev-soc-090820-020800)）
-
-**对本课的借鉴**
-- INFO 188 和 INFO 290 的大纲可以作为课程结构参考。
-- "定向广告的情感伤害"可以作为平台算法组的可选题目，与注意力经济模块相通。
-
----
-
-## 8. UCLA DataX
-
-来源：[datax.ucla.edu](https://datax.ucla.edu/) · [Data Justice & Data in Society](https://datax.ucla.edu/data-and-justice)
-
-DataX 分为三块：Data Justice & Data in Society（Safiya Noble 主持）、Fundamental Data Science、Innovative Applications and Creative Activity。Data Justice 部分列出的关键词有：ethical AI、responsible AI、data & society、public-interest tech、algorithmic fairness、digital justice、algorithmic accountability。官网特别提到医疗领域的数据正义："accurate and fair collection and use of data for healthcare decision making"。
-
-⚠️ Noble 同时主持 UCLA Center for Critical Internet Inquiry（C2i2）下的 Center on Race & Digital Justice，具体项目清单未能从官网核实（来源：[UCLA SEIS 教师页](https://seis.ucla.edu/faculty/safiya-umoja-noble/)）。
-
----
-
-## 9. Sociotechnical Systems Research Lab（University of Pittsburgh）
-
-来源：[实验室主页](https://engineering.pitt.edu/subsites/Labs/sociotechnical-systems/home/) · [Projects](https://engineering.pitt.edu/subsites/Labs/sociotechnical-systems/projects/) · [Resources](https://engineering.pitt.edu/subsites/Labs/sociotechnical-systems/resources/) · 负责人：Amin Rahimian
-
-**项目**
-- 2023 年 NIH 数据共享政策后健康研究的隐私实践
-- 疫苗错误信息传播力预测工具（CDC 资助）
-- 阿片类药物过量的模拟建模（CDC 资助）
-- 负责任的数据收集与网络干预设计
-- 阴谋论内容的宏观与微观传播因素
-
-**公开资源**
-- [AI for Social Good 课程仓库](https://github.com/aminrahimian/ai-for-social-good)
-- [Design of Experiments 课程仓库](https://github.com/aminrahimian/design-of-experiments-and-quality-assurance)
-- [Western Pennsylvania Regional Data Center](https://ucsur.pitt.edu/western-pennsylvania-regional-data-center-wprdc)（地区开放数据）
-
-**对本课的借鉴**：实验设计和概率课程材料可以支撑 Day 4 的决策科学模块。
-
----
-
-## 10. Computational Social Science Lab（University of Sydney）
-
-来源：[Research](https://computational-social-science.sydney.edu.au/research/)
-
-**项目**
-- 俄乌战争中的数字主权
-- 澳大利亚山火危机中社交媒体的情感极化
-- 数字影响力生态
-- 实时叙事仪表盘 NARRATE
-- **AI and Gender Bias in the Asia Pacific**（Sinpeng, Boichak & Gray；Google Research 资助）：搜索和广告算法中的性别偏见如何影响女性获得 STEM 教育和职业机会
-- #NAFO 迷因社群
-
-**与本课相关的文献**
-- Gray & Witt (2021), "A feminist data ethics of care for machine learning", *First Monday*（[链接](https://journals.uic.edu/ojs/index.php/fm/article/view/11833)）
-- Bednarek & Carr (2021)，不需要编程的语料语言学文本分析方法，*Media International Australia*（[DOI](https://doi.org/10.1177%2F1329878X20947124)）
-- Matamoros-Fernández et al. (2021)，YouTube 推荐算法审计，*Media and Communication*（[链接](https://www.cogitatiopress.com/mediaandcommunication/article/view/4184)）
-
-**对本课的借鉴**
-- 亚太 AI 性别偏见项目与本课的平台算法组直接相关。
-- 零代码语料分析方法适合文本类项目。
-- YouTube 推荐审计是"平台算法审计"的方法范例。
-
----
-
-## 11. Stanford Computational Journalism Lab（2014–2022）
-
-来源：[cjlab.stanford.edu](https://cjlab.stanford.edu/) · [Initiatives](https://cjlab.stanford.edu/initiatives/)。该实验室已于 2022 年结束运行，后续工作见 [Big Local News](https://biglocalnews.org/) 和 Stanford Journalism and Democracy Initiative。
-
-**项目**
-- [**Stanford Open Policing Project**](https://openpolicing.stanford.edu/)：收集并标准化美国各地警察拦停记录，已超过 2 亿条，免费公开
-- **Big Local News**：收集分散在各辖区、难以获取的地方数据，从中发现区域或全国性模式
-- California Civic Data Coalition（竞选财务数据）
-
-**教程**
-- Search-Script-Scrape：101 个网页抓取练习
-- OpenRefine 数据清洗
-- 从 PDF 中提取数据
-- 用地图呈现人口普查数据
-
-**对本课的借鉴**
-- Open Policing 是"标准化多来源数据 + 统计检验 + 数据新闻"的经典范例。
-- "从 PDF 中提取数据"可以对应国内统计年鉴，由 agent 完成解析。
-
----
-
-## 12. Justice Media co-Lab（Boston University）
-
-来源：[bu.edu/justice-media](https://www.bu.edu/justice-media/) · [Projects](https://www.bu.edu/justice-media/projects/)
-
-新闻学院与计算与数据科学学院合办的课程和实习项目，学生与真实新闻机构合作完成数据调查报道。
-
-| 发表媒体 | 报道 | 可能的数据来源（推测，待核实） |
-|---|---|---|
-| CBS Boston | **UMass 薪酬性别差距**：最高薪男性比女性同事多拿近 30% | 公立大学薪酬公开数据 |
-| The Emancipator | **历史红线区与高温**：被划红线的黑人和拉丁裔社区更难逃离高温 | HOLC 红线地图 + 地表温度 |
-| WBUR | 电动车充电桩的公平分布 | 充电桩位置 + 人口数据 |
-| CBS Boston | PPP 贷款中少数族裔企业排在最后 | 小企业管理局 PPP 贷款数据 |
-| NBC Boston | 马萨诸塞州警务数据中的种族差异 | 警务逮捕数据 |
-| NBC Boston | 没有银行账户的代价 | — |
-| Boston Globe | 监狱对囚犯虐待申诉的"橡皮图章"式驳回 | 申诉记录 |
-
-**对本课的借鉴**
-- 这些是 16–26 岁学员可以在几天内复刻的题目尺度。
-- "薪酬性别差距"和"红线区与高温"两个题目可以直接迁移成性别组和地理数据组的题目。
-
----
-
-## 13. PIT-UN @ Penn（SNF Paideia）⚠️
-
-官网是动态页面，未能直接读取。信息来源：[Penn Today](https://penntoday.upenn.edu/news/penn-joins-public-interest-technology-university-network)、[SNF Paideia 新闻页](https://snfpaideia.upenn.edu/news/penn-joins-public-interest-technology-university-network/)
-
-- Public Interest Technology University Network 于 2019 年由 New America、福特基金会和休利特基金会支持成立。
-- Penn 由法学院 Christopher Yoo 牵头加入，项目设在 SNF Paideia Program（公民参与教育）下；学生组织为 PIT@Penn。
-- AFOG 对公共利益技术的定义可以直接引用："the study and application of technical expertise to advance the public interest... particularly for those members of our society least well served historically and today by existing systems and policies."（[来源](https://afog.berkeley.edu/programs/public-interest-tech)）
-
----
-
-## 14. TILT — Tilburg Institute for Law, Technology, and Society ⚠️
-
-官网对本环境返回 403，未能直接读取。信息来源：[Global Data Justice 项目页](https://research.tilburguniversity.edu/en/projects/global-data-justice/)、[Linnet Taylor 个人页](https://research.tilburguniversity.edu/en/persons/linnet-taylor/)
-
-- **Global Data Justice**（ERC 资助，2018–2023，负责人 Linnet Taylor）：通过田野调查了解不同地区的人如何经历数据作为社会和政策工具的作用，比较不同文化的观点，构建一个基于受影响者需求的全球数据治理框架。
-- 相关方向：数据与发展、人道主义援助中的数据伙伴关系、智慧城市、数字身份。
-- 关键文献：Linnet Taylor (2017), "What is data justice? The case for connecting digital rights and freedoms globally", *Big Data & Society*（需核对）。
-
-**对本课的借鉴**：Taylor 的"数据正义三支柱"（visibility、engagement with technology、non-discrimination）可以作为 Day 1 或 Day 4 的理论补充。
-
----
-
-## 15. Anti-Eviction Mapping Project
-
-来源：[antievictionmap.com](https://antievictionmap.com/) · [About](https://antievictionmap.com/about)
-
-自述："a data-visualization, critical cartography, and multimedia storytelling collective documenting dispossession and resistance upon gentrifying landscapes."
-
-| 作品 | 内容 | 数据来源 |
-|---|---|---|
-| Ellis Act Evictions, San Francisco, 1994–2026 | 依据 Ellis Act 的驱逐地图 | 旧金山租金委员会驱逐通知（DataSF 开放数据，待核实） |
-| Evictorbook, SF and Oakland | 房东与驱逐者网络查询工具 | 产权记录 + 驱逐记录 |
-| LA Evictions by Zip Code (2018–2025) | 洛杉矶各邮编区驱逐数量 | — |
-| Who Owns Redwood City's Rental Housing? | 产权集中度 | 产权记录 |
-| Landlord Tech Survey / SF Landlord Tech Report | 房东使用的监控与管理技术 | 租户问卷 |
-| Making Nuisance Neighborhoods | 社区警务对洛杉矶社区的影响 | — |
-| Counterpoints（地图集） | 湾区流离失所与抵抗地图集 | 地图 + 口述史 |
-| Tenants Rise Up!（纪录片） | 湾区住房正义 | 影像 |
-
-数据采集方式：租户填写问卷，选择匿名以防报复，数据进入公共地图；结合口述史、影像、壁画和社区活动。
-
-**对本课的借鉴**
-- 这是"数据 + 叙事 + 社区参与 + 公共展览"的最佳范例，可以在 Day 5 作为成品形式的参照。
-- 量化地图配合个体叙事，回应了 Data Feminism 的 "elevate emotion and embodiment" 原则。
-
----
-
-## 综合：可迁移到本课的模式
-
-### A. 反复出现的研究问题（按本课三个方向归类）
-
-| 方向 | 问题原型 | 出处 |
-|---|---|---|
-| 性别 | 谁被收藏、被纪念、被署名？（博物馆、街名、编委会） | QSIDE；MIT Audit the Streets |
-| 性别 | 同岗位的薪酬差距有多大？ | BU Justice Media |
-| 性别 / 健康 | 女性身体相关的议题为什么没有数据？ | MIT Feminist Hackathons；JUST Data Lab |
-| 健康 | 健康风险模型对谁不公平？ | HCDS（糖尿病风险模型）；Obermeyer et al. 2019 |
-| 健康 / 地理 | 环境风险和资源在空间上如何分布？ | QSIDE Superfund；BU 红线区与高温 |
-| 平台算法 | 推荐或广告算法是否系统性地区别对待不同群体？ | Sydney（亚太 AI 性别偏见、YouTube 审计）；AFOG（定向广告） |
-| 平台算法 | 语言模型中的身份偏见 | HCDS BIBED |
-| 全部 | 算法系统已经造成了哪些伤害，为什么有的被取消了？ | Data Justice Lab |
-| 全部 | 类别是谁定的，谁被排除在记录之外？ | Calgary Population Data |
-
-### B. 反复出现的方法
-
-1. **公开目录或记录的爬取与标准化**：QSIDE 博物馆数据、Open Policing、JUSTFAIR
-2. **众包或人工标注 + 准确率报告**：QSIDE 的性别推断
-3. **新闻即数据**（news as data）：Data Against Feminicide
-4. **文件分析与信息公开申请**：Data Justice Lab、HCDS 的 AI 登记册
-5. **配对 / 标准化审计**：YouTube 推荐审计、LLM 偏见测量
-6. **批判制图 + 口述史**：Anti-Eviction Mapping Project、Audit the Streets
-7. **社区伙伴共同设计**：JUST Data Lab、Data + Feminism Lab
-
-### C. 可直接用于数据目录的数据集（待逐一实测）
-
-| 数据集 | 类型 | 获取方式 | 来源 |
-|---|---|---|---|
-| Artist Diversity in Museum Collections | 表格 | OSF 下载 | [QSIDE](https://qsideinstitute.org/qside-datasets/) |
-| Race and Gender Representation Across Creative Fields | 表格 | OSF 下载 | [QSIDE](https://qsideinstitute.org/qside-datasets/) |
-| Mathematical Sciences Editorial Board（性别） | 表格 | OSF 下载 | [QSIDE](https://qsideinstitute.org/qside-datasets/) |
-| Superfund Site Race and Remediation | 表格 + 地理 | OSF 下载 | [QSIDE](https://qsideinstitute.org/qside-datasets/) |
-| Opportunity Youth | 表格 + 地理 | OSF 下载 | [QSIDE](https://qsideinstitute.org/qside-datasets/) |
-| Cambridge 街名数据集 | 地理 + 文本 | 开放数据 | [MIT Audit the Streets](https://medium.com/data-feminism-lab-mit/whos-in-your-heritage-landscape-ead78981efd6) |
-| Stanford Open Policing | 记录级 | CSV 下载 | [openpolicing.stanford.edu](https://openpolicing.stanford.edu/) |
-| Data Harm Record | 案例文本 | 网页 | [Data Justice Lab](https://datajusticelab.org/project/data-harm-record/) |
-| BIBED | 文本 / NLP | Zenodo | [HCDS](https://hcds-uoft.ca/artifacts/) |
-| 旧金山驱逐通知（AEMP 地图所用） | 记录级 + 地理 | DataSF API（待核实） | [AEMP](https://antievictionmap.com/) |
-
-### D. 教学资源
-
-- [DataBasic.io](http://databasic.io) 与 [culture.databasic.io](http://culture.databasic.io)（MIT / Northeastern）：零代码数据素养工具和活动
-- [HCDS Pedagogy Toolkit](https://hcds-uoft.ca/artifacts/)（Toronto）：人本数据科学课程模块
-- [ADMAPS Lifecycle Checklist](https://hcds-uoft.ca/artifacts/)（Toronto）：算法审计清单
-- [AFOG 课程大纲](https://afog.berkeley.edu/)（Berkeley INFO 188 / 239 / 290）
-- [AI for Social Good 课程](https://github.com/aminrahimian/ai-for-social-good)（Pitt）
-- [Stanford CJ Lab 教程](https://cjlab.stanford.edu/initiatives/)：Search-Script-Scrape、OpenRefine、PDF 数据提取
-- [QSIDE Data4Justice Curriculum](https://qsideinstitute.org/qside-datasets/)（见 QSIDE 网站 Resources 菜单）
+| 公开目录爬取 + 众包或人工标注 | A1、A2 | 能（小规模） |
+| 姓名推断性别并报告准确率 | A3 | 能；同时是伦理讨论题 |
+| 样本占比 ÷ 基准占比 | A2、A3 | 能 |
+| 政策或系统上线前后比较 | A5、A6（大麻合法化） | 能（描述层面） |
+| 自然实验式检验（夜幕检验） | A6 | 能理解，可用现成数据演示 |
+| 阈值检验 | A6 | 可简化为 Day 4 的阈值游戏 |
+| 推荐链抓取与追踪 | A7 | 能（配对提示审计 LLM） |
+| 案头范围研究 + 文件分析 | A8 | 能 |
+| 新闻即数据 + 参与式标注 | A9 | 能（小规模） |
+| 公开薪酬数据分组比较 | A10 | 能 |
