@@ -146,6 +146,63 @@
 
 ---
 
+## 引子三：几个特征就能认出你——再识别、准标识符与自媒体时代的自我暴露
+
+### 原始说法与核实结果
+
+| 原始说法 | 核实结果 |
+|---|---|
+| "只需要几个数据特征就可以定位一个人" | **成立，且有经典研究支持。** Sweeney（2000）用 1990 年人口普查汇总数据估计，约 87% 的美国人可以仅凭"5 位邮编 + 性别 + 出生日期"唯一识别（✅）。Golle（2006）用同样方法复核，得到 1990 年 61%、2000 年 63%，并指出无法复现 87% 这个数字（✅）。**两个数字都可以引用，但要说明口径不同** |
+| "比如非常高的收入 + 邮编" | **方向正确，但经典例子是"邮编 + 性别 + 生日"。** 高收入是很好的补充例子：极端值让人更"独特"，所以公开的微观数据通常对收入做顶部截断（top-coding，🔎 未查具体规则）。原理是同一个：组合越稀有，能藏身的人群越小 |
+| "这就是为什么人口普查和病人数据一定要脱敏" | **成立，但要补上一句：简单脱敏已经不够。** 见下文的重建攻击和差分隐私 |
+| "location tag、自愿暴露的院校信息，让人很容易 pinpoint 你是谁、你在哪里" | **成立，而且大模型让这件事变得更便宜。** 见下文 2024–2026 年的研究 |
+
+### 推荐表述
+
+> 在数据里，"你是谁"往往不是由名字决定的，而是由几个看似无害的特征的**组合**决定的。邮编、性别和生日单独看都很普通，但组合在一起，经典研究估计能唯一识别六到九成的美国人。这些特征叫作**准标识符**（quasi-identifiers）。
+>
+> 自媒体时代，我们每天都在主动发布准标识符：定位标签、学校、穿着校服的照片、窗外的风景、平台强制显示的 IP 属地。每一条都是身份表达的一部分，但它们会被搜索引擎、陌生人，现在还有大模型重新**拼起来**。
+
+### 扩展一：为什么"删掉名字"不等于匿名
+
+1. **k-匿名的直觉。** 如果数据里任何一个人的准标识符组合至少和另外 k−1 个人相同，攻击者就无法确定是谁（Sweeney 提出的 k-anonymity 概念，2002）。高收入、罕见职业、少数族裔、小地方，都会让 k 变小。**最容易被认出来的，往往是本来就少数的人**：这把隐私问题直接连回 Data Justice。
+2. **准标识符越多，几乎人人唯一。** Rocher、Hendrickx 和 de Montjoye（*Nature Communications*, 2019）用生成模型估计：使用 15 个人口学属性，99.98% 的美国人可以被正确再识别（✅；这是模型估计，不是实际攻击的统计）。作者据此质疑"脱敏后发布即可"的做法。
+3. **人口普查的真实案例。** 美国人口普查局用 2010 年公开发布的汇总表做了模拟攻击：约 9,700 万条个人记录（覆盖约 70% 普查街区的全部居民）可以被精确重建，再与商业数据关联实现再识别（🔎 据技术报告摘要）。这是 2020 年人口普查改用**差分隐私**（differential privacy）的直接原因之一；也有统计学者批评这项实验的代表性（🔎）。
+4. **医疗数据的规则。** 美国 HIPAA 的"安全港"方法要求删除 18 类标识符：邮编只保留前 3 位，且该区域人口须超过 2 万人，否则改为 000；89 岁以上的年龄合并为"90 岁及以上"；日期只保留年份（🔎 据合规机构整理，需对照 45 CFR 164.514(b) 原文）。**这些规则本身就是一张"哪些特征危险"的清单，可以直接给学员看。**
+5. **中国法律的区分。** 《个人信息保护法》第 73 条区分"去标识化"（不借助额外信息无法识别特定个人）和"匿名化"（无法识别且不能复原）；只有匿名化后的信息才不再属于个人信息（🔎 条文，本次未重新打开原文）。
+
+### 扩展二：自媒体时代——你主动发布的准标识符
+
+1. **平台强制的位置标签。** 国家网信办 2022 年发布的《互联网用户账号信息管理规定》第 12 条要求平台在账号页面展示"合理范围内"的 IP 地址归属地（✅ 网信办发布页；征求意见稿曾要求境内账号标注到省）。这是用户无法关闭的准标识符。
+2. **聚合数据也会泄露。** 2018 年，健身应用 Strava 的全球热力图汇集了约 10 亿次运动记录，一名学生发现可以从中辨认出多处军事基地的位置和人员活动规律；Strava 称数据已经"聚合且匿名"（🔎 媒体报道）。**匿名的个体 + 聚合的模式，仍然能暴露地点。**
+3. **大模型从文字推断你。** Staab 等（ICLR 2024）用真实 Reddit 帖子测试，大语言模型推断作者的位置、收入、性别等属性，top-1 准确率最高约 85%，top-3 约 95%，成本约为人工的 1/100；文本匿名化和模型对齐都难以有效阻止（🔎 据论文摘要）。**这和本课学员手里的 DeepSeek API 直接相关。**
+4. **大模型从照片定位你。** "Doxing via the Lens"（arXiv 2025，ICLR 2026）发布了 500 张真实场景照片的 DoxBench 数据集，测试 13 个多模态模型，发现多数模型的地理定位能力超过普通人；早期版本中，一个推理模型对 50 张照片的定位有 60% 精确到 1 英里以内；遮挡街道布局、院落设计等特征能降低准确率（🔎 据论文摘要）。另一项研究 GEO-Detective（arXiv 2025）用调用反向图片搜索等工具的智能体，在没有明显地理特征的照片上也提升了定位能力（🔎）。
+5. **语境的崩塌。** 这些信息在发布时属于某个语境（给朋友看的校园生活），被重新组合后进入了完全不同的语境。这正是 Nissenbaum 的"情境完整性"（contextual integrity）要说明的问题；Solove 的隐私分类学（"A Taxonomy of Privacy", 2006）也把"聚合"（aggregation）单独列为一种隐私伤害。
+
+### 扩展三：自媒体人的隐私——近年的研究与动态
+
+**国际研究**
+
+- Thomas 等（CHI 2022）调查了 135 名美国内容创作者：95% 能回忆起至少一次遭遇仇恨或骚扰的经历，约 36% 认为这类攻击是常态；冒充是最常见的攻击，此外还有人肉搜索类的个人信息泄露和伪造、篡改的媒体内容（🔎 据摘要）。这是目前针对创作者最常被引用的实证研究，但已是 2022 年。
+- 2024 年 USENIX Security 有一篇研究特定平台创作者数字安全实践的论文；2025 年有关于创作者如何管理评论的研究（arXiv）。**我没有找到 2024–2025 年专门针对创作者被人肉、被定位的大规模调查。** 一些广泛流传的数字（如"73% 的十万粉以上创作者遭遇过隐私侵犯"）找不到原始来源，不建议使用。
+
+**中国的动态**
+
+- 2025 年 5 月，中央网信办印发通知，要求对"开盒"（非法公开他人姓名、身份证号、住址、行踪等）"零容忍"，从阻断传播、预警、惩治、保护等方面整治，并依法处罚了 3 家大型网站平台（🔎 新华网、Sixth Tone 报道）。
+- 公开案情显示，有团伙在 2023–2025 年间搭建"社工库"，非法存储公民个人信息 1.7 亿余组并出售（🔎 媒体报道）。
+- Sixth Tone 的报道指出，"开盒"在网络冲突、饭圈纷争和舆论热点事件中日益突出（🔎）。
+
+**研究缺口（可以作为学员项目）**：中文自媒体创作者的隐私暴露和被"开盒"经历，目前缺少公开的系统性调查。
+
+### 课堂用法
+
+- **Day 2（分类即权力）· k-匿名小游戏**：用一份**合成数据**（不要用学员真实信息），让学员逐步加入"城市 → 区 → 学校 → 年级 → 生日月份"，观察"唯一的人"的比例怎么上升。
+- **Day 2 · 自我审计（自愿，不分享）**：学员挑一条自己发过的公开帖子，私下列出里面所有的准标识符：定位、IP 属地、校服、窗外地标、时间规律。只交"类别清单"，不交内容。
+- **Day 4 · 讨论**：既然大模型能从文字和照片推断位置和收入，平台和用户各自应该做什么？这是一个风险由谁承担的问题。
+- **伦理红线**：**不允许学员对他人的照片或帖子做定位或身份推断练习**，包括公众人物。演示只用公开的研究数据集或讲师自己准备的材料。
+
+---
+
 ## 来源
 
 **教育**
@@ -166,4 +223,17 @@
 - 腾讯 2025 年业绩：[新京报](https://www.bjnews.com.cn/detail/1773828269129580.html)、[东方财富](https://finance.eastmoney.com/a/202603183676094321.html)
 - 欧盟 DMA 对 Meta 罚款：[The Register](https://www.theregister.com/2025/07/03/meta_ec_dma_sulk/)、[Privacy Laws & Business](https://www.privacylaws.com/news/meta-fined-200m-over-consent-or-pay/)
 - 《个人信息保护法》第 45 条解读：[安全内参](https://www.secrss.com/articles/33704)、[澎湃新闻测评](https://www.thepaper.cn/newsDetail_forward_15923625)
+**再识别与自媒体隐私**
+- [Sweeney (2000), Simple Demographics Often Identify People Uniquely](https://dataprivacylab.org/projects/identifiability/paper1.pdf)；[Golle (2006), Revisiting the Uniqueness of Simple Demographics in the US Population](https://crypto.stanford.edu/~pgolle/papers/census.pdf)
+- [Rocher, Hendrickx & de Montjoye (2019), *Nature Communications*](https://pmc.ncbi.nlm.nih.gov/articles/PMC6650473)
+- [美国人口普查局 2010 年数据重建与再识别模拟攻击（arXiv 2312.11283）](https://arxiv.org/abs/2312.11283v3)；批评意见：[Statistical Modeling 博客](https://statmodeling.stat.columbia.edu/2021/08/27/shots-taken-shots-returned-regarding-the-census-motivation-for-using-differential-privacy-and-btw-its-not-an-algorithm)；[HDSR (2025)](https://hdsr.mitpress.mit.edu/pub/eb9hacc7)
+- [HHS：HIPAA 去标识化指南](https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html)
+- [国家网信办《互联网用户账号信息管理规定》](https://www.cac.gov.cn/2022-06/26/c_1657868775042841.htm)
+- Strava 热力图：[Fortune](https://www.fortune.com/2018/01/29/strava-heat-map-fitbit-fitness-tracking-military)
+- [Staab et al. (2024), Beyond Memorization: Violating Privacy via Inference with Large Language Models](https://arxiv.org/abs/2310.07298v2)
+- [Doxing via the Lens（arXiv 2504.19373）](https://arxiv.org/abs/2504.19373v4)、[DoxBench 数据集](https://huggingface.co/datasets/MomoUchi/DoxBench)；[GEO-Detective（arXiv 2511.22441）](https://arxiv.org/pdf/2511.22441v1)
+- [Thomas et al. (2022), Understanding How Creators Experience and Cope with Hate and Harassment Online, CHI](https://dl.acm.org/doi/fullHtml/10.1145/3491102.3501879)
+- "开盒"整治：[新华网](https://www.news.cn/politics/20250527/40488f12a1db427fa9bcb04417a6aebd/c.html)、[Sixth Tone](https://www.sixthtone.com/news/1017157)、[IT之家（社工库案例）](https://www.ithome.com/0/953/906.htm)
+
+**其他**
 - 放弃 Facebook 的补偿意愿：[Groningen 大学介绍](https://www.rug.nl/feb/research/frn/blog/it-takes-50-a-month-to-convince-people-to-give-up-facebook)（原文：Brynjolfsson, Collis & Eggers, *PNAS*, 2019）
