@@ -203,6 +203,54 @@
 
 ---
 
+## 引子四：同样是"大量下载文本"——公司与个人面对的法律后果
+
+> 利益相关说明：本节由 Anthropic 开发的模型整理，案例涉及其开发方。以下只依据法院裁决和公开报道，不作评价性推断。
+
+### 原始说法与核实结果
+
+| 原始说法 | 核实结果 |
+|---|---|
+| "Anthropic 把古书都买回来，砍掉书脊训练大模型" | **部分准确。** Anthropic 确实购买了大量纸质书，拆掉装订后扫描数字化。但并非专门针对"古书"，而是大量二手和新书。2025 年 6 月，Alsup 法官裁定：**用合法购买的书训练模型属于合理使用（fair use），把买来的纸质书扫描成数字副本也属于合理使用**（🔎 据多家法律评论和媒体报道） |
+| "给了 15 亿美元罚款" | **不是罚款，也不是因为拆书扫描。** 这是一起作者集体诉讼（Bartz v. Anthropic）的**民事和解**，金额至少 15 亿美元。针对的是另一件事：Anthropic 从 Library Genesis 等**盗版网站下载**图书，建立永久的通用图书库。法官认定这部分不属于合理使用。和解约为每部作品 3,000 美元，覆盖约 40 万至 50 万部作品（各报道数字略有出入），并要求销毁盗版数据集。2025 年 9 月达成，已获法院最终批准（🔎 Jurist 报道；具体批准日期需核对法院文件）。据报道，这是美国版权史上金额最大的和解 |
+| "Aaron Swartz 下载期刊文章被 JSTOR 起诉" | **不准确。JSTOR 没有起诉。** Swartz 在 2010–2011 年间通过 MIT 校园网络下载了约 480 万篇 JSTOR 文章。JSTOR 与他达成民事和解，并告知联邦检察官办公室"对此事没有进一步的兴趣，不希望提起指控"（🔎）。**起诉方是联邦检察官**（马萨诸塞州联邦检察官 Carmen Ortiz 的办公室） |
+| "被判刑" | **不准确。他从未被定罪，也没有被判刑。** 2011 年最初起诉 4 项重罪，2012 年 9 月的替代起诉书增至 13 项重罪（包括电信欺诈和违反《计算机欺诈与滥用法》），法定最高刑期合计 35 年、罚款 100 万美元。检方提出的认罪协议是：承认全部 13 项罪名，检方建议判处 6 个月监禁。Swartz 不认罪，案件在审理前悬而未决 |
+| "自杀" | **属实。** Swartz 于 2013 年 1 月 11 日去世，年仅 26 岁。去世后，检方撤销了指控；国会随后就检方对此案的处理展开质询（🔎） |
+
+### 推荐表述
+
+> 同样是大规模获取受版权保护的文本，结局却截然不同。
+>
+> 2010–2011 年，程序员和开放获取活动人士 Aaron Swartz 从 MIT 网络下载了约 480 万篇学术论文。版权方 JSTOR 与他和解并表示不希望追究，但联邦检察官仍以 13 项重罪起诉他，理论上最高可判 35 年。案件尚未开庭，他于 2013 年去世。
+>
+> 2025 年，AI 公司 Anthropic 因从盗版网站下载数十万部图书用于构建训练数据库，在作者集体诉讼中达成至少 15 亿美元的民事和解；而它购买纸质书、拆开扫描并用于训练的做法，被法院认定为合理使用。
+>
+> 一个是个人面对刑事起诉，一个是公司面对民事赔偿。这个对比要问的不是"谁更对"，而是：**法律把什么当作犯罪、把什么当作可以用钱解决的纠纷？谁有资源把风险变成成本？**
+### 讲课时需要说清楚的区别
+
+为了让对比公正，课上应主动讲出两个案子**不能直接类比**的地方：
+
+1. **程序不同**：Swartz 案是刑事起诉（政府 vs 个人）；Anthropic 案是民事诉讼（版权人 vs 公司）。
+2. **指控不同**：Swartz 的罪名主要是未经授权访问计算机网络、电信欺诈（例如被指在 MIT 网络中规避封锁），而不仅仅是"下载"；Anthropic 的责任来自版权侵权。
+3. **时代与法律不同**：2025 年的裁决首次就"用书训练 AI 是否属于合理使用"作出判断；2011 年还没有这个问题。和解不构成有约束力的判例。
+4. **目的不同**：Swartz 是开放获取运动的倡导者；Anthropic 是商业公司。但目的不同本身也是讨论点：法律后果是否应该考虑目的？
+
+### 这个案例连接的课程主题
+
+- **Data Justice / 权力**：谁能承担诉讼风险，谁被刑法追究？
+- **数据的来源与劳动**：训练数据背后是作者的劳动（Data Feminism 原则："让劳动可见"）。
+- **开放获取与知识的围墙**：公共资助的研究为什么要付费才能读？
+- **决策分析**：对一家公司来说，"先下载、后和解"的期望成本是多少？对一个个人来说，刑事起诉的风险又意味着什么？
+
+### 课堂注意事项：涉及自杀的内容
+
+本课学员最小 16 岁。讲到 Swartz 的去世时：
+
+- 平实陈述事实，不描述细节，不把自杀简单归因于单一原因，也不把它浪漫化或当作"抗争"。
+- 可在课前或课后告知学员可求助的心理支持资源（例如所在学校或机构的心理咨询，以及当地的心理援助热线），并与组委确认课程中是否需要提前提示。
+
+---
+
 ## 来源
 
 **教育**
@@ -234,6 +282,10 @@
 - [Doxing via the Lens（arXiv 2504.19373）](https://arxiv.org/abs/2504.19373v4)、[DoxBench 数据集](https://huggingface.co/datasets/MomoUchi/DoxBench)；[GEO-Detective（arXiv 2511.22441）](https://arxiv.org/pdf/2511.22441v1)
 - [Thomas et al. (2022), Understanding How Creators Experience and Cope with Hate and Harassment Online, CHI](https://dl.acm.org/doi/fullHtml/10.1145/3491102.3501879)
 - "开盒"整治：[新华网](https://www.news.cn/politics/20250527/40488f12a1db427fa9bcb04417a6aebd/c.html)、[Sixth Tone](https://www.sixthtone.com/news/1017157)、[IT之家（社工库案例）](https://www.ithome.com/0/953/906.htm)
+
+**Anthropic 与 Aaron Swartz**
+- Bartz v. Anthropic 裁决与和解：[Kilpatrick Townsend](https://ktslaw.com/insights/alert/2025/9/parties-reach-a-landmark-settlement-in-the-bartz-v-anthropic-litigation)、[City Law Forum](https://blogs.city.ac.uk/citylawforum/?p=885)、[Jurist（最终批准）](https://www.jurist.org/news/2026/07/judge-approves-record-1-5-billion-settlement-involving-anthropic/)、[The Next Web](https://thenextweb.com/news/anthropic-1-5-billion-copyright-settlement-approved)
+- United States v. Swartz：[Wikipedia（含起诉书、检方声明引文）](https://en.wikipedia.org/wiki/United_States_v._Swartz)、[JSTOR 关于此案的声明与文件](https://docs.jstor.org/)、[Wired（13 项重罪）](https://tagteam.harvard.edu/hub_feeds/928/feed_items/44518)、[Inside Higher Ed (2011)](https://www.insidehighered.com/news/2011/07/20/activist-who-downloaded-too-much)、[众议院监督委员会质询函](https://oversightdemocrats.house.gov/news/press-releases/issa-cummings-ask-for-briefing-on-swartz-prosecution)
 
 **其他**
 - 放弃 Facebook 的补偿意愿：[Groningen 大学介绍](https://www.rug.nl/feb/research/frn/blog/it-takes-50-a-month-to-convince-people-to-give-up-facebook)（原文：Brynjolfsson, Collis & Eggers, *PNAS*, 2019）
