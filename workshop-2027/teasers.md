@@ -262,6 +262,64 @@
 
 ---
 
+## 引子五：AI 产业的劳动——高薪技术岗、低薪标注岗，和不被算作劳动的"数据贡献"
+
+### 先回答归类问题
+
+> "AI 的高薪技术岗位与低薪数据标注岗位，是不是同一个产业的两种劳动市场？"
+
+**是，而且可以说得更精确：这是同一条全球产业链上的分割劳动力市场，外加一个不被算作劳动的第三层。**
+
+| 层级 | 谁 | 特征 | 理论 |
+|---|---|---|---|
+| 一级市场 | 研究员、工程师 | 高薪、稳定、可见、可流动 | **二元 / 分割劳动力市场理论**（Doeringer & Piore, 1971）：同一产业内并存"一级市场"（高薪、稳定、有晋升通道）和"二级市场"（低薪、不稳定、无晋升），两者之间很少流动 |
+| 二级市场 | 数据标注员、内容审核员、动作数据采集员 | 计件或时薪、外包、多层转包、可替换 | **幽灵工作**（Gray & Suri, *Ghost Work*, 2019）：让 AI 看起来"自动"的背后，是被隐藏的按需人工劳动；**伪自动化**（Astra Taylor, "fauxtomation", 2018） |
+| 不被算作劳动 | 普通用户 | 发帖、扫描、点击、上传，被平台授权给 AI 公司训练模型，自己往往不知情 | **"数据即劳动"**（Arrieta-Ibarra, Posner, Weyl 等, 2018）；Crawford, *Atlas of AI*（2021）；*Data Feminism* 的原则"让劳动可见" |
+
+还有一种特殊形态：**工人生产训练数据，用来训练可能替代自己的机器人**。
+
+以上理论文献为经典著作，本次没有重新核对原文。
+
+### 原始说法与核实结果
+
+| 原始说法 | 核实结果 |
+|---|---|
+| "AI 需要大量高质量数据，产生了大量数据标注岗位" | **成立。** 国家数据局确定的首批数据标注基地中有山西永和县、贵州毕节、云南蒙自等中西部地区（🔎）。具身智能（人形机器人）数据市场也在快速增长（🔎 行业报告，数字差异大，不建议引用具体金额） |
+| "标注岗位低薪" | **成立，但"低"要看地区和环节。** 县域数据标注员月薪约 2,500–3,000 元，按帧计件；上游自动驾驶标注项目一帧可达 10 元，层层转包后到县城基地只剩约十分之一，扣除成本后标注员每帧只得几分钱（🔎 《IT 时报》等报道）。TIME 2023 年的调查：OpenAI 通过外包公司 Sama 雇用肯尼亚工人过滤有害内容，到手时薪约 1.32–2 美元，工作内容包括阅读描述儿童性虐待、谋杀等极端内容的文本（🔎；Sama 称时薪为 1.46–3.74 美元，并于 2022 年 2 月终止合作） |
+| "用完即弃" | **方向成立，但需要用数据检验**：外包、计件、项目制意味着岗位随项目结束而消失。适合作为学员项目，按研究五步法改写成可检验的命题（见下文） |
+| "高薪技术岗" | **成立。** WIRED 报道称，Meta 为组建超级智能实验室，向顶尖研究员开出四年最高 3 亿美元的薪酬；Meta 否认报道中的数额和结构（🔎） |
+| "平台开始买卖私有数据" | **成立，但多为"授权"而不是"出售"。** Reddit 与 Google 达成每年约 6,000 万美元的数据授权协议（Reuters、Bloomberg 报道，双方未公开条款），与 OpenAI 的协议估计每年约 7,000 万美元（🔎） |
+| "不一定经过用户同意，或把声明写得很长很难读" | **成立。** LinkedIn 2024 年默认开启用户数据用于生成式 AI 训练，用户须自行关闭；欧洲经济区、瑞士和英国用户当时被排除在外。2025 年 LinkedIn 将默认开启扩展到欧盟等更多地区，用户需在 2025 年 11 月 3 日前选择退出；退出只停止今后的使用，不撤回已用于训练的数据（🔎）。关于声明太长：McDonald & Cranor（2008）估计，美国人如果逐一阅读所用网站的隐私政策，每人每年要花约 201 小时（经典研究，本次未重新核对） |
+| "Pokémon GO 把玩家数据卖给外卖公司" | **不准确，实际情况更值得讨论。** 不是直接"卖数据给外卖公司"：Pokémon GO 玩家通过游戏内的可选扫描功能（2021 年上线）贡献了约 300 亿次扫描，Niantic Spatial 用它们训练视觉定位模型；2026 年 2 月，配送机器人公司 Coco Robotics 与其合作，该模型被部署在约 1,000 台配送机器人上（🔎 Fortune、Decrypt，原始报道来自 MIT Technology Review）。Niantic Spatial 称扫描是玩家自愿的；批评者指出，很多玩家并不知道自己的扫描会用于商业机器人 |
+| "LinkedIn 卖数据" | **需要修正**：报道的是 LinkedIn **用**会员数据训练**自己的** AI 工具，而不是出售给第三方（🔎） |
+| "特斯拉工人罢工，不给 Optimus 采集数据" | **"罢工"没有找到证据。** 可以核实的是：特斯拉 2024 年招聘"数据采集员"穿戴动作捕捉设备，时薪最高 48 美元；2025 年 6 月改为头盔加背包上装 5 个摄像头，工人在 8 小时轮班中把同一动作重复数百次，一名前员工形容自己像"显微镜下的实验鼠"（🔎 Business Insider）。另有二手报道称部分特斯拉工人反对为 Optimus 采集数据（🔎 转引 The Information，未能核实原文）。**真正有罢工报道的是韩国**：韩国金属工会因担心被人形机器人替代，自 7 月起在现代汽车分阶段罢工（🔎 单一来源，需核对）。印度有制衣工人发现头戴摄像头一直在录像、用于训练机器人后进行抵制（🔎 专题报道） |
+| "机器人行业需要工人戴着设备采集数据" | **成立。** 北京一家人形机器人数据训练中心的首批 30 多名"数据采集师"来自各行各业，也有不少大学生；国内"具身智能数据采集员"招聘帖强调"日结、居家可做、无学历要求"（🔎） |
+
+### 一个值得讨论的反差
+
+特斯拉的数据采集员时薪最高 48 美元，肯尼亚的内容审核员时薪不到 2 美元，中国县城的标注员月薪两三千元。**"低薪数据岗位"本身也按地理、合同类型和可见度分层。**所以更准确的说法是：AI 产业把劳动切成了很多层，越靠近数据源头、越远离公司总部的环节，越不可见、越不稳定。
+
+### 推荐表述
+
+> AI 让人感觉是"机器在学习"，但每一个模型背后都有三种劳动：拿高薪写模型的工程师，拿计件工资给数据打标签、给机器人示范动作的工人，以及从来没被当作劳动者的普通用户——他们发的帖子、拍的照片、玩游戏时的扫描，被平台授权给 AI 公司训练模型。前两种是同一个产业里的两个劳动力市场，第三种甚至不被算作劳动。
+
+### 按研究五步法改写成学员项目
+
+| 宽泛说法 | 可检验的命题 | 数据来源 |
+|---|---|---|
+| 数据标注是用完即弃的工作 | 在某招聘平台上，"数据标注"岗位中计件、日结或短期合同的比例，是否高于"算法工程师"岗位？ | 招聘平台的公开职位描述（只采集岗位信息，不采集个人信息） |
+| 平台偷偷用用户数据训练 AI | 在常用的 10 个 App 中，有多少个在隐私政策中写明会用用户内容训练 AI？相关条款在政策全文中的位置和篇幅如何？默认是开启还是关闭？ | 公开的隐私政策文本 + App 设置界面 |
+| 隐私政策故意写得很难读 | 这些隐私政策的字数、阅读时长、可读性指标，与同一 App 的用户协议相比如何？ | 公开的隐私政策文本 |
+
+**边界**：只分析公开的岗位描述和政策文本；不采集招聘者或用户的个人信息；不伪造身份注册账号。
+
+### 课堂用法
+
+- **Day 5 上午**：接在引子四（Anthropic 与 Aaron Swartz）之后，作为"数据从哪里来、谁的劳动"的圆桌讨论
+- **平台算法组可选项目**：上表中的三个命题
+
+---
+
 ## 来源
 
 **教育**
@@ -297,6 +355,17 @@
 **Anthropic 与 Aaron Swartz**
 - Bartz v. Anthropic 裁决与和解：[Kilpatrick Townsend](https://ktslaw.com/insights/alert/2025/9/parties-reach-a-landmark-settlement-in-the-bartz-v-anthropic-litigation)、[City Law Forum](https://blogs.city.ac.uk/citylawforum/?p=885)、[Jurist（最终批准）](https://www.jurist.org/news/2026/07/judge-approves-record-1-5-billion-settlement-involving-anthropic/)、[The Next Web](https://thenextweb.com/news/anthropic-1-5-billion-copyright-settlement-approved)
 - United States v. Swartz：[Wikipedia（含起诉书、检方声明引文）](https://en.wikipedia.org/wiki/United_States_v._Swartz)、[JSTOR 关于此案的声明与文件](https://docs.jstor.org/)、[Wired（13 项重罪）](https://tagteam.harvard.edu/hub_feeds/928/feed_items/44518)、[Inside Higher Ed (2011)](https://www.insidehighered.com/news/2011/07/20/activist-who-downloaded-too-much)、[众议院监督委员会质询函](https://oversightdemocrats.house.gov/news/press-releases/issa-cummings-ask-for-briefing-on-swartz-prosecution)
+
+**AI 产业的劳动与数据**
+- 数据标注：[《IT 时报》报道转载（界面）](https://m.jiemian.com/article/14999196.html)、[虎嗅](https://www.huxiu.com/article/4886225.html)、[澎湃](https://m.thepaper.cn/newsDetail_forward_23618850)
+- TIME 关于 OpenAI 与 Sama 的调查：[Business & Human Rights Resource Centre 转引](https://www.business-humanrights.org/en/latest-news/openai-and-sama-hired-underpaid-workers-in-kenia-to-filter-toxic-content-for-chatgpt)、[The Star（肯尼亚）](https://www.the-star.co.ke/news/africa/2023-01-19-kenyans-paid-2-per-hour-to-make-chatgpt-less-toxic-report)
+- Meta 超级智能实验室薪酬：[TechCrunch](https://techcrunch.com/?p=3022848)、[DeepLearning.AI The Batch](https://www.deeplearning.ai/the-batch/metas-hiring-spree-raised-compensation-for-top-ai-engineers-and-executives/)
+- Reddit 数据授权：[Engadget](https://engadget.com/reddit-is-licensing-its-content-to-google-to-help-train-its-ai-models-200013007.html)、[Columbia Journalism Review](https://www.cjr.org/analysis/reddit-winning-ai-licensing-deals-openai-google-gemini-answers-rsl.php)
+- LinkedIn：[TechCrunch (2024)](https://techcrunch.com/2024/09/20/linkedin-has-stopped-grabbing-u-k-users-data-for-ai/)、[Malwarebytes (2025)](https://www.malwarebytes.com/blog/news/2025/09/linkedin-will-use-your-data-to-train-its-ai-unless-you-opt-out-now)
+- Pokémon GO 与 Coco Robotics：[Fortune (2026)](https://fortune.com/2026/03/19/pokemon-go-30-billion-photos-map-coco-robots)、[Decrypt](https://decrypt.co/?p=361302)
+- 特斯拉 Optimus 数据采集：[Business Insider（荷兰版，2024）](https://businessinsider.nl/tesla-is-paying-up-to-48-per-hour-for-people-to-wear-motion-capture-suits-to-help-train-its-humanoid-optimus-robot/)、[eWeek](https://www.eweek.com/news/tesla-optimus-robot-training/)、[Forklog（转引 The Information）](https://forklog.com/en/?p=104349)
+- 工人抵制：[BirGün（韩国现代罢工）](https://www.birgun.net/haber/workers-uprising-against-artificial-intelligence-724304)、[The India Forum](https://www.theindiaforum.in/economy/ai-needs-human-hands-indian-workers-resist)、[Garland Magazine](https://garlandmag.com/tailors-and-shopkeepers-wear-head-cameras-five-hours-a-day-to-train-robots/)
+- 国内人形机器人数据采集：[凤凰科技](https://tech.ifeng.com/c/8cCA3hkZl6r)、[36 氪](https://www.36kr.com/p/3899549255288711)
 
 **其他**
 - 放弃 Facebook 的补偿意愿：[Groningen 大学介绍](https://www.rug.nl/feb/research/frn/blog/it-takes-50-a-month-to-convince-people-to-give-up-facebook)（原文：Brynjolfsson, Collis & Eggers, *PNAS*, 2019）
