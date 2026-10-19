@@ -128,6 +128,7 @@
   - 系统常因社区反对、法律诉讼或调查报道而被叫停
   - 报告主张部署方应证明已评估潜在伤害且系统确实有效，即举证责任倒转
 - **与本课的连接**：Day 4 决策科学模块。系统被取消，意味着决策者重新估计了期望收益与期望代价
+- **12 个深入案例的逐一拆解**：见 [cancelled-systems-cases.md](cancelled-systems-cases.md)
 - **链接**：[报告](https://carnegieuk.org/publication/automating-public-services-learning-from-cancelled-systems/) · [The Conversation 摘要](https://theconversation.com/governments-use-of-automated-decision-making-systems-reflects-systemic-issues-of-injustice-and-inequality-185953)
 
 ### 缺失数据与反数据
