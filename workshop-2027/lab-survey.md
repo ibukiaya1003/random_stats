@@ -206,6 +206,37 @@
 
 ---
 
+## E. BU Social Justice for Data Science 讲座系列：讲者与可用成果
+
+来源：[讲座系列页面](https://www.bu.edu/cds-faculty/research-impact/lectures-seminars/social-justice-data-science/)（Boston University Faculty of Computing & Data Sciences；访问日期 2026-10-17）。下面按"有完整研究或项目 / 只有讲座主题"分层；讲座本身只有摘要，成果是另外检索的。
+
+### 有完整研究或项目，且与本课相关
+
+| 讲者 | 讲座主题 | 可用成果 | 方法 | 对本课的用处 | 核实 |
+|---|---|---|---|---|---|
+| **Ari Ezra Waldman**（UC Irvine 法学与社会学） | AI 预测与酷儿群体 | "Gender Data in the Automated Administrative State"（*Columbia Law Review*，[文章页](https://www.columbialawreview.org/?p=5408)）：法律要求、官方表格、跨部门数据共享与自动化系统采购共同制造了二元性别数据，抹去跨性别、非二元人群；"Opening the Gender Box"（*Law & Social Inquiry*, 2024，[Cambridge](https://resolve.cambridge.org/core/journals/law-and-social-inquiry/article/opening-the-gender-box-legibility-dilemmas-and-gender-data-collection-on-us-state-government-forms/2B7CDE44851054E01F94CD6BFF5C713D)）：州政府表格的性别选项如何被设计 | 公共记录申请 + 对设计表格的公务员的访谈 | **Day 3 核心案例**；也是"先质性、后量化"的范例 | 🔎 摘要 |
+| **Veena Dubal**（UC Irvine 法学） | 平台劳动中数字化工资的迷思与测量 | "On Algorithmic Wage Discrimination"（*Columbia Law Review*, 2023，[PDF](https://columbialawreview.org/wp-content/uploads/2023/11/Dubal-On_Algorithmic_Wage_discrimination.pdf)）：用细粒度数据生成不可预测、个性化的时薪；劳动者把这种薪酬结构描述为赌博和欺骗 | 多年民族志 | Day 1 研究五步法的理论依据；平台算法组 | 🔎 摘要 |
+| **Karen Levy**（Cornell 信息科学） | 卡车司机、技术与工作场所监控 | *Data Driven: Truckers, Technology, and the New Workplace Surveillance*（Princeton UP, 2022，[出版社页](https://press.princeton.edu/books/ebook/9780691241012/data-driven-pdf)）：联邦强制安装的电子行车记录仪原意是减少疲劳驾驶，却成为企业监控司机的工具 | 2011 年起的长期民族志 | Day 4：一个以安全为名、结果转为监控的系统；情境完整性的好例子 | 🔎 出版社与书评 |
+| **Muhammad H. Zaman**（BU 强迫迁移中心） | 无国籍人群的医疗可及性 | *We Wait for a Miracle: Health Care and the Forcibly Displaced*（Johns Hopkins UP, 2023）：信任、社会网络、医疗体系与东道国法规如何影响难民和无国籍者看病 | 七国案例研究，质性为主 | Day 3：在官方数据中"不存在"的人群 | 🔎 书评 |
+| **BU Law 移民权利诊所 × BU Spark!** | Immigration Enforcement Reporter | 一个记录移民执法行动的交互地图和数据库（讲座介绍称 2025 年 5 月马萨诸塞州约有 1,500 人被移民执法部门逮捕） | 社区报告 + 数据库建设 | Day 5：法学与数据科学合作建反数据库的形式参照 | 讲座页面 |
+
+### 只有讲座主题，未找到可直接使用的完整成果
+
+| 讲者 | 讲座主题 | 说明 |
+|---|---|---|
+| Jessica Simes（BU 社会学，Open Justice Lab） | 监狱条件的数据：拥挤、极端高温、医疗 | 讲座摘要提到一系列项目，但本次检索未找到对应论文；可直接查 Open Justice Lab 网站 |
+| Pauline Kim（WashU 法学） | AI 时代的民权保护 | 职场歧视与隐私方面的法学研究，偏理论 |
+| Chinmayi Sharma（Fordham 法学） | 政府自动化如何消除异议 | 可与 cancelled-systems-cases 对照阅读 |
+| Jessica Eaglin（Cornell 法学） | 量刑算法与种族 | 常被引用的 "Constructing Recidivism Risk" 未能核实出处 |
+| Jason Jackson（MIT 政治经济学） | 出租车与 Uber：技术资本主义 | 已出版专著主题为印度外资政策，与本讲座不同 |
+| Bennett Capers（Fordham 法学） | 非洲未来主义、警务与正义 | 理论 |
+| Chaz Arnett（Maryland 法学） | 校园监控与数据正义 | 理论；与学员年龄段相关，可作阅读 |
+| Woodrow Hartzog（BU 法学） | 反对把监控正常化 | 理论；可作 Day 4 隐私阅读 |
+| Patricia Williams（Northeastern 法学与人文） | 数据化人格与分裂的自我 | 理论；与"数据与身份"主线呼应 |
+| Chuncheng Liu（Northeastern 传播学与社会学） | 中国社会信用体系与量化政治 | 基于十个月民族志的专著。**议题在中国语境下较敏感，是否引用请与组委确认** |
+
+---
+
 ## D. 综合：可以迁移到本课的模式
 
 ### 研究问题原型（仅引用 A 层）
