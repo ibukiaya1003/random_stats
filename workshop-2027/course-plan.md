@@ -10,6 +10,16 @@
 - **最终成果**：每组一件 —— 交互式 dashboard 或数据新闻短篇，部署为网页
 - **技术路径**：不教代码；学员用 DeepSeek API + coding agent 调用公共数据 API，完成一个可公开的成品
 
+**配套材料**（均在本目录）
+
+| 文件 | 内容 | 用在哪天 |
+|---|---|---|
+| [methods-five-steps.md](methods-five-steps.md) | 研究五步法、UMass 案例示范、研究设计卡 | Day 1 起每天 |
+| [teasers.md](teasers.md) | 五个开场引子（升学漏斗、平台隐私、再识别、Anthropic 与 Swartz、AI 产业的劳动）及核实结果 | Day 1–5 |
+| [lab-survey.md](lab-survey.md) | 参考实验室与 BU 讲座系列：完整研究、可用数据库、仅有方向 | 选题与案例 |
+| [cancelled-systems-cases.md](cancelled-systems-cases.md) | 12 个被取消的政府算法系统拆解 | Day 4 |
+| [missing-data-detective-samples.md](missing-data-detective-samples.md) | "缺失数据侦探"样本与参考答案（**初稿，形式待重新设计**） | Day 3 |
+
 ---
 
 ## 0. 设计原则
@@ -41,7 +51,7 @@
 | 2 | 分类即权力：数据如何给人分配身份、又如何认出你 | "几个特征就能认出你"——再识别 | Bowker & Star；Cheney-Lippold；Crenshaw；Data Feminism 第 4 章；Nissenbaum 情境完整性 | 创作领域代表性（基准人群抹去了谁）；姓名推断性别；人口普查重建攻击 | 分类审计；k-匿名小游戏 | 确定研究问题，完成分类审计表 |
 | 3 | 系统性低代表与缺失数据 | "心脏病发作时，胸痛是“典型”症状吗？" | Data Feminism 第 1–2 章；Invisible Women；Library of Missing Datasets；Waldman 论性别数据；探索性序列设计 | 三种"看不见"：女性被排除在临床研究外、跨性别者没有类别、女性心脏病被误读 | 缺失数据侦探；代表性比值与基准敏感性分析 | 核心指标或"缺失地图"；"不能声称什么"清单 |
 | 4 | 从数据到决定：概率、期望值与算法 | "导不出的聊天记录"——平台决策树 | 基础比率、自然频数、期望值、阈值；Nissenbaum 情境完整性；Eubanks；Benjamin；Noble；Data Justice；公平定义不可兼得 | 12 个被取消的算法系统；Obermeyer；警察拦停阈值检验；YouTube 推荐审计 | 龙卷风图；阈值游戏；审计权练习；LLM 配对审计 | 作品初稿 + "决策卡" |
-| 5 | 讲出可信的故事 → 结课展 | "同样是大量下载文本"——Anthropic 与 Aaron Swartz | The Markup "show your work"；Data Humanism；不确定性可视化 | 反驱逐地图项目（形式参照） | 互评、修改、部署 | 结课展 |
+| 5 | 讲出可信的故事 → 结课展 | "同样是大量下载文本"——Anthropic 与 Aaron Swartz | The Markup "show your work"；Data Humanism；不确定性可视化 | AI 产业的劳动（圆桌）；反驱逐地图项目（形式参照） | 互评、修改、部署 | 结课展 |
 
 ### 2.2 每天的时间结构
 
@@ -197,7 +207,7 @@
 4. **检查测量是否有效**：你测的东西真的是你想测的东西吗？（Jacobs & Wallach, 2021，见 [methods-five-steps.md](methods-five-steps.md) 第二步）
 5. **反数据与参与式研究**：当官方数据缺席，和受影响的社群一起生产数据
 
-**13:30 方法：缺失数据侦探**（45 分钟，全班；样本与参考答案见 [missing-data-detective-samples.md](missing-data-detective-samples.md)）
+**13:30 方法：缺失数据侦探**（45 分钟，全班；样本与参考答案初稿见 [missing-data-detective-samples.md](missing-data-detective-samples.md)，练习形式待讲师重新设计）
 - 每组拿到一份公开问卷或数据字典（例如美国人口普查问卷、DHS 女性问卷、死亡证明书的妊娠勾选框、中国第七次人口普查表）
 - 任务：
   1. 列出哪些群体或类别**不在**其中
@@ -359,7 +369,7 @@
 
 ## 6. 3 天压缩版
 
-Day 1 + Day 2 合并（读懂数字 + 分类审计）；Day 3 + Day 4 合并（低代表 + 算法审计，二选一深入）；Day 5 保留。风险：agent 制作时间不足，需更多依赖模板。
+Day 1 + Day 2 合并（研究五步法 + 分类审计）；Day 3 + Day 4 合并（缺失数据 + 算法决策，二选一深入）；Day 5 保留。风险：agent 制作时间不足，需更多依赖模板。
 
 ## 7. 申请表草稿（第 11–23 题）
 
@@ -424,7 +434,9 @@ Day 1 + Day 2 合并（读懂数字 + 分类审计）；Day 3 + Day 4 合并（�
 - [ ] 引子二：在当前版本微信上实测"导出个人数据"的内容
 - [ ] 引子四：核对 Bartz v. Anthropic 和解的最终批准日期与作品数量
 - [ ] Day 3：核对 VIRGO（Lichtman 2018）、利兹研究（2016）、Chiaramonte 情景实验的原文数字；核对 Williams Institute 最新跨性别人口估计
-- [ ] Day 3：课前重新打开并确认"缺失数据侦探"各样本的官方链接，并对照七普方案原文确认样本 3 的提示
+- [ ] Day 3："缺失数据侦探"样本初稿偏枯燥，讲师重新设计练习形式；保留现有样本备用
+- [ ] Day 3：课前重新打开并确认各样本的官方链接，并对照七普方案原文确认样本 3 的提示
+- [ ] 引子五：核对特斯拉工人反对 Optimus 数据采集（The Information 原文）、韩国现代工会罢工的报道
 - [ ] 准备 Day 2 k-匿名小游戏的合成数据集
 - [ ] 制作 Day 4 阈值游戏与龙卷风图的交互工具（可兼作示范项目）
 - [ ] 制作 Day 4 案例拆解表模板、Day 5 互评清单
