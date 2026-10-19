@@ -237,6 +237,39 @@
 
 ---
 
+## F. 语言模型中的偏见：从词向量到大模型
+
+> 用于 Day 4 理论与平台算法组的大模型审计项目。✅ 已读摘要；🔎 依据二手资料；"经典"表示本次未重新核对原文。
+
+### 经典起点
+
+| 研究 | 发现 | 核实 |
+|---|---|---|
+| Bolukbasi, Chang, Zou, Saligrama & Kalai (2016), "Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings", NeurIPS | 在 Google News 语料训练的 word2vec 词向量中，类比关系复现了职业性别刻板印象；提出把"性别方向"从词向量中去除的方法 | 经典 |
+| Caliskan, Bryson & Narayanan (2017), "Semantics derived automatically from language corpora contain human-like biases", *Science* | 把内隐联想测验改造为词向量版本（WEAT），发现词向量复现了人类心理学实验中测到的多种偏见 | 经典 |
+| Gonen & Goldberg (2019), "Lipstick on a Pig" | 去掉"性别方向"后，偏见仍能从词与词的聚类关系中恢复：去偏只是把偏见遮住了 | 经典 |
+
+### 大模型时代：有完整研究过程和结论的研究
+
+| 研究 | 方法 | 发现 | 链接 | 核实 |
+|---|---|---|---|---|
+| Bai, Wang, Sucholutsky & Griffiths (2025), "Explicitly unbiased large language models still form biased associations", *PNAS* | 仿照内隐联想测验设计"LLM 词语联想测验"；设计"相对决策测验"，让模型在两名候选人之间选择 | 按现有偏见基准，GPT-4 看起来没有偏见；但在 8 个对齐过的模型中，发现涵盖种族、性别、宗教、健康等 21 种刻板印象的隐性偏见。行为数据公开在 GitHub | [论文 PDF](https://cocosci.princeton.edu/papers/bai2025.pdf) · [NeurIPS 2024 版本](https://arxiv.org/html/2402.04105v2) | 🔎 摘要 |
+| Hofmann et al. (2024), "AI generates covertly racist decisions about people based on their dialect", *Nature* | 比较模型对"直接提及群体"和"只看到方言文本"两种输入的反应 | 模型对非裔美国人的显性看法较正面，但对非裔美国人英语使用者的隐性判断极为负面：更倾向于分配低声望工作、判有罪、判死刑。人类反馈训练没有消除这种偏见，反而拉大了显性与隐性之间的差距 | [arXiv](https://arxiv.org/abs/2403.00742v1) · [UChicago 新闻](https://news.uchicago.edu/story/ai-biased-against-speakers-african-american-english-study-finds) | 🔎 摘要与报道 |
+| Kotek, Dockum & Sun (2023), "Gender bias and stereotypes in Large Language Models", ACM Collective Intelligence | 测试 4 个大模型对职业与性别的判断 | 选择与性别刻板印象一致的职业的可能性约为 3–6 倍；比实际就业统计更偏；模型对自身选择的解释不符合事实 | [arXiv](https://arxiv.org/abs/2308.14921) | 🔎 "3–6 倍"来自二手摘要 |
+| Bloomberg (2024), "OpenAI's GPT Is a Recruiter's Dream Tool. Tests Show There's Racial Bias" | 资历相同、名字不同的简历，让 GPT-3.5 按真实职位排序，重复 1,000 次 | 8 个按种族与性别区分的群体中，亚裔女性名字排第一的比例为 17.2%，黑人男性为 7.6%；无偏时每组约 12.5%。有反驳意见质疑分析方法 | [报道](https://prod.cm.bloomberg.com/graphics/2024-openai-gpt-hiring-racial-discrimination/) · [代码](https://github.com/bloomberggraphics/2024-openai-gpt-hiring-racial-discrimination) · [反驳](https://interviewing.io/blog/refuting-bloombergs-analysis-chatgpt-isnt-racist) | 🔎 报道 |
+
+### 可以借用的偏见基准（供讲师了解，课上不必展开）
+
+WinoBias（Zhao et al., 2018）、WinoGender（Rudinger et al., 2018）、StereoSet（Nadeem et al., 2021）、CrowS-Pairs（Nangia et al., 2020）、BBQ（Parrish et al., 2022）；中文：CBBQ。均为本次未重新核对的经典基准。
+
+### 对本课的用处
+
+- **Day 4 理论**：偏见从"显性"转向"隐性"，对齐可能只是把偏见藏起来
+- **Day 3 测量效度**：用不同测量方式（直接提问 vs 二选一决策）会得出相反结论，"偏见"怎么定义、怎么测量本身就是问题
+- **平台算法组项目**：显性 / 隐性对照审计，设计可直接借用 Bai 与 Hofmann 的思路；Bloomberg 的代码公开，可以作为方法参考
+
+---
+
 ## D. 综合：可以迁移到本课的模式
 
 ### 研究问题原型（仅引用 A 层）
