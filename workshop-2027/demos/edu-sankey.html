@@ -104,7 +104,7 @@ footer a { color: var(--text-secondary); }
 <body>
 <main>
   <div class="head"><h1>从初中到大学：一张图能画多远？</h1><button class="theme" id="theme" type="button">切换深浅色</button></div>
-  <p class="sub">2024 年全国教育统计 · 单位：万人 · 用 ← → 键翻页</p>
+  <p class="sub">2025 年全国教育统计 · 单位：万人 · 用 ← → 键翻页</p>
 
   <nav class="steps" aria-label="步骤">
     <button type="button" data-step="1">1 一句流行的话</button>
@@ -120,7 +120,7 @@ footer a { color: var(--text-secondary); }
   <section class="card">
     <p class="prompt" id="prompt"></p>
     <div class="scroll"><svg id="chart" viewBox="0 0 960 500" role="img" aria-labelledby="chart-title">
-      <title id="chart-title">2024 年初中毕业生、高中阶段招生与高等教育招生的流向图</title>
+      <title id="chart-title">2025 年初中毕业生、高中阶段招生与高等教育招生的流向图</title>
       <defs>
         <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
           <rect width="8" height="8" fill="var(--surface-1)"/>
@@ -141,23 +141,23 @@ footer a { color: var(--text-secondary); }
       <div>
         <h2>这张图为什么接不上</h2>
         <ol>
-          <li><strong>不是同一批人。</strong>2024 年的初中毕业生，要到 2027 年才参加高考。同一年的"毕业"和"招生"数字来自不同的届别。</li>
-          <li><strong>普高生不只上本科。</strong>同年普高毕业 890.99 万，本科招生只有约 501 万，大量普高毕业生进入高职专科。</li>
-          <li><strong>专科不只收中职生。</strong>高职专科招生 567.94 万，比当年中职招生（418.33 万）还多；另有五年制高职转入专科 60.22 万，未计入。</li>
-          <li><strong>有一块在公报里看不到。</strong>243.71 万是用减法推出来的：技工学校归人社部门统计，不在教育部的中职数字里；还有复读、就业和去向不明的人。</li>
+          <li><strong>不是同一批人。</strong>2025 年的初中毕业生，要到 2028 年才参加高考。同一年的"毕业"和"招生"数字来自不同的届别。</li>
+          <li><strong>普高生不只上本科。</strong>同年普高毕业 924.61 万，本科招生约 519 万，大量普高毕业生进入高职专科。</li>
+          <li><strong>专科不只收中职生。</strong>高职专科招生 551.70 万，比当年中职招生（369.93 万）还多；另有五年制高职转入专科 58.74 万，未计入。反过来，中职招生里也包含五年制高职的前三年（2024 年为 51.13 万）。</li>
+          <li><strong>有一块在公报里看不到。</strong>278.88 万是用减法推出来的：技工学校不在教育部的中职统计口径内（公报注 23 未列入）；还有复读、就业和去向不明的人。</li>
           <li><strong>招生数里有往届生。</strong>本科招生包括复读生和少量中职生，不能直接对应应届普高毕业生。</li>
         </ol>
       </div>
       <div>
         <h2>"考上本科的比例"是多少？先选分母</h2>
         <div class="denoms" role="group" aria-label="选择分母">
-          <button type="button" data-d="1698.24" data-l="当年初中毕业生">初中毕业生</button>
-          <button type="button" data-d="1342" data-l="当年高考报名人数">高考报名人数</button>
-          <button type="button" data-d="890.99" data-l="当年普通高中毕业生">普高毕业生</button>
+          <button type="button" data-d="1723.74" data-l="当年初中毕业生">初中毕业生</button>
+          <button type="button" data-d="1335" data-l="当年高考报名人数">高考报名人数</button>
+          <button type="button" data-d="924.61" data-l="当年普通高中毕业生">普高毕业生</button>
         </div>
         <div class="big" id="pct">—</div>
         <div class="bar" aria-hidden="true"><div id="barfill" style="width:0"></div></div>
-        <p id="formula">点上面的按钮，看同一个分子（普通本科招生 489.97 万）配不同分母。</p>
+        <p id="formula">点上面的按钮，看同一个分子（普通本科招生 503.71 万）配不同分母。</p>
         <p class="small">三个比例都"有数据支撑"，回答的却是三个不同的问题。写作时要说明你用的是哪个分母，以及它回答的是什么问题。</p>
       </div>
     </div>
@@ -166,28 +166,27 @@ footer a { color: var(--text-secondary); }
   <details>
     <summary>查看数据表与来源</summary>
     <table>
-      <thead><tr><th>指标（2024 年）</th><th>万人</th><th>说明</th></tr></thead>
+      <thead><tr><th>指标（2025 年）</th><th>万人</th><th>说明</th></tr></thead>
       <tbody>
-        <tr><td>初中毕业生</td><td class="num">1,698.24</td><td>公报</td></tr>
-        <tr><td>普通高中招生</td><td class="num">1,036.20</td><td>公报</td></tr>
-        <tr><td>中等职业教育招生</td><td class="num">418.33</td><td>公报；含普通中专、职业高中、成人中专、附设中职班，不含技工学校</td></tr>
-        <tr><td>公报中看不到的差额</td><td class="num">243.71</td><td>推算：1,698.24 − 1,036.20 − 418.33；含技工学校、复读、就业、去向不明等，无法再拆分</td></tr>
-        <tr><td>普通高中毕业生</td><td class="num">890.99</td><td>公报</td></tr>
-        <tr><td>中等职业教育毕业生</td><td class="num">415.55</td><td>公报</td></tr>
-        <tr><td>高考报名人数</td><td class="num">1,342</td><td>教育部公布，含往届生、中职考生</td></tr>
-        <tr><td>普通本科招生</td><td class="num">489.97</td><td>公报；另有专科起点本科 87.40 万，未计入</td></tr>
-        <tr><td>职业本科招生</td><td class="num">10.96</td><td>公报；另有专科起点本科 4.41 万，未计入</td></tr>
-        <tr><td>高职（专科）招生</td><td class="num">567.94</td><td>公报；不含五年制高职转入专科 60.22 万</td></tr>
+        <tr><td>初中毕业生</td><td class="num">1,723.74</td><td>公报</td></tr>
+        <tr><td>普通高中招生</td><td class="num">1,074.93</td><td>公报</td></tr>
+        <tr><td>中等职业教育招生</td><td class="num">369.93</td><td>公报；含普通中专、职业高中、成人中专、附设中职班，未列入技工学校</td></tr>
+        <tr><td>公报中看不到的差额</td><td class="num">278.88</td><td>推算：1,723.74 − 1,074.93 − 369.93；含技工学校、复读、就业、去向不明等，无法再拆分</td></tr>
+        <tr><td>普通高中毕业生</td><td class="num">924.61</td><td>公报</td></tr>
+        <tr><td>中等职业教育毕业生</td><td class="num">404.92</td><td>公报</td></tr>
+        <tr><td>高考报名人数</td><td class="num">1,335</td><td>教育部公布，含往届生、中职考生</td></tr>
+        <tr><td>普通本科招生</td><td class="num">503.71</td><td>公报；另有专科起点本科 85.42 万，未计入</td></tr>
+        <tr><td>职业本科招生</td><td class="num">15.41</td><td>公报；另有专科起点本科 4.66 万，未计入</td></tr>
+        <tr><td>高职（专科）招生</td><td class="num">551.70</td><td>公报；不含五年制高职转入专科 58.74 万</td></tr>
       </tbody>
     </table>
   </details>
 
   <footer>
-    <p>数据来源：教育部《2024 年全国教育事业发展统计公报》（2025 年 6 月 11 日发布），全文见
-      <a href="https://www.thepaper.cn/newsDetail_forward_30965649">澎湃新闻转载</a>、
-      <a href="https://www.stdaily.com/web/gdxw/2025-06/12/content_353797.html">科技日报转载</a>；
-      <a href="http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202506/t20250611_1193760.html">教育部原文</a>。
-      高考报名人数：<a href="https://paper.people.com.cn/rmrbwap/html/2024-06/08/nw.D110000renmrb_20240608_4-04.htm">人民日报，2024 年 6 月 8 日</a>。</p>
+    <p>数据来源：教育部<a href="http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202607/t20260706_1442870.html">《2025 年全国教育事业发展统计公报》</a>（2026 年 7 月 6 日发布）。
+      五年制高职中职段招生（2024 年）：教育部<a href="http://www.moe.gov.cn/jyb_sjzl/moe_560/2024/quanguo/202603/t20260318_1431295.html">2024 年教育统计数据·中等职业教育各类学生数</a>（2025 年的分项统计表尚未发布）。
+      高考报名人数：<a href="https://www.news.cn/20250528/88625240dc62485b9317e7b3e899fb3f/c.html">新华网，2025 年 5 月 28 日</a>。
+      注：教育部网站只支持 http 访问，部分网络环境下可能打不开。</p>
     <p>第 3 步的连线是<strong>故意画错的假设</strong>，用于课堂讨论，不代表真实流向。唯理寒假工作坊 2027 · 课堂演示材料。</p>
   </footer>
 </main>
@@ -195,15 +194,15 @@ footer a { color: var(--text-secondary); }
 
 <script>
 const D = {
-  jr: 1698.24, gen: 1036.20, voc: 418.33,
-  bach: 489.97 + 10.96, assoc: 567.94
+  jr: 1723.74, gen: 1074.93, voc: 369.93,
+  bach: 503.71 + 15.41, assoc: 551.70
 };
 D.gap = +(D.jr - D.gen - D.voc).toFixed(2);
 
 const W = 960, NW = 18, TOP = 40, K = 400 / D.jr, GAP = 18;
 const X = [150, 470, 790];
 const h = v => v * K;
-const fmt = v => v.toLocaleString("zh-CN", { maximumFractionDigits: 2 });
+const fmt = v => v.toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct = (a, b) => (a / b * 100).toFixed(1) + "%";
 
 // 节点布局
@@ -216,12 +215,12 @@ const N = {
   assoc: { x: X[2], y: TOP + h(D.gen) + GAP - (h(D.assoc) - h(D.voc)) , v: D.assoc, label: "高职专科", color: "var(--s-assoc)", col: 2 }
 };
 const desc = {
-  jr: "2024 年初中毕业生 1,698.24 万",
-  gen: "普通高中招生 1,036.20 万，约为初中毕业生的 " + pct(D.gen, D.jr),
-  voc: "中等职业教育招生 418.33 万，约为初中毕业生的 " + pct(D.voc, D.jr) + "（不含技工学校）",
+  jr: "2025 年初中毕业生 1,723.74 万",
+  gen: "普通高中招生 1,074.93 万，约为初中毕业生的 " + pct(D.gen, D.jr),
+  voc: "中等职业教育招生 369.93 万，约为初中毕业生的 " + pct(D.voc, D.jr) + "（技工学校未列入）",
   gap: "推算差额 " + fmt(D.gap) + " 万，约 " + pct(D.gap, D.jr) + "：技工学校、复读、就业、去向不明……公报无法拆分",
-  bach: "本科招生约 " + fmt(D.bach) + " 万（普通本科 489.97 + 职业本科 10.96）",
-  assoc: "高职（专科）招生 567.94 万（不含五年制高职转入 60.22 万）"
+  bach: "本科招生约 " + fmt(D.bach) + " 万（普通本科 503.71 + 职业本科 15.41）",
+  assoc: "高职（专科）招生 551.70 万（不含五年制高职转入 58.74 万）"
 };
 
 // 连线：[源, 源内偏移, 目标, 目标内偏移, 数值, 类型]
@@ -232,7 +231,7 @@ const L = [
   { s: "gen", so: 0, t: "bach", to: 0, v: D.bach, cls: "assumed", step: 3, color: "var(--s-gen)",
     tip: "假设：本科生全部来自普高（" + fmt(D.bach) + " 万）" },
   { s: "voc", so: 0, t: "assoc", to: D.assoc - D.voc, v: D.voc, cls: "assumed", step: 3, color: "var(--s-voc)",
-    tip: "假设：中职生全部升入专科（418.33 万）" }
+    tip: "假设：中职生全部升入专科（369.93 万）" }
 ];
 
 const svgNS = "http://www.w3.org/2000/svg";
@@ -304,7 +303,7 @@ for (const k in N) {
   layers.push([t1, stepOf[k]], [t2, stepOf[k]]);
 }
 // 列标题
-[["2024 年毕业", X[0]], ["2024 年高中阶段招生", X[1]], ["2024 年高等教育招生", X[2]]].forEach(([s, x], i) => {
+[["2025 年毕业", X[0]], ["2025 年高中阶段招生", X[1]], ["2025 年高等教育招生", X[2]]].forEach(([s, x], i) => {
   const t = el("text", { x: x + NW / 2, y: 22, "text-anchor": "middle", class: "val" }, gT);
   t.textContent = s; layers.push([t, i + 1]);
 });
@@ -314,12 +313,12 @@ const STEPS = {
        notes: ["先别看数据，请每个人写下自己的猜测：初中毕业生里，上普通高中的大约占多少？",
                "再想一想：要检验这句话，你需要哪几个数字？它们应该从哪里来？"] },
   2: { prompt: "第一段：初中毕业生去了哪里？",
-       notes: ["按 2024 年的招生数粗算，普高约 61%、中职约 25%。全国平均不是\"一半一半\"，但各省差异很大。",
-               "注意灰色斜线那一块：它是用减法推出来的，公报里没有这个类别。<strong>谁在这 14% 里？我们不知道。</strong>这就是第 3 天要讲的\"缺失的数据\"。",
+       notes: ["按 2025 年的招生数粗算，普高约 62%、中职约 21%。全国平均不是\"一半一半\"，但各省差异很大。",
+               "注意灰色斜线那一块：它是用减法推出来的，公报里没有这个类别。<strong>谁在这 16% 里？我们不知道。</strong>这就是第 3 天要讲的\"缺失的数据\"。",
                "还有一个隐含假设：招生的人都是当年的初中毕业生。真是这样吗？"] },
   3: { prompt: "很多人会这样往下画：普高生上本科，中职生上专科。",
        notes: ["虚线是我们<strong>假设</strong>的连线，不是数据。按这个假设画下去，数字马上对不上：",
-               "普高有 1,036 万人，本科只招了约 501 万，剩下的 535 万去哪了？专科招了 568 万，比中职招生的 418 万还多，多出的 150 万从哪来？",
+               "普高有 1,075 万人，本科只招了约 519 万，剩下的 556 万去哪了？专科招了 552 万，比中职招生的 370 万还多，多出的 182 万从哪来？",
                "请小组讨论：这张图哪里画错了？至少找出两个原因。"] },
   4: { prompt: "数据能告诉我们的，比图画出来的少。",
        notes: ["桑基图默认\"左边的人流到右边\"。但同一年的毕业数和招生数来自不同届别，中间的连线必须有追踪同一批人的数据才能画。",
@@ -344,10 +343,10 @@ addEventListener("keydown", e => { if (e.key === "ArrowRight") go(cur + 1); if (
 
 document.querySelectorAll(".denoms button").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll(".denoms button").forEach(x => x.setAttribute("aria-pressed", x === b));
-  const d = +b.dataset.d, v = 489.97 / d;
+  const d = +b.dataset.d, v = 503.71 / d;
   document.getElementById("pct").textContent = (v * 100).toFixed(1) + "%";
   document.getElementById("barfill").style.width = (v * 100) + "%";
-  document.getElementById("formula").textContent = "普通本科招生 489.97 万 ÷ " + b.dataset.l + " " + fmt(d) + " 万";
+  document.getElementById("formula").textContent = "普通本科招生 503.71 万 ÷ " + b.dataset.l + " " + fmt(d) + " 万";
 }));
 
 document.getElementById("theme").onclick = () => {
