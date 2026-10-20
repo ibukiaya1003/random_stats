@@ -18,6 +18,7 @@
   --s-gen: #2a78d6;   /* 普通高中 */
   --s-voc: #eb6834;   /* 中职 */
   --s-tech: #6250d6;  /* 技工院校 */
+  --f1: #c6ebdc; --f2: #5cc79d; --f3: #1baf7a; --f4: #0d7a52; /* 高考漏斗：单色由浅到深 */
   --warn: #b3261e;
   --accent-bg: #fff4d6;
 }
@@ -28,6 +29,7 @@
     --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c;
     --rule: #3a3936; --neutral: #a8a69e; --unknown: #6d6c66;
     --s-gen: #3987e5; --s-voc: #d95926; --s-tech: #9085e9;
+    --f1: #1f4a3a; --f2: #1f7a57; --f3: #2fae7f; --f4: #7fdcb5;
     --warn: #ff8a80; --accent-bg: #3a3220;
   }
 }
@@ -37,6 +39,7 @@
   --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c;
   --rule: #3a3936; --neutral: #a8a69e; --unknown: #6d6c66;
   --s-gen: #3987e5; --s-voc: #d95926; --s-tech: #9085e9;
+  --f1: #1f4a3a; --f2: #1f7a57; --f3: #2fae7f; --f4: #7fdcb5;
   --warn: #ff8a80; --accent-bg: #3a3220;
 }
 * { box-sizing: border-box; }
@@ -79,6 +82,17 @@ th, td { border-bottom: 1px solid var(--rule); padding: 6px 8px; text-align: lef
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .compare { margin-top: 16px; }
 .compare h2, details h2 { font-size: 1.05rem; margin: 0 0 4px; }
+.card + .card { margin-top: 16px; }
+.funnels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+@media (max-width: 760px) { .funnels { grid-template-columns: 1fr; } }
+.funnel h3 { font-size: 1rem; margin: 0 0 6px; }
+.frow { margin: 8px 0; }
+.frow .lab { display: flex; justify-content: space-between; gap: 8px; font-size: .9rem; }
+.frow .lab span:last-child { color: var(--text-secondary); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ftrack { height: 14px; background: var(--rule); border-radius: 4px; overflow: hidden; margin-top: 2px; }
+.ftrack > div { height: 100%; border-radius: 0 4px 4px 0; }
+.box { border: 1px dashed var(--rule); border-radius: 8px; padding: 10px 12px; margin-top: 16px; color: var(--text-secondary); }
+.box h3 { margin: 0 0 4px; font-size: 1rem; color: var(--text-primary); }
 details { margin-top: 16px; }
 summary { cursor: pointer; color: var(--text-secondary); }
 footer { margin-top: 24px; font-size: .85rem; color: var(--text-muted); }
@@ -88,7 +102,7 @@ footer a { color: var(--text-secondary); }
 <body>
 <main>
   <div class="head"><h1>广东：五分之一去了哪里？</h1><button class="theme" id="theme" type="button">切换深浅色</button></div>
-  <p class="sub">2025 年 · 初中毕业生与高中阶段招生 · 单位：万人</p>
+  <p class="sub">2025 年 · 初中毕业以后，再到高考 · 第一部分单位为万人</p>
 
   <section class="card">
     <p class="prompt">同样是"初中毕业以后"，全国和广东的图长得一样吗？</p>
@@ -130,6 +144,25 @@ footer a { color: var(--text-secondary); }
     </div>
   </section>
 
+  <section class="card">
+    <p class="prompt">再往下一段：2025 年广东高考，多少人够得上本科？</p>
+    <p class="meta">普通类考生（不含艺术、体育类和春季高考）。每条线都是"达到这个分数的人占全部考生的比例"，人数是累计的，不是互相排斥的。</p>
+    <div class="funnels" id="funnels"></div>
+
+    <div class="notes">
+      <p>1. 本科线以上约一半人，但"上线"不等于"被录取"。本科批次实际投档的普通类考生约 28.4 万，比上线人数少约 8.4 万。</p>
+      <p>2. 同一年高考，选物理的考生约 63% 过本科线，选历史的只有约 31%。<strong>你选的科目类别，本身就是一个"身份"分类。</strong>讨论：这个差距是因为考生不同，还是因为两类的招生名额不同？需要什么数据才能区分？</p>
+      <p>3. 2025 年选物理的考生比上年减少 10,752 人，选历史的增加 23,176 人。考生结构一变，分数线和上线比例都会跟着变。</p>
+    </div>
+
+    <div class="box">
+      <h3>能不能拆成一本、二本、三本？</h3>
+      <p>不能直接拆。广东 2017 年取消三本批次，2018 年把一本、二本合并为"本科批"，现在只有一条本科线。"一本率""二本率"在广东已经不是官方统计口径。</p>
+      <p>常被当作"一本线"的是<strong>特殊类型招生控制线（特控线）</strong>，但它本来是强基计划、高校专项计划、综合评价等招生的资格线，不是录取批次。把"特控线以上"叫作"一本"，是借用旧名称，写作时要说明。</p>
+      <p>想做更细的分层，可以用省考试院公布的本科批投档表，按院校类型（985 / 211 / 双一流、普通公办、民办、中外合作）给每个院校专业组归类，再加总投档人数。这本身就是一次"分类即权力"的练习：分类标准由你定，结论也会跟着变。</p>
+    </div>
+  </section>
+
   <details>
     <summary>查看数据表与口径</summary>
     <table>
@@ -139,6 +172,10 @@ footer a { color: var(--text-secondary); }
         <tr><td>普通高中招生</td><td class="num">1,074.93</td><td class="num">87.69</td><td>两份公报</td></tr>
         <tr><td>中等职业教育招生</td><td class="num">369.93</td><td class="num">35.37</td><td>均不含技工学校；广东表题为"各类中等职业技术教育（不含技工学校）"</td></tr>
         <tr><td>公报里看不到的差额</td><td class="num">278.88</td><td class="num">34.77</td><td>推算：初中毕业生 − 普高招生 − 中职招生</td></tr>
+        <tr><td>高考普通类考生（物理 / 历史）</td><td class="num">—</td><td class="num">732,408</td><td>440,208 / 292,200（广东省教育考试院分数段数据）</td></tr>
+        <tr><td>特控线以上（物理 534 分 / 历史 557 分）</td><td class="num">—</td><td class="num">127,108</td><td>106,293 / 20,815（第三方转录的一分一段表与媒体转引，见来源）</td></tr>
+        <tr><td>本科线以上（物理 436 分 / 历史 464 分）</td><td class="num">—</td><td class="num">368,240</td><td>276,586 / 91,654（广东省政府网转引考试院数据）</td></tr>
+        <tr><td>本科批次投档，普通类（物理 / 历史）</td><td class="num">—</td><td class="num">284,037</td><td>218,024 / 66,013；含艺体等各类合计投出 317,135 人（南方都市报）。投档不等于最终录取</td></tr>
         <tr><td>技工院校招生</td><td class="num">—</td><td class="num">24.07*</td><td>*2024 年数，广东人社厅公报；2025 年全年数尚未公布。全国数未查到可核实的来源</td></tr>
       </tbody>
     </table>
@@ -150,6 +187,13 @@ footer a { color: var(--text-secondary); }
       广东省统计局<a href="https://stats.gd.gov.cn/tjgb/content/post_4876564.html">《2025 年广东省国民经济和社会发展统计公报》</a>（2026 年 3 月 31 日，表 16，<a href="https://stats.gd.gov.cn/attachment/0/610/610053/4876564.pdf">PDF</a>）；
       广东省人社厅<a href="https://hrss.gd.gov.cn/attachment/0/590/590380/4763529.pdf">《2024 年度广东省人力资源和社会保障事业发展统计公报》</a>（技工院校招生 24.07 万、在校生 66.92 万）；
       技工院校招生对象：<a href="https://hrss.gd.gov.cn/ztzl/gdjg/tplb/content/post_4732894.html">广东省人社厅，2025 年技工院校招生公告</a>。</p>
+    <p>高考数据：本科线以上人数，<a href="https://www.gd.gov.cn/gdywdt/bmdt/content/post_4734513.html">广东省人民政府网</a>、<a href="https://www.gz.gov.cn/zwfw/zxfw/jyfw7/content/post_10329370.html">广州市政府网</a>；
+      考生人数与同比变化，<a href="https://www.sznews.com/news/content/2025-06/27/content_31612392.htm">深圳新闻网</a>；
+      特控线分数，<a href="https://m.thepaper.cn/newsDetail_forward_31040386">澎湃新闻</a>；
+      物理类特控线以上人数，<a href="https://www.gk100.com/read_631564261.htm">高考100 转录的一分一段表</a>（该表的本科线以上累计数与官方 276,586 一致）；
+      历史类特控线以上人数，<a href="https://m.bendibao.com/show989193.html">本地宝转引</a>（与深圳新闻网"比去年增加 1,774 人"相互印证）；
+      本科批次投档，<a href="https://m.mp.oeeee.com/a/BAAFRD0000202507211105029.html">南方都市报</a>；
+      批次合并，<a href="https://news.ycwb.com/2018-07/18/content_30048368.htm">金羊网，2018</a>。广东省教育考试院官网在本环境中无法访问，特控线人数未能对照原表。</p>
     <p>唯理寒假工作坊 2027 · 课堂演示材料。</p>
   </footer>
 </main>
@@ -269,6 +313,24 @@ document.getElementById("theme").onclick = () => {
   r.dataset.theme = dark ? "light" : "dark";
 };
 render(false);
+
+const GK = {
+  "合计": { n: 732408, tk: 127108, bk: 368240, td: 284037 },
+  "物理类": { n: 440208, tk: 106293, bk: 276586, td: 218024 },
+  "历史类": { n: 292200, tk: 20815, bk: 91654, td: 66013 }
+};
+document.getElementById("funnels").innerHTML = Object.entries(GK).map(([name, g]) => {
+  const rows = [
+    ["全部普通类考生", g.n, "var(--f1)"],
+    ["本科线以上", g.bk, "var(--f2)"],
+    ["本科批投档", g.td, "var(--f3)"],
+    ["特控线以上", g.tk, "var(--f4)"]
+  ];
+  return `<div class="funnel"><h3>${name}</h3>` + rows.map(([l, v, c]) =>
+    `<div class="frow"><div class="lab"><span>${l}</span><span>${v.toLocaleString("zh-CN")} · ${pct(v, g.n)}</span></div>` +
+    `<div class="ftrack" title="${name} ${l}：${v.toLocaleString("zh-CN")} 人"><div style="width:${(v / g.n * 100).toFixed(2)}%;background:${c}"></div></div></div>`
+  ).join("") + `</div>`;
+}).join("");
 </script>
 </body>
 </html>
