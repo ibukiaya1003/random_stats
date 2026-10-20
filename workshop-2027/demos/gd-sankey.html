@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>广东升学流向</title>
+<style>
+:root {
+  color-scheme: light;
+  --surface-0: #f4f3f0;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #7a7974;
+  --rule: #dcdad5;
+  --neutral: #5f5e5a;
+  --unknown: #a9a7a1;
+  --s-gen: #2a78d6;   /* 普通高中 */
+  --s-voc: #eb6834;   /* 中职 */
+  --s-tech: #6250d6;  /* 技工院校 */
+  --warn: #b3261e;
+  --accent-bg: #fff4d6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --surface-0: #121211; --surface-1: #1a1a19;
+    --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c;
+    --rule: #3a3936; --neutral: #a8a69e; --unknown: #6d6c66;
+    --s-gen: #3987e5; --s-voc: #d95926; --s-tech: #9085e9;
+    --warn: #ff8a80; --accent-bg: #3a3220;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-0: #121211; --surface-1: #1a1a19;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c;
+  --rule: #3a3936; --neutral: #a8a69e; --unknown: #6d6c66;
+  --s-gen: #3987e5; --s-voc: #d95926; --s-tech: #9085e9;
+  --warn: #ff8a80; --accent-bg: #3a3220;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--surface-0); color: var(--text-primary);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "WenQuanYi Zen Hei", system-ui, sans-serif;
+  line-height: 1.6;
+}
+main { max-width: 1080px; margin: 0 auto; padding: 24px 16px 48px; }
+.head { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; }
+h1 { font-size: 1.6rem; margin: 0 0 4px; }
+.sub { color: var(--text-secondary); margin: 0 0 20px; }
+.theme { flex: none; margin-top: 6px; font: inherit; font-size: .85rem; border: 1px solid var(--rule); background: var(--surface-1); color: var(--text-secondary); border-radius: 6px; padding: 4px 8px; cursor: pointer; }
+.card { background: var(--surface-1); border: 1px solid var(--rule); border-radius: 12px; padding: 16px; }
+.prompt { font-size: 1.25rem; font-weight: 600; margin: 0 0 12px; }
+.prompt q { background: var(--accent-bg); padding: 0 4px; border-radius: 4px; }
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .panels { grid-template-columns: 1fr; } }
+.panel h2 { font-size: 1.05rem; margin: 0; }
+.panel .meta { color: var(--text-muted); font-size: .85rem; margin: 0 0 4px; }
+svg { width: 100%; height: auto; display: block; }
+svg text { fill: var(--text-primary); font-size: 14px; }
+svg .val { fill: var(--text-secondary); font-size: 12.5px; }
+.node { stroke: var(--surface-1); stroke-width: 2; }
+.link { opacity: .35; transition: opacity .15s, d .4s; }
+.link:hover, .node:hover { opacity: .75; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0 4px; }
+.controls button { font: inherit; border: 1px solid var(--rule); background: var(--surface-1); color: var(--text-primary); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+.controls button[aria-pressed="true"] { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
+.caveat { display: none; border-left: 3px solid var(--s-tech); padding: 4px 0 4px 12px; margin: 8px 0 0; color: var(--text-secondary); }
+.caveat.on { display: block; }
+.notes { margin-top: 12px; color: var(--text-secondary); }
+.notes p { margin: 6px 0; }
+.tip {
+  position: fixed; pointer-events: none; background: var(--text-primary); color: var(--surface-1);
+  padding: 6px 10px; border-radius: 6px; font-size: 13px; max-width: 280px; opacity: 0; transition: opacity .1s; z-index: 5;
+}
+table { border-collapse: collapse; width: 100%; font-size: .9rem; margin-top: 8px; }
+th, td { border-bottom: 1px solid var(--rule); padding: 6px 8px; text-align: left; vertical-align: top; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.compare { margin-top: 16px; }
+.compare h2, details h2 { font-size: 1.05rem; margin: 0 0 4px; }
+details { margin-top: 16px; }
+summary { cursor: pointer; color: var(--text-secondary); }
+footer { margin-top: 24px; font-size: .85rem; color: var(--text-muted); }
+footer a { color: var(--text-secondary); }
+</style>
+</head>
+<body>
+<main>
+  <div class="head"><h1>广东：五分之一去了哪里？</h1><button class="theme" id="theme" type="button">切换深浅色</button></div>
+  <p class="sub">2025 年 · 初中毕业生与高中阶段招生 · 单位：万人</p>
+
+  <section class="card">
+    <p class="prompt">同样是"初中毕业以后"，全国和广东的图长得一样吗？</p>
+    <div class="panels">
+      <div class="panel">
+        <h2>全国</h2>
+        <p class="meta">教育部《2025 年全国教育事业发展统计公报》</p>
+        <svg id="nat" viewBox="0 0 460 380" role="img" aria-label="2025 年全国初中毕业生与高中阶段招生流向图"></svg>
+      </div>
+      <div class="panel">
+        <h2>广东</h2>
+        <p class="meta">广东省统计局《2025 年广东省国民经济和社会发展统计公报》</p>
+        <svg id="gd" viewBox="0 0 460 380" role="img" aria-label="2025 年广东初中毕业生与高中阶段招生流向图"></svg>
+      </div>
+    </div>
+    <p class="meta">两张图都按各自的初中毕业生总数画成同样高，比较的是比例，不是人数。</p>
+
+    <div class="controls">
+      <button type="button" id="tech" aria-pressed="false">把广东的技工院校加进来</button>
+    </div>
+    <p class="caveat" id="caveat">
+      技工院校由人社部门主管，不在教育部门的统计里。广东技工院校 2024 年招生 24.07 万人（2025 年全年数字尚未公布，这里借用 2024 年数）。
+      这条紫色虚线框<strong>不是严格的流向</strong>：年份不同；技工院校也招收往届生、高中毕业生和中职毕业生，不全是当年的初中毕业生。所以剩下的那一小块只是粗略估计。
+    </p>
+
+    <div class="notes">
+      <p>1. 广东普高招生只占初中毕业生的约 56%，比全国低约 7 个百分点；中职的比例和全国差不多。</p>
+      <p>2. 灰色斜线那一块是用减法推出来的。广东这一块占 22%，比全国的 16% 大得多。<strong>先猜一猜：这些人去了哪里？</strong>再点上面的按钮。</p>
+      <p>3. 加入技工院校以后，"看不见"的部分小了很多。这说明：<strong>一个人有没有"被看见"，取决于他进了哪个部门的统计表。</strong>只看教育部门的数据，广东约五分之一的初中毕业生像是"消失"了。</p>
+      <p>4. 讨论：如果你要写"广东普职比"，应该用哪个分子、哪个分母？技工院校算不算"职"？</p>
+    </div>
+
+    <div class="compare">
+      <h2>比例对照（占当年初中毕业生）</h2>
+      <table>
+        <thead><tr><th></th><th class="num">全国</th><th class="num">广东</th></tr></thead>
+        <tbody id="cmp"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details>
+    <summary>查看数据表与口径</summary>
+    <table>
+      <thead><tr><th>指标</th><th class="num">全国 2025</th><th class="num">广东 2025</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>初中毕业生</td><td class="num">1,723.74</td><td class="num">157.83</td><td>两份公报</td></tr>
+        <tr><td>普通高中招生</td><td class="num">1,074.93</td><td class="num">87.69</td><td>两份公报</td></tr>
+        <tr><td>中等职业教育招生</td><td class="num">369.93</td><td class="num">35.37</td><td>均不含技工学校；广东表题为"各类中等职业技术教育（不含技工学校）"</td></tr>
+        <tr><td>公报里看不到的差额</td><td class="num">278.88</td><td class="num">34.77</td><td>推算：初中毕业生 − 普高招生 − 中职招生</td></tr>
+        <tr><td>技工院校招生</td><td class="num">—</td><td class="num">24.07*</td><td>*2024 年数，广东人社厅公报；2025 年全年数尚未公布。全国数未查到可核实的来源</td></tr>
+      </tbody>
+    </table>
+  </details>
+
+  <footer>
+    <p>数据来源：
+      教育部<a href="http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202607/t20260706_1442870.html">《2025 年全国教育事业发展统计公报》</a>（2026 年 7 月 6 日）；
+      广东省统计局<a href="https://stats.gd.gov.cn/tjgb/content/post_4876564.html">《2025 年广东省国民经济和社会发展统计公报》</a>（2026 年 3 月 31 日，表 16，<a href="https://stats.gd.gov.cn/attachment/0/610/610053/4876564.pdf">PDF</a>）；
+      广东省人社厅<a href="https://hrss.gd.gov.cn/attachment/0/590/590380/4763529.pdf">《2024 年度广东省人力资源和社会保障事业发展统计公报》</a>（技工院校招生 24.07 万、在校生 66.92 万）；
+      技工院校招生对象：<a href="https://hrss.gd.gov.cn/ztzl/gdjg/tplb/content/post_4732894.html">广东省人社厅，2025 年技工院校招生公告</a>。</p>
+    <p>唯理寒假工作坊 2027 · 课堂演示材料。</p>
+  </footer>
+</main>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+const DATA = {
+  nat: { name: "全国", jr: 1723.74, gen: 1074.93, voc: 369.93, tech: null },
+  gd:  { name: "广东", jr: 157.83,  gen: 87.69,   voc: 35.37,  tech: 24.07 }
+};
+for (const d of Object.values(DATA)) d.gap = +(d.jr - d.gen - d.voc).toFixed(2);
+
+const fmt = v => v.toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct = (a, b) => (a / b * 100).toFixed(1) + "%";
+const svgNS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs, parent) => {
+  const e = document.createElementNS(svgNS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+};
+const tip = document.getElementById("tip");
+const hover = (node, text) => {
+  node.addEventListener("pointermove", e => {
+    tip.textContent = typeof text === "function" ? text() : text; tip.style.opacity = 1;
+    tip.style.left = Math.min(e.clientX + 14, innerWidth - 300) + "px"; tip.style.top = (e.clientY + 14) + "px";
+  });
+  node.addEventListener("pointerleave", () => tip.style.opacity = 0);
+};
+function band(x0, y0, x1, y1, t0, t1) {
+  const m = (x0 + x1) / 2;
+  return `M${x0},${y0} C${m},${y0} ${m},${y1} ${x1},${y1} L${x1},${y1 + t1} C${m},${y1 + t1} ${m},${y0 + t0} ${x0},${y0 + t0} Z`;
+}
+
+const NW = 16, X0 = 110, X1 = 290, TOP = 20, H = 300, GAP = 12;
+
+function draw(key, withTech) {
+  const d = DATA[key], svg = document.getElementById(key);
+  svg.textContent = "";
+  const defs = el("defs", {}, svg);
+  const pat = el("pattern", { id: "hatch-" + key, width: 8, height: 8, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
+  el("rect", { width: 8, height: 8, fill: "var(--surface-1)" }, pat);
+  el("line", { x1: 0, y1: 0, x2: 0, y2: 8, stroke: "var(--unknown)", "stroke-width": 3 }, pat);
+
+  const showTech = withTech && d.tech != null;
+  const segs = [
+    { k: "gen", label: "普通高中", v: d.gen, color: "var(--s-gen)" },
+    { k: "voc", label: "中职（不含技工）", v: d.voc, color: "var(--s-voc)" }
+  ];
+  if (showTech) {
+    segs.push({ k: "tech", label: "技工院校*", v: d.tech, color: "var(--s-tech)", dashed: true });
+    segs.push({ k: "gap", label: "仍然看不到", v: +(d.gap - d.tech).toFixed(2), color: `url(#hatch-${key})` });
+  } else {
+    segs.push({ k: "gap", label: "公报里看不到", v: d.gap, color: `url(#hatch-${key})` });
+  }
+  const k = (H - GAP * (segs.length - 1)) / d.jr;
+  const gL = el("g", {}, svg), gN = el("g", {}, svg), gT = el("g", {}, svg);
+
+  // 左侧节点
+  const jr = el("rect", { x: X0, y: TOP, width: NW, height: d.jr * k + GAP * (segs.length - 1), rx: 3, fill: "var(--neutral)", class: "node" }, gN);
+  hover(jr, `${d.name} 2025 年初中毕业生 ${fmt(d.jr)} 万`);
+  const jt = el("text", { x: X0 - 10, y: TOP + H / 2 - 2, "text-anchor": "end", "font-weight": 600 }, gT);
+  jt.textContent = "初中毕业生";
+  const jv = el("text", { x: X0 - 10, y: TOP + H / 2 + 16, "text-anchor": "end", class: "val" }, gT);
+  jv.textContent = fmt(d.jr) + " 万";
+
+  let sy = TOP, ty = TOP;
+  const srcGap = GAP * (segs.length - 1) / segs.length;
+  for (const s of segs) {
+    const th = s.v * k;
+    const linkFill = s.k === "gap" ? "var(--unknown)" : s.color;
+    const p = el("path", { d: band(X0 + NW, sy, X1, ty, th + srcGap, th), fill: linkFill, class: "link" }, gL);
+    if (s.dashed) p.setAttribute("opacity", ".2");
+    const tipText = `${s.label}：${fmt(s.v)} 万，占初中毕业生 ${pct(s.v, d.jr)}` + (s.k === "tech" ? "（2024 年数，不全是初中毕业生）" : "");
+    hover(p, tipText);
+    const r = el("rect", { x: X1, y: ty, width: NW, height: Math.max(th, 2), rx: 3, fill: s.color, class: "node" }, gN);
+    if (s.k === "gap") r.setAttribute("stroke", "var(--unknown)");
+    if (s.dashed) { r.setAttribute("stroke", "var(--s-tech)"); r.setAttribute("stroke-dasharray", "4 3"); r.setAttribute("fill-opacity", ".55"); }
+    hover(r, tipText);
+    const cy = ty + th / 2;
+    const t1 = el("text", { x: X1 + NW + 8, y: cy - 1, "font-weight": 600 }, gT);
+    t1.textContent = s.label;
+    const t2 = el("text", { x: X1 + NW + 8, y: cy + 16, class: "val" }, gT);
+    t2.textContent = `${fmt(s.v)} 万 · ${pct(s.v, d.jr)}`;
+    sy += th + srcGap; ty += th + GAP;
+  }
+  if (withTech && d.tech == null) {
+    const t = el("text", { x: X0, y: TOP + H + 30, class: "val" }, gT);
+    t.textContent = "全国技工院校招生数：未找到可核实的来源";
+  }
+}
+
+function render(withTech) {
+  draw("nat", withTech); draw("gd", withTech);
+  const rows = [
+    ["普通高中", DATA.nat.gen, DATA.gd.gen],
+    ["中职（不含技工）", DATA.nat.voc, DATA.gd.voc],
+    ["公报里看不到", DATA.nat.gap, DATA.gd.gap]
+  ];
+  let html = rows.map(([l, a, b]) => `<tr><td>${l}</td><td class="num">${pct(a, DATA.nat.jr)}</td><td class="num">${pct(b, DATA.gd.jr)}</td></tr>`).join("");
+  if (withTech) html += `<tr><td>　其中可由技工院校解释（2024 年数，粗估）</td><td class="num">—</td><td class="num">${pct(DATA.gd.tech, DATA.gd.jr)}</td></tr>
+    <tr><td>　仍然看不到（粗估）</td><td class="num">—</td><td class="num">${pct(DATA.gd.gap - DATA.gd.tech, DATA.gd.jr)}</td></tr>`;
+  document.getElementById("cmp").innerHTML = html;
+  document.getElementById("caveat").classList.toggle("on", withTech);
+}
+
+const btn = document.getElementById("tech");
+btn.onclick = () => {
+  const on = btn.getAttribute("aria-pressed") !== "true";
+  btn.setAttribute("aria-pressed", on);
+  btn.textContent = on ? "去掉技工院校" : "把广东的技工院校加进来";
+  render(on);
+};
+document.getElementById("theme").onclick = () => {
+  const r = document.documentElement;
+  const dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme = dark ? "light" : "dark";
+};
+render(false);
+</script>
+</body>
+</html>
