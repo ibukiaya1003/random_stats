@@ -60,7 +60,8 @@ h1 { font-size: 1.6rem; margin: 0 0 4px; }
 @media (max-width: 760px) { .panels { grid-template-columns: 1fr; } }
 .panel h2 { font-size: 1.05rem; margin: 0; }
 .panel .meta { color: var(--text-muted); font-size: .85rem; margin: 0 0 4px; }
-svg { width: 100%; height: auto; display: block; }
+.scroll { overflow-x: auto; }
+svg { width: 100%; min-width: 760px; height: auto; display: block; }
 svg text { fill: var(--text-primary); font-size: 14px; }
 svg .val { fill: var(--text-secondary); font-size: 12.5px; }
 .node { stroke: var(--surface-1); stroke-width: 2; }
@@ -83,16 +84,11 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 .compare { margin-top: 16px; }
 .compare h2, details h2 { font-size: 1.05rem; margin: 0 0 4px; }
 .card + .card { margin-top: 16px; }
-.funnels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
-@media (max-width: 760px) { .funnels { grid-template-columns: 1fr; } }
-.funnel h3 { font-size: 1rem; margin: 0 0 6px; }
-.frow { margin: 8px 0; }
-.frow .lab { display: flex; justify-content: space-between; gap: 8px; font-size: .9rem; }
-.frow .lab span:last-child { color: var(--text-secondary); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.ftrack { height: 14px; background: var(--rule); border-radius: 4px; overflow: hidden; margin-top: 2px; }
-.ftrack > div { height: 100%; border-radius: 0 4px 4px 0; }
 .box { border: 1px dashed var(--rule); border-radius: 8px; padding: 10px 12px; margin-top: 16px; color: var(--text-secondary); }
 .box h3 { margin: 0 0 4px; font-size: 1rem; color: var(--text-primary); }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
+.seg button { border: 0 !important; border-radius: 0 !important; }
+.sum { margin: 8px 0 0; font-weight: 600; }
 details { margin-top: 16px; }
 summary { cursor: pointer; color: var(--text-secondary); }
 footer { margin-top: 24px; font-size: .85rem; color: var(--text-muted); }
@@ -101,65 +97,47 @@ footer a { color: var(--text-secondary); }
 </head>
 <body>
 <main>
-  <div class="head"><h1>广东：五分之一去了哪里？</h1><button class="theme" id="theme" type="button">切换深浅色</button></div>
-  <p class="sub">2025 年 · 初中毕业以后，再到高考 · 第一部分单位为万人</p>
+  <div class="head"><h1>广东：从初中毕业到本科线</h1><button class="theme" id="theme" type="button">切换深浅色</button></div>
+  <p class="sub">2025 年 · 单位：万人 · 悬停可看精确人数</p>
 
   <section class="card">
-    <p class="prompt">同样是"初中毕业以后"，全国和广东的图长得一样吗？</p>
-    <div class="panels">
-      <div class="panel">
-        <h2>全国</h2>
-        <p class="meta">教育部《2025 年全国教育事业发展统计公报》</p>
-        <svg id="nat" viewBox="0 0 460 380" role="img" aria-label="2025 年全国初中毕业生与高中阶段招生流向图"></svg>
-      </div>
-      <div class="panel">
-        <h2>广东</h2>
-        <p class="meta">广东省统计局《2025 年广东省国民经济和社会发展统计公报》</p>
-        <svg id="gd" viewBox="0 0 460 380" role="img" aria-label="2025 年广东初中毕业生与高中阶段招生流向图"></svg>
-      </div>
-    </div>
-    <p class="meta">两张图都按各自的初中毕业生总数画成同样高，比较的是比例，不是人数。</p>
-
+    <p class="prompt">广东的初中毕业生去了哪里？三年后的高考又是什么样？</p>
     <div class="controls">
-      <button type="button" id="tech" aria-pressed="false">把广东的技工院校加进来</button>
+      <button type="button" id="tech" aria-pressed="false">把技工院校加进来</button>
+      <span class="seg" role="group" aria-label="高考科类">
+        <button type="button" data-cat="all" aria-pressed="true">高考合计</button>
+        <button type="button" data-cat="phy" aria-pressed="false">物理类</button>
+        <button type="button" data-cat="his" aria-pressed="false">历史类</button>
+      </span>
     </div>
+    <div class="scroll"><svg id="chart" viewBox="0 0 1000 590" role="img" aria-label="2025 年广东初中毕业生去向与高考上线情况流向图"></svg></div>
+    <p class="sum" id="sum"></p>
     <p class="caveat" id="caveat">
-      技工院校由人社部门主管，不在教育部门的统计里。广东技工院校 2024 年招生 24.07 万人（2025 年全年数字尚未公布，这里借用 2024 年数）。
-      这条紫色虚线框<strong>不是严格的流向</strong>：年份不同；技工院校也招收往届生、高中毕业生和中职毕业生，不全是当年的初中毕业生。所以剩下的那一小块只是粗略估计。
+      技工院校由人社部门主管，不在教育部门的统计里。广东技工院校 2024 年招生 24.07 万人（2025 年全年数尚未公布，借用 2024 年数）。
+      紫色虚线框<strong>不是严格的流向</strong>：年份不同；技工院校也招收往届生、高中毕业生和中职毕业生。剩下那一小块只是粗略估计。
     </p>
 
     <div class="notes">
-      <p>1. 广东普高招生只占初中毕业生的约 56%，比全国低约 7 个百分点；中职的比例和全国差不多。</p>
-      <p>2. 灰色斜线那一块是用减法推出来的。广东这一块占 22%，比全国的 16% 大得多。<strong>先猜一猜：这些人去了哪里？</strong>再点上面的按钮。</p>
-      <p>3. 加入技工院校以后，"看不见"的部分小了很多。这说明：<strong>一个人有没有"被看见"，取决于他进了哪个部门的统计表。</strong>只看教育部门的数据，广东约五分之一的初中毕业生像是"消失"了。</p>
-      <p>4. 讨论：如果你要写"广东普职比"，应该用哪个分子、哪个分母？技工院校算不算"职"？</p>
+      <p><strong>读图：</strong>左半边是 2025 年的初中毕业生和高中阶段招生；右半边是 2025 年的高考普通类考生。<strong>中间那条虚线不是流向</strong>：今年参加高考的人是 2022 年入学的，不是图左边这批人；考生里还有往届生。两段画在一起，是为了看清"一个人从初中走到本科线要经过几道筛选"，而不是追踪同一批人。</p>
+      <p>1. 广东普高招生约占初中毕业生的 56%，比全国（62%）低；灰色斜线那一块占 22%，比全国（16%）大。先猜：这些人去了哪里？再点"把技工院校加进来"。</p>
+      <p>2. <strong>一个人有没有"被看见"，取决于他进了哪个部门的统计表。</strong>只看教育部门的数据，广东约五分之一的初中毕业生像是"消失"了。</p>
+      <p>3. 切换物理类和历史类：选物理的约 63% 过本科线，选历史的只有约 31%。<strong>选科类别本身就是一种分类。</strong>这个差距来自考生不同，还是两类招生名额不同？需要什么数据才能区分？</p>
+      <p>4. 上线不等于录取：本科线以上 36.82 万人，本科批次实际投档的普通类考生 28.40 万人。</p>
     </div>
 
     <div class="compare">
-      <h2>比例对照（占当年初中毕业生）</h2>
+      <h2>和全国比（占当年初中毕业生）</h2>
       <table>
         <thead><tr><th></th><th class="num">全国</th><th class="num">广东</th></tr></thead>
         <tbody id="cmp"></tbody>
       </table>
     </div>
-  </section>
-
-  <section class="card">
-    <p class="prompt">再往下一段：2025 年广东高考，多少人够得上本科？</p>
-    <p class="meta">普通类考生（不含艺术、体育类和春季高考）。每条线都是"达到这个分数的人占全部考生的比例"，人数是累计的，不是互相排斥的。</p>
-    <div class="funnels" id="funnels"></div>
-
-    <div class="notes">
-      <p>1. 本科线以上约一半人，但"上线"不等于"被录取"。本科批次实际投档的普通类考生约 28.4 万，比上线人数少约 8.4 万。</p>
-      <p>2. 同一年高考，选物理的考生约 63% 过本科线，选历史的只有约 31%。<strong>你选的科目类别，本身就是一个"身份"分类。</strong>讨论：这个差距是因为考生不同，还是因为两类的招生名额不同？需要什么数据才能区分？</p>
-      <p>3. 2025 年选物理的考生比上年减少 10,752 人，选历史的增加 23,176 人。考生结构一变，分数线和上线比例都会跟着变。</p>
-    </div>
 
     <div class="box">
       <h3>能不能拆成一本、二本、三本？</h3>
       <p>不能直接拆。广东 2017 年取消三本批次，2018 年把一本、二本合并为"本科批"，现在只有一条本科线。"一本率""二本率"在广东已经不是官方统计口径。</p>
-      <p>常被当作"一本线"的是<strong>特殊类型招生控制线（特控线）</strong>，但它本来是强基计划、高校专项计划、综合评价等招生的资格线，不是录取批次。把"特控线以上"叫作"一本"，是借用旧名称，写作时要说明。</p>
-      <p>想做更细的分层，可以用省考试院公布的本科批投档表，按院校类型（985 / 211 / 双一流、普通公办、民办、中外合作）给每个院校专业组归类，再加总投档人数。这本身就是一次"分类即权力"的练习：分类标准由你定，结论也会跟着变。</p>
+      <p>图里的<strong>特控线</strong>（特殊类型招生控制线）常被当作"一本线"，但它本来是强基计划、高校专项计划、综合评价等招生的资格线，不是录取批次。把"特控线以上"叫作"一本"，是借用旧名称，写作时要说明。</p>
+      <p>想做更细的分层，可以用省考试院公布的本科批投档表，按院校类型（985 / 211 / 双一流、普通公办、民办、中外合作）给每个院校专业组归类，再加总投档人数。分类标准由你定，结论也会跟着变。</p>
     </div>
   </section>
 
@@ -200,13 +178,19 @@ footer a { color: var(--text-secondary); }
 <div class="tip" id="tip" role="tooltip"></div>
 
 <script>
-const DATA = {
-  nat: { name: "全国", jr: 1723.74, gen: 1074.93, voc: 369.93, tech: null },
-  gd:  { name: "广东", jr: 157.83,  gen: 87.69,   voc: 35.37,  tech: 24.07 }
+const NAT = { jr: 1723.74, gen: 1074.93, voc: 369.93 };
+const GD = { jr: 157.83, gen: 87.69, voc: 35.37, tech: 24.07 };
+GD.gap = +(GD.jr - GD.gen - GD.voc).toFixed(2);
+NAT.gap = +(NAT.jr - NAT.gen - NAT.voc).toFixed(2);
+// 高考普通类，单位：人
+const GK = {
+  all: { name: "高考普通类考生", n: 732408, tk: 127108, bk: 368240, td: 284037 },
+  phy: { name: "物理类考生", n: 440208, tk: 106293, bk: 276586, td: 218024 },
+  his: { name: "历史类考生", n: 292200, tk: 20815, bk: 91654, td: 66013 }
 };
-for (const d of Object.values(DATA)) d.gap = +(d.jr - d.gen - d.voc).toFixed(2);
 
 const fmt = v => v.toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const ppl = v => v.toLocaleString("zh-CN") + " 人";
 const pct = (a, b) => (a / b * 100).toFixed(1) + "%";
 const svgNS = "http://www.w3.org/2000/svg";
 const el = (tag, attrs, parent) => {
@@ -218,7 +202,7 @@ const el = (tag, attrs, parent) => {
 const tip = document.getElementById("tip");
 const hover = (node, text) => {
   node.addEventListener("pointermove", e => {
-    tip.textContent = typeof text === "function" ? text() : text; tip.style.opacity = 1;
+    tip.textContent = text; tip.style.opacity = 1;
     tip.style.left = Math.min(e.clientX + 14, innerWidth - 300) + "px"; tip.style.top = (e.clientY + 14) + "px";
   });
   node.addEventListener("pointerleave", () => tip.style.opacity = 0);
@@ -228,109 +212,127 @@ function band(x0, y0, x1, y1, t0, t1) {
   return `M${x0},${y0} C${m},${y0} ${m},${y1} ${x1},${y1} L${x1},${y1 + t1} C${m},${y1 + t1} ${m},${y0 + t0} ${x0},${y0 + t0} Z`;
 }
 
-const NW = 16, X0 = 110, X1 = 290, TOP = 20, H = 300, GAP = 12;
+const NW = 16, C = [100, 330, 600, 830], TOP = 70, GAP = 14, K = 2.7; // K：每万人对应的像素
+const svg = document.getElementById("chart");
 
-function draw(key, withTech) {
-  const d = DATA[key], svg = document.getElementById(key);
+function node(g, x, y, h, fill, tipText, label, value, side, cy) {
+  const r = el("rect", { x, y, width: NW, height: Math.max(h, 2), rx: 3, fill, class: "node" }, g.n);
+  hover(r, tipText);
+  let tx, ty1, ty2, a;
+  if (side === "top") { tx = x + NW / 2; a = "middle"; ty1 = y - 26; ty2 = y - 9; }
+  else {
+    const c = cy ?? y + h / 2;
+    tx = side === "left" ? x - 10 : x + NW + 8; a = side === "left" ? "end" : "start";
+    ty1 = c - 1; ty2 = c + 16;
+  }
+  const t1 = el("text", { x: tx, y: ty1, "text-anchor": a, "font-weight": 600 }, g.t); t1.textContent = label;
+  const t2 = el("text", { x: tx, y: ty2, "text-anchor": a, class: "val" }, g.t); t2.textContent = value;
+  return r;
+}
+
+function draw(withTech, cat) {
   svg.textContent = "";
   const defs = el("defs", {}, svg);
-  const pat = el("pattern", { id: "hatch-" + key, width: 8, height: 8, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
+  const pat = el("pattern", { id: "hatch", width: 8, height: 8, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
   el("rect", { width: 8, height: 8, fill: "var(--surface-1)" }, pat);
   el("line", { x1: 0, y1: 0, x2: 0, y2: 8, stroke: "var(--unknown)", "stroke-width": 3 }, pat);
+  const g = { l: el("g", {}, svg), n: el("g", {}, svg), t: el("g", {}, svg) };
 
-  const showTech = withTech && d.tech != null;
+  // 列标题
+  [["2025 年初中毕业", C[0]], ["2025 年高中阶段招生", C[1]], ["2025 年高考（普通类）", C[2]], ["分数线", C[3]]].forEach(([s, x]) => {
+    const t = el("text", { x: x + NW / 2, y: 18, "text-anchor": "middle", class: "val" }, g.t); t.textContent = s;
+  });
+
+  // 第一段：初中毕业 → 高中阶段
   const segs = [
-    { k: "gen", label: "普通高中", v: d.gen, color: "var(--s-gen)" },
-    { k: "voc", label: "中职（不含技工）", v: d.voc, color: "var(--s-voc)" }
+    { label: "普通高中", v: GD.gen, color: "var(--s-gen)" },
+    { label: "中职（不含技工）", v: GD.voc, color: "var(--s-voc)" }
   ];
-  if (showTech) {
-    segs.push({ k: "tech", label: "技工院校*", v: d.tech, color: "var(--s-tech)", dashed: true });
-    segs.push({ k: "gap", label: "仍然看不到", v: +(d.gap - d.tech).toFixed(2), color: `url(#hatch-${key})` });
+  if (withTech) {
+    segs.push({ label: "技工院校*", v: GD.tech, color: "var(--s-tech)", dashed: true });
+    segs.push({ label: "仍然看不到", v: +(GD.gap - GD.tech).toFixed(2), color: "url(#hatch)", gap: true });
   } else {
-    segs.push({ k: "gap", label: "公报里看不到", v: d.gap, color: `url(#hatch-${key})` });
+    segs.push({ label: "公报里看不到", v: GD.gap, color: "url(#hatch)", gap: true });
   }
-  const k = (H - GAP * (segs.length - 1)) / d.jr;
-  const gL = el("g", {}, svg), gN = el("g", {}, svg), gT = el("g", {}, svg);
-
-  // 左侧节点
-  const jr = el("rect", { x: X0, y: TOP, width: NW, height: d.jr * k + GAP * (segs.length - 1), rx: 3, fill: "var(--neutral)", class: "node" }, gN);
-  hover(jr, `${d.name} 2025 年初中毕业生 ${fmt(d.jr)} 万`);
-  const jt = el("text", { x: X0 - 10, y: TOP + H / 2 - 2, "text-anchor": "end", "font-weight": 600 }, gT);
-  jt.textContent = "初中毕业生";
-  const jv = el("text", { x: X0 - 10, y: TOP + H / 2 + 16, "text-anchor": "end", class: "val" }, gT);
-  jv.textContent = fmt(d.jr) + " 万";
-
-  let sy = TOP, ty = TOP;
+  const jrH = GD.jr * K + GAP * (segs.length - 1);
+  node(g, C[0], TOP, jrH, "var(--neutral)", `2025 年广东初中毕业生 ${fmt(GD.jr)} 万`, "初中毕业生", fmt(GD.jr) + " 万", "left");
   const srcGap = GAP * (segs.length - 1) / segs.length;
+  let sy = TOP, ty = TOP, genY = TOP, genH = 0;
   for (const s of segs) {
-    const th = s.v * k;
-    const linkFill = s.k === "gap" ? "var(--unknown)" : s.color;
-    const p = el("path", { d: band(X0 + NW, sy, X1, ty, th + srcGap, th), fill: linkFill, class: "link" }, gL);
+    const th = s.v * K;
+    const tipText = `${s.label}：${fmt(s.v)} 万，占初中毕业生 ${pct(s.v, GD.jr)}` + (s.dashed ? "（2024 年数，不全是初中毕业生）" : "");
+    const p = el("path", { d: band(C[0] + NW, sy, C[1], ty, th + srcGap, th), fill: s.gap ? "var(--unknown)" : s.color, class: "link" }, g.l);
     if (s.dashed) p.setAttribute("opacity", ".2");
-    const tipText = `${s.label}：${fmt(s.v)} 万，占初中毕业生 ${pct(s.v, d.jr)}` + (s.k === "tech" ? "（2024 年数，不全是初中毕业生）" : "");
     hover(p, tipText);
-    const r = el("rect", { x: X1, y: ty, width: NW, height: Math.max(th, 2), rx: 3, fill: s.color, class: "node" }, gN);
-    if (s.k === "gap") r.setAttribute("stroke", "var(--unknown)");
+    const r = node(g, C[1], ty, th, s.color, tipText, s.label, `${fmt(s.v)} 万 · ${pct(s.v, GD.jr)}`);
+    if (s.gap) r.setAttribute("stroke", "var(--unknown)");
     if (s.dashed) { r.setAttribute("stroke", "var(--s-tech)"); r.setAttribute("stroke-dasharray", "4 3"); r.setAttribute("fill-opacity", ".55"); }
-    hover(r, tipText);
-    const cy = ty + th / 2;
-    const t1 = el("text", { x: X1 + NW + 8, y: cy - 1, "font-weight": 600 }, gT);
-    t1.textContent = s.label;
-    const t2 = el("text", { x: X1 + NW + 8, y: cy + 16, class: "val" }, gT);
-    t2.textContent = `${fmt(s.v)} 万 · ${pct(s.v, d.jr)}`;
+    if (s.label === "普通高中") { genY = ty; genH = th; }
     sy += th + srcGap; ty += th + GAP;
   }
-  if (withTech && d.tech == null) {
-    const t = el("text", { x: X0, y: TOP + H + 30, class: "val" }, gT);
-    t.textContent = "全国技工院校招生数：未找到可核实的来源";
-  }
-}
 
-function render(withTech) {
-  draw("nat", withTech); draw("gd", withTech);
-  const rows = [
-    ["普通高中", DATA.nat.gen, DATA.gd.gen],
-    ["中职（不含技工）", DATA.nat.voc, DATA.gd.voc],
-    ["公报里看不到", DATA.nat.gap, DATA.gd.gap]
+  // 中间：不是流向，只是"三年后"的提示
+  const d = GK[cat], n = d.n / 1e4;
+  const mid = genY + genH / 2;
+  const gkH = n * K, gkY = mid - gkH / 2;
+  const x0 = C[1] + NW + 115, x1 = C[2] - 6;
+  el("path", { d: `M${x0},${mid} L${x1},${mid}`, fill: "none", stroke: "var(--text-muted)", "stroke-width": 2, "stroke-dasharray": "6 5" }, g.l);
+  el("path", { d: `M${x1 - 7},${mid - 5} L${x1},${mid} L${x1 - 7},${mid + 5}`, fill: "none", stroke: "var(--text-muted)", "stroke-width": 2 }, g.l);
+  const lt = el("text", { x: (x0 + x1) / 2, y: mid - 10, "text-anchor": "middle", class: "val" }, g.t);
+  lt.textContent = "三年后 · 不是同一批人";
+
+  node(g, C[2], gkY, gkH, "var(--neutral)", `2025 年${d.name} ${ppl(d.n)}（含往届生）`, d.name, fmt(n) + " 万", "top");
+
+  // 第二段：高考 → 分数线（互斥分组）
+  const outs = [
+    { label: "特控线以上", v: d.tk, color: "var(--f4)" },
+    { label: "本科线～特控线", v: d.bk - d.tk, color: "var(--f2)" },
+    { label: "未达本科线", v: d.n - d.bk, color: "var(--f1)" }
   ];
-  let html = rows.map(([l, a, b]) => `<tr><td>${l}</td><td class="num">${pct(a, DATA.nat.jr)}</td><td class="num">${pct(b, DATA.gd.jr)}</td></tr>`).join("");
-  if (withTech) html += `<tr><td>　其中可由技工院校解释（2024 年数，粗估）</td><td class="num">—</td><td class="num">${pct(DATA.gd.tech, DATA.gd.jr)}</td></tr>
-    <tr><td>　仍然看不到（粗估）</td><td class="num">—</td><td class="num">${pct(DATA.gd.gap - DATA.gd.tech, DATA.gd.jr)}</td></tr>`;
-  document.getElementById("cmp").innerHTML = html;
+  const oGap = GAP * (outs.length - 1) / outs.length;
+  sy = gkY; ty = gkY - GAP;
+  let lastLabel = -Infinity;
+  for (const o of outs) {
+    const th = o.v / 1e4 * K;
+    const tipText = `${o.label}：${ppl(o.v)}，占${d.name} ${pct(o.v, d.n)}`;
+    const p = el("path", { d: band(C[2] + NW, sy, C[3], ty, th, th), fill: o.color, class: "link" }, g.l);
+    hover(p, tipText);
+    const cy = Math.max(ty + th / 2, lastLabel + 38); // 小节点的标签往下让，避免重叠
+    lastLabel = cy;
+    node(g, C[3], ty, th, o.color, tipText, o.label, `${fmt(o.v / 1e4)} 万 · ${pct(o.v, d.n)}`, "right", cy);
+    sy += th; ty += th + GAP;
+  }
+
+  document.getElementById("sum").textContent =
+    `本科线以上 ${fmt(d.bk / 1e4)} 万（${pct(d.bk, d.n)}）；其中本科批次实际投档 ${fmt(d.td / 1e4)} 万（${pct(d.td, d.n)}）。投档不等于最终录取。`;
   document.getElementById("caveat").classList.toggle("on", withTech);
+
+  let html = [["普通高中", NAT.gen, GD.gen], ["中职（不含技工）", NAT.voc, GD.voc], ["公报里看不到", NAT.gap, GD.gap]]
+    .map(([l, a, b]) => `<tr><td>${l}</td><td class="num">${pct(a, NAT.jr)}</td><td class="num">${pct(b, GD.jr)}</td></tr>`).join("");
+  if (withTech) html += `<tr><td>　其中可由技工院校解释（2024 年数，粗估）</td><td class="num">—</td><td class="num">${pct(GD.tech, GD.jr)}</td></tr>
+    <tr><td>　仍然看不到（粗估）</td><td class="num">—</td><td class="num">${pct(GD.gap - GD.tech, GD.jr)}</td></tr>`;
+  document.getElementById("cmp").innerHTML = html;
 }
 
+let withTech = false, cat = "all";
 const btn = document.getElementById("tech");
 btn.onclick = () => {
-  const on = btn.getAttribute("aria-pressed") !== "true";
-  btn.setAttribute("aria-pressed", on);
-  btn.textContent = on ? "去掉技工院校" : "把广东的技工院校加进来";
-  render(on);
+  withTech = !withTech;
+  btn.setAttribute("aria-pressed", withTech);
+  btn.textContent = withTech ? "去掉技工院校" : "把技工院校加进来";
+  draw(withTech, cat);
 };
+document.querySelectorAll("[data-cat]").forEach(b => b.addEventListener("click", () => {
+  cat = b.dataset.cat;
+  document.querySelectorAll("[data-cat]").forEach(x => x.setAttribute("aria-pressed", x === b));
+  draw(withTech, cat);
+}));
 document.getElementById("theme").onclick = () => {
   const r = document.documentElement;
   const dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
   r.dataset.theme = dark ? "light" : "dark";
 };
-render(false);
-
-const GK = {
-  "合计": { n: 732408, tk: 127108, bk: 368240, td: 284037 },
-  "物理类": { n: 440208, tk: 106293, bk: 276586, td: 218024 },
-  "历史类": { n: 292200, tk: 20815, bk: 91654, td: 66013 }
-};
-document.getElementById("funnels").innerHTML = Object.entries(GK).map(([name, g]) => {
-  const rows = [
-    ["全部普通类考生", g.n, "var(--f1)"],
-    ["本科线以上", g.bk, "var(--f2)"],
-    ["本科批投档", g.td, "var(--f3)"],
-    ["特控线以上", g.tk, "var(--f4)"]
-  ];
-  return `<div class="funnel"><h3>${name}</h3>` + rows.map(([l, v, c]) =>
-    `<div class="frow"><div class="lab"><span>${l}</span><span>${v.toLocaleString("zh-CN")} · ${pct(v, g.n)}</span></div>` +
-    `<div class="ftrack" title="${name} ${l}：${v.toLocaleString("zh-CN")} 人"><div style="width:${(v / g.n * 100).toFixed(2)}%;background:${c}"></div></div></div>`
-  ).join("") + `</div>`;
-}).join("");
+draw(false, "all");
 </script>
 </body>
 </html>
