@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>升学流向图</title>
+<style>
+:root {
+  color-scheme: light;
+  --surface-0: #f4f3f0;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #7a7974;
+  --rule: #dcdad5;
+  --neutral: #5f5e5a;
+  --unknown: #a9a7a1;
+  --s-gen: #2a78d6;   /* 普通高中 */
+  --s-voc: #eb6834;   /* 中职 */
+  --s-bach: #1baf7a;  /* 本科 */
+  --s-assoc: #6250d6; /* 专科 */
+  --warn: #b3261e;
+  --accent-bg: #fff4d6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --surface-0: #121211; --surface-1: #1a1a19;
+    --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c;
+    --rule: #3a3936; --neutral: #a8a69e; --unknown: #6d6c66;
+    --s-gen: #3987e5; --s-voc: #d95926; --s-bach: #199e70; --s-assoc: #9085e9;
+    --warn: #ff8a80; --accent-bg: #3a3220;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-0: #121211; --surface-1: #1a1a19;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c;
+  --rule: #3a3936; --neutral: #a8a69e; --unknown: #6d6c66;
+  --s-gen: #3987e5; --s-voc: #d95926; --s-bach: #199e70; --s-assoc: #9085e9;
+  --warn: #ff8a80; --accent-bg: #3a3220;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--surface-0); color: var(--text-primary);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "WenQuanYi Zen Hei", system-ui, sans-serif;
+  line-height: 1.6;
+}
+main { max-width: 1080px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { font-size: 1.6rem; margin: 0 0 4px; }
+.sub { color: var(--text-secondary); margin: 0 0 20px; }
+.steps { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+.steps button {
+  font: inherit; border: 1px solid var(--rule); background: var(--surface-1); color: var(--text-secondary);
+  padding: 6px 12px; border-radius: 999px; cursor: pointer;
+}
+.steps button[aria-current="step"] { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
+.steps .nav { margin-left: auto; display: flex; gap: 8px; }
+.card { background: var(--surface-1); border: 1px solid var(--rule); border-radius: 12px; padding: 16px; }
+.prompt { font-size: 1.25rem; font-weight: 600; margin: 0 0 8px; }
+.prompt q { background: var(--accent-bg); padding: 0 4px; border-radius: 4px; }
+.scroll { overflow-x: auto; }
+svg { width: 100%; min-width: 720px; height: auto; display: block; }
+svg text { fill: var(--text-primary); font-size: 15px; }
+svg .val { fill: var(--text-secondary); font-size: 13px; }
+svg .note { fill: var(--warn); font-size: 13px; font-weight: 600; }
+.node { stroke: var(--surface-1); stroke-width: 2; }
+.link { mix-blend-mode: normal; opacity: .35; transition: opacity .15s; }
+.link:hover, .node:hover { opacity: .75; }
+.link.assumed { opacity: .18; stroke-dasharray: 6 4; stroke-width: 1.5; }
+.link.assumed:hover { opacity: .45; }
+.fade { opacity: 0; pointer-events: none; transition: opacity .35s; }
+.show { opacity: 1; pointer-events: auto; }
+.notes { margin-top: 12px; color: var(--text-secondary); }
+.notes p { margin: 6px 0; }
+.tip {
+  position: fixed; pointer-events: none; background: var(--text-primary); color: var(--surface-1);
+  padding: 6px 10px; border-radius: 6px; font-size: 13px; max-width: 280px; opacity: 0; transition: opacity .1s; z-index: 5;
+}
+.reveal { display: none; margin-top: 16px; }
+.reveal.on { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 760px) { .reveal.on { grid-template-columns: 1fr; } }
+.reveal h2 { font-size: 1.1rem; margin: 0 0 8px; }
+.reveal ol { margin: 0; padding-left: 1.3em; }
+.reveal li { margin-bottom: 6px; }
+.denoms { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.denoms button { font: inherit; font-size: .9rem; border: 1px solid var(--rule); background: var(--surface-0); color: var(--text-primary); padding: 4px 10px; border-radius: 6px; cursor: pointer; }
+.denoms button[aria-pressed="true"] { border-color: var(--s-bach); box-shadow: inset 0 0 0 1px var(--s-bach); }
+.big { font-size: 2.6rem; font-weight: 700; line-height: 1.1; }
+.bar { height: 14px; background: var(--rule); border-radius: 4px; overflow: hidden; margin: 8px 0; }
+.bar > div { height: 100%; background: var(--s-bach); border-radius: 0 4px 4px 0; transition: width .4s; }
+.small { font-size: .85rem; color: var(--text-muted); }
+details { margin-top: 16px; }
+summary { cursor: pointer; color: var(--text-secondary); }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; margin-top: 8px; }
+th, td { border-bottom: 1px solid var(--rule); padding: 6px 8px; text-align: left; vertical-align: top; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+footer { margin-top: 24px; font-size: .85rem; color: var(--text-muted); }
+footer a { color: var(--text-secondary); }
+.head { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; }
+.theme { flex: none; margin-top: 6px; font: inherit; font-size: .85rem; border: 1px solid var(--rule); background: var(--surface-1); color: var(--text-secondary); border-radius: 6px; padding: 4px 8px; cursor: pointer; }
+</style>
+</head>
+<body>
+<main>
+  <div class="head"><h1>从初中到大学：一张图能画多远？</h1><button class="theme" id="theme" type="button">切换深浅色</button></div>
+  <p class="sub">2024 年全国教育统计 · 单位：万人 · 用 ← → 键翻页</p>
+
+  <nav class="steps" aria-label="步骤">
+    <button type="button" data-step="1">1 一句流行的话</button>
+    <button type="button" data-step="2">2 初中 → 高中阶段</button>
+    <button type="button" data-step="3">3 再往下画一段</button>
+    <button type="button" data-step="4">4 为什么接不上</button>
+    <span class="nav">
+      <button type="button" id="prev" aria-label="上一步">←</button>
+      <button type="button" id="next" aria-label="下一步">→</button>
+    </span>
+  </nav>
+
+  <section class="card">
+    <p class="prompt" id="prompt"></p>
+    <div class="scroll"><svg id="chart" viewBox="0 0 960 500" role="img" aria-labelledby="chart-title">
+      <title id="chart-title">2024 年初中毕业生、高中阶段招生与高等教育招生的流向图</title>
+      <defs>
+        <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <rect width="8" height="8" fill="var(--surface-1)"/>
+          <line x1="0" y1="0" x2="0" y2="8" stroke="var(--unknown)" stroke-width="3"/>
+        </pattern>
+        <linearGradient id="fadeGen" x1="0" x2="1">
+          <stop offset="0" stop-color="var(--s-gen)" stop-opacity="1"/>
+          <stop offset="1" stop-color="var(--s-gen)" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <g id="g-links"></g>
+      <g id="g-nodes"></g>
+      <g id="g-labels"></g>
+    </svg></div>
+    <div class="notes" id="notes"></div>
+
+    <div class="reveal" id="reveal">
+      <div>
+        <h2>这张图为什么接不上</h2>
+        <ol>
+          <li><strong>不是同一批人。</strong>2024 年的初中毕业生，要到 2027 年才参加高考。同一年的"毕业"和"招生"数字来自不同的届别。</li>
+          <li><strong>普高生不只上本科。</strong>同年普高毕业 890.99 万，本科招生只有约 501 万，大量普高毕业生进入高职专科。</li>
+          <li><strong>专科不只收中职生。</strong>高职专科招生 567.94 万，比当年中职招生（418.33 万）还多；另有五年制高职转入专科 60.22 万，未计入。</li>
+          <li><strong>有一块在公报里看不到。</strong>243.71 万是用减法推出来的：技工学校归人社部门统计，不在教育部的中职数字里；还有复读、就业和去向不明的人。</li>
+          <li><strong>招生数里有往届生。</strong>本科招生包括复读生和少量中职生，不能直接对应应届普高毕业生。</li>
+        </ol>
+      </div>
+      <div>
+        <h2>"考上本科的比例"是多少？先选分母</h2>
+        <div class="denoms" role="group" aria-label="选择分母">
+          <button type="button" data-d="1698.24" data-l="当年初中毕业生">初中毕业生</button>
+          <button type="button" data-d="1342" data-l="当年高考报名人数">高考报名人数</button>
+          <button type="button" data-d="890.99" data-l="当年普通高中毕业生">普高毕业生</button>
+        </div>
+        <div class="big" id="pct">—</div>
+        <div class="bar" aria-hidden="true"><div id="barfill" style="width:0"></div></div>
+        <p id="formula">点上面的按钮，看同一个分子（普通本科招生 489.97 万）配不同分母。</p>
+        <p class="small">三个比例都"有数据支撑"，回答的却是三个不同的问题。写作时要说明你用的是哪个分母，以及它回答的是什么问题。</p>
+      </div>
+    </div>
+  </section>
+
+  <details>
+    <summary>查看数据表与来源</summary>
+    <table>
+      <thead><tr><th>指标（2024 年）</th><th>万人</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>初中毕业生</td><td class="num">1,698.24</td><td>公报</td></tr>
+        <tr><td>普通高中招生</td><td class="num">1,036.20</td><td>公报</td></tr>
+        <tr><td>中等职业教育招生</td><td class="num">418.33</td><td>公报；含普通中专、职业高中、成人中专、附设中职班，不含技工学校</td></tr>
+        <tr><td>公报中看不到的差额</td><td class="num">243.71</td><td>推算：1,698.24 − 1,036.20 − 418.33；含技工学校、复读、就业、去向不明等，无法再拆分</td></tr>
+        <tr><td>普通高中毕业生</td><td class="num">890.99</td><td>公报</td></tr>
+        <tr><td>中等职业教育毕业生</td><td class="num">415.55</td><td>公报</td></tr>
+        <tr><td>高考报名人数</td><td class="num">1,342</td><td>教育部公布，含往届生、中职考生</td></tr>
+        <tr><td>普通本科招生</td><td class="num">489.97</td><td>公报；另有专科起点本科 87.40 万，未计入</td></tr>
+        <tr><td>职业本科招生</td><td class="num">10.96</td><td>公报；另有专科起点本科 4.41 万，未计入</td></tr>
+        <tr><td>高职（专科）招生</td><td class="num">567.94</td><td>公报；不含五年制高职转入专科 60.22 万</td></tr>
+      </tbody>
+    </table>
+  </details>
+
+  <footer>
+    <p>数据来源：教育部《2024 年全国教育事业发展统计公报》（2025 年 6 月 11 日发布），全文见
+      <a href="https://www.thepaper.cn/newsDetail_forward_30965649">澎湃新闻转载</a>、
+      <a href="https://www.stdaily.com/web/gdxw/2025-06/12/content_353797.html">科技日报转载</a>；
+      <a href="http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202506/t20250611_1193760.html">教育部原文</a>。
+      高考报名人数：<a href="https://paper.people.com.cn/rmrbwap/html/2024-06/08/nw.D110000renmrb_20240608_4-04.htm">人民日报，2024 年 6 月 8 日</a>。</p>
+    <p>第 3 步的连线是<strong>故意画错的假设</strong>，用于课堂讨论，不代表真实流向。唯理寒假工作坊 2027 · 课堂演示材料。</p>
+  </footer>
+</main>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+const D = {
+  jr: 1698.24, gen: 1036.20, voc: 418.33,
+  bach: 489.97 + 10.96, assoc: 567.94
+};
+D.gap = +(D.jr - D.gen - D.voc).toFixed(2);
+
+const W = 960, NW = 18, TOP = 40, K = 400 / D.jr, GAP = 18;
+const X = [150, 470, 790];
+const h = v => v * K;
+const fmt = v => v.toLocaleString("zh-CN", { maximumFractionDigits: 2 });
+const pct = (a, b) => (a / b * 100).toFixed(1) + "%";
+
+// 节点布局
+const N = {
+  jr:    { x: X[0], y: TOP, v: D.jr, label: "初中毕业生", color: "var(--neutral)", col: 0 },
+  gen:   { x: X[1], y: TOP, v: D.gen, label: "普通高中", color: "var(--s-gen)", col: 1 },
+  voc:   { x: X[1], y: TOP + h(D.gen) + GAP, v: D.voc, label: "中职", color: "var(--s-voc)", col: 1 },
+  gap:   { x: X[1], y: TOP + h(D.gen) + h(D.voc) + 2 * GAP, v: D.gap, label: "公报里看不到", color: "url(#hatch)", col: 1 },
+  bach:  { x: X[2], y: TOP, v: D.bach, label: "本科", color: "var(--s-bach)", col: 2 },
+  assoc: { x: X[2], y: TOP + h(D.gen) + GAP - (h(D.assoc) - h(D.voc)) , v: D.assoc, label: "高职专科", color: "var(--s-assoc)", col: 2 }
+};
+const desc = {
+  jr: "2024 年初中毕业生 1,698.24 万",
+  gen: "普通高中招生 1,036.20 万，约为初中毕业生的 " + pct(D.gen, D.jr),
+  voc: "中等职业教育招生 418.33 万，约为初中毕业生的 " + pct(D.voc, D.jr) + "（不含技工学校）",
+  gap: "推算差额 " + fmt(D.gap) + " 万，约 " + pct(D.gap, D.jr) + "：技工学校、复读、就业、去向不明……公报无法拆分",
+  bach: "本科招生约 " + fmt(D.bach) + " 万（普通本科 489.97 + 职业本科 10.96）",
+  assoc: "高职（专科）招生 567.94 万（不含五年制高职转入 60.22 万）"
+};
+
+// 连线：[源, 源内偏移, 目标, 目标内偏移, 数值, 类型]
+const L = [
+  { s: "jr", so: 0, t: "gen", to: 0, v: D.gen, cls: "real", step: 2, color: "var(--s-gen)" },
+  { s: "jr", so: D.gen, t: "voc", to: 0, v: D.voc, cls: "real", step: 2, color: "var(--s-voc)" },
+  { s: "jr", so: D.gen + D.voc, t: "gap", to: 0, v: D.gap, cls: "real", step: 2, color: "var(--unknown)" },
+  { s: "gen", so: 0, t: "bach", to: 0, v: D.bach, cls: "assumed", step: 3, color: "var(--s-gen)",
+    tip: "假设：本科生全部来自普高（" + fmt(D.bach) + " 万）" },
+  { s: "voc", so: 0, t: "assoc", to: D.assoc - D.voc, v: D.voc, cls: "assumed", step: 3, color: "var(--s-voc)",
+    tip: "假设：中职生全部升入专科（418.33 万）" }
+];
+
+const svgNS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs, parent) => {
+  const e = document.createElementNS(svgNS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+};
+const gL = document.getElementById("g-links"), gN = document.getElementById("g-nodes"), gT = document.getElementById("g-labels");
+const tip = document.getElementById("tip");
+const hover = (node, text) => {
+  node.addEventListener("pointermove", e => {
+    tip.textContent = text; tip.style.opacity = 1;
+    tip.style.left = Math.min(e.clientX + 14, innerWidth - 300) + "px"; tip.style.top = (e.clientY + 14) + "px";
+  });
+  node.addEventListener("pointerleave", () => tip.style.opacity = 0);
+};
+const stepOf = { jr: 1, gen: 2, voc: 2, gap: 2, bach: 3, assoc: 3 };
+const layers = [];
+
+function band(x0, y0, x1, y1, th) {
+  const m = (x0 + x1) / 2;
+  return `M${x0},${y0} C${m},${y0} ${m},${y1} ${x1},${y1} L${x1},${y1 + th} C${m},${y1 + th} ${m},${y0 + th} ${x0},${y0 + th} Z`;
+}
+
+for (const l of L) {
+  const a = N[l.s], b = N[l.t];
+  const p = el("path", { d: band(a.x + NW, a.y + h(l.so), b.x, b.y + h(l.to), h(l.v)), fill: l.color, stroke: l.color, class: "link " + l.cls }, gL);
+  hover(p, l.tip || (N[l.s].label + " → " + N[l.t].label + "：" + fmt(l.v) + " 万（" + pct(l.v, D.jr) + "）"));
+  layers.push([p, l.step]);
+}
+
+// 普高未被"假设"连走的部分：去向？
+{
+  const a = N.gen, y = a.y + h(D.bach), th = h(D.gen - D.bach);
+  const p = el("path", { d: `M${a.x + NW},${y} L${a.x + NW + 150},${y} L${a.x + NW + 150},${y + th} L${a.x + NW},${y + th} Z`, fill: "url(#fadeGen)", class: "link assumed" }, gL);
+  hover(p, "按这个假设，还有 " + fmt(D.gen - D.bach) + " 万普高生去哪了？");
+  layers.push([p, 3]);
+  const t = el("text", { x: a.x + NW + 160, y: y + th / 2 + 5, class: "note" }, gT);
+  t.textContent = "这 " + fmt(D.gen - D.bach) + " 万去哪了？";
+  layers.push([t, 3]);
+}
+// 专科里不是中职来的部分：从哪来？
+{
+  const b = N.assoc, th = h(D.assoc - D.voc);
+  const r = el("rect", { x: b.x - 6, y: b.y, width: NW + 12, height: th, fill: "none", stroke: "var(--warn)", "stroke-width": 2, "stroke-dasharray": "4 3", rx: 3 }, gT);
+  hover(r, "专科招生比中职招生多 " + fmt(D.assoc - D.voc) + " 万，这部分从哪来？");
+  layers.push([r, 3]);
+  const t = el("text", { x: b.x - 14, y: b.y + th / 2 + 5, class: "note", "text-anchor": "end" }, gT);
+  t.textContent = "多出的 " + fmt(D.assoc - D.voc) + " 万从哪来？";
+  layers.push([t, 3]);
+}
+
+for (const k in N) {
+  const n = N[k];
+  const r = el("rect", { x: n.x, y: n.y, width: NW, height: Math.max(h(n.v), 2), rx: 3, fill: n.color, class: "node" }, gN);
+  if (k === "gap") r.setAttribute("stroke", "var(--unknown)");
+  hover(r, desc[k]);
+  layers.push([r, stepOf[k]]);
+  const right = n.col === 2, left = n.col === 0;
+  const tx = left ? n.x - 10 : n.x + NW + 10;
+  const anchor = left ? "end" : "start";
+  const cy = n.y + h(n.v) / 2;
+  const t1 = el("text", { x: tx, y: cy - 2, "text-anchor": anchor, "font-weight": 600 }, gT);
+  t1.textContent = n.label;
+  const t2 = el("text", { x: tx, y: cy + 17, "text-anchor": anchor, class: "val" }, gT);
+  t2.textContent = fmt(n.v) + " 万" + (k === "jr" ? "" : n.col === 1 ? " · " + pct(n.v, D.jr) : "");
+  layers.push([t1, stepOf[k]], [t2, stepOf[k]]);
+}
+// 列标题
+[["2024 年毕业", X[0]], ["2024 年高中阶段招生", X[1]], ["2024 年高等教育招生", X[2]]].forEach(([s, x], i) => {
+  const t = el("text", { x: x + NW / 2, y: 22, "text-anchor": "middle", class: "val" }, gT);
+  t.textContent = s; layers.push([t, i + 1]);
+});
+
+const STEPS = {
+  1: { prompt: "常听到一句话：<q>初中毕业后，一半人上职高。</q>这句话对吗？",
+       notes: ["先别看数据，请每个人写下自己的猜测：初中毕业生里，上普通高中的大约占多少？",
+               "再想一想：要检验这句话，你需要哪几个数字？它们应该从哪里来？"] },
+  2: { prompt: "第一段：初中毕业生去了哪里？",
+       notes: ["按 2024 年的招生数粗算，普高约 61%、中职约 25%。全国平均不是\"一半一半\"，但各省差异很大。",
+               "注意灰色斜线那一块：它是用减法推出来的，公报里没有这个类别。<strong>谁在这 14% 里？我们不知道。</strong>这就是第 3 天要讲的\"缺失的数据\"。",
+               "还有一个隐含假设：招生的人都是当年的初中毕业生。真是这样吗？"] },
+  3: { prompt: "很多人会这样往下画：普高生上本科，中职生上专科。",
+       notes: ["虚线是我们<strong>假设</strong>的连线，不是数据。按这个假设画下去，数字马上对不上：",
+               "普高有 1,036 万人，本科只招了约 501 万，剩下的 535 万去哪了？专科招了 568 万，比中职招生的 418 万还多，多出的 150 万从哪来？",
+               "请小组讨论：这张图哪里画错了？至少找出两个原因。"] },
+  4: { prompt: "数据能告诉我们的，比图画出来的少。",
+       notes: ["桑基图默认\"左边的人流到右边\"。但同一年的毕业数和招生数来自不同届别，中间的连线必须有追踪同一批人的数据才能画。",
+               "要真正画出流向，需要队列（cohort）数据，例如追踪调查。没有这类数据时，诚实的做法是只画能确定的部分，并把看不见的部分标出来。"] }
+};
+
+let cur = 1;
+function go(s) {
+  cur = Math.min(4, Math.max(1, s));
+  for (const [node, st] of layers) node.classList.toggle("fade", st > cur), node.classList.toggle("show", st <= cur);
+  document.querySelectorAll(".steps [data-step]").forEach(b => {
+    if (+b.dataset.step === cur) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
+  });
+  document.getElementById("prompt").innerHTML = STEPS[cur].prompt;
+  document.getElementById("notes").innerHTML = STEPS[cur].notes.map(n => "<p>" + n + "</p>").join("");
+  document.getElementById("reveal").classList.toggle("on", cur === 4);
+}
+document.querySelectorAll(".steps [data-step]").forEach(b => b.addEventListener("click", () => go(+b.dataset.step)));
+document.getElementById("prev").onclick = () => go(cur - 1);
+document.getElementById("next").onclick = () => go(cur + 1);
+addEventListener("keydown", e => { if (e.key === "ArrowRight") go(cur + 1); if (e.key === "ArrowLeft") go(cur - 1); });
+
+document.querySelectorAll(".denoms button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".denoms button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  const d = +b.dataset.d, v = 489.97 / d;
+  document.getElementById("pct").textContent = (v * 100).toFixed(1) + "%";
+  document.getElementById("barfill").style.width = (v * 100) + "%";
+  document.getElementById("formula").textContent = "普通本科招生 489.97 万 ÷ " + b.dataset.l + " " + fmt(d) + " 万";
+}));
+
+document.getElementById("theme").onclick = () => {
+  const r = document.documentElement;
+  const dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme = dark ? "light" : "dark";
+};
+go(1);
+</script>
+</body>
+</html>
