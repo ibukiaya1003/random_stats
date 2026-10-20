@@ -61,7 +61,7 @@ h1 { font-size: 1.6rem; margin: 0 0 4px; }
 .panel h2 { font-size: 1.05rem; margin: 0; }
 .panel .meta { color: var(--text-muted); font-size: .85rem; margin: 0 0 4px; }
 .scroll { overflow-x: auto; }
-svg { width: 100%; min-width: 760px; height: auto; display: block; }
+svg { width: 100%; min-width: 860px; height: auto; display: block; }
 svg text { fill: var(--text-primary); font-size: 14px; }
 svg .val { fill: var(--text-secondary); font-size: 12.5px; }
 .node { stroke: var(--surface-1); stroke-width: 2; }
@@ -97,11 +97,11 @@ footer a { color: var(--text-secondary); }
 </head>
 <body>
 <main>
-  <div class="head"><h1>广东：从初中毕业到本科线</h1><button class="theme" id="theme" type="button">切换深浅色</button></div>
-  <p class="sub">2025 年 · 单位：万人 · 悬停可看精确人数</p>
+  <div class="head"><h1>广东：一届学生，从初中毕业到本科线</h1><button class="theme" id="theme" type="button">切换深浅色</button></div>
+  <p class="sub">2022 年初中毕业的这一届 · 2025 年高考 · 单位：万人 · 悬停可看精确数字</p>
 
   <section class="card">
-    <p class="prompt">广东的初中毕业生去了哪里？三年后的高考又是什么样？</p>
+    <p class="prompt">2022 年广东的初中毕业生去了哪里？三年后，他们的高考是什么样？</p>
     <div class="controls">
       <button type="button" id="tech" aria-pressed="false">把技工院校加进来</button>
       <span class="seg" role="group" aria-label="高考科类">
@@ -110,23 +110,23 @@ footer a { color: var(--text-secondary); }
         <button type="button" data-cat="his" aria-pressed="false">历史类</button>
       </span>
     </div>
-    <div class="scroll"><svg id="chart" viewBox="0 0 1000 590" role="img" aria-label="2025 年广东初中毕业生去向与高考上线情况流向图"></svg></div>
+    <div class="scroll"><svg id="chart" viewBox="0 0 1040 600" role="img" aria-label="2022 年广东初中毕业生去向与 2025 年高考上线情况流向图"></svg></div>
     <p class="sum" id="sum"></p>
     <p class="caveat" id="caveat">
-      技工院校由人社部门主管，不在教育部门的统计里。广东技工院校 2024 年招生 24.07 万人（2025 年全年数尚未公布，借用 2024 年数）。
-      紫色虚线框<strong>不是严格的流向</strong>：年份不同；技工院校也招收往届生、高中毕业生和中职毕业生。剩下那一小块只是粗略估计。
+      技工院校由人社部门主管，教育部公报明确说明中职数字"不包括人力资源和社会保障部门管理的技工学校"。广东技工院校 2022 年招生 22.28 万人（同一年）。
+      但技工院校也招收往届生、高中毕业生和中职毕业生，不全是当年的初中毕业生，所以"仍然看不到"的那一小块只是粗略估计。
     </p>
 
     <div class="notes">
-      <p><strong>读图：</strong>左半边是 2025 年的初中毕业生和高中阶段招生；右半边是 2025 年的高考普通类考生。<strong>中间那条虚线不是流向</strong>：今年参加高考的人是 2022 年入学的，不是图左边这批人；考生里还有往届生。两段画在一起，是为了看清"一个人从初中走到本科线要经过几道筛选"，而不是追踪同一批人。</p>
-      <p>1. 广东普高招生约占初中毕业生的 56%，比全国（62%）低；灰色斜线那一块占 22%，比全国（16%）大。先猜：这些人去了哪里？再点"把技工院校加进来"。</p>
-      <p>2. <strong>一个人有没有"被看见"，取决于他进了哪个部门的统计表。</strong>只看教育部门的数据，广东约五分之一的初中毕业生像是"消失"了。</p>
+      <p><strong>读图：</strong>前两列是 2022 年的数字，后三列是 2025 年的数字。2022 年入学的普高生，正常情况下 2025 年毕业、参加高考，所以这是<strong>同一届学生</strong>。还剩两处对不齐：普高毕业到高考之间用虚线，因为 2025 年的考生里还有往届生，人数没有公布；分科类时，物理类和历史类考生也不能和"普高毕业生"一一对应。</p>
+      <p>1. 只看教育部门的数据，2022 年广东有 17.5% 的初中毕业生"看不到"。点"把技工院校加进来"，这一块几乎消失，只剩约 1%。<strong>一个人有没有"被看见"，取决于他进了哪个部门的统计表。</strong></p>
+      <p>2. 2022 年入学的普高生 74.91 万，2025 年普高毕业 73.58 万，三年间少了约 1.33 万。原因（转学、辍学、休学、延期毕业）公报里没有。</p>
       <p>3. 切换物理类和历史类：选物理的约 63% 过本科线，选历史的只有约 31%。<strong>选科类别本身就是一种分类。</strong>这个差距来自考生不同，还是两类招生名额不同？需要什么数据才能区分？</p>
-      <p>4. 上线不等于录取：本科线以上 36.82 万人，本科批次实际投档的普通类考生 28.40 万人。</p>
+      <p>4. 换个分母：本科线以上 36.82 万人，约占这一届初中毕业生（133.17 万）的 28%；本科批次实际投档 28.40 万人，约占 21%。但高考考生里有往届生，这两个比例只能算粗估。</p>
     </div>
 
     <div class="compare">
-      <h2>和全国比（占当年初中毕业生）</h2>
+      <h2>和全国比（2022 年，占当年初中毕业生）</h2>
       <table>
         <thead><tr><th></th><th class="num">全国</th><th class="num">广东</th></tr></thead>
         <tbody id="cmp"></tbody>
@@ -144,29 +144,30 @@ footer a { color: var(--text-secondary); }
   <details>
     <summary>查看数据表与口径</summary>
     <table>
-      <thead><tr><th>指标</th><th class="num">全国 2025</th><th class="num">广东 2025</th><th>说明</th></tr></thead>
+      <thead><tr><th>指标</th><th>年份</th><th class="num">广东</th><th class="num">全国</th><th>说明</th></tr></thead>
       <tbody>
-        <tr><td>初中毕业生</td><td class="num">1,723.74</td><td class="num">157.83</td><td>两份公报</td></tr>
-        <tr><td>普通高中招生</td><td class="num">1,074.93</td><td class="num">87.69</td><td>两份公报</td></tr>
-        <tr><td>中等职业教育招生</td><td class="num">369.93</td><td class="num">35.37</td><td>均不含技工学校；广东表题为"各类中等职业技术教育（不含技工学校）"</td></tr>
-        <tr><td>公报里看不到的差额</td><td class="num">278.88</td><td class="num">34.77</td><td>推算：初中毕业生 − 普高招生 − 中职招生</td></tr>
-        <tr><td>高考普通类考生（物理 / 历史）</td><td class="num">—</td><td class="num">732,408</td><td>440,208 / 292,200（广东省教育考试院分数段数据）</td></tr>
-        <tr><td>特控线以上（物理 534 分 / 历史 557 分）</td><td class="num">—</td><td class="num">127,108</td><td>106,293 / 20,815（第三方转录的一分一段表与媒体转引，见来源）</td></tr>
-        <tr><td>本科线以上（物理 436 分 / 历史 464 分）</td><td class="num">—</td><td class="num">368,240</td><td>276,586 / 91,654（广东省政府网转引考试院数据）</td></tr>
-        <tr><td>本科批次投档，普通类（物理 / 历史）</td><td class="num">—</td><td class="num">284,037</td><td>218,024 / 66,013；含艺体等各类合计投出 317,135 人（南方都市报）。投档不等于最终录取</td></tr>
-        <tr><td>技工院校招生</td><td class="num">—</td><td class="num">24.07*</td><td>*2024 年数，广东人社厅公报；2025 年全年数尚未公布。全国数未查到可核实的来源</td></tr>
+        <tr><td>初中毕业生（万人）</td><td>2022</td><td class="num">133.17</td><td class="num">1,623.92</td><td>广东统计公报表 19；教育部公报</td></tr>
+        <tr><td>普通高中招生（万人）</td><td>2022</td><td class="num">74.91</td><td class="num">947.54</td><td>同上</td></tr>
+        <tr><td>中等职业教育招生（万人）</td><td>2022</td><td class="num">34.91</td><td class="num">484.78</td><td>均不含技工学校</td></tr>
+        <tr><td>技工院校招生（万人）</td><td>2022</td><td class="num">22.28</td><td class="num">—</td><td>广东人社厅 2022 年度公报；招生对象不限于应届初中毕业生。全国数未查到可核实的来源</td></tr>
+        <tr><td>教育统计中看不到的差额（万人）</td><td>2022</td><td class="num">23.35</td><td class="num">191.60</td><td>推算：初中毕业生 − 普高招生 − 中职招生</td></tr>
+        <tr><td>普通高中毕业生（万人）</td><td>2025</td><td class="num">73.58</td><td class="num">—</td><td>广东 2025 年统计公报表 16</td></tr>
+        <tr><td>高考普通类考生（物理 / 历史，人）</td><td>2025</td><td class="num">732,408</td><td class="num">—</td><td>440,208 / 292,200；含往届生，不含艺术、体育类和春季高考</td></tr>
+        <tr><td>特控线以上（物理 534 分 / 历史 557 分，人）</td><td>2025</td><td class="num">127,108</td><td class="num">—</td><td>106,293 / 20,815（第三方转录的一分一段表与媒体转引，见来源）</td></tr>
+        <tr><td>本科线以上（物理 436 分 / 历史 464 分，人）</td><td>2025</td><td class="num">368,240</td><td class="num">—</td><td>276,586 / 91,654</td></tr>
+        <tr><td>本科批次投档，普通类（物理 / 历史，人）</td><td>2025</td><td class="num">284,037</td><td class="num">—</td><td>218,024 / 66,013；投档不等于最终录取</td></tr>
       </tbody>
     </table>
   </details>
 
   <footer>
-    <p>数据来源：
-      教育部<a href="http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202607/t20260706_1442870.html">《2025 年全国教育事业发展统计公报》</a>（2026 年 7 月 6 日）；
-      广东省统计局<a href="https://stats.gd.gov.cn/tjgb/content/post_4876564.html">《2025 年广东省国民经济和社会发展统计公报》</a>（2026 年 3 月 31 日，表 16，<a href="https://stats.gd.gov.cn/attachment/0/610/610053/4876564.pdf">PDF</a>）；
-      广东省人社厅<a href="https://hrss.gd.gov.cn/attachment/0/590/590380/4763529.pdf">《2024 年度广东省人力资源和社会保障事业发展统计公报》</a>（技工院校招生 24.07 万、在校生 66.92 万）；
-      技工院校招生对象：<a href="https://hrss.gd.gov.cn/ztzl/gdjg/tplb/content/post_4732894.html">广东省人社厅，2025 年技工院校招生公告</a>。</p>
-    <p>高考数据：本科线以上人数，<a href="https://www.gd.gov.cn/gdywdt/bmdt/content/post_4734513.html">广东省人民政府网</a>、<a href="https://www.gz.gov.cn/zwfw/zxfw/jyfw7/content/post_10329370.html">广州市政府网</a>；
-      考生人数与同比变化，<a href="https://www.sznews.com/news/content/2025-06/27/content_31612392.htm">深圳新闻网</a>；
+    <p>2022 年数据：广东省统计局<a href="https://stats.gd.gov.cn/tjgb/content/post_4146083.html">《2022 年广东国民经济和社会发展统计公报》</a>（表 19，<a href="https://stats.gd.gov.cn/attachment/0/517/517175/4146083.pdf">PDF</a>）；
+      广东省人社厅<a href="https://hrss.gd.gov.cn/attachment/0/532/532081/4258071.pdf">《2022 年度广东省人力资源和社会保障事业发展统计公报》</a>（技工院校招生 22.28 万）；
+      教育部<a href="http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202307/t20230705_1067278.html">《2022 年全国教育事业发展统计公报》</a>（含"不包括……技工学校"的注释）；
+      技工院校招生对象：<a href="https://hrss.gd.gov.cn/ztzl/gdjg/tplb/content/post_4732894.html">广东省人社厅招生公告</a>。</p>
+    <p>2025 年数据：普高毕业生，广东省统计局<a href="https://stats.gd.gov.cn/tjgb/content/post_4876564.html">《2025 年广东省国民经济和社会发展统计公报》</a>（表 16）；
+      本科线以上人数，<a href="https://www.gd.gov.cn/gdywdt/bmdt/content/post_4734513.html">广东省人民政府网</a>；
+      考生人数，<a href="https://www.sznews.com/news/content/2025-06/27/content_31612392.htm">深圳新闻网</a>；
       特控线分数，<a href="https://m.thepaper.cn/newsDetail_forward_31040386">澎湃新闻</a>；
       物理类特控线以上人数，<a href="https://www.gk100.com/read_631564261.htm">高考100 转录的一分一段表</a>（该表的本科线以上累计数与官方 276,586 一致）；
       历史类特控线以上人数，<a href="https://m.bendibao.com/show989193.html">本地宝转引</a>（与深圳新闻网"比去年增加 1,774 人"相互印证）；
@@ -178,11 +179,12 @@ footer a { color: var(--text-secondary); }
 <div class="tip" id="tip" role="tooltip"></div>
 
 <script>
-const NAT = { jr: 1723.74, gen: 1074.93, voc: 369.93 };
-const GD = { jr: 157.83, gen: 87.69, voc: 35.37, tech: 24.07 };
+// 2022 年，单位：万人
+const NAT = { jr: 1623.92, gen: 947.54, voc: 484.78 };
+const GD = { jr: 133.17, gen: 74.91, voc: 34.91, tech: 22.28, genGrad: 73.58 };
 GD.gap = +(GD.jr - GD.gen - GD.voc).toFixed(2);
 NAT.gap = +(NAT.jr - NAT.gen - NAT.voc).toFixed(2);
-// 高考普通类，单位：人
+// 2025 年高考普通类，单位：人
 const GK = {
   all: { name: "高考普通类考生", n: 732408, tk: 127108, bk: 368240, td: 284037 },
   phy: { name: "物理类考生", n: 440208, tk: 106293, bk: 276586, td: 218024 },
@@ -212,7 +214,7 @@ function band(x0, y0, x1, y1, t0, t1) {
   return `M${x0},${y0} C${m},${y0} ${m},${y1} ${x1},${y1} L${x1},${y1 + t1} C${m},${y1 + t1} ${m},${y0 + t0} ${x0},${y0 + t0} Z`;
 }
 
-const NW = 16, C = [100, 330, 600, 830], TOP = 70, GAP = 14, K = 2.7; // K：每万人对应的像素
+const NW = 16, C = [90, 290, 500, 700, 860], TOP = 70, GAP = 14, K = 3.2; // K：每万人对应的像素
 const svg = document.getElementById("chart");
 
 function node(g, x, y, h, fill, tipText, label, value, side, cy) {
@@ -236,80 +238,86 @@ function draw(withTech, cat) {
   const pat = el("pattern", { id: "hatch", width: 8, height: 8, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
   el("rect", { width: 8, height: 8, fill: "var(--surface-1)" }, pat);
   el("line", { x1: 0, y1: 0, x2: 0, y2: 8, stroke: "var(--unknown)", "stroke-width": 3 }, pat);
+  const fade = el("linearGradient", { id: "fade", x1: 0, x2: 1 }, defs);
+  el("stop", { offset: 0, "stop-color": "var(--s-gen)", "stop-opacity": .5 }, fade);
+  el("stop", { offset: 1, "stop-color": "var(--s-gen)", "stop-opacity": 0 }, fade);
   const g = { l: el("g", {}, svg), n: el("g", {}, svg), t: el("g", {}, svg) };
 
-  // 列标题
-  [["2025 年初中毕业", C[0]], ["2025 年高中阶段招生", C[1]], ["2025 年高考（普通类）", C[2]], ["分数线", C[3]]].forEach(([s, x]) => {
+  [["2022 年初中毕业", C[0]], ["2022 年高中阶段入学", C[1]], ["2025 年普高毕业", C[2]], ["2025 年高考（普通类）", C[3]], ["分数线", C[4]]].forEach(([s, x]) => {
     const t = el("text", { x: x + NW / 2, y: 18, "text-anchor": "middle", class: "val" }, g.t); t.textContent = s;
   });
 
-  // 第一段：初中毕业 → 高中阶段
+  // 2022：初中毕业 → 高中阶段入学
   const segs = [
     { label: "普通高中", v: GD.gen, color: "var(--s-gen)" },
     { label: "中职（不含技工）", v: GD.voc, color: "var(--s-voc)" }
   ];
   if (withTech) {
-    segs.push({ label: "技工院校*", v: GD.tech, color: "var(--s-tech)", dashed: true });
+    segs.push({ label: "技工院校", v: GD.tech, color: "var(--s-tech)", tech: true });
     segs.push({ label: "仍然看不到", v: +(GD.gap - GD.tech).toFixed(2), color: "url(#hatch)", gap: true });
   } else {
-    segs.push({ label: "公报里看不到", v: GD.gap, color: "url(#hatch)", gap: true });
+    segs.push({ label: "教育统计里看不到", v: GD.gap, color: "url(#hatch)", gap: true });
   }
   const jrH = GD.jr * K + GAP * (segs.length - 1);
-  node(g, C[0], TOP, jrH, "var(--neutral)", `2025 年广东初中毕业生 ${fmt(GD.jr)} 万`, "初中毕业生", fmt(GD.jr) + " 万", "left");
+  node(g, C[0], TOP, jrH, "var(--neutral)", `2022 年广东初中毕业生 ${fmt(GD.jr)} 万`, "初中毕业生", fmt(GD.jr) + " 万", "left");
   const srcGap = GAP * (segs.length - 1) / segs.length;
-  let sy = TOP, ty = TOP, genY = TOP, genH = 0;
+  let sy = TOP, ty = TOP, genY = TOP;
+  let lastLabel = -Infinity;
   for (const s of segs) {
     const th = s.v * K;
-    const tipText = `${s.label}：${fmt(s.v)} 万，占初中毕业生 ${pct(s.v, GD.jr)}` + (s.dashed ? "（2024 年数，不全是初中毕业生）" : "");
+    const tipText = `2022 年${s.label}：${fmt(s.v)} 万，占初中毕业生 ${pct(s.v, GD.jr)}` + (s.tech ? "（招生对象不限于应届初中毕业生）" : "");
     const p = el("path", { d: band(C[0] + NW, sy, C[1], ty, th + srcGap, th), fill: s.gap ? "var(--unknown)" : s.color, class: "link" }, g.l);
-    if (s.dashed) p.setAttribute("opacity", ".2");
     hover(p, tipText);
-    const r = node(g, C[1], ty, th, s.color, tipText, s.label, `${fmt(s.v)} 万 · ${pct(s.v, GD.jr)}`);
+    const cy = Math.max(ty + th / 2, lastLabel + 38); lastLabel = cy;
+    const r = node(g, C[1], ty, th, s.color, tipText, s.label, `${fmt(s.v)} 万 · ${pct(s.v, GD.jr)}`, "right", cy);
     if (s.gap) r.setAttribute("stroke", "var(--unknown)");
-    if (s.dashed) { r.setAttribute("stroke", "var(--s-tech)"); r.setAttribute("stroke-dasharray", "4 3"); r.setAttribute("fill-opacity", ".55"); }
-    if (s.label === "普通高中") { genY = ty; genH = th; }
+    if (s.label === "普通高中") genY = ty;
     sy += th + srcGap; ty += th + GAP;
   }
 
-  // 中间：不是流向，只是"三年后"的提示
+  // 2022 普高入学 → 2025 普高毕业（同一届）
+  const gradH = GD.genGrad * K, lossH = (GD.gen - GD.genGrad) * K;
+  const pg = el("path", { d: band(C[1] + NW, genY, C[2], genY, gradH, gradH), fill: "var(--s-gen)", class: "link" }, g.l);
+  hover(pg, `2022 年入学的普高生，2025 年毕业 ${fmt(GD.genGrad)} 万`);
+  const ls = el("path", { d: `M${C[1] + NW},${genY + gradH} L${C[1] + NW + 150},${genY + gradH} L${C[1] + NW + 150},${genY + gradH + lossH} L${C[1] + NW},${genY + gradH + lossH} Z`, fill: "url(#fade)" }, g.l);
+  hover(ls, `三年间少了约 ${fmt(GD.gen - GD.genGrad)} 万：转学、辍学、休学或延期毕业，公报未说明`);
+  node(g, C[2], genY, gradH, "var(--s-gen)", `2025 年广东普通高中毕业生 ${fmt(GD.genGrad)} 万`, "普高毕业生", `${fmt(GD.genGrad)} 万`, "right");
+
+  // 2025 普高毕业 → 2025 高考：考生含往届生，不能直接连
   const d = GK[cat], n = d.n / 1e4;
-  const mid = genY + genH / 2;
+  const mid = genY + gradH / 2;
   const gkH = n * K, gkY = mid - gkH / 2;
-  const x0 = C[1] + NW + 115, x1 = C[2] - 6;
+  const x0 = C[2] + NW + 100, x1 = C[3] - 6;
   el("path", { d: `M${x0},${mid} L${x1},${mid}`, fill: "none", stroke: "var(--text-muted)", "stroke-width": 2, "stroke-dasharray": "6 5" }, g.l);
   el("path", { d: `M${x1 - 7},${mid - 5} L${x1},${mid} L${x1 - 7},${mid + 5}`, fill: "none", stroke: "var(--text-muted)", "stroke-width": 2 }, g.l);
-  const lt = el("text", { x: (x0 + x1) / 2, y: mid - 10, "text-anchor": "middle", class: "val" }, g.t);
-  lt.textContent = "三年后 · 不是同一批人";
+  const lt = el("text", { x: (x0 + x1) / 2, y: mid + 20, "text-anchor": "middle", class: "val" }, g.t);
+  lt.textContent = "+ 往届生";
+  node(g, C[3], gkY, gkH, "var(--neutral)", `2025 年${d.name} ${ppl(d.n)}（含往届生）`, d.name, fmt(n) + " 万", "top");
 
-  node(g, C[2], gkY, gkH, "var(--neutral)", `2025 年${d.name} ${ppl(d.n)}（含往届生）`, d.name, fmt(n) + " 万", "top");
-
-  // 第二段：高考 → 分数线（互斥分组）
+  // 2025 高考 → 分数线（互斥分组）
   const outs = [
     { label: "特控线以上", v: d.tk, color: "var(--f4)" },
     { label: "本科线～特控线", v: d.bk - d.tk, color: "var(--f2)" },
     { label: "未达本科线", v: d.n - d.bk, color: "var(--f1)" }
   ];
-  const oGap = GAP * (outs.length - 1) / outs.length;
-  sy = gkY; ty = gkY - GAP;
-  let lastLabel = -Infinity;
+  sy = gkY; ty = gkY - GAP; lastLabel = -Infinity;
   for (const o of outs) {
     const th = o.v / 1e4 * K;
     const tipText = `${o.label}：${ppl(o.v)}，占${d.name} ${pct(o.v, d.n)}`;
-    const p = el("path", { d: band(C[2] + NW, sy, C[3], ty, th, th), fill: o.color, class: "link" }, g.l);
+    const p = el("path", { d: band(C[3] + NW, sy, C[4], ty, th, th), fill: o.color, class: "link" }, g.l);
     hover(p, tipText);
-    const cy = Math.max(ty + th / 2, lastLabel + 38); // 小节点的标签往下让，避免重叠
-    lastLabel = cy;
-    node(g, C[3], ty, th, o.color, tipText, o.label, `${fmt(o.v / 1e4)} 万 · ${pct(o.v, d.n)}`, "right", cy);
+    const cy = Math.max(ty + th / 2, lastLabel + 38); lastLabel = cy;
+    node(g, C[4], ty, th, o.color, tipText, o.label, `${fmt(o.v / 1e4)} 万 · ${pct(o.v, d.n)}`, "right", cy);
     sy += th; ty += th + GAP;
   }
 
   document.getElementById("sum").textContent =
-    `本科线以上 ${fmt(d.bk / 1e4)} 万（${pct(d.bk, d.n)}）；其中本科批次实际投档 ${fmt(d.td / 1e4)} 万（${pct(d.td, d.n)}）。投档不等于最终录取。`;
+    `2025 年${d.name}中，本科线以上 ${fmt(d.bk / 1e4)} 万（${pct(d.bk, d.n)}）；其中本科批次实际投档 ${fmt(d.td / 1e4)} 万（${pct(d.td, d.n)}）。投档不等于最终录取。`;
   document.getElementById("caveat").classList.toggle("on", withTech);
 
-  let html = [["普通高中", NAT.gen, GD.gen], ["中职（不含技工）", NAT.voc, GD.voc], ["公报里看不到", NAT.gap, GD.gap]]
+  let html = [["普通高中", NAT.gen, GD.gen], ["中职（不含技工）", NAT.voc, GD.voc], ["教育统计里看不到", NAT.gap, GD.gap]]
     .map(([l, a, b]) => `<tr><td>${l}</td><td class="num">${pct(a, NAT.jr)}</td><td class="num">${pct(b, GD.jr)}</td></tr>`).join("");
-  if (withTech) html += `<tr><td>　其中可由技工院校解释（2024 年数，粗估）</td><td class="num">—</td><td class="num">${pct(GD.tech, GD.jr)}</td></tr>
+  if (withTech) html += `<tr><td>　其中技工院校招生（粗估）</td><td class="num">—</td><td class="num">${pct(GD.tech, GD.jr)}</td></tr>
     <tr><td>　仍然看不到（粗估）</td><td class="num">—</td><td class="num">${pct(GD.gap - GD.tech, GD.jr)}</td></tr>`;
   document.getElementById("cmp").innerHTML = html;
 }
