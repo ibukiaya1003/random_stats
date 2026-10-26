@@ -22,6 +22,8 @@
 | [teasers.md](teasers.md) | 五个开场引子（升学漏斗、平台隐私、再识别、Anthropic 与 Swartz、AI 产业的劳动）及核实结果 | Day 1–5 |
 | [lab-survey.md](lab-survey.md) | 参考实验室与 BU 讲座系列：完整研究、可用数据库、仅有方向 | 选题与案例 |
 | [cancelled-systems-cases.md](cancelled-systems-cases.md) | 12 个被取消的政府算法系统拆解 | Day 4 |
+| [decision-trees.md](decision-trees.md) | 决策树与敏感性分析：平台和用户各自的决策树（公开案例） | Day 4 |
+| [robodebt-decision-trees.md](robodebt-decision-trees.md) | 决策树与敏感性分析（二）：Robo-debt 里政府和个人各自的决策树 | Day 4 / 试讲要点三 |
 | [missing-data-detective-samples.md](missing-data-detective-samples.md) | "缺失数据侦探"样本与参考答案（**初稿，形式待重新设计**） | Day 3 |
 
 ---
@@ -54,7 +56,7 @@
 | 1 | 在数据洪流里读懂一个数字 | "一半人上职高？"——升学漏斗 | Data Feminism 第 6 章；Gitelman；Datasheets for Datasets；**研究五步法** | 用 UMass 薪酬性别差距走一遍五步法；讲师示范项目 | 数据类型导览；配置 coding agent；第一次调用 API | 选定数据源，提交"数据说明书"和研究设计卡第 1–3 步 |
 | 2 | 分类即权力：数据如何给人分配身份、又如何认出你 | "几个特征就能认出你"——再识别 | Bowker & Star；Cheney-Lippold；Crenshaw；Data Feminism 第 4 章；Nissenbaum 情境完整性 | 创作领域代表性（基准人群抹去了谁）；姓名推断性别；人口普查重建攻击 | 分类审计；k-匿名小游戏 | 确定研究问题，完成分类审计表 |
 | 3 | 系统性低代表与缺失数据 | "心脏病发作时，胸痛是“典型”症状吗？" | Data Feminism 第 1–2 章；Invisible Women；Library of Missing Datasets；Waldman 论性别数据；探索性序列设计 | 三种"看不见"：女性被排除在临床研究外、跨性别者没有类别、女性心脏病被误读 | 缺失数据侦探；代表性比值与基准敏感性分析 | 核心指标或"缺失地图"；"不能声称什么"清单 |
-| 4 | 从数据到决定：概率、期望值与算法 | "导不出的聊天记录"——平台决策树 | 基础比率、自然频数、期望值、阈值；Nissenbaum 情境完整性；Eubanks；Benjamin；Noble；Data Justice；公平定义不可兼得 | 12 个被取消的算法系统；Obermeyer；警察拦停阈值检验；YouTube 推荐审计 | 龙卷风图；阈值游戏；审计权练习；LLM 配对审计 | 作品初稿 + "决策卡" |
+| 4 | 从数据到决定：概率、期望值与算法 | "导不出的聊天记录"——平台决策树 | 基础比率、自然频数、期望值、阈值；Nissenbaum 情境完整性；Eubanks；Benjamin；Noble；Data Justice；公平定义不可兼得 | 12 个被取消的算法系统；Obermeyer；警察拦停阈值检验；YouTube 推荐审计 | 决策树与阈值分析；阈值游戏；审计权练习；LLM 配对审计 | 作品初稿 + "决策卡" |
 | 5 | 讲出可信的故事 → 结课展 | "同样是大量下载文本"——Anthropic 与 Aaron Swartz | The Markup "show your work"；Data Humanism；不确定性可视化 | AI 产业的劳动（圆桌）；反驱逐地图项目（形式参照） | 互评、修改、部署 | 结课展 |
 
 ### 2.2 每天的时间结构
@@ -268,7 +270,7 @@
   - 用平均值替代真实波动，怎样系统性冤枉了收入不稳定的人（MiDAS、Robo-debt）
 
 **13:30 方法**（全班，45 分钟）
-- **龙卷风图**：用引子里的平台决策树，看哪个参数一变结论就翻转
+- **决策树与阈值分析**（[decision-trees.md](decision-trees.md)）：平台"横幅 vs 付费或同意墙"和用户"免费 / 付费 / 离开"两棵树，看哪个参数一变结论就翻转
 - **阈值游戏**：在一组风险评分上拖动阈值，观察不同群体的假阳性和假阴性；用 HART"约 2 次谨慎错误对 1 次危险错误"的设定讨论：被高估风险的人失去了什么？
 - **审计权练习**：假设你被某个系统标记了，列出要质疑结果需要知道什么（用了我的哪些数据、变量、权重、我的分数、阈值、错误率、向谁申诉），对照 12 个案例，看哪些系统能回答几项
 
@@ -471,7 +473,7 @@ Day 1 + Day 2 合并（研究五步法 + 分类审计）；Day 3 + Day 4 合并�
 - [ ] 模板仓库：抓取脚手架默认限速与身份标识；agent 提示词指南加入数据采集规则；"数据伦理清单"模板
 - [ ] 请组委或法律顾问看一遍第 6 节的法律提醒
 - [ ] 准备 Day 2 k-匿名小游戏的合成数据集
-- [ ] 制作 Day 4 阈值游戏与龙卷风图的交互工具（可兼作示范项目）
+- [ ] 制作 Day 4 阈值游戏的交互工具（可兼作示范项目）
 - [ ] 制作 Day 4 案例拆解表模板、Day 5 互评清单
 - [ ] 与组委确认：Citizen Lab 微信研究等敏感内容是否引用；涉及自杀内容的提示方式
 - [ ] 确认哪家博物馆 API 的性别字段"只标注女性"
