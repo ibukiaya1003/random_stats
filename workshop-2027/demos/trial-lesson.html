@@ -436,8 +436,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <div class="row" style="margin-top:10px"><button class="btn" id="attrNext">再加一项</button><button class="btn" id="attrAll">加满 15 项</button><button class="btn" id="attrNone">清空</button></div>
       <table style="margin-top:14px">
         <tbody>
-          <tr><td class="num">87%</td><td>美国人凭<b>邮编 + 性别 + 出生日期</b>可被唯一识别（Sweeney 2000，1990 年普查）</td></tr>
-          <tr><td class="num">61% / 63%</td><td>Golle 2006 用同样三项、同类普查数据<b>重新算了一遍</b>：1990 年约 61%，2000 年约 63%。他按 Sweeney 的方法算不出 87%，所以"凭三项认出多少人"的估计在六成到近九成之间</td></tr>
+          <tr><td class="num">61% / 63%</td><td>美国人凭<b>邮编 + 性别 + 出生日期</b>三项可被唯一识别：1990 年普查约 61%，2000 年普查约 63%（Golle 2006）</td></tr>
           <tr><td class="num">99.98%</td><td>用 <b>15 个人口学属性</b>，美国人可被正确再识别（Rocher, Hendrickx &amp; de Montjoye 2019，模型估计）</td></tr>
         </tbody>
       </table>
@@ -463,7 +462,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <h3>8–10 分钟 · 再识别与"读不完的同意"</h3>
     <ul>
       <li>左边：一项一项点"再加一项"，让学员先猜"加到第几项，一半的人会被认出来"。小城和属性分布是<b>示意数据</b>，只演示机制；真实数字看下面三行。</li>
-      <li><b>"无法复现"是什么意思</b>：Sweeney 2000 用 1990 年普查估计 87%。六年后 Golle 拿同一年的普查数据、同样的三项（邮编 + 性别 + 出生日期）重新计算，只得到约 61%（用 2000 年普查约 63%）。也就是说，别人照着做一遍，<b>没能算出同一个数</b>，差距的原因论文里没有定论。课上的说法："凭这三项，大约六成到近九成的美国人能被唯一识别，不同研究者估计不同。"这本身也是要点一"数字是被制造出来的"一个例子。Rocher 的 99.98% 是<b>生成模型估计</b>，不是实际攻击的统计；作者据此质疑"脱敏后发布即可"。</li>
+      <li><b>三项就够</b>：Golle 2006 用美国 1990、2000 年普查数据估计，凭邮编 + 性别 + 出生日期，约 61%、63% 的美国人能被唯一识别。课上的说法："只要三项，大约六成美国人就是独一无二的。"Rocher 的 99.98% 是<b>生成模型估计</b>，不是实际攻击的统计；作者据此质疑"脱敏后发布即可"。</li>
       <li>接回小周和 AI 那一页：时区、语言、作息、所在城市，每一项单独看都不敏感，合在一起就是你。<b>最容易被认出来的，往往是本来就少数的人</b>（k 匿名的直觉，接 Data Justice）。</li>
       <li>右边：先停在论文的设定（244 小时 / 年 ≈ 每天 40 分钟），再点"只算手机上的 60 个 App"。60 是讲师假设的数字，可以现场问学员手机上有多少个 App 再拖滑块。</li>
       <li>论文单位是英文词。中文条款可以课前数一下抖音隐私政策的字数，按中文阅读速度换算后再拖滑块；未核对前不要说出"抖音条款要读 X 分钟"。</li>
@@ -482,7 +481,6 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <h3>证据链接</h3>
     <ul class="links">
       <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6650473" target="_blank" rel="noopener">Rocher, Hendrickx &amp; de Montjoye 2019, Estimating the success of re-identifications in incomplete datasets using generative models, Nature Communications</a></li>
-      <li><a href="https://dataprivacylab.org/projects/identifiability/paper1.pdf" target="_blank" rel="noopener">Sweeney 2000, Simple Demographics Often Identify People Uniquely</a></li>
       <li><a href="https://crypto.stanford.edu/~pgolle/papers/census.pdf" target="_blank" rel="noopener">Golle 2006, Revisiting the Uniqueness of Simple Demographics in the US Population</a></li>
       <li><a href="https://lorrie.cranor.org/pubs/readingPolicyCost-authorDraft.pdf" target="_blank" rel="noopener">McDonald &amp; Cranor 2008, The Cost of Reading Privacy Policies, I/S: A Journal of Law and Policy（作者预印本，已核对 2,514 词、1,462 个网站、244 / 201 小时）</a></li>
       <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/teasers.md" target="_blank" rel="noopener">teasers.md：k 匿名与准标识符的讲法</a></li>
