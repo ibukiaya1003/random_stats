@@ -229,6 +229,10 @@ svg .val { fill: var(--ink-2); font-size: 12px; font-family: var(--f-mono); }
 .post .score { font-family: var(--f-mono); text-align: right; font-variant-numeric: tabular-nums; }
 .post .score.neg { color: var(--dec); }
 .post .meta { font-size: 12px; color: var(--ink-3); }
+.evi { min-width: 760px; }
+.evi td:first-child { white-space: nowrap; }
+.evi tr.hot td { background: var(--hl); }
+.evi td:nth-child(2) { font-family: var(--f-mono); font-size: 13px; color: var(--ink-2); }
 pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; font-family: var(--f-mono); font-size: 13px; overflow-x: auto; margin: 0; }
 </style>
 
@@ -299,11 +303,11 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 2 ============================================================ -->
-<section class="slide gutter" data-part="1" data-t="3-7" data-title="小周的 15 分钟">
-  <div class="formhead"><b>要点一 · 被记录</b><span>活动 · 聊天区 · 4 分钟</span></div>
+<section class="slide gutter" data-part="1" data-t="3-6" data-title="小周的 15 分钟">
+  <div class="formhead"><b>要点一 · 被记录</b><span>活动 · 聊天区 · 3 分钟</span></div>
   <h2>小周的 15 分钟，系统记下了什么？</h2>
   <div class="row" style="align-items:flex-start">
-    <p class="story" id="storyText">晚上 11:40，小周躺在宿舍床上打开抖音，刷了 15 分钟：划过 40 条视频，看完其中 6 条，给 2 条点赞，在 1 条下面评论了一句，搜索了一次"考研 二战"。</p>
+    <p class="story" id="storyText">晚上 11:40，小周躺在宿舍床上打开抖音，刷了 15 分钟：划过 20 条视频，看完其中 6 条，给 2 条点赞，在 1 条下面评论了一句，搜索了一次"周末 乐队演出"。</p>
   </div>
   <div class="row" style="margin-bottom:10px">
     <button class="btn" data-copy="storyCopy">复制题目到聊天区</button>
@@ -320,36 +324,75 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <button class="btn" id="sortReset">重来</button>
     <span class="muted" id="sortQ"></span>
   </div>
-  <details style="margin-top:14px" class="sheet">
-    <summary><b>佐证：使用 AI 时，服务方能看到什么</b>（Anthropic《威胁情报报告》，2026 年 9 月）</summary>
-    <div class="scroll-x" style="margin-top:10px">
-    <table>
-      <tbody>
-        <tr><td>设备与语言设置</td><td>"device timezone UTC+8 regardless of the exit node"：换了 VPN 出口，设备时区仍暴露位置</td></tr>
-        <tr><td>账号之间的关联</td><td>"two linked account groups assessed as one actor … through shared infrastructure"</td></tr>
-        <tr><td>对话内容本身</td><td>用 VPN 和外国手机号注册，却在对话里"repeatedly named their locations, institutions, and roles"：<b>技术上藏住了，自己在对话里说出来了</b></td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p class="cite" style="margin-top:8px">报告讲的是追查恶意使用者，说明"能被看到什么"，不是"一定被看了什么"。报告是一家公司的单方面说法。</p>
-  </details>
-  <pre id="storyCopy" hidden>【小周的 15 分钟】晚上 11:40，小周躺在宿舍床上打开抖音，刷了 15 分钟：划过 40 条视频，看完其中 6 条，给 2 条点赞，在 1 条下面评论了一句，搜索了一次"考研 二战"。
+  <pre id="storyCopy" hidden>【小周的 15 分钟】晚上 11:40，小周躺在宿舍床上打开抖音，刷了 15 分钟：划过 20 条视频，看完其中 6 条，给 2 条点赞，在 1 条下面评论了一句，搜索了一次"周末 乐队演出"。
 请在聊天区列出：系统可能记下了什么？越多越好。</pre>
   <aside class="notes">
-    <h3>3–7 分钟 · 小周（聊天区活动）</h3>
+    <h3>3–6 分钟 · 小周（聊天区活动）</h3>
     <ul>
       <li>读出小周的 15 分钟，复制题目进聊天区，给 2 分钟。<b>不让学员打开自己的账号。</b></li>
       <li>边读聊天区，边点卡片归类。学员通常只想到"你提供的"一栏，后两栏要讲师补。</li>
       <li>"完播率"标了"派生"：系统记的是第几秒开始、第几秒划走，<b>完播率是事后算出来的</b>，算什么、怎么算是平台的选择。这句话正好接下一页的"分母"。</li>
       <li>追问："这三栏里，哪一栏你能要求平台给你一份副本？"（推断出来的标签，下载个人数据时通常拿不到。）</li>
       <li>原始事件的字段依据讲师从业经验；以抖音现行隐私政策列出的类别为公开佐证（课前核对）。</li>
-      <li>佐证折叠框：只在有人问"AI 也会这样吗"时打开；只引用数据类型，不展开国家背景，不点名具体公司（需先与组委确认）。</li>
+      <li>"所在城市"：搜"周末 乐队演出"，平台结合 IP 推断你在哪个城市、想去哪里的演出。下一页把同样的问题换到 AI 上展开讲。</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 2b ============================================================ -->
+<section class="slide gutter" data-part="1" data-t="6-9" data-title="使用 AI 时，服务方能看到什么">
+  <div class="formhead"><b>要点一 · 被记录</b><span>佐证 · Anthropic《威胁情报报告》，2026 年 9 月</span></div>
+  <h2>换成 AI：使用时，服务方能看到什么？</h2>
+  <p class="lede">一家 AI 公司为了说明"我们怎样认出滥用者"，在公开报告里列出了它能看到的信号。</p>
+  <div class="sheet scroll-x">
+    <table class="evi">
+      <thead><tr><th>数据类型</th><th>报告中的原话（节选）</th><th>说明了什么</th></tr></thead>
+      <tbody>
+        <tr><td><b>设备与语言设置</b></td><td>"device timezone UTC+8 regardless of the exit node"<br>"prompts in simplified Chinese; zh-CN locale"</td><td>换了 VPN 出口，设备时区和语言仍然暴露位置</td></tr>
+        <tr><td><b>使用时间</b></td><td>"activity during business hours in China"</td><td>什么时候用，就能推出在哪个时区上班</td></tr>
+        <tr><td><b>账号与网络</b></td><td>"account telemetry"<br>"operator logins traced to proxies shared with a banned account farm"<br>"We use metadata and look for signals of irregular activity"</td><td>账号遥测和元数据，是识别的主要依据</td></tr>
+        <tr><td><b>注册与支付方式</b></td><td>"residential proxies, disposable emails, and virtual-card payments"<br>"created from a randomly generated email address shortly before use"</td><td>怎么注册、怎么付钱，本身就是信号</td></tr>
+        <tr><td><b>账号之间的关联</b></td><td>"two linked account groups assessed as one actor (high confidence) through shared infrastructure"</td><td>几个账号共用基础设施，就被认作同一个人</td></tr>
+        <tr class="hot"><td><b>对话内容本身</b></td><td>用 VPN 和外国手机号注册，"Nevertheless, in conversation, they repeatedly named their locations, institutions, and roles"</td><td><b>技术上藏住了，自己在对话里说出来了</b></td></tr>
+        <tr><td><b>使用量</b></td><td>"Over a 10-day period in June, we counted 770,609 exchanges"</td><td>每一次对话都被计数</td></tr>
+        <tr><td><b>数据保留</b></td><td>识别滥用依赖 "the rudimentary observability provided by data retention"</td><td>反过来，使用"零数据保留（ZDR）"服务时，内容就看不到了</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="sheet">
+      <h3>另一个例子：对话流到了第三家公司</h3>
+      <p>报告称，一些模型公司把<b>自己用户的对话</b>转发给 Claude 来生成训练数据："Those sessions contained names, email addresses, company data, and other sensitive data of hundreds of end users"。</p>
+      <p>用户以为只是在和一个编程助手对话，内容却流到了第三家公司。这是 Nissenbaum <b>情境完整性</b>的现成例子：信息本身没变，流动的情境变了。</p>
+    </div>
+    <div class="sheet">
+      <h3>回到小周</h3>
+      <p>你在使用 AI 时，服务方至少能看到你的<b>账号、网络、设备设置、使用时间和对话内容</b>。哪怕你隐藏了 IP，时区、语言和你自己说出的话仍然能认出你。</p>
+      <p>小周搜的"周末 乐队演出"也一样：<mark>最能暴露身份的，往往是自己写下的文字</mark>。这和 Day 2 的再识别是同一个道理。</p>
+      <p class="cite">讲的是"能被看到什么"，不是"一定被看了什么"。报告是一家公司的单方面说法。</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <h3>6–9 分钟 · 佐证展开</h3>
+    <ul>
+      <li>逐行讲表格，重点停在"对话内容本身"（高亮行）：技术手段藏住了，自己说出来了。接回小周：他的评论和搜索词，也是"自己说出来的"。</li>
+      <li>"另一个例子"讲情境完整性：同一份数据，用于安全审查和用于训练、广告是不同的情境。</li>
+      <li><b>使用时要注意</b>
+        <ul>
+          <li>语境：报告讲的是追查恶意使用者，不是说公司在逐个监看普通用户。说"能被看到什么"，不说"一定被看了什么"。</li>
+          <li>立场：报告是一家公司对竞争对手的单方面指控，被点名的公司未必认可。说"Anthropic 的报告称"，不说成已证实的事实。</li>
+          <li>与本课的关系：报告点名的公司里包括 DeepSeek，而正式上课用的是 DeepSeek API。这正说明课程规则为什么写着"大模型实验不输入任何真实个人信息"（course-plan 6.5 节）。<b>是否在课上点名具体公司，需先与组委确认</b>；未确认前只说"一些模型公司"。</li>
+          <li>报告涉及伊朗、俄罗斯等国家背景的案例：只引用数据类型，不展开政治内容。</li>
+        </ul>
+      </li>
+      <li>引文已对照原文（✅）：https://www.anthropic.com/threat-intelligence-report-september-2026</li>
+      <li>时间来源：小周活动压到 3 分钟、分母切换器 2 分钟、五问 2 分钟。超时就只讲表格的高亮行和"回到小周"。</li>
     </ul>
   </aside>
 </section>
 
 <!-- 3 ============================================================ -->
-<section class="slide gutter" data-part="1" data-t="7-10" data-title="同一个比例，三个分母">
+<section class="slide gutter" data-part="1" data-t="9-11" data-title="同一个比例，三个分母">
   <div class="formhead"><b>要点一 · 被记录</b><span>演示 · 2025 年全国教育统计</span></div>
   <h2>记下来之后，还要被算成一个数字</h2>
   <div class="grid2">
@@ -373,7 +416,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   </div>
   <p class="cite" style="margin-top:10px">数据：教育部《2025 年全国教育事业发展统计公报》；高考报名人数：新华网 2025-05-28。完整演示见 <a href="https://claude.ai/artifact/2pwE79DoFDQ7ZLFk6jhAiN" target="_blank" rel="noopener">升学流向图</a>。</p>
   <aside class="notes">
-    <h3>7–10 分钟 · 分母切换器</h3>
+    <h3>9–11 分钟 · 分母切换器</h3>
     <ul>
       <li>问："2025 年考上本科的比例是多少？"依次点：普高毕业生（54.5%）→ 高考报名人数（37.7%）→ 初中毕业生（29.2%）。<b>每个数字都对，只是分母不同。</b></li>
       <li>左图：普高约 62%、中职约 21%，灰色斜线约 16% 是<b>公报里看不到</b>的人，留个钩子给要点二。</li>
@@ -385,7 +428,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 4 ============================================================ -->
-<section class="slide gutter" data-part="1" data-t="10-13" data-title="数字体检表五问">
+<section class="slide gutter" data-part="1" data-t="11-13" data-title="数字体检表五问">
   <div class="formhead"><b>要点一 · 被记录</b><span>工具</span></div>
   <h2>「数字体检表」五问</h2>
   <p class="lede">拿"2025 年考上本科的比例是 37.7%"来体检。点开每一项。</p>
@@ -411,7 +454,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     </div>
   </div>
   <aside class="notes">
-    <h3>10–13 分钟 · 五问</h3>
+    <h3>11–13 分钟 · 五问（压缩到 2 分钟）</h3>
     <ul>
       <li>五问：来源、定义、分母、比较对象、不确定性。逐个点开，每项 20 秒。</li>
       <li>右侧给研究五步法第一步。示例命题是讲师自拟的，用于演示写法，没有给出答案。</li>
@@ -815,7 +858,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 <footer class="bottom">
   <div class="bottom-row gutter">
     <button class="btn" id="prev" aria-label="上一页">←</button>
-    <span class="num muted" id="counter">1 / 18</span>
+    <span class="num muted" id="counter">1 / 19</span>
     <span class="title" id="curTitle"></span>
     <span class="kbd">← → 翻页 · N 备注 · T 计时 · O 目录</span>
     <button class="btn primary" id="next" aria-label="下一页">→</button>
@@ -942,10 +985,10 @@ $$("[data-reveal]").forEach(b => b.onclick = () => { $("#" + b.dataset.reveal).c
 
 /* ---------------- 小周 sorting ---------------- */
 const ITEMS = [
-  ["评论里的那一句话", "you"], ["搜索词：考研 二战", "you"], ["点赞的 2 条视频", "you"],
+  ["评论里的那一句话", "you"], ["搜索词：周末 乐队演出", "you"], ["点赞的 2 条视频", "you"],
   ["IP 地址", "obs"], ["设备型号、系统版本", "obs"], ["网络类型（Wi-Fi / 4G）", "obs"], ["打开时间 23:40", "obs"],
-  ["每条视频开始播放和划走的时间戳", "obs"], ["完播率 6/40", "obs", "派生"], ["本次使用时长 15 分钟", "obs", "派生"], ["深夜使用频率", "obs", "派生"],
-  ["标签：备考人群", "inf"], ["标签：作息不规律", "inf"], ["标签：可能焦虑", "inf"]
+  ["每条视频开始播放和划走的时间戳", "obs"], ["完播率 6/20", "obs", "派生"], ["本次使用时长 15 分钟", "obs", "派生"], ["深夜使用频率", "obs", "派生"],
+  ["标签：喜欢现场音乐", "inf"], ["标签：所在城市", "inf"], ["标签：作息不规律", "inf"], ["标签：周末有空、愿意花钱", "inf"]
 ];
 const LBL = { you: "你提供的", obs: "被观察到的", inf: "被推断的" };
 function buildSort() {
@@ -1248,7 +1291,7 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
   const FIXED = { repost: 1, quote: 5, dm: 5, follow: 4, block: -31.2, mute: -58.8 };
   const NAMES = { like: ["点赞", 0, 5, .01], reply: ["回复", 0, 20, .5], copy: ["复制链接分享", 0, 40, 1], dwell: ["停留", 0, 1, .01], ni: ["不感兴趣", -100, 0, 1], report: ["举报", -400, 0, 2] };
   const POSTS = [
-    ["朋友的考研日记", "你关注的人", { like: .15, reply: .03, repost: .005, copy: .002, follow: .003, dwell: .5, ni: .001, block: .0001, mute: .0001, report: .00001 }],
+    ["朋友拍的乐队演出现场", "你关注的人", { like: .15, reply: .03, repost: .005, copy: .002, follow: .003, dwell: .5, ni: .001, block: .0001, mute: .0001, report: .00001 }],
     ["一条吵起来的热帖", "大量回复和引用", { like: .06, reply: .08, repost: .03, quote: .03, copy: .004, dwell: .55, ni: .004, block: .0008, mute: .0006, report: .0002 }],
     ["大V 的搞笑视频", "高点赞、常被转发", { like: .22, reply: .01, repost: .05, copy: .008, follow: .01, dwell: .65, ni: .002, block: .0001, mute: .0001, report: .00001 }],
     ["一篇科普长文", "看得久，偶尔被收藏分享", { like: .05, reply: .005, repost: .01, copy: .006, follow: .004, dwell: .8, ni: .003, block: .0001, mute: .0001, report: .000005 }],
