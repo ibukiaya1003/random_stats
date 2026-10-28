@@ -24,6 +24,7 @@
 | [cancelled-systems-cases.md](cancelled-systems-cases.md) | 12 个被取消的政府算法系统拆解 | Day 4 |
 | [decision-trees.md](decision-trees.md) | 决策树与敏感性分析：平台和用户各自的决策树（公开案例） | Day 4 |
 | [robodebt-decision-trees.md](robodebt-decision-trees.md) | 决策树与敏感性分析（二）：Robo-debt 里政府和个人各自的决策树 | Day 4 / 试讲要点三 |
+| [credit-decision-trees.md](credit-decision-trees.md) | 决策树与敏感性分析（三）：按揭信贷里银行和申请人的决策树（Fuster 等 2022；Bartlett 等 2022） | Day 4 |
 | [missing-data-detective-samples.md](missing-data-detective-samples.md) | "缺失数据侦探"样本与参考答案（**初稿，形式待重新设计**） | Day 3 |
 
 ---
@@ -270,7 +271,7 @@
   - 用平均值替代真实波动，怎样系统性冤枉了收入不稳定的人（MiDAS、Robo-debt）
 
 **13:30 方法**（全班，45 分钟）
-- **决策树与阈值分析**（[decision-trees.md](decision-trees.md)）：平台"横幅 vs 付费或同意墙"和用户"免费 / 付费 / 离开"两棵树，看哪个参数一变结论就翻转
+- **决策树与阈值分析**（[decision-trees.md](decision-trees.md)）：平台"给不被追踪定价"和用户"免费 / 付费 / 离开"两棵树，看哪个参数一变结论就翻转
 - **阈值游戏**：在一组风险评分上拖动阈值，观察不同群体的假阳性和假阴性；用 HART"约 2 次谨慎错误对 1 次危险错误"的设定讨论：被高估风险的人失去了什么？
 - **审计权练习**：假设你被某个系统标记了，列出要质疑结果需要知道什么（用了我的哪些数据、变量、权重、我的分数、阈值、错误率、向谁申诉），对照 12 个案例，看哪些系统能回答几项
 
