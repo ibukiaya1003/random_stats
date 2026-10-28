@@ -428,7 +428,9 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <h3>一项一项加属性：多少人变得"独一无二"？</h3>
       <div class="attrs" id="attrs"></div>
       <div class="row" style="align-items:flex-end; gap:16px; margin-top:12px">
-        <div><div class="big" id="uniqOut" style="font-size:56px">0%</div><div class="muted">在 5,000 人的示意小城里，凭这些属性就能唯一确定的人</div></div>
+        <div><div class="big" id="uniqOut" style="font-size:56px">0%</div><div class="muted">能被唯一确定的人<br>（5,000 人的示意小城）</div></div>
+        <div><div class="big" id="sameOut" style="font-size:56px; color:var(--ink-2)">5,000</div><div class="muted">平均每人有几个"一模一样"的人<br>（含自己）</div></div>
+        <div><div class="big" id="cellOut" style="font-size:32px; color:var(--ink-3)">1</div><div class="muted">可能的组合格子数</div></div>
       </div>
       <div class="uniqbar"><div id="uniqFill"></div></div>
       <div class="row" style="margin-top:10px"><button class="btn" id="attrNext">再加一项</button><button class="btn" id="attrAll">加满 15 项</button><button class="btn" id="attrNone">清空</button></div>
@@ -467,6 +469,15 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li>论文单位是英文词。中文条款可以课前数一下抖音隐私政策的字数，按中文阅读速度换算后再拖滑块；未核对前不要说出"抖音条款要读 X 分钟"。</li>
       <li>一句话：<b>"同意"在设计上就是读不完的。</b>这是 Day 2 知情同意讨论的入口。</li>
       <li>超时：只讲左边，右边一句话带过"244 小时 / 年"。</li>
+    </ul>
+    <h3>左边的数字是怎么算的</h3>
+    <ul>
+      <li><b>人群</b>：用固定随机种子生成 5,000 个虚构的人（每次打开都一样）。每个属性<b>独立</b>抽取：性别 2 类各半；出生年 56 类、出生月 12 类、出生日 31 类、最常用 App 10 类，都是均匀分布；其余属性按手设的不均匀比例抽（如民族 91:2:2:1:1:1:1:1，宠物 7:2:1，所在街道 20 个、大街道人多）。</li>
+      <li><b>能被唯一确定的人</b> = 勾选属性的取值组合里，只有 1 个人的组合数 ÷ 5,000。例如勾"性别 + 出生年 + 出生月 + 出生日"，把 5,000 人按这四项分组，只有自己一个人的那些人占 89.5%。</li>
+      <li><b>平均每人有几个一模一样的人</b> = Σ(每组人数²) ÷ 5,000，即随便挑一个人，和他所有勾选属性都相同的人数（含自己）的平均。只勾"性别"时约 2,500；四项生日信息之后接近 1。它每加一项都会下降，所以前两项时"唯一"还是 0%，这个数字已经在变。</li>
+      <li><b>可能的组合格子数</b> = 各属性类别数相乘。性别 × 出生年 × 月 × 日 = 2 × 56 × 12 × 31 = 41,664，比 5,000 人多 8 倍，大多数人只能一人一格。</li>
+      <li><b>手算对照</b>：如果 M 个格子都一样大，一个人独占一格的概率是 (1 − 1/M)^(N−1) ≈ e^(−N/M)。M = 41,664、N = 5,000 时 ≈ e^(−0.12) ≈ 88.7%，和模拟的 89.5% 很接近。只有性别 + 出生年时 M = 112，e^(−44.6) ≈ 0，所以显示 0%。</li>
+      <li><b>局限</b>：真实属性彼此相关（学历和职业、年龄和婚姻），独立抽取会<b>高估</b>唯一性；属性比例是讲师设定的，不来自普查。这正是 Rocher 等人用生成模型（copula）来估计真实数据的原因。所以页面上的百分比只演示"越加越唯一"的机制，引用时用下面三行真实研究的数字。</li>
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
@@ -1215,13 +1226,21 @@ buildSort();
   const boxes = $$("input", box);
   function calc() {
     const on = boxes.map((b, i) => b.checked ? i : -1).filter(i => i >= 0);
-    let u = 0;
-    if (on.length) { const m = new Map(); people.forEach(p => { const k = on.map(i => p[i]).join(","); m.set(k, (m.get(k) || 0) + 1); }); m.forEach(c => { if (c === 1) u++; }); }
+    let u = 0, sq = 0;
+    const m = new Map();
+    people.forEach(p => { const k = on.map(i => p[i]).join(","); m.set(k, (m.get(k) || 0) + 1); });
+    m.forEach(c => { if (c === 1) u++; sq += c * c; });
     const pc = u / N * 100;
-    $("#uniqOut").textContent = (pc >= 99.95 ? pc.toFixed(2) : pc.toFixed(1)) + "%";
+    $("#uniqOut").textContent = (pc >= 99.95 && pc < 100 ? pc.toFixed(2) : pc.toFixed(1)) + "%";
     $("#uniqFill").style.width = pc + "%";
+    const avg = sq / N;
+    $("#sameOut").textContent = avg >= 10 ? fmt(avg) : avg.toFixed(2);
+    const cells = on.reduce((a, i) => a * ATTR[i][1].length, 1);
+    $("#cellOut").textContent = cells >= 1e9 ? cells.toExponential(1).replace("e+", " × 10^") : fmt(cells);
   }
-  boxes.forEach(b => b.onchange = calc);
+  box.addEventListener("change", calc);
+  box.addEventListener("input", calc);
+  addEventListener("pageshow", calc);
   $("#attrNext").onclick = () => { const b = boxes.find(x => !x.checked); if (b) { b.checked = true; calc(); } };
   $("#attrAll").onclick = () => { boxes.forEach(b => b.checked = true); calc(); };
   $("#attrNone").onclick = () => { boxes.forEach(b => b.checked = false); calc(); };
