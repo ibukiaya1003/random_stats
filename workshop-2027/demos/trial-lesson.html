@@ -235,6 +235,12 @@ svg .val { fill: var(--ink-2); font-size: 12px; font-family: var(--f-mono); }
 .evi td:first-child { white-space: nowrap; }
 .evi tr.hot td { background: var(--hl); }
 .evi td:nth-child(2) { font-family: var(--f-mono); font-size: 13px; color: var(--ink-2); }
+.attrs { display: flex; flex-wrap: wrap; gap: 6px; }
+.attrs label { display: inline-flex; gap: 4px; align-items: center; border: 1px solid var(--rule); border-radius: 4px; padding: 2px 8px; font-size: 14px; cursor: pointer; background: var(--paper); }
+.attrs label:has(input:checked) { border-color: var(--rec); color: var(--rec); background: var(--sheet); }
+.attrs input { accent-color: var(--rec); margin: 0; }
+.uniqbar { height: 10px; background: var(--field); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+.uniqbar div { height: 100%; width: 0; background: var(--rec); transition: width .3s; }
 pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; font-family: var(--f-mono); font-size: 13px; overflow-x: auto; margin: 0; }
 </style>
 
@@ -356,7 +362,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 2b ============================================================ -->
-<section class="slide gutter" data-part="1" data-t="6-9" data-title="使用 AI 时，服务方能看到什么">
+<section class="slide gutter" data-part="1" data-t="6-8" data-title="使用 AI 时，服务方能看到什么">
   <div class="formhead"><b>要点一 · 被记录</b><span>佐证 · Anthropic《威胁情报报告》，2026 年 9 月</span></div>
   <h2>换成 AI：使用时，服务方能看到什么？</h2>
   <p class="lede">一家 AI 公司为了说明"我们怎样认出滥用者"，在公开报告里列出了它能看到的信号。</p>
@@ -389,7 +395,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     </div>
   </div>
   <aside class="notes">
-    <h3>6–9 分钟 · 佐证展开</h3>
+    <h3>6–8 分钟 · 佐证展开</h3>
     <ul>
       <li>逐行讲表格，重点停在"对话内容本身"（高亮行）：技术手段藏住了，自己说出来了。接回小周：他的评论和搜索词，也是"自己说出来的"。</li>
       <li>"另一个例子"讲情境完整性：同一份数据，用于安全审查和用于训练、广告是不同的情境。</li>
@@ -413,8 +419,68 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   </aside>
 </section>
 
+<!-- 2c ============================================================ -->
+<section class="slide gutter" data-part="1" data-t="8-10" data-title="15 个属性，和读不完的条款">
+  <div class="formhead"><b>要点一 · 被记录</b><span>两个经典估计</span></div>
+  <h2>15 个属性就能认出你，而条款读不完</h2>
+  <div class="grid2">
+    <div class="sheet">
+      <h3>一项一项加属性：多少人变得"独一无二"？</h3>
+      <div class="attrs" id="attrs"></div>
+      <div class="row" style="align-items:flex-end; gap:16px; margin-top:12px">
+        <div><div class="big" id="uniqOut" style="font-size:56px">0%</div><div class="muted">在 5,000 人的示意小城里，凭这些属性就能唯一确定的人</div></div>
+      </div>
+      <div class="uniqbar"><div id="uniqFill"></div></div>
+      <div class="row" style="margin-top:10px"><button class="btn" id="attrNext">再加一项</button><button class="btn" id="attrAll">加满 15 项</button><button class="btn" id="attrNone">清空</button></div>
+      <table style="margin-top:14px">
+        <tbody>
+          <tr><td class="num">87%</td><td>美国人凭<b>邮编 + 性别 + 出生日期</b>可被唯一识别（Sweeney 2000，1990 年普查）</td></tr>
+          <tr><td class="num">61–63%</td><td>同样三项，Golle 2006 复核 1990、2000 年普查，无法复现 87%</td></tr>
+          <tr><td class="num">99.98%</td><td>用 <b>15 个人口学属性</b>，美国人可被正确再识别（Rocher, Hendrickx &amp; de Montjoye 2019，模型估计）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sheet">
+      <h3>把用到的隐私条款都读一遍，要多久？</h3>
+      <div class="seg-btns" id="polPre" role="group" aria-label="设定">
+        <button type="button" data-n="1462" data-w="2514" data-r="250" aria-pressed="true">论文的设定</button>
+        <button type="button" data-n="60" data-w="2514" data-r="250" aria-pressed="false">只算手机上的 60 个 App</button>
+      </div>
+      <div class="slider"><label for="polN">一年里用到的网站 / App 数</label><output id="polNo"></output><input type="range" id="polN" min="10" max="2000" step="1" value="1462"></div>
+      <div class="slider"><label for="polW">每份条款的长度（英文词）</label><output id="polWo"></output><input type="range" id="polW" min="500" max="8000" step="1" value="2514"></div>
+      <div class="slider"><label for="polR">阅读速度（词 / 分钟）</label><output id="polRo"></output><input type="range" id="polR" min="100" max="500" step="10" value="250"></div>
+      <div class="grid2" style="gap:12px; border-top:1px solid var(--rule); padding-top:10px">
+        <div><div class="kpi" id="polH" style="color:var(--rec)">244</div><div class="muted">小时 / 年</div></div>
+        <div><div class="kpi" id="polD" style="color:var(--rec)">40</div><div class="muted">分钟 / 天</div></div>
+      </div>
+      <p id="polNote" style="margin-top:8px"></p>
+      <p class="cite">McDonald &amp; Cranor 2008：中位数条款 2,514 词，按 250 词 / 分钟约 10 分钟一份；美国网民一年访问约 1,462 个不同网站；逐字读完约 244 小时 / 年，相当于每天 40 分钟。论文结论取"读"和"略读"的综合，约 201 小时 / 年。滑块按原始字数算出约 245 小时，论文把每份取整为 10 分钟，得 244 小时。</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <h3>8–10 分钟 · 再识别与"读不完的同意"</h3>
+    <ul>
+      <li>左边：一项一项点"再加一项"，让学员先猜"加到第几项，一半的人会被认出来"。小城和属性分布是<b>示意数据</b>，只演示机制；真实数字看下面三行。</li>
+      <li>Sweeney 87% 和 Golle 61–63% 口径不同，两个都可以引用，但要说清楚。Rocher 的 99.98% 是<b>生成模型估计</b>，不是实际攻击的统计；作者据此质疑"脱敏后发布即可"。</li>
+      <li>接回小周和 AI 那一页：时区、语言、作息、所在城市，每一项单独看都不敏感，合在一起就是你。<b>最容易被认出来的，往往是本来就少数的人</b>（k 匿名的直觉，接 Data Justice）。</li>
+      <li>右边：先停在论文的设定（244 小时 / 年 ≈ 每天 40 分钟），再点"只算手机上的 60 个 App"。60 是讲师假设的数字，可以现场问学员手机上有多少个 App 再拖滑块。</li>
+      <li>论文单位是英文词。中文条款可以课前数一下抖音隐私政策的字数，按中文阅读速度换算后再拖滑块；未核对前不要说出"抖音条款要读 X 分钟"。</li>
+      <li>一句话：<b>"同意"在设计上就是读不完的。</b>这是 Day 2 知情同意讨论的入口。</li>
+      <li>超时：只讲左边，右边一句话带过"244 小时 / 年"。</li>
+    </ul>
+    <h3>证据链接</h3>
+    <ul class="links">
+      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6650473" target="_blank" rel="noopener">Rocher, Hendrickx &amp; de Montjoye 2019, Estimating the success of re-identifications in incomplete datasets using generative models, Nature Communications</a></li>
+      <li><a href="https://dataprivacylab.org/projects/identifiability/paper1.pdf" target="_blank" rel="noopener">Sweeney 2000, Simple Demographics Often Identify People Uniquely</a></li>
+      <li><a href="https://crypto.stanford.edu/~pgolle/papers/census.pdf" target="_blank" rel="noopener">Golle 2006, Revisiting the Uniqueness of Simple Demographics in the US Population</a></li>
+      <li><a href="https://lorrie.cranor.org/pubs/readingPolicyCost-authorDraft.pdf" target="_blank" rel="noopener">McDonald &amp; Cranor 2008, The Cost of Reading Privacy Policies, I/S: A Journal of Law and Policy（作者预印本，已核对 2,514 词、1,462 个网站、244 / 201 小时）</a></li>
+      <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/teasers.md" target="_blank" rel="noopener">teasers.md：k 匿名与准标识符的讲法</a></li>
+    </ul>
+  </aside>
+</section>
+
 <!-- 3 ============================================================ -->
-<section class="slide gutter" data-part="1" data-t="9-11" data-title="同一个比例，三个分母">
+<section class="slide gutter" data-part="1" data-t="10-12" data-title="同一个比例，三个分母">
   <div class="formhead"><b>要点一 · 被记录</b><span>演示 · 2025 年全国教育统计</span></div>
   <h2>记下来之后，还要被算成一个数字</h2>
   <div class="grid2">
@@ -438,7 +504,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   </div>
   <p class="cite" style="margin-top:10px">数据：教育部《2025 年全国教育事业发展统计公报》；高考报名人数：新华网 2025-05-28。完整演示见 <a href="https://claude.ai/artifact/2pwE79DoFDQ7ZLFk6jhAiN" target="_blank" rel="noopener">升学流向图</a>。</p>
   <aside class="notes">
-    <h3>9–11 分钟 · 分母切换器</h3>
+    <h3>10–12 分钟 · 分母切换器</h3>
     <ul>
       <li>问："2025 年考上本科的比例是多少？"依次点：普高毕业生（54.5%）→ 高考报名人数（37.7%）→ 初中毕业生（29.2%）。<b>每个数字都对，只是分母不同。</b></li>
       <li>左图：普高约 62%、中职约 21%，灰色斜线约 16% 是<b>公报里看不到</b>的人，留个钩子给要点二。</li>
@@ -458,7 +524,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 4 ============================================================ -->
-<section class="slide gutter" data-part="1" data-t="11-13" data-title="数字体检表五问">
+<section class="slide gutter" data-part="1" data-t="12-13" data-title="数字体检表五问">
   <div class="formhead"><b>要点一 · 被记录</b><span>工具</span></div>
   <h2>「数字体检表」五问</h2>
   <p class="lede">拿"2025 年考上本科的比例是 37.7%"来体检。点开每一项。</p>
@@ -484,7 +550,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     </div>
   </div>
   <aside class="notes">
-    <h3>11–13 分钟 · 五问（压缩到 2 分钟）</h3>
+    <h3>12–13 分钟 · 五问（压缩到 1 分钟：只点开"分母"和"不确定性"）</h3>
     <ul>
       <li>五问：来源、定义、分母、比较对象、不确定性。逐个点开，每项 20 秒。</li>
       <li>右侧给研究五步法第一步。示例命题是讲师自拟的，用于演示写法，没有给出答案。</li>
@@ -979,7 +1045,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 <footer class="bottom">
   <div class="bottom-row gutter">
     <button class="btn" id="prev" aria-label="上一页">←</button>
-    <span class="num muted" id="counter">1 / 19</span>
+    <span class="num muted" id="counter">1 / 20</span>
     <span class="title" id="curTitle"></span>
     <span class="kbd">← → 翻页 · N 备注 · T 计时 · O 目录</span>
     <button class="btn primary" id="next" aria-label="下一页">→</button>
@@ -1132,6 +1198,52 @@ function counts() {
 $("#sortAll").onclick = () => $$("#pool .chip").forEach(place);
 $("#sortReset").onclick = buildSort;
 buildSort();
+
+/* ---------------- re-identification ---------------- */
+(() => {
+  let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const pick = w => { const t = w.reduce((a, b) => a + b, 0); let r = rnd() * t; for (let i = 0; i < w.length; i++) { r -= w[i]; if (r <= 0) return i; } return w.length - 1; };
+  const flat = n => Array(n).fill(1);
+  const ATTR = [
+    ["性别", [1, 1]], ["出生年份", flat(56)], ["出生月", flat(12)], ["出生日", flat(31)], ["所在街道", [8,7,6,6,5,5,4,4,4,3,3,3,2,2,2,1,1,1,1,1]],
+    ["学历", [3, 6, 8, 6, 4, 1]], ["婚姻状况", [6, 10, 2, 1]], ["职业", [9,7,6,5,5,4,4,3,3,2,2,2,1,1,1]], ["手机品牌", [9, 8, 6, 4, 3, 2, 1, 1]], ["家里有几口人", [2, 5, 7, 5, 2, 1]],
+    ["是否有车", [1, 1]], ["民族", [91, 2, 2, 1, 1, 1, 1, 1]], ["住房类型", [5, 3, 1, 1]], ["最常用的 App", flat(10)], ["养什么宠物", [7, 2, 1]]
+  ];
+  const N = 5000, people = Array.from({ length: N }, () => ATTR.map(([, w]) => pick(w)));
+  const box = $("#attrs");
+  ATTR.forEach(([n], i) => { const l = document.createElement("label"); l.innerHTML = `<input type="checkbox" id="attr${i}"> ${i + 1}. ${n}`; box.appendChild(l); });
+  const boxes = $$("input", box);
+  function calc() {
+    const on = boxes.map((b, i) => b.checked ? i : -1).filter(i => i >= 0);
+    let u = 0;
+    if (on.length) { const m = new Map(); people.forEach(p => { const k = on.map(i => p[i]).join(","); m.set(k, (m.get(k) || 0) + 1); }); m.forEach(c => { if (c === 1) u++; }); }
+    const pc = u / N * 100;
+    $("#uniqOut").textContent = (pc >= 99.95 ? pc.toFixed(2) : pc.toFixed(1)) + "%";
+    $("#uniqFill").style.width = pc + "%";
+  }
+  boxes.forEach(b => b.onchange = calc);
+  $("#attrNext").onclick = () => { const b = boxes.find(x => !x.checked); if (b) { b.checked = true; calc(); } };
+  $("#attrAll").onclick = () => { boxes.forEach(b => b.checked = true); calc(); };
+  $("#attrNone").onclick = () => { boxes.forEach(b => b.checked = false); calc(); };
+  calc();
+})();
+
+/* ---------------- privacy policy reading time ---------------- */
+(() => {
+  function draw() {
+    const n = +$("#polN").value, w = +$("#polW").value, r = +$("#polR").value;
+    const per = w / r, hours = n * per / 60;
+    $("#polNo").textContent = fmt(n) + " 个"; $("#polWo").textContent = fmt(w) + " 词"; $("#polRo").textContent = r + " 词/分";
+    $("#polH").textContent = fmt(hours); $("#polD").textContent = fmt(hours * 60 / 365);
+    $("#polNote").innerHTML = `每份约 <b class="num">${per.toFixed(1)}</b> 分钟；一年合计相当于 <b class="num">${(hours / 8).toFixed(1)}</b> 个 8 小时工作日。`;
+  }
+  ["polN", "polW", "polR"].forEach(id => $("#" + id).oninput = () => { $$("#polPre button").forEach(x => x.setAttribute("aria-pressed", false)); draw(); });
+  $$("#polPre button").forEach(b => b.onclick = () => {
+    $("#polN").value = b.dataset.n; $("#polW").value = b.dataset.w; $("#polR").value = b.dataset.r;
+    $$("#polPre button").forEach(x => x.setAttribute("aria-pressed", x === b)); draw();
+  });
+  draw();
+})();
 
 /* ---------------- sankey ---------------- */
 (() => {
