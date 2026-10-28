@@ -260,6 +260,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <button class="btn" id="resetBtn" title="计时清零">清零</button>
       <button class="btn" id="notesBtn" aria-pressed="false" title="讲师备注（N）">讲师备注</button>
       <button class="btn" id="menuBtn" title="目录（O）">目录</button>
+      <button class="btn" id="fitBtn" aria-pressed="true" title="放大到适配屏幕（F）">适配屏幕</button>
     </div>
   </div>
   <div class="ruler gutter" id="ruler" aria-hidden="true"></div>
@@ -526,42 +527,49 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 
 <!-- 3 ============================================================ -->
 <section class="slide gutter" data-part="1" data-t="10-12" data-title="同一个比例，三个分母">
-  <div class="formhead"><b>要点一 · 被记录</b><span>演示 · 2025 年全国教育统计</span></div>
+  <div class="formhead"><b>要点一 · 被记录</b><span>演示 · 广东同一届学生（2022 年初中毕业 → 2025 年高考）</span></div>
   <h2>记下来之后，还要被算成一个数字</h2>
   <div class="grid2">
     <div class="sheet">
-      <h3>初中毕业之后去了哪里（2025 年，万人）</h3>
-      <div class="scroll-x"><svg id="sankey" viewBox="0 0 520 300" role="img" aria-label="2025 年初中毕业生流向：普通高中、中职、公报里看不到的差额"></svg></div>
-      <p class="cite">斜线部分是减法推出来的：1,723.74 − 1,074.93 − 369.93。技工学校、复读、就业、去向不明都在里面，公报无法拆分。</p>
+      <h3>2022 年广东初中毕业生去了哪里（万人）</h3>
+      <div class="row" style="margin-bottom:6px"><button class="btn" id="techBtn" aria-pressed="false">把技工院校加进来</button><span class="muted" id="techNote">技工院校归人社厅管，不在教育统计里</span></div>
+      <div class="scroll-x"><svg id="sankey" viewBox="0 0 520 300" role="img" aria-label="2022 年广东初中毕业生流向：普通高中、中职、教育统计里看不到的差额"></svg></div>
+      <p class="cite">斜线部分是减法推出来的：133.17 − 74.91 − 34.91 = 23.35。只看教育部门的数据，这些人"看不到"。</p>
     </div>
     <div class="sheet">
-      <h3>"2025 年考上本科的比例"是多少？先选分母</h3>
+      <h3>"2025 年广东上本科线的比例"是多少？先选分母</h3>
       <div class="denoms" id="denoms" role="group" aria-label="选择分母">
-        <button type="button" data-d="924.61" data-l="普通高中毕业生">普高毕业生</button>
-        <button type="button" data-d="1335" data-l="高考报名人数">高考报名人数</button>
-        <button type="button" data-d="1723.74" data-l="初中毕业生">初中毕业生</button>
+        <button type="button" data-d="73.24" data-l="2025 年高考普通类考生">高考考生</button>
+        <button type="button" data-d="73.58" data-l="2025 年普高毕业生">普高毕业生</button>
+        <button type="button" data-d="133.17" data-l="这一届初中毕业生（2022 年）">这一届初中毕业生</button>
       </div>
       <div class="big" id="pct">—</div>
-      <p id="formula" class="muted" style="margin-top:8px">点上面的按钮，看同一个分子（普通本科招生 503.71 万）配不同分母。</p>
+      <p id="formula" class="muted" style="margin-top:8px">点上面的按钮，看同一个分子（本科线以上 36.82 万）配不同分母。</p>
       <div class="dbars" id="dbars"></div>
-      <p style="margin-top:12px"><b>每个数字都对，只是分母不同。</b>三个比例回答的是三个不同的问题。</p>
+      <p style="margin-top:12px"><b>每个数字都对，只是分母不同。</b>"一半人上本科线"和"不到三成"，说的是同一批人。</p>
     </div>
   </div>
-  <p class="cite" style="margin-top:10px">数据：教育部《2025 年全国教育事业发展统计公报》；高考报名人数：新华网 2025-05-28。完整演示见 <a href="https://claude.ai/artifact/2pwE79DoFDQ7ZLFk6jhAiN" target="_blank" rel="noopener">升学流向图</a>。</p>
+  <p class="cite" style="margin-top:10px">数据：广东省统计局 2022、2025 年统计公报；广东省人社厅 2022 年度统计公报；广东省人民政府网、深圳新闻网（2025 年高考）。完整演示见 <a href="https://claude.ai/artifact/MJVYvUeCdZ5Rr3wMyLrB2L" target="_blank" rel="noopener">广东升学流向图</a>。</p>
   <aside class="notes">
     <h3>10–12 分钟 · 分母切换器</h3>
     <ul>
-      <li>问："2025 年考上本科的比例是多少？"依次点：普高毕业生（54.5%）→ 高考报名人数（37.7%）→ 初中毕业生（29.2%）。<b>每个数字都对，只是分母不同。</b></li>
-      <li>左图：普高约 62%、中职约 21%，灰色斜线约 16% 是<b>公报里看不到</b>的人，留个钩子给要点二。</li>
+      <li>问："2025 年广东上本科线的比例是多少？"依次点：高考考生（50.3%）→ 普高毕业生（50.0%）→ 这一届初中毕业生（27.6%）。<b>每个数字都对，只是分母不同。</b></li>
+      <li>为什么前两个几乎一样：巧合。高考普通类考生里有往届生，但不含艺术、体育类和春季高考，一进一出差不多抵消。可以顺口提："分母里有谁、没谁，要看口径说明。"</li>
+      <li>为什么用"同一届"：2022 年入学的普高生正常 2025 年毕业、参加高考。所以左图是 2022 年的数字，右边的比例是 2025 年的数字，指的是同一批人（考生里的往届生除外）。</li>
+      <li>左图：普高 56.3%、中职 26.2%，灰色斜线 17.5% 是<b>教育统计里看不到</b>的人。点"把技工院校加进来"（22.28 万），斜线几乎消失，只剩约 1%。<b>一个人有没有"被看见"，取决于他进了哪个部门的统计表。</b>这是给要点二留的钩子。技工院校也招往届生和高中毕业生，所以"只剩约 1%"是粗估。</li>
       <li>理论 1 句：D'Ignazio &amp; Klein, <i>Data Feminism</i> 第 6 章 "The Numbers Don't Speak for Themselves"；Gebru et al., Datasheets for Datasets：每个数据集都应写清楚是谁、为什么、怎样收集的。</li>
-      <li>超时：跳过左图，口头给两个分母的数字。</li>
-      <li>课前核对：数字与 demos/data/edu-flows.csv 一致。</li>
+      <li>超时：跳过左图，口头给两个分母的数字（50% 和 28%）。</li>
+      <li>数字：初中毕业生 133.17 万、普高招生 74.91 万、中职招生 34.91 万（2022 年广东统计公报表 19，中职不含技工学校）；技工院校招生 22.28 万（广东人社厅 2022 年度公报）；2025 年普高毕业生 73.58 万（2025 年广东统计公报表 16）；2025 年高考普通类考生 732,408 人，本科线以上 368,240 人（物理 436 分 / 历史 464 分）。全部口径见 demos/gd-sankey.html 的数据表。</li>
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
-      <li><a href="http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202607/t20260706_1442870.html" target="_blank" rel="noopener">教育部《2025 年全国教育事业发展统计公报》（2026-07-06）</a></li>
-      <li><a href="https://www.news.cn/20250528/88625240dc62485b9317e7b3e899fb3f/c.html" target="_blank" rel="noopener">高考报名人数 1,335 万：新华网 2025-05-28</a></li>
-      <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/demos/data/edu-flows.csv" target="_blank" rel="noopener">全部数字与口径：demos/data/edu-flows.csv</a></li>
+      <li><a href="https://stats.gd.gov.cn/tjgb/content/post_4146083.html" target="_blank" rel="noopener">广东省统计局《2022 年广东国民经济和社会发展统计公报》（表 19）</a></li>
+      <li><a href="https://hrss.gd.gov.cn/attachment/0/532/532081/4258071.pdf" target="_blank" rel="noopener">广东省人社厅《2022 年度人力资源和社会保障事业发展统计公报》（技工院校招生 22.28 万）</a></li>
+      <li><a href="http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202307/t20230705_1067278.html" target="_blank" rel="noopener">教育部《2022 年全国教育事业发展统计公报》（中职"不包括……技工学校"的注释）</a></li>
+      <li><a href="https://stats.gd.gov.cn/tjgb/content/post_4876564.html" target="_blank" rel="noopener">广东省统计局《2025 年广东省国民经济和社会发展统计公报》（表 16，普高毕业生）</a></li>
+      <li><a href="https://www.gd.gov.cn/gdywdt/bmdt/content/post_4734513.html" target="_blank" rel="noopener">广东省人民政府网：2025 年本科线以上人数</a></li>
+      <li><a href="https://www.sznews.com/news/content/2025-06/27/content_31612392.htm" target="_blank" rel="noopener">深圳新闻网：2025 年高考普通类考生人数</a></li>
+      <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/demos/gd-sankey.html" target="_blank" rel="noopener">全部数字与口径：demos/gd-sankey.html</a></li>
       <li><a href="https://data-feminism.mitpress.mit.edu/" target="_blank" rel="noopener">D'Ignazio & Klein 2020, Data Feminism 第 6 章（开放全文）</a></li>
       <li><a href="https://arxiv.org/abs/1803.09010" target="_blank" rel="noopener">Gebru et al., Datasheets for Datasets</a></li>
     </ul>
@@ -572,14 +580,14 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 <section class="slide gutter" data-part="1" data-t="12-13" data-title="数字体检表五问">
   <div class="formhead"><b>要点一 · 被记录</b><span>工具</span></div>
   <h2>「数字体检表」五问</h2>
-  <p class="lede">拿"2025 年考上本科的比例是 37.7%"来体检。点开每一项。</p>
+  <p class="lede">拿"2025 年广东上本科线的比例是 50.3%"来体检。点开每一项。</p>
   <div class="grid2">
     <div class="checks" id="checks">
-      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>01</em>来源：谁收集的，为什么收集？</span><span class="a">分子来自教育部统计公报（学校逐级上报的招生数），分母来自新华网报道的高考报名人数。两个数字来自不同的统计渠道。</span></span></button>
-      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>02</em>定义："本科"指什么？</span><span class="a">只算普通本科招生 503.71 万。职业本科 15.41 万、专科起点本科 85.42 万都没算进去。定义一换，分子就变。</span></span></button>
-      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>03</em>分母：除以谁？</span><span class="a">高考报名人数 1,335 万里有往届生、中职考生。换成普高毕业生是 54.5%，换成初中毕业生是 29.2%。</span></span></button>
-      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>04</em>比较对象：和谁比？</span><span class="a">和去年比、和广东比、和男生女生比，结论不同。一个比例单独出现时，先问"高还是低，是相对于什么"。</span></span></button>
-      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>05</em>不确定性：有多准？</span><span class="a">招生数和报名数不是同一批人：同一年的数字来自不同届别，不能当成"这一批人里有多少考上了"。要追踪同一批人，需要队列数据。</span></span></button>
+      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>01</em>来源：谁收集的，为什么收集？</span><span class="a">分子（本科线以上 36.82 万）来自省政府网发布的高考数据，分母（考生 73.24 万）来自媒体转引；初中毕业生来自统计局公报，技工院校来自人社厅。几个数字出自不同部门、不同渠道。</span></span></button>
+      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>02</em>定义："本科"指什么？</span><span class="a">"上本科线"不等于"上了本科"：本科批实际投档 28.40 万（占考生 38.8%），投档也还不是最终录取。而且只算普通类，艺术、体育类不在里面。定义一换，分子就变。</span></span></button>
+      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>03</em>分母：除以谁？</span><span class="a">考生 73.24 万里有往届生，又不含艺术、体育类和春季高考。换成普高毕业生是 50.0%，换成这一届初中毕业生是 27.6%。</span></span></button>
+      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>04</em>比较对象：和谁比？</span><span class="a">和去年比、和全国比、物理类和历史类比（约 63% vs 31%），结论不同。一个比例单独出现时，先问"高还是低，是相对于什么"。</span></span></button>
+      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>05</em>不确定性：有多准？</span><span class="a">按"同一届"拼起来已经比较接近，但考生里的往届生人数没有公布，技工院校也招往届生，所以只能粗估。真正追踪同一批人，需要队列数据。</span></span></button>
     </div>
     <div class="sheet">
       <h3>研究五步法 · 第一步</h3>
@@ -587,7 +595,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <table>
         <tbody>
           <tr><th>观点</th><td>"现在考本科越来越容易了。"</td></tr>
-          <tr><th>命题</th><td>2025 年<mark>普通本科招生数 ÷ 当年高考报名人数</mark>，是否高于 2015 年的同一比例？</td></tr>
+          <tr><th>命题</th><td>2025 年广东<mark>本科线以上人数 ÷ 高考普通类考生人数</mark>，是否高于 2020 年的同一比例？</td></tr>
           <tr><th>写清楚</th><td>谁、和谁比、比什么、什么时间</td></tr>
         </tbody>
       </table>
@@ -604,7 +612,9 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
-      <li><a href="http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202607/t20260706_1442870.html" target="_blank" rel="noopener">教育部 2025 年公报（专升本 85.42 万、职业本科 15.41 万）</a></li>
+      <li><a href="https://www.gd.gov.cn/gdywdt/bmdt/content/post_4734513.html" target="_blank" rel="noopener">广东省人民政府网：2025 年本科线以上人数（物理 276,586 / 历史 91,654）</a></li>
+      <li><a href="https://www.sznews.com/news/content/2025-06/27/content_31612392.htm" target="_blank" rel="noopener">深圳新闻网：考生人数（物理 440,208 / 历史 292,200）</a></li>
+      <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/demos/gd-sankey.html" target="_blank" rel="noopener">本科批投档 28.40 万等口径：demos/gd-sankey.html</a></li>
       <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/methods-five-steps.md" target="_blank" rel="noopener">研究五步法 methods-five-steps.md</a></li>
     </ul>
   </aside>
@@ -661,8 +671,8 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <ul>
       <li>请学员在聊天区打 A/B/C，讲师再点。每张卡 30 秒。</li>
       <li>DHS：只访问 15–49 岁女性，因为最初为计划生育设计（HelpAge 政策简报，课前核对）。</li>
-      <li>VIRGO：Lichtman et al., <i>Circulation</i>, 2018；53% vs 37% 据新闻报道，课前核对原文。</li>
-      <li>公报差额的卡片回扣上一页的灰色斜线；技工学校由人社部门统计，不在教育部公报里。</li>
+      <li>VIRGO（已对照摘要）：Lichtman et al., <i>Circulation</i>, 2018，美国 103 家医院 18–55 岁心梗住院患者（女 2,009、男 976）。胸痛是两性的主要症状（女 87.0%、男 89.5%）。入院前曾因类似症状就医的（女 29.5%、男 22.1%）中，53% 的女性、37% 的男性说医生认为"不是心脏问题"。注意分母是"之前就过医的人"。</li>
+      <li>广东约 23 万人的卡片回扣"三个分母"那页的灰色斜线；技工院校由人社部门统计，不在教育统计里。</li>
       <li>被删除的帖子：非随机缺失，缺的恰恰是平台认为最"有问题"的那部分（附加页有研究方法）。</li>
       <li>最后读底部的方法论一句。</li>
     </ul>
@@ -671,9 +681,9 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li><a href="https://www.helpage.org/news/lack-of-data-renders-older-women-invisible-in-the-face-of-violence-and-discrimination-says-helpage-international/" target="_blank" rel="noopener">DHS 只访问 15–49 岁女性：HelpAge 新闻稿</a></li>
       <li><a href="https://www.helpage.org/silo/files/violence-against-older-women.pdf" target="_blank" rel="noopener">HelpAge 政策简报 Violence against older women (PDF)</a></li>
       <li><a href="https://www2.census.gov/programs-surveys/decennial/2020/technical-documentation/questionnaires-and-instructions/questionnaires/2020-informational-questionnaire-english_DI-Q1.pdf" target="_blank" rel="noopener">美国 2020 年人口普查问卷样本 (PDF)</a></li>
-      <li><a href="https://doi.org/10.1161/CIRCULATIONAHA.117.031650" target="_blank" rel="noopener">VIRGO：Lichtman et al. 2018, Circulation（核对 53% / 37%）</a></li>
+      <li><a href="https://doi.org/10.1161/CIRCULATIONAHA.117.031650" target="_blank" rel="noopener">VIRGO：Lichtman et al. 2018, Circulation 137:781（53% / 37% 在摘要结果部分）</a></li>
       <li><a href="https://resolve.cambridge.org/core/journals/law-and-social-inquiry/article/opening-the-gender-box-legibility-dilemmas-and-gender-data-collection-on-us-state-government-forms/2B7CDE44851054E01F94CD6BFF5C713D" target="_blank" rel="noopener">B 类延伸阅读：Waldman, Opening the Gender Box（美国州政府表格的性别类别）</a></li>
-      <li><a href="http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202607/t20260706_1442870.html" target="_blank" rel="noopener">教育部 2025 年公报（279 万差额的计算口径）</a></li>
+      <li><a href="https://stats.gd.gov.cn/tjgb/content/post_4146083.html" target="_blank" rel="noopener">广东 2022 年统计公报表 19（约 23 万差额的计算口径）</a></li>
       <li><a href="https://firstmonday.org/ojs/index.php/fm/article/view/3943" target="_blank" rel="noopener">被删除帖子：Bamman, O'Connor & Smith 2012, First Monday</a></li>
       <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/missing-data-detective-samples.md" target="_blank" rel="noopener">缺失数据侦探样本 missing-data-detective-samples.md</a></li>
     </ul>
@@ -683,29 +693,36 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 <!-- 7 ============================================================ -->
 <section class="slide gutter" data-part="2" data-t="19-25" data-title="缺失数据侦探">
   <div class="formhead"><b>要点二 · 没被记录</b><span>活动 · 分组讨论室 · 6 分钟</span></div>
-  <h2>缺失数据侦探：美国死亡证明书上的"妊娠勾选框"</h2>
+  <h2>缺失数据侦探：一条"正常线"，让一半女性的心梗消失了</h2>
   <div class="grid2">
     <div class="matcard" id="matCard">
       <ul>
-        <li>2003 年起，美国标准死亡证明书加了一个勾选项：死者是否正在怀孕或近期怀孕。</li>
-        <li>各州<b>陆续</b>采用，最后一个州到 2017 年才用上。期间各州问法不同，例如加州只问"过去一年内是否怀孕"。</li>
-        <li>2007 年之后，美国国家卫生统计中心<b>停止发布</b>全国孕产妇死亡率，直到 2018 年才恢复。</li>
-        <li>评估发现，这个勾选框有填报错误，例如把一些年龄较大女性的死亡错记成了孕产妇死亡。</li>
+        <li>医院判断是不是心梗，要验血里的<b>肌钙蛋白</b>：心肌受损时它会升高。超过一条"正常上限"，才算心梗。</li>
+        <li>这条线是这样定的：找一批健康人验血，取最高的 1%（第 99 百分位）。<b>男女放在一起算，只得到一条线。</b></li>
+        <li>分开算：健康男性的上限是 34，女性是 16（ng/L），差了一倍。</li>
+        <li>英国爱丁堡 1,126 名疑似心梗的急诊病人（46% 是女性）：按医院原来用的单一线，11% 的女性被诊断为心梗；改用女性自己的线，变成 22%。男性只从 19% 变成 21%。</li>
+        <li>一年后：那些肌钙蛋白在两条线之间、原来没被诊断的女性，<b>25%</b> 死亡或再次心梗，和已被诊断的女性（24%）一样高。</li>
       </ul>
       <h3>任务</h3>
       <ol>
         <li>这里出现了哪一种（或哪几种）"看不见"？</li>
-        <li>在收集任何数字之前，你会先去问谁？（提示：死亡证明是谁填的？）</li>
-        <li>如果要把这个缺失补上，会有什么风险？</li>
+        <li>那条"正常线"是从谁身上算出来的？在收集任何新数字之前，你会先去问谁？</li>
+        <li>如果改用分性别的线，问题就解决了吗？还可能缺什么？</li>
       </ol>
       <button class="btn" data-copy="matCard">复制材料卡到聊天区</button>
     </div>
     <div class="sheet">
-      <h3>时间线</h3>
-      <svg id="timeline" viewBox="0 0 460 150" role="img" aria-label="2003 至 2018 年妊娠勾选框时间线"></svg>
-      <h3 style="margin-top:16px">分组倒计时</h3>
-      <div class="countdown" id="cd">6:00</div>
-      <div class="row" style="margin-top:10px">
+      <h3>换一条线，看看谁"出现"了</h3>
+      <div class="denoms" id="tropBtns" role="group" aria-label="选择诊断阈值">
+        <button type="button" data-k="0">医院原来的：一条线 50</button>
+        <button type="button" data-k="1">新检测：一条线 26</button>
+        <button type="button" data-k="2">分性别：女 16 · 男 34</button>
+      </div>
+      <svg id="tropChart" viewBox="0 0 460 250" role="img" aria-label="不同阈值下女性和男性被诊断为心梗的比例，以及女性一年内死亡或再次心梗的比例"></svg>
+      <p class="cite">Shah et al., <i>BMJ</i> 2015。上：被诊断为 1 型心梗的比例。下：女性按肌钙蛋白分段，一年内死亡或再次心梗的比例。</p>
+      <h3 style="margin-top:12px">分组倒计时</h3>
+      <div class="row">
+        <div class="countdown" id="cd">6:00</div>
         <button class="btn primary" id="cdStart">开始</button>
         <button class="btn" id="cdReset">重置</button>
         <span class="muted" id="cdMsg">剩 1 分钟时变红，提醒收尾。</span>
@@ -715,14 +732,24 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   <aside class="notes">
     <h3>19–25 分钟 · 分组</h3>
     <ul>
-      <li>复制材料卡进聊天区，开分组讨论室（团队只有 2 人时就是 1 组），时长 6 分钟、提前 1 分钟提醒。</li>
+      <li>先花 1 分钟讲右图：依次点三个按钮。<b>病人没变，只是线变了</b>，女性心梗诊断从 11% 变成 22%。再看下面的灰条：被旧线判为"正常"的女性，一年风险和确诊的女性一样高。</li>
+      <li>然后复制材料卡进聊天区，开分组讨论室（团队只有 2 人时就是 1 组），6 分钟、提前 1 分钟提醒。</li>
       <li>没有主持人权限：请一位团队成员开房间。屏幕共享出问题：材料卡已经在聊天区，口头讲。</li>
-      <li>课前核对时间线（2003 年起采用、2007 年起停发、2017 年最后一州、2018 年恢复）：对照 NCHS 原文。</li>
+      <li><b>为什么换掉"妊娠勾选框"</b>：心梗这个例子学员更熟悉、能直接看到数字变化，而且接得上上一页小测里的 VIRGO（女性 53% vs 男性 37% 被告知"不是心脏问题"）和后面的"阈值由谁决定"。</li>
+      <li><b>数字出处（已对照原文）</b>：
+        <ul>
+          <li>34 / 16 ng/L：厂商用 4,590 份健康人样本定的第 99 百分位，合算是 26 ng/L，分开算男 34、女 16（Shah 2015，方法部分）。</li>
+          <li>被诊断为 1 型心梗的比例：旧检测单一阈值 50 → 女 11%、男 19%；高敏检测单一阈值 26 → 女 16%（80 人）、男 23%（142 人）；分性别阈值 → 女 22%（111 人）、男 21%（131 人）。</li>
+          <li>12 个月死亡或再梗（女性）：≤16 ng/L 4%；17–49 ng/L（原来未诊断）25%；≥50 ng/L 24%。用 26 作分界时：17–26 ng/L 23%，27–49 ng/L 25%。</li>
+        </ul></li>
+      <li><b>讲的时候注意</b>：这是单中心观察性研究，说明的是"被重新分类的人风险高"，不能直接说"改线能救命"。这正是第 3 题的伏笔（见下一页 Lee 2019）。</li>
+      <li>"一半女性的心梗消失了"指的是：分性别阈值下确诊的 22% 里，有一半（11 个百分点）在原来的方法下没有被诊断。讲的时候说清楚是这个研究里的病人。</li>
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
-      <li><a href="https://cdc.gov/nchs/blog/posts/2020/01/q-a-new-release-of-2018-mortality-data-and-new-data-on-maternal-mortality.html" target="_blank" rel="noopener">NCHS：2018 年孕产妇死亡数据问答（时间线）</a></li>
-      <li><a href="https://pubmed.ncbi.nlm.nih.gov/32510319/" target="_blank" rel="noopener">Hoyert & Miniño 2020, Maternal Mortality in the United States: Changes in Coding, Publication, and Data Release, 2018</a></li>
+      <li><a href="https://doi.org/10.1136/bmj.g7873" target="_blank" rel="noopener">Shah et al. 2015, High sensitivity cardiac troponin and the under-diagnosis of myocardial infarction in women, BMJ 350:g7873</a>（<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4301191/" target="_blank" rel="noopener">PMC 全文</a>）</li>
+      <li><a href="https://doi.org/10.1161/CIRCULATIONAHA.117.031650" target="_blank" rel="noopener">Lichtman et al. 2018, VIRGO 研究, Circulation 137:781</a>（<a href="https://news.yale.edu/2018/02/19/heart-attack-symptoms-often-misinterpreted-younger-women" target="_blank" rel="noopener">耶鲁新闻稿：53% vs 37%</a>）</li>
+      <li><a href="https://doi.org/10.1016/j.jacc.2019.07.082" target="_blank" rel="noopener">Lee et al. 2019, Sex-specific thresholds of high-sensitivity troponin, JACC 74:2032（下一页参考答案）</a></li>
     </ul>
   </aside>
 </section>
@@ -732,26 +759,31 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   <div class="formhead"><b>要点二 · 没被记录</b><span>汇报 · 每组 1 分钟</span></div>
   <h2>汇报：你们找到了什么？</h2>
   <div class="grid3">
-    <div class="sheet"><h3>1 · 哪种看不见</h3><button class="btn" data-reveal="r1">显示参考答案</button><div class="reveal-box" id="r1">十年没有可比的全国数据是 <b>A 没被计数</b>；勾选框填错是 <b>C 被看见却被误读</b>。两种同时存在。</div></div>
-    <div class="sheet"><h3>2 · 先问谁</h3><button class="btn" data-reveal="r2">显示参考答案</button><div class="reveal-box" id="r2">填写死亡证明的<b>医生和验尸官</b>：他们怎样理解这个勾选框。</div></div>
-    <div class="sheet"><h3>3 · 补上的风险</h3><button class="btn" data-reveal="r3">显示参考答案</button><div class="reveal-box" id="r3">问得越细，对个人的追踪越多。</div></div>
+    <div class="sheet"><h3>1 · 哪种看不见</h3><button class="btn" data-reveal="r1">显示参考答案</button><div class="reveal-box" id="r1">主要是 <b>B 被计错了类别</b>：女性就在急诊室里、也验了血，却被一条按混合人群定的线归为"正常"。往上游看还有 <b>A</b>：心脏病临床试验里女性偏少，急性冠脉综合征试验中位数每 1 位男性只有 0.34 位女性。往下游看还有 <b>C</b>：VIRGO 里 53% 的年轻女性被告知"不是心脏问题"。</div></div>
+    <div class="sheet"><h3>2 · 先问谁</h3><button class="btn" data-reveal="r2">显示参考答案</button><div class="reveal-box" id="r2">先问<b>定这条线的人</b>：检验科和试剂厂商，参考人群是谁、男女各多少、有没有分开算。再问<b>用这条线的人</b>：急诊医生看到一个 20 ng/L 的女性时会怎么判断。</div></div>
+    <div class="sheet"><h3>3 · 改了线就够了吗</h3><button class="btn" data-reveal="r3">显示参考答案</button><div class="reveal-box" id="r3">不够。苏格兰 10 家医院、48,282 名病人的试验：换成分性别的线后，新"出现"的女性是男性的 5 倍；但女性接受冠脉介入的只有 15%，男性 34%，一年结局没有改善。<b>被看见，不等于被当回事。</b>线降低也意味着更多检查，要权衡。</div></div>
   </div>
   <div class="sheet" style="margin-top:18px">
     <h3>小结两句</h3>
-    <p><b>1. 缺失往往来自一个看似合理的制度安排。</b>各州自己决定表格怎么设计，而不一定是有人故意排除。</p>
-    <p><b>2. "有类别"不等于"被看见"。</b>问法、填报方式都决定数据能不能用。</p>
+    <p><b>1. 缺失可以藏在一条看似中立的"标准线"里。</b>问一句：这条线是从谁身上算出来的？</p>
+    <p><b>2. 把人"算进来"只是第一步。</b>数字补上了，后面的判断和资源不一定跟上。</p>
   </div>
   <aside class="notes">
     <h3>25–28 分钟 · 汇报</h3>
     <ul>
-      <li>每组 1 分钟。先听学员，再点"显示参考答案"（来源：NCHS 说明）。</li>
+      <li>每组 1 分钟。先听学员，再点"显示参考答案"。</li>
+      <li>第 1 题没有唯一答案。学员说"被误读"也对：重点是让他们说出<b>是在哪一步</b>看不见的（谁被纳入试验 → 线怎么定 → 医生怎么读）。</li>
+      <li>第 3 题的数字（已对照摘要）：High-STEACS 阶梯式整群随机试验，10 家医院，48,282 人（47% 女性）；分性别阈值使女性心肌损伤诊断增加 42%、男性 6%；新识别女性是男性的 5 倍；女性 vs 男性：冠脉血运重建 15% vs 34%，双抗 26% vs 43%，他汀 16% vs 26%；一年复发心梗或心血管死亡没有改善。作者说明：设计上不能判断这些治疗差距是否导致女性结局更差。</li>
+      <li>Jin 2020 的数字：2010–2017 年 ClinicalTrials.gov 上 740 项已完成的心血管试验，共 86 万人，女性 38.2%；急性冠脉综合征试验女:男中位数 0.34；冠心病、急性冠脉综合征、心衰等试验的"参与/患病比"为 0.48–0.78（0.8–1.2 才算代表性足够）。</li>
       <li>超时：汇报只请一组，小结只讲第一句。</li>
-      <li>过渡到要点三："前两个要点里，被错误定义、错误分类的后果还只是'统计不准'。如果这个数字被直接拿来做决定呢？"</li>
+      <li>过渡到要点三："这一页里，一条线决定了谁算病人。接下来看：一个数字被直接拿来做决定时，会发生什么？"（后面的"阈值由谁决定"可以回扣这里。）</li>
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
-      <li><a href="https://cdc.gov/nchs/blog/posts/2020/01/q-a-new-release-of-2018-mortality-data-and-new-data-on-maternal-mortality.html" target="_blank" rel="noopener">NCHS 问答（参考答案依据）</a></li>
-      <li><a href="https://pubmed.ncbi.nlm.nih.gov/32510319/" target="_blank" rel="noopener">Hoyert & Miniño 2020（勾选框填报错误）</a></li>
+      <li><a href="https://doi.org/10.1016/j.jacc.2019.07.082" target="_blank" rel="noopener">Lee et al. 2019, JACC 74:2032（第 3 题）</a>（<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6876271/" target="_blank" rel="noopener">PMC 全文</a>）</li>
+      <li><a href="https://doi.org/10.1161/CIRCULATIONAHA.119.043594" target="_blank" rel="noopener">Jin et al. 2020, Women's participation in cardiovascular clinical trials 2010–2017, Circulation 141:540（第 1 题 A）</a></li>
+      <li><a href="https://doi.org/10.1161/CIRCULATIONAHA.117.031650" target="_blank" rel="noopener">Lichtman et al. 2018, VIRGO, Circulation（第 1 题 C）</a></li>
+      <li><a href="https://doi.org/10.1136/bmj.g7873" target="_blank" rel="noopener">Shah et al. 2015, BMJ（第 2 题：99 百分位怎么定）</a></li>
       <li><a href="https://www.womenshealth.gov/node/994" target="_blank" rel="noopener">womenshealth.gov：女性与临床研究的历史（延伸）</a></li>
     </ul>
   </aside>
@@ -1092,7 +1124,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <button class="btn" id="prev" aria-label="上一页">←</button>
     <span class="num muted" id="counter">1 / 20</span>
     <span class="title" id="curTitle"></span>
-    <span class="kbd">← → 翻页 · N 备注 · T 计时 · O 目录</span>
+    <span class="kbd">← → 翻页 · N 备注 · T 计时 · O 目录 · F 适配屏幕</span>
     <button class="btn primary" id="next" aria-label="下一页">→</button>
   </div>
 </footer>
@@ -1139,6 +1171,7 @@ function go(i, push = true) {
   const plan = $("#ruler .plan");
   if (t) { plan.hidden = false; plan.style.left = `${t[0] / TOTAL * 100}%`; plan.style.width = `${(t[1] - t[0]) / TOTAL * 100}%`; } else plan.hidden = true;
   $("#stage").scrollTop = 0;
+  fit();
   if (push) { try { history.replaceState(null, "", "#s" + (cur + 1)); } catch {} }
   tick();
 }
@@ -1170,10 +1203,41 @@ const toggleDrawer = id => {
   if (id === "notesDrawer") $("#notesBtn").setAttribute("aria-pressed", !d.hidden);
   if (id === "menuDrawer" && !d.hidden) $("#notesDrawer").hidden = true, $("#notesBtn").setAttribute("aria-pressed", false);
   if (id === "notesDrawer" && !d.hidden) $("#menuDrawer").hidden = true;
+  fit();
 };
 $("#notesBtn").onclick = () => toggleDrawer("notesDrawer");
 $("#menuBtn").onclick = () => toggleDrawer("menuDrawer");
 $$("[data-close]").forEach(b => b.onclick = () => toggleDrawer(b.dataset.close));
+
+/* ---------------- fit to screen: scale the current slide to fill a wide screen ---------------- */
+let fitOn = store.get("tl.fit", true);
+function fit() {
+  const s = slides[cur], st = $("#stage");
+  s.style.zoom = s.style.maxWidth = "";
+  $("#fitBtn").setAttribute("aria-pressed", fitOn);
+  const dw = innerWidth < 900 || $("#notesDrawer").hidden && $("#menuDrawer").hidden ? 0 : $("#notesDrawer").offsetWidth || $("#menuDrawer").offsetWidth;
+  st.style.paddingRight = dw ? dw + "px" : "";
+  if (!fitOn || innerWidth < 900) return;
+  const W = st.clientWidth - dw, H = st.clientHeight;
+  // Long slides read better laid out wider and then scaled; keep whichever width gives the largest scale.
+  let best = { z: 0, w: 1120 };
+  for (const w of [1120, 1280, 1440, 1600]) {
+    if (w > 1120 && w * .6 > W) break;
+    s.style.maxWidth = w + "px";
+    const z = Math.min(W / s.offsetWidth, H / s.offsetHeight);
+    if (z > best.z * 1.04) best = { z, w };
+  }
+  s.style.maxWidth = best.w + "px";
+  let z = Math.max(.6, Math.min(2.4, best.z));
+  s.style.zoom = z;
+  for (let k = 0; k < 3 && st.scrollHeight > st.clientHeight + 1 && z > .6; k++) {
+    z = Math.max(.6, z * st.clientHeight / st.scrollHeight - .005);
+    s.style.zoom = z;
+  }
+}
+$("#fitBtn").onclick = () => { fitOn = !fitOn; store.set("tl.fit", fitOn); fit(); };
+addEventListener("resize", fit);
+document.fonts?.ready.then(fit);
 
 /* ---------------- timer ---------------- */
 let startedAt = store.get("tl.startedAt", null), accum = store.get("tl.accum", 0);
@@ -1202,7 +1266,8 @@ addEventListener("keydown", e => {
   else if (k === "n" || k === "N") toggleDrawer("notesDrawer");
   else if (k === "o" || k === "O") toggleDrawer("menuDrawer");
   else if (k === "t" || k === "T") $("#timerBtn").click();
-  else if (k === "Escape") { $("#notesDrawer").hidden = true; $("#menuDrawer").hidden = true; $("#notesBtn").setAttribute("aria-pressed", false); }
+  else if (k === "f" || k === "F") $("#fitBtn").click();
+  else if (k === "Escape") { $("#notesDrawer").hidden = true; $("#menuDrawer").hidden = true; $("#notesBtn").setAttribute("aria-pressed", false); fit(); }
 });
 
 /* ---------------- copy & reveal ---------------- */
@@ -1307,39 +1372,49 @@ buildSort();
   draw();
 })();
 
-/* ---------------- sankey ---------------- */
+/* ---------------- sankey: Guangdong, 2022 junior-high graduates ---------------- */
 (() => {
   const svg = $("#sankey");
-  const D = { jr: 1723.74, gen: 1074.93, voc: 369.93 }; D.gap = +(D.jr - D.gen - D.voc).toFixed(2);
-  const defs = el("defs", {}, svg);
-  const pat = el("pattern", { id: "hatch", width: 6, height: 6, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
-  el("rect", { width: 6, height: 6, fill: "var(--field)" }, pat);
-  el("line", { x1: 0, y1: 0, x2: 0, y2: 6, stroke: "var(--gap)", "stroke-width": 3 }, pat);
-  const H = 230, K = H / D.jr, top = 30, G = 14, x0 = 120, x1 = 330, NW = 14;
-  const nodes = [
-    ["gen", "普通高中", "var(--gen)"], ["voc", "中职", "var(--voc)"], ["gap", "公报里看不到", "url(#hatch)"]
-  ];
-  el("text", { x: x0 + NW / 2, y: 18, "text-anchor": "middle", class: "val" }, svg, "初中毕业");
-  el("text", { x: x1 + NW / 2, y: 18, "text-anchor": "middle", class: "val" }, svg, "高中阶段");
-  el("rect", { x: x0, y: top, width: NW, height: H, fill: "var(--ink-3)", rx: 2 }, svg);
-  el("text", { x: x0 - 8, y: top + H / 2 - 4, "text-anchor": "end", "font-weight": 700, "font-size": 14 }, svg, "初中毕业生");
-  el("text", { x: x0 - 8, y: top + H / 2 + 14, "text-anchor": "end", class: "val" }, svg, "1,723.74");
-  let so = 0, ty = top;
-  nodes.forEach(([k, label, color]) => {
-    const h = D[k] * K, sy = top + so, m = (x0 + NW + x1) / 2;
-    el("path", { d: `M${x0 + NW},${sy} C${m},${sy} ${m},${ty} ${x1},${ty} L${x1},${ty + h} C${m},${ty + h} ${m},${sy + h} ${x0 + NW},${sy + h} Z`,
-      fill: k === "gap" ? "var(--gap)" : color, opacity: k === "gap" ? .35 : .3, "stroke-dasharray": k === "gap" ? "5 3" : null, stroke: k === "gap" ? "var(--gap)" : "none" }, svg);
-    el("rect", { x: x1, y: ty, width: NW, height: h, fill: color, rx: 2, stroke: k === "gap" ? "var(--gap)" : "none" }, svg);
-    el("text", { x: x1 + NW + 8, y: ty + Math.min(h / 2, 30) + 0, "font-weight": 700, "font-size": 14 }, svg, label);
-    el("text", { x: x1 + NW + 8, y: ty + Math.min(h / 2, 30) + 17, class: "val" }, svg, `${D[k].toFixed(2)} · ${(D[k] / D.jr * 100).toFixed(1)}%`);
-    so += D[k]; ty += h + G;
-  });
-  svg.setAttribute("viewBox", `0 0 520 ${Math.ceil(ty + 4)}`);
+  const D = { jr: 133.17, gen: 74.91, voc: 34.91, tech: 22.28 }; D.gap = +(D.jr - D.gen - D.voc).toFixed(2); D.rest = +(D.gap - D.tech).toFixed(2);
+  const pct = v => (v / D.jr * 100).toFixed(1) + "%";
+  function draw(withTech) {
+    svg.textContent = "";
+    const defs = el("defs", {}, svg);
+    const pat = el("pattern", { id: "hatch", width: 6, height: 6, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
+    el("rect", { width: 6, height: 6, fill: "var(--field)" }, pat);
+    el("line", { x1: 0, y1: 0, x2: 0, y2: 6, stroke: "var(--gap)", "stroke-width": 3 }, pat);
+    const H = 230, K = H / D.jr, top = 30, G = 14, x0 = 120, x1 = 330, NW = 14;
+    const nodes = withTech
+      ? [["gen", "普通高中", "var(--gen)"], ["voc", "中职（不含技工）", "var(--voc)"], ["tech", "技工院校", "var(--rec)"], ["rest", "仍然看不到", "url(#hatch)"]]
+      : [["gen", "普通高中", "var(--gen)"], ["voc", "中职（不含技工）", "var(--voc)"], ["gap", "教育统计里看不到", "url(#hatch)"]];
+    el("text", { x: x0 + NW / 2, y: 18, "text-anchor": "middle", class: "val" }, svg, "初中毕业");
+    el("text", { x: x1 + NW / 2, y: 18, "text-anchor": "middle", class: "val" }, svg, "2022 年入学");
+    el("rect", { x: x0, y: top, width: NW, height: H, fill: "var(--ink-3)", rx: 2 }, svg);
+    el("text", { x: x0 - 8, y: top + H / 2 - 4, "text-anchor": "end", "font-weight": 700, "font-size": 14 }, svg, "初中毕业生");
+    el("text", { x: x0 - 8, y: top + H / 2 + 14, "text-anchor": "end", class: "val" }, svg, "133.17");
+    let so = 0, ty = top, lastY = -Infinity;
+    nodes.forEach(([k, label, color]) => {
+      const h = D[k] * K, sy = top + so, m = (x0 + NW + x1) / 2, hatch = color.startsWith("url");
+      el("path", { d: `M${x0 + NW},${sy} C${m},${sy} ${m},${ty} ${x1},${ty} L${x1},${ty + h} C${m},${ty + h} ${m},${sy + h} ${x0 + NW},${sy + h} Z`,
+        fill: hatch ? "var(--gap)" : color, opacity: hatch ? .35 : .3, "stroke-dasharray": hatch ? "5 3" : null, stroke: hatch ? "var(--gap)" : "none" }, svg);
+      el("rect", { x: x1, y: ty, width: NW, height: Math.max(h, 2), fill: color, rx: 2, stroke: hatch ? "var(--gap)" : "none" }, svg);
+      const ly = Math.max(ty + Math.min(h / 2, 30), lastY + 36); lastY = ly;
+      el("text", { x: x1 + NW + 8, y: ly, "font-weight": 700, "font-size": 14 }, svg, label);
+      el("text", { x: x1 + NW + 8, y: ly + 17, class: "val" }, svg, `${D[k].toFixed(2)} · ${pct(D[k])}`);
+      so += D[k]; ty += h + G;
+    });
+    svg.setAttribute("viewBox", `0 0 520 ${Math.ceil(Math.max(ty, lastY + 24) + 4)}`);
+    $("#techBtn").setAttribute("aria-pressed", withTech);
+    $("#techNote").textContent = withTech ? "技工院校也招往届生，\"仍然看不到\"的约 1% 只是粗估" : "技工院校归人社厅管，不在教育统计里";
+  }
+  let on = false;
+  $("#techBtn").onclick = () => { on = !on; draw(on); };
+  draw(false);
 })();
 
 /* ---------------- denominators ---------------- */
 (() => {
-  const NUM = 503.71, MAX = 1723.74;
+  const NUM = 36.82, MAX = 133.17;
   const btns = $$("#denoms button"), bars = $("#dbars");
   btns.forEach(b => {
     const d = +b.dataset.d, row = document.createElement("div");
@@ -1350,10 +1425,10 @@ buildSort();
       btns.forEach(x => x.setAttribute("aria-pressed", x === b));
       $$(".dbar", bars).forEach(r => r.classList.toggle("sel", +r.dataset.d === d));
       $("#pct").textContent = (NUM / d * 100).toFixed(1) + "%";
-      $("#formula").textContent = `普通本科招生 503.71 万 ÷ ${b.dataset.l} ${d.toLocaleString("zh-CN")} 万`;
+      $("#formula").textContent = `本科线以上 36.82 万 ÷ ${b.dataset.l} ${d.toLocaleString("zh-CN")} 万`;
     };
   });
-  btns[1].click();
+  btns[0].click();
 })();
 
 /* ---------------- 五问 ---------------- */
@@ -1364,7 +1439,7 @@ const QUIZ = [
   ["人口与健康调查（DHS）只访问 15–49 岁女性，49 岁以上女性不在针对女性暴力的数据里。", "A", "这项调查最初是为计划生育设计的：年龄更大的女性根本不在调查范围内。"],
   ["美国 2020 年人口普查的性别只有两个选项。", "B", "跨性别和非二元人群在调查范围内，却被迫选一个或不答。"],
   ["因心肌梗死住院的年轻患者中，入院前就医时被告知\"不是心脏问题\"的比例：女性 53%，男性 37%（VIRGO 研究）。", "C", "女性有症状、就了医，有记录，却被系统性地读错。"],
-  ["教育统计公报里，2025 年约 279 万初中毕业生的去向看不到（技工学校、复读、就业、去向不明）。", "A", "技工学校由人社部门统计，不在这份公报里；其余去向没人统计。回想刚才的灰色斜线。"],
+  ["只看教育统计，2022 年广东约 23 万初中毕业生的去向看不到（技工院校、复读、就业、去向不明）。", "A", "技工院校由人社部门统计，不在教育统计里；其余去向没人统计。回想刚才的灰色斜线。"],
   ["人口普查的种族问题里找不到自己的人，只能勾\"其他\"。", "B", "在范围内，但没有合适的格子，被并入\"其他\"。"],
   ["被平台删除的帖子，不在任何公开数据集里。", "A", "非随机缺失：缺的恰恰是平台认为最\"有问题\"的那部分。"]
 ];
@@ -1379,22 +1454,39 @@ QUIZ.forEach(([q, ans, why]) => {
   $("#quiz").appendChild(c);
 });
 
-/* ---------------- 勾选框 timeline ---------------- */
+/* ---------------- troponin thresholds (Shah et al. 2015) ---------------- */
 (() => {
-  const svg = $("#timeline"), y0 = 2003, y1 = 2019, X = y => 20 + (y - y0) / (y1 - y0) * 420;
-  el("rect", { x: X(2003), y: 62, width: X(2017) - X(2003), height: 10, fill: "var(--rec)", opacity: .35, rx: 2 }, svg);
-  el("text", { x: X(2010), y: 56, "text-anchor": "middle", class: "val" }, svg, "各州陆续采用勾选框");
-  el("rect", { x: X(2007), y: 82, width: X(2018) - X(2007), height: 10, fill: "url(#hatch2)", stroke: "var(--dec)", "stroke-dasharray": "3 2" }, svg);
-  const defs = el("defs", {}, svg), p = el("pattern", { id: "hatch2", width: 6, height: 6, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
-  el("line", { x1: 0, y1: 0, x2: 0, y2: 6, stroke: "var(--dec)", "stroke-width": 2, opacity: .6 }, p);
-  el("text", { x: X(2012.5), y: 110, "text-anchor": "middle", class: "val", style: "fill: var(--dec)" }, svg, "全国孕产妇死亡率停发");
-  el("line", { x1: X(y0), y1: 130, x2: X(y1), y2: 130, stroke: "var(--rule)" }, svg);
-  [2003, 2007, 2017, 2018].forEach(y => {
-    el("line", { x1: X(y), y1: 126, x2: X(y), y2: 134, stroke: "var(--ink-3)" }, svg);
-    el("text", { x: X(y), y: 147, "text-anchor": "middle", class: "val" }, svg, y);
-  });
-  el("text", { x: X(2003), y: 30, class: "val" }, svg, "2003 标准证明书加入勾选项");
-  el("text", { x: X(2019), y: 30, "text-anchor": "end", class: "val" }, svg, "2018 恢复发布");
+  const svg = $("#tropChart"), btns = $$("#tropBtns button");
+  const DX = [{ f: 11, m: 19 }, { f: 16, m: 23 }, { f: 22, m: 21 }];
+  const LINE = [50, 26, 16]; // the line women are judged against
+  const X0 = 110, XW = 320, sx = v => X0 + v / 30 * XW;
+  const g = el("g", {}, svg);
+  function draw(k) {
+    g.textContent = "";
+    el("text", { x: 0, y: 14, class: "val" }, g, "被诊断为心梗");
+    [["女性", "f", "var(--dec)", 28], ["男性", "m", "var(--ink-3)", 58]].forEach(([lab, key, c, y]) => {
+      el("text", { x: X0 - 8, y: y + 15, "text-anchor": "end", "font-size": 14, "font-weight": 600 }, g, lab);
+      el("rect", { x: X0, y, width: XW, height: 22, fill: "var(--field)", rx: 2 }, g);
+      el("rect", { x: X0, y, width: sx(DX[k][key]) - X0, height: 22, fill: c, rx: 2, style: "transition: width .3s" }, g);
+      el("text", { x: sx(DX[k][key]) + 6, y: y + 16, "font-size": 14, "font-weight": 700, style: `fill: ${c}` }, g, DX[k][key] + "%");
+    });
+    // women's one-year risk by troponin band
+    el("text", { x: 0, y: 112, class: "val" }, g, "女性一年内死亡或再次心梗（按肌钙蛋白分段）");
+    const bands = k === 1 ? [["≤16", 4], ["17–26", 23], ["27–49", 25], ["≥50", 24]] : [["≤16", 4], ["17–49", 25], ["≥50", 24]];
+    const lo = { "≤16": 0, "17–26": 17, "17–49": 17, "27–49": 27, "≥50": 50 };
+    const bw = (460 - X0) / bands.length;
+    bands.forEach(([lab, r], i) => {
+      const x = X0 + i * bw, h = r / 25 * 80, diag = lo[lab] >= LINE[k];
+      el("rect", { x: x + 6, y: 210 - h, width: bw - 12, height: h, fill: diag ? "var(--dec)" : "var(--gap)", opacity: diag ? .85 : .6, rx: 2 }, g);
+      el("text", { x: x + bw / 2, y: 204 - h, "text-anchor": "middle", "font-size": 14, "font-weight": 700 }, g, r + "%");
+      el("text", { x: x + bw / 2, y: 226, "text-anchor": "middle", class: "val" }, g, lab + " ng/L");
+      el("text", { x: x + bw / 2, y: 243, "text-anchor": "middle", class: "val", style: `fill: ${diag ? "var(--dec)" : "var(--ink-3)"}` }, g, diag ? "算心梗" : "算正常");
+    });
+    el("text", { x: 0, y: 170, class: "val" }, g, "红 = 按这条线");
+    el("text", { x: 0, y: 186, class: "val" }, g, "会被诊断");
+  }
+  btns.forEach((b, k) => b.onclick = () => { btns.forEach(x => x.setAttribute("aria-pressed", x === b)); draw(k); });
+  btns[0].click();
 })();
 
 /* ---------------- countdown ---------------- */
