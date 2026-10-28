@@ -226,6 +226,7 @@ svg .val { fill: var(--ink-2); font-size: 12px; font-family: var(--f-mono); }
 .audit .chip button { border: 0; background: none; color: var(--ink-3); padding: 0 0 0 6px; }
 .qlist { counter-reset: q; display: grid; gap: 10px; padding: 0; list-style: none; margin: 0; }
 .qlist li { counter-increment: q; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 8px; font-size: 18px; }
+.approve { margin: 0 0 4px; padding-left: 20px; display: grid; gap: 4px; font-size: 15px; }
 .qlist li::before { content: counter(q); font-family: var(--f-mono); font-weight: 600; color: var(--dec); font-size: 22px; }
 
 /* ---------- x ranking ---------- */
@@ -833,12 +834,13 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <div><span class="k">怎么算</span><span>用税务局的<b>年收入</b>，平均推算每两周的收入，再和领取福利的人每两周如实申报的收入比对。</span></div>
       <div><span class="k">怎么执行</span><span>对不上就自动寄出债务通知，<b>取消了人工审核</b>。</span></div>
       <div><span class="k">谁来证明</span><span>收到通知的人要在 21 天内<b>自己证明</b>系统错了，往往要找回多年前的工资单。</span></div>
-      <div><span class="k">结果</span><span>2019 年 11 月法院案件中，政府承认仅凭收入平均法认定的债务不合法。</span></div>
+      <div><span class="k">结果</span><span>2019 年 11 月 Amato 案和解，法院宣告仅凭平均后的收入不足以认定债务。2023 年皇家调查委员会：这个计划"既不公平，也不合法"。</span></div>
     </div>
     <div class="sheet">
       <div class="row" style="gap:24px; align-items:flex-end">
-        <div><div class="kpi">约 40 万人</div><div class="muted">偿还了本不该欠的债</div></div>
-        <div><div class="kpi">7.21 亿</div><div class="muted">澳元</div></div>
+        <div><div class="kpi">约 38 万人</div><div class="muted">拿回了不该还的钱</div></div>
+        <div><div class="kpi">7.46 亿</div><div class="muted">澳元退款</div></div>
+        <div><div class="kpi">17.5 亿</div><div class="muted">澳元债务被注销</div></div>
       </div>
       <p style="margin-top:16px">Eubanks, <i>Automating Inequality</i>：自动化系统最先、最重地落在<b>最没有能力申诉的人</b>身上。</p>
       <span class="stamp">平均法</span>
@@ -848,13 +850,15 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <h3>28–30 分钟 · 案例</h3>
     <ul>
       <li>不评价任何国家的政策立场，只讨论系统设计和证据。</li>
-      <li>口径待统一：trial-lesson 写"近 40 万人、7.21 亿"；robodebt-decision-trees 写"约 47 万笔、7.21 亿"。人数和笔数不同，课前对照原文统一说法。</li>
-      <li>Amato 案（2019 年 11 月）：政府承认仅凭平均法认定的债务不合法。课前核对。</li>
+      <li>数字（已对照皇家调查委员会报告第 1 卷）：政府退还约 <b>7.46 亿澳元给约 38.1 万人</b>，并注销共 <b>17.51 亿澳元</b>的债务；2020 年 11 月集体诉讼开庭当天和解。之前常见的"7.21 亿、约 40 万人 / 47 万笔"是 2020 年最初宣布的口径，以报告为准。</li>
+      <li>Amato 案：2019 年 11 月 27 日法院按和解作出命令，宣告平均后的工资数据不足以认定债务存在。此前 11 月 19 日，部长宣布不再仅凭税务数据认定债务。</li>
+      <li>"21 天"：通知要求收到者在 21 天内登录在线系统提供证据（报告多处记载）。</li>
+      <li>委员会估计：计划原本预算节省 47.7 亿澳元，实际只省下约 4.06 亿，而实施、暂停、收尾的成本约 9.71 亿，<b>净亏损约 5.65 亿</b>。</li>
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
       <li><a href="https://robodebt.royalcommission.gov.au" target="_blank" rel="noopener">Royal Commission into the Robodebt Scheme, Report (2023)</a></li>
-      <li><a href="https://apo.org.au/node/323427" target="_blank" rel="noopener">报告全文镜像 APO</a></li>
+      <li><a href="https://apo.org.au/node/323427" target="_blank" rel="noopener">报告全文镜像 APO</a>；<a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf" target="_blank" rel="noopener">第 1 卷 PDF 镜像</a>（退款与注销：前言 xxiv–xxv 页；净成本：附录）</li>
       <li><a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case" target="_blank" rel="noopener">Victoria Legal Aid：Amato 测试案说明</a></li>
       <li><a href="https://www.hrlc.org.au/case-summaries/2021-9-30-the-federal-court-approves-a-112-million-settlement-for-the-failures-of-the-robodebt-system" target="_blank" rel="noopener">Human Rights Law Centre：Prygodicz 和解（1.12 亿）</a></li>
       <li><a href="https://aph.gov.au/Parliamentary_Business/Committees/Senate/Community_Affairs/Centrelinkcompliance/Final_Report" target="_blank" rel="noopener">参议院委员会 2022 报告</a></li>
@@ -1026,6 +1030,18 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <li><span>如果你是小林，收到这封信，<b>你需要知道什么才能证明系统错了？</b></span></li>
     <li><span>这个系统上线前，应该有什么证据表明它会有效？<b>谁应该批准它？</b></span></li>
   </ol>
+  <div style="margin-top:10px"><button class="btn" data-reveal="rApprove">问题 2 讨论完再点：它当年是怎么被批准的</button>
+    <div class="reveal-box" id="rApprove">
+      <ol class="approve">
+        <li><b>2014 年底</b> 政府要"控制预算"，部长自称"福利警察"。发放福利的部门提出：用税务数据自动比对，<b>主要为了省钱</b>（预计 12 亿澳元）。</li>
+        <li><b>2014 年 12 月</b> 管福利政策的部门内部律师认为：法律按<b>每两周的实际收入</b>算福利，平均法不合法，要改法律。</li>
+        <li><b>2015 年 2 月</b> 给部长的内部文件写明"需要修改法律"，部长签字同意推进。</li>
+        <li><b>2015 年 3 月</b> 提交内阁的方案<b>删掉了"平均"二字</b>，写着"不需要立法"、"不改变收入的计算方式"。内阁很快批准。</li>
+        <li><b>2015 年 5 月</b> 写进预算：五年节省 17 亿澳元。2015 年试点，2016 年 9 月全面上线。</li>
+      </ol>
+      <p style="margin:6px 0 0"><b>不是没人批准，而是批准的人拿到的文件是错的。</b>该有的证据（法律意见）其实存在，只是没有送到做决定的人面前。</p>
+    </div>
+  </div>
   <div class="sheet" style="margin-top:18px">
     <h3>审计权清单（把学员说出的项记在这里）</h3>
     <form id="auditForm" class="row" style="margin-bottom:10px">
@@ -1043,6 +1059,16 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li>每个问题先等 10 秒，没人说话就点名，不自己抢答。</li>
       <li>问题 1 期待：用了我的哪些数据、怎么算的、阈值是什么、错误率多少、向谁申诉（Day 4 的"审计权清单"）。学员说一项，讲师输入一项。"补上常见项"只在最后用。</li>
       <li>问题 2 对照：德国 PRECOBS 事先安排了独立评估；Robo-debt 有试点，但没有影响评估，也没有核查合法性。</li>
+      <li><b>问题 2 讨论完再点"它当年是怎么被批准的"</b>（以下均已对照皇家调查委员会报告第 1 卷原文）：
+        <ul>
+          <li>背景：2014 年联盟党政府把预算控制和减债列为第二优先；2014 年 7 月社会服务部长提议成立追讨政府债权的跨部门委员会（含数据比对、线上自助、外包催收）。2015 年 1 月新任社会服务部长莫里森自称"街头上强硬的福利警察"。报告说，Robo-debt 正是"在这种氛围下"被构想出来的。</li>
+          <li>点子来自人类服务部（DHS，管 Centrelink 发放）。数据比对不是新做法：过去每年约 2 万个差异最大的案子由工作人员人工核查、向雇主调工资记录。新方案的变化：把税务年收入当事实、平均摊到每两周、举证责任转给当事人、全程线上尽量不要人工、追溯多年。这一项是整个省钱方案的主要来源（内部文件估计 12 亿澳元）。</li>
+          <li>2014 年 12 月，社会服务部（DSS，管福利政策）内部律师和政策意见：福利按"每两周实际收入"计算，平均法与法律框架不符，算出的债务可能是错的。要合法只能修法，而且是追溯性地修法，报告说"肯定会遇到议会和公众的反对"。</li>
+          <li>2015 年 2 月，DHS 给两位部长的 Executive Minute 写明"DSS 已经告知，实施这项措施需要修改法律"。莫里森签字同意推进（报告中有 2 月 12 日和 2 月 20 日两个日期）。</li>
+          <li>到 2015 年 3 月 3 日，提交内阁支出审查委员会的新政策提案（NPP）里已经没有法律风险，写着不需要立法；前一版草稿里提到平均法的内容被删掉，最终版写着"不会改变收入评估或多付款计算的方式"。报告认为这句话是<b>不实的</b>，而且"任何密切参与的人都不可能相信"方案已经不涉及平均法。内阁"以惊人的速度"批准。</li>
+          <li>2015 年 5 月写进 2015–16 年度预算的"加强福利支付完整性"措施，预计五年节省 17 亿澳元，大部分来自这一项。2015 年开始试点，2016 年 9 月在线系统上线，之后的预算更新把追溯范围扩展到 2017–18 财年。</li>
+          <li>课上只讲结构，不评价人物和政党："该有的证据存在，审批流程也走了，但关键信息在送到决策者之前被删掉了。所以问'谁批准'还不够，还要问'批准的人看到了什么'。"</li>
+        </ul></li>
       <li>学员下结论时追问："这是材料直接说明的，还是我们推测的？"</li>
       <li>超时：只用问题 1。清单保存在这台电脑的浏览器里，刷新不丢。</li>
     </ul>
@@ -1050,6 +1076,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <ul class="links">
       <li><a href="https://carnegieuk.org/wp-content/uploads/2024/10/Automating-Public-Services-Learning-from-Cancelled-Systems-Final-Full-Report-2.pdf" target="_blank" rel="noopener">PRECOBS 与 12 个被叫停系统：Redden et al. 2022, Automating Public Services: Learning from Cancelled Systems (PDF)</a></li>
       <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/cancelled-systems-cases.md" target="_blank" rel="noopener">整理笔记 cancelled-systems-cases.md 第 5 节</a></li>
+      <li><a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf" target="_blank" rel="noopener">皇家调查委员会报告第 1 卷（PDF 镜像）：前言 xxii–xxv 页（起源、法律意见、提交内阁的方案），第 2 章"Overview of the origins of Robodebt"</a></li>
       <li><a href="https://robodebt.royalcommission.gov.au" target="_blank" rel="noopener">Royal Commission 报告（试点与合法性审查）</a></li>
     </ul>
   </aside>
@@ -1313,7 +1340,7 @@ $$("[data-copy]").forEach(b => b.addEventListener("click", () => {
   const fallback = () => { const r = document.createRange(); r.selectNodeContents(src); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); toast("已选中文字，按 ⌘C / Ctrl+C 复制"); };
   if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).then(() => toast("已复制，可粘贴到聊天区"), fallback); else fallback();
 }));
-$$("[data-reveal]").forEach(b => b.onclick = () => { $("#" + b.dataset.reveal).classList.toggle("on"); });
+$$("[data-reveal]").forEach(b => b.onclick = () => { $("#" + b.dataset.reveal).classList.toggle("on"); fit(); });
 
 /* ---------------- 小周 sorting ---------------- */
 const ITEMS = [
