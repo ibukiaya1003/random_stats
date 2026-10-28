@@ -207,6 +207,10 @@ svg .val { fill: var(--ink-2); font-size: 12px; font-family: var(--f-mono); }
 .slider { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; margin-bottom: 10px; font-size: 14px; }
 .slider input { grid-column: 1 / -1; width: 100%; accent-color: var(--rec); }
 .slider output { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.bmi-hist { margin: 0 0 12px; padding-left: 20px; font-size: 14px; display: grid; gap: 3px; }
+.bmi-t td { padding: 3px 6px; }
+.bmi-t td.cat { font-weight: 600; }
+.bmi-t tr.diff td.cat { color: var(--dec); }
 .seg-btns { display: flex; gap: 0; flex-wrap: wrap; margin-bottom: 12px; }
 .seg-btns button { border: 1px solid var(--rule); background: var(--sheet); padding: 4px 12px; margin-left: -1px; font-size: 14px; }
 .seg-btns button:first-child { border-radius: 4px 0 0 4px; margin-left: 0; }
@@ -691,9 +695,9 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 7 ============================================================ -->
-<section class="slide gutter" data-part="2" data-t="19-25" data-title="缺失数据侦探">
+<section class="slide gutter" data-part="2" data-t="19-25" data-title="标准侦探">
   <div class="formhead"><b>要点二 · 没被记录</b><span>活动 · 分组讨论室 · 6 分钟</span></div>
-  <h2>缺失数据侦探：一条"正常线"，让一半女性的心梗消失了</h2>
+  <h2>标准侦探：一条"正常线"，让一半女性的心梗没被诊断</h2>
   <div class="grid2">
     <div class="matcard" id="matCard">
       <ul>
@@ -735,6 +739,13 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li>先花 1 分钟讲右图：依次点三个按钮。<b>病人没变，只是线变了</b>，女性心梗诊断从 11% 变成 22%。再看下面的灰条：被旧线判为"正常"的女性，一年风险和确诊的女性一样高。</li>
       <li>然后复制材料卡进聊天区，开分组讨论室（团队只有 2 人时就是 1 组），6 分钟、提前 1 分钟提醒。</li>
       <li>没有主持人权限：请一位团队成员开房间。屏幕共享出问题：材料卡已经在聊天区，口头讲。</li>
+      <li><b>这叫什么</b>：严格说这不是"缺失数据"，而是<b>标准本身的来源有偏</b>。医学和统计里有几个对应的说法：
+        <ul>
+          <li><b>参考区间 / 参考人群</b>（reference interval / reference population）：一个"正常范围"是从哪批健康人身上算出来的。检验医学的通行做法是：如果男女、年龄组的分布明显不同，就要<b>分组</b>给参考区间。肌钙蛋白的问题就是没有分组。</li>
+          <li><b>Yentl 综合征</b>（Healy, <i>NEJM</i> 1991）：女性的心脏病只有在"像男性的心脏病"时才被认真对待。名字来自辛格的小说，女主角要扮成男人才能去读书。</li>
+          <li>统计术语：<b>误分类</b>（misclassification），而且是<b>差异性误分类</b>（differential）：错误在不同群体里不一样多。放进今天的三种"看不见"，它属于 B"被计错了类别"。</li>
+        </ul>
+        课上一句话版本："<b>一条用了很久的线，不一定是从所有人身上算出来的。</b>"</li>
       <li><b>为什么换掉"妊娠勾选框"</b>：心梗这个例子学员更熟悉、能直接看到数字变化，而且接得上上一页小测里的 VIRGO（女性 53% vs 男性 37% 被告知"不是心脏问题"）和后面的"阈值由谁决定"。</li>
       <li><b>数字出处（已对照原文）</b>：
         <ul>
@@ -763,10 +774,26 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <div class="sheet"><h3>2 · 先问谁</h3><button class="btn" data-reveal="r2">显示参考答案</button><div class="reveal-box" id="r2">先问<b>定这条线的人</b>：检验科和试剂厂商，参考人群是谁、男女各多少、有没有分开算。再问<b>用这条线的人</b>：急诊医生看到一个 20 ng/L 的女性时会怎么判断。</div></div>
     <div class="sheet"><h3>3 · 改了线就够了吗</h3><button class="btn" data-reveal="r3">显示参考答案</button><div class="reveal-box" id="r3">不够。苏格兰 10 家医院、48,282 名病人的试验：换成分性别的线后，新"出现"的女性是男性的 5 倍；但女性接受冠脉介入的只有 15%，男性 34%，一年结局没有改善。<b>被看见，不等于被当回事。</b>线降低也意味着更多检查，要权衡。</div></div>
   </div>
-  <div class="sheet" style="margin-top:18px">
-    <h3>小结两句</h3>
-    <p><b>1. 缺失可以藏在一条看似中立的"标准线"里。</b>问一句：这条线是从谁身上算出来的？</p>
-    <p><b>2. 把人"算进来"只是第一步。</b>数字补上了，后面的判断和资源不一定跟上。</p>
+  <div class="grid2" style="margin-top:18px">
+    <div class="sheet">
+      <h3>同一类问题：BMI 的线是给谁画的？</h3>
+      <ol class="bmi-hist">
+        <li><b>1832</b> 比利时统计学家凯特勒用"体重 ÷ 身高²"描述"平均人"：一个<b>人口统计</b>工具，不是用来给个人看病的。</li>
+        <li><b>1972</b> 生理学家基斯把它命名为 BMI。依据是 5 个国家 7,424 名<b>男性</b>的数据。</li>
+        <li><b>2000 年前后</b> 世卫组织把 25 / 30 定为超重 / 肥胖的国际线，用到每个人身上。</li>
+        <li><b>2004</b> 世卫专家组：很多亚洲人群在 BMI 低于 25 时糖尿病、心血管风险就已升高，建议在 23 / 27.5 加"行动点"。中国标准用 24 / 28。</li>
+        <li><b>2025</b> 《柳叶刀》委员会：BMI 只能用来筛查，诊断肥胖要加腰围等直接测量。</li>
+      </ol>
+      <div class="slider"><label for="bmiH">身高</label><output id="bmiHo"></output><input type="range" id="bmiH" min="145" max="195" step="1" value="170"></div>
+      <div class="slider"><label for="bmiW">体重</label><output id="bmiWo"></output><input type="range" id="bmiW" min="40" max="110" step="1" value="70"></div>
+      <div class="row" style="align-items:baseline"><span class="muted">BMI</span><b class="num" id="bmiV" style="font-size:28px"></b></div>
+      <table class="bmi-t"><tbody id="bmiT"></tbody></table>
+    </div>
+    <div class="sheet">
+      <h3>小结两句</h3>
+      <p><b>1. 一条用了很久的线，不一定是从所有人身上算出来的。</b>肌钙蛋白的线男女合算，BMI 的线来自欧洲男性。先问：这条线是从谁身上算出来的？</p>
+      <p><b>2. 把人"算进来"只是第一步。</b>线改了，后面的判断和资源不一定跟上。</p>
+    </div>
   </div>
   <aside class="notes">
     <h3>25–28 分钟 · 汇报</h3>
@@ -775,7 +802,9 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li>第 1 题没有唯一答案。学员说"被误读"也对：重点是让他们说出<b>是在哪一步</b>看不见的（谁被纳入试验 → 线怎么定 → 医生怎么读）。</li>
       <li>第 3 题的数字（已对照摘要）：High-STEACS 阶梯式整群随机试验，10 家医院，48,282 人（47% 女性）；分性别阈值使女性心肌损伤诊断增加 42%、男性 6%；新识别女性是男性的 5 倍；女性 vs 男性：冠脉血运重建 15% vs 34%，双抗 26% vs 43%，他汀 16% vs 26%；一年复发心梗或心血管死亡没有改善。作者说明：设计上不能判断这些治疗差距是否导致女性结局更差。</li>
       <li>Jin 2020 的数字：2010–2017 年 ClinicalTrials.gov 上 740 项已完成的心血管试验，共 86 万人，女性 38.2%；急性冠脉综合征试验女:男中位数 0.34；冠心病、急性冠脉综合征、心衰等试验的"参与/患病比"为 0.48–0.78（0.8–1.2 才算代表性足够）。</li>
-      <li>超时：汇报只请一组，小结只讲第一句。</li>
+      <li><b>BMI（约 1 分钟）</b>：拖身高、体重，停在 170 cm、70 kg（BMI 24.2）：按世卫国际标准"正常"，按中国标准"超重"，按世卫亚洲行动点"风险升高"。<b>同一个人，换一条线就换一个类别。</b>再讲左边的来历：一个描述人群的统计量，用男性数据命名，后来变成给每个人下诊断的线，之后才陆续加了分人群的线和腰围。</li>
+      <li>BMI 的说法边界：凯特勒的本意是描述人群（Eknoyan 2008）；基斯 1972 年的数据只有男性（论文摘要）。网上常说"基斯明确说 BMI 不适合个人诊断"，这句我没能在原文里核实到，课上不要这样引用。世卫 2004 年的专家组<b>没有</b>改国际标准，只是加了供各国参考的行动点（23、27.5、32.5、37.5）。</li>
+      <li>超时：汇报只请一组，跳过 BMI，小结只讲第一句。</li>
       <li>过渡到要点三："这一页里，一条线决定了谁算病人。接下来看：一个数字被直接拿来做决定时，会发生什么？"（后面的"阈值由谁决定"可以回扣这里。）</li>
     </ul>
     <h3>证据链接</h3>
@@ -784,6 +813,12 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li><a href="https://doi.org/10.1161/CIRCULATIONAHA.119.043594" target="_blank" rel="noopener">Jin et al. 2020, Women's participation in cardiovascular clinical trials 2010–2017, Circulation 141:540（第 1 题 A）</a></li>
       <li><a href="https://doi.org/10.1161/CIRCULATIONAHA.117.031650" target="_blank" rel="noopener">Lichtman et al. 2018, VIRGO, Circulation（第 1 题 C）</a></li>
       <li><a href="https://doi.org/10.1136/bmj.g7873" target="_blank" rel="noopener">Shah et al. 2015, BMJ（第 2 题：99 百分位怎么定）</a></li>
+      <li><a href="https://doi.org/10.1093/ndt/gfm517" target="_blank" rel="noopener">Eknoyan 2008, Adolphe Quetelet (1796–1874): the average man and indices of obesity, Nephrol Dial Transplant 23:47（BMI 的人口统计本意）</a></li>
+      <li><a href="https://doi.org/10.1093/ije/dyu058" target="_blank" rel="noopener">Keys et al. 1972, Indices of relative weight and obesity（IJE 2014 重刊；7,424 名男性、5 国）</a></li>
+      <li><a href="https://doi.org/10.1016/S0140-6736(03)15268-3" target="_blank" rel="noopener">WHO Expert Consultation 2004, Appropriate body-mass index for Asian populations, Lancet 363:157（23 / 27.5）</a></li>
+      <li><a href="https://wsbz.nhc.gov.cn/wsbzw/upload/news/0c786e8e45394fdb9e471f02bf48cbcc.pdf" target="_blank" rel="noopener">WS/T 428-2013《成人体重判定》（24 / 28）</a></li>
+      <li><a href="https://doi.org/10.1016/S2213-8587(24)00316-4" target="_blank" rel="noopener">Rubino et al. 2025, Lancet Diabetes & Endocrinology Commission on clinical obesity</a></li>
+      <li><a href="https://doi.org/10.1056/NEJM199107253250408" target="_blank" rel="noopener">Healy 1991, The Yentl syndrome, NEJM 325:274</a></li>
       <li><a href="https://www.womenshealth.gov/node/994" target="_blank" rel="noopener">womenshealth.gov：女性与临床研究的历史（延伸）</a></li>
     </ul>
   </aside>
@@ -1487,6 +1522,23 @@ QUIZ.forEach(([q, ans, why]) => {
   }
   btns.forEach((b, k) => b.onclick = () => { btns.forEach(x => x.setAttribute("aria-pressed", x === b)); draw(k); });
   btns[0].click();
+})();
+
+/* ---------------- BMI: same person, three sets of cut-offs ---------------- */
+(() => {
+  const STD = [
+    ["世卫国际标准", [[18.5, "偏瘦"], [25, "正常"], [30, "超重"], [Infinity, "肥胖"]]],
+    ["中国标准 WS/T 428", [[18.5, "偏瘦"], [24, "正常"], [28, "超重"], [Infinity, "肥胖"]]],
+    ["世卫亚洲行动点", [[18.5, "偏瘦"], [23, "正常"], [27.5, "风险升高"], [Infinity, "高风险"]]]
+  ];
+  function calc() {
+    const h = +$("#bmiH").value, w = +$("#bmiW").value, b = w / (h / 100) ** 2;
+    $("#bmiHo").textContent = h + " cm"; $("#bmiWo").textContent = w + " kg"; $("#bmiV").textContent = b.toFixed(1);
+    const cats = STD.map(([, cuts]) => cuts.find(([c]) => b < c)[1]);
+    $("#bmiT").innerHTML = STD.map(([name], i) => `<tr class="${cats[i] !== cats[0] ? "diff" : ""}"><td>${name}</td><td class="cat">${cats[i]}</td></tr>`).join("");
+  }
+  ["#bmiH", "#bmiW"].forEach(id => $(id).addEventListener("input", calc));
+  calc();
 })();
 
 /* ---------------- countdown ---------------- */
