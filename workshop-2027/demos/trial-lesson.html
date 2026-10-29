@@ -1,8 +1,13 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>一个人怎样变成一个数字</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=Noto+Sans+SC:wght@400;500;700&amp;family=Noto+Serif+SC:wght@600;900&amp;display=swap">
 <style>
 /* Layout: one slide at a time, like pages of a government form; a 45-minute ruler under the top bar shows where the lesson is. */
 :root {
@@ -86,6 +91,8 @@ p { margin: 0 0 10px; max-width: 68ch; }
 .lede { font-size: 20px; color: var(--ink-2); max-width: 60ch; }
 .muted { color: var(--ink-3); font-size: 14px; }
 .cite { color: var(--ink-3); font-size: 13px; }
+.slide a { color: var(--rec); text-underline-offset: 3px; }
+.slide .sheet table { table-layout: auto; }
 mark { background: var(--hl); color: inherit; padding: 0 3px; border-radius: 2px; }
 .grid2 { display: grid; grid-template-columns: var(--cols, repeat(2, minmax(0, 1fr))); gap: 24px; align-items: start; }
 .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -252,7 +259,47 @@ svg .val { fill: var(--ink-2); font-size: 12px; font-family: var(--f-mono); }
 .uniqbar { height: 10px; background: var(--field); border-radius: 2px; margin-top: 10px; overflow: hidden; }
 .uniqbar div { height: 100%; width: 0; background: var(--rec); transition: width .3s; }
 pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; font-family: var(--f-mono); font-size: 13px; overflow-x: auto; margin: 0; }
+
+/* ---------- platform appendix: narrowing, feedback, money, exit, labour ---------- */
+.funnel { display: grid; gap: 7px; margin-top: 12px; }
+.funnel-row { display: grid; grid-template-columns: 124px minmax(0, 1fr) 90px; gap: 10px; align-items: center; font-size: 14px; }
+.funnel-track { height: 24px; background: var(--field); border-radius: 3px; overflow: hidden; }
+.funnel-fill { height: 100%; min-width: 2px; background: var(--rec); transition: width .25s; }
+.funnel-row:last-child .funnel-fill { background: var(--dec); }
+.prob { font-family: var(--f-mono); font-size: clamp(30px, 5vw, 58px); font-weight: 600; color: var(--dec); line-height: 1.05; }
+.field-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; align-items: stretch; }
+.field-flow > div { border: 1px solid var(--rule); background: var(--sheet); border-radius: 6px; padding: 12px; position: relative; }
+.field-flow > div:not(:last-child)::after { content: "→"; position: absolute; right: -18px; top: 38%; z-index: 1; font-family: var(--f-mono); color: var(--ink-3); }
+.field-flow b { display: block; margin-bottom: 4px; }
+.field-flow span { font-size: 13px; color: var(--ink-2); }
+.loop { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; align-items: center; margin: 14px 0; }
+.loop > div { min-height: 78px; padding: 10px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; font-size: 14px; }
+.loop .arrow { min-height: 0; padding: 0; border: 0; background: none; text-align: center; font-family: var(--f-mono); color: var(--rec); }
+.moneybar { display: grid; grid-template-columns: 124px minmax(0, 1fr) 64px; gap: 8px; align-items: center; margin: 7px 0; font-size: 14px; }
+.moneybar .track { height: 24px; background: var(--field); border-radius: 3px; overflow: hidden; }
+.moneybar .fill { height: 100%; width: 0; background: var(--rec); transition: width .25s; }
+.moneybar.platform .fill { background: var(--dec); }
+.moneybar.cost .fill { background: var(--warn); }
+.moneybar.creator .fill { background: var(--ok); }
+.switch-cost { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.switch-cost > div { padding: 14px; border: 1px solid var(--rule); background: var(--sheet); border-radius: 6px; }
+.jobline { display: grid; grid-template-columns: 150px minmax(0, 1fr) 170px; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 14px; }
+.jobline .who { font-weight: 700; }
+.jobline .artifact { font-family: var(--f-mono); font-size: 12px; color: var(--ink-2); }
+.practice-steps { counter-reset: practice; display: grid; gap: 8px; }
+.practice-steps > div { counter-increment: practice; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 8px; }
+.practice-steps > div::before { content: counter(practice); font-family: var(--f-mono); font-weight: 600; color: var(--rec); }
+@media (max-width: 820px) {
+  .field-flow { grid-template-columns: 1fr; }
+  .field-flow > div:not(:last-child)::after { content: "↓"; right: 12px; top: auto; bottom: -20px; }
+  .loop { grid-template-columns: 1fr; }
+  .loop .arrow { transform: rotate(90deg); }
+  .switch-cost { grid-template-columns: 1fr; }
+  .jobline { grid-template-columns: 1fr; gap: 2px; }
+}
 </style>
+</head>
+<body>
 
 <header class="top">
   <div class="top-row gutter">
@@ -579,6 +626,46 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li><a href="https://arxiv.org/abs/1803.09010" target="_blank" rel="noopener">Gebru et al., Datasheets for Datasets</a></li>
     </ul>
   </aside>
+</section>
+
+<section class="slide gutter" data-part="1" data-t="+" data-title="升学图延伸：本科投档到院校类型">
+  <div class="formhead"><b>要点一 · 被记录</b><span>原升学图延伸 · 2022 初中毕业 → 2025 高考 → 院校类型</span></div>
+  <h2>本科普通批投档之后，流向哪些学校？</h2>
+  <p class="muted">沿用上一页的广东升学路径，继续展开 <b>2025 年普通类物理＋历史</b>本科投档；默认显示两类合计。</p>
+  <div class="row edu-timeline" style="margin:10px 0;gap:14px;font-size:14px"><span>2022 初中毕业 <b class="num">133.17 万</b></span><span>⇢</span><span>2022 普高招生 <b class="num">74.91 万</b></span><span>⇢</span><span>2025 普高毕业 <b class="num">73.58 万</b></span></div>
+  <div class="row" style="justify-content:space-between"><div class="seg-btns" id="eduSubjectBtns" style="margin:0"><button type="button" data-subject="all" aria-pressed="true">物理＋历史</button><button type="button" data-subject="physics" aria-pressed="false">物理类</button><button type="button" data-subject="history" aria-pressed="false">历史类</button></div><button class="btn" id="eduTierToggle" aria-pressed="true">收起院校类型</button></div>
+  <p id="eduPopulationSummary" class="num" style="margin-top:10px;font-size:14px"></p>
+  <p class="cite">“其他本科”按专业组投档最低分拆分：物理特控线 <b>534 分</b>、历史 <b>557 分</b>。人数为对应组的投档人数合计；低门槛组也可能招到高分考生，不代表学生个人分数或一本／二本身份。<a href="https://szeb.sz.gov.cn/szzkw/qt/tzgg/content/post_12245774.html" target="_blank" rel="noopener">省招生委员会分数线通知（深圳招考办刊载）</a> · <a href="data/gd-2025-placement-thresholds.csv">逐组最低分与拆分明细</a></p>
+  <div class="scroll-x"><svg id="eduExtension" viewBox="0 0 1120 550" role="img" aria-label="广东2025物理与历史普通本科批投档流向"></svg></div>
+  <p class="muted">图从<b>本轮本科普通批投档人数</b>出发，不再把“总考生减本表投档”画成一条去向不明的流。上方考生、上线、投档是三个不同统计量；没进这张表，不等于没上大学。</p>
+  <p class="cite">一手原表：考试院 <a href="https://eea.gd.gov.cn/attachment/0/585/585886/4746786.pdf" target="_blank" rel="noopener">物理类</a>、<a href="https://eea.gd.gov.cn/attachment/0/585/585885/4746781.pdf" target="_blank" rel="noopener">历史类</a>。考生与上线数二手已核验：<a href="https://www.gd.gov.cn/gdywdt/bmdt/content/post_4734513.html">省政府转载南方日报</a>。名单二手已核验：<a href="https://fzgh.upc.edu.cn/2018/0227/c7540a131858/page.psp">211</a>、<a href="https://zhshw.nwsuaf.edu.cn/zszn/bkzn/347950_mobile.htm">985</a>；分类数为派生加总。逐行数据：<a href="data/gd-2025-physics-placement-classified.csv">物理 CSV</a>、<a href="data/gd-2025-history-placement-classified.csv">历史 CSV</a>。</p>
+  <aside class="notes"><h3>原升学Sankey继续往右走：物理＋历史</h3><p>默认两类合计：普通类考生732408，本科线上368240，本轮本科普通批投档284037。物理440208/276586/218024；历史292200/91654/66013。这三个数分属考生成绩分布和当轮投档统计，不作为个体去向的完整追踪。</p><p>原“未在本表投档226187”=292200−66013，混合了未达线、可能提前批等通道已录取、当轮未投档等情况，已从图中撤去。不能说这些人没上大学。考生与上线数在上方显示，Sankey只追踪本轮实际投档。</p><p>院校类型：物理985为10485，211非985为11717，其他195822；历史1760/3302/60951。合计12245/15019/256773，三项总和284037；211含985为27264。物理3503行、历史1637行逐行分类CSV可下载。原表一手已核验，名单采用高校转载、二手已核验，分类人数为推导。</p><p>包括原表地方专项、中外合作及校区；独立学院不继承母校类别。不是全年最终录取，不是一本人数。2022到2025的虚箭头只对齐阶段，高考中含往届生，不是完整个体追踪。广东报考维度与下一页广东上网人口维度分开。</p><p>详见data/gd-identity-estimation.md及两科classified.csv。</p></aside>
+</section>
+
+<section class="slide gutter" data-part="1" data-t="+" data-title="身份线索：从广东上网人口开始估">
+  <div class="formhead"><b>要点一 · 被记录</b><span>升学背景变成帖子里的身份线索 · 地理维度切换</span></div>
+  <h2>「广东 IP，211 在读……」线索越加越多，人群能缩小多少？</h2>
+  <div class="grid2" style="--cols:minmax(0,1.2fr) minmax(0,.8fr)">
+    <div>
+      <p class="story" id="identityPost">IP 属地：广东</p>
+      <div class="seg-btns" id="identitySteps"><button type="button" data-i="0" aria-pressed="true">广东 IP</button><button type="button" data-i="1" aria-pressed="false">＋211，华师本科</button><button type="button" data-i="2" aria-pressed="false">＋汕尾教育科学学院</button><button type="button" data-i="3" aria-pressed="false">再估一个专业</button></div>
+      <div class="big" id="identityN" style="font-size:64px">约 1 亿</div><p id="identityUnit">广东网民的数量级代理</p>
+      <p id="identityCalc" class="num"></p><p id="identityBasis"></p>
+      <div id="identityBars" class="funnel"></div>
+      <p class="cite" style="margin-top:12px">这里估“与线索相符的人群量级”，不是识别成功率。默认把在广东校园的学生近似为在粤上网人群；异地实习、旅行、交流、漫游等会使估计偏离。</p>
+    </div>
+    <div class="sheet">
+      <h3>估算依据与可调整的假设</h3>
+      <p>广东 2024 年常住人口 <b>1.278 亿</b>；先借全国同年互联网普及率 <b>78.6%</b> 估算广东网民。</p>
+      <div class="slider"><label for="gdNetRate">广东普及率代理（可调整）</label><output id="gdNetRateO">78.6%</output><input type="range" id="gdNetRate" min="50" max="100" step=".1" value="78.6"></div>
+      <p class="cite">人口：<a href="https://gdca.miit.gov.cn/xwdt/gzdt/art/2025/art_6c6a9942a5d148ad9fcb6069860ea377.html">广东通信管理局报告摘要</a>；普及率：<a href="https://www.miit.gov.cn/xwfb/mtbd/wzbd/art/2025/art_662f674e6c37473686ec84eb8923abce.html">工信部网站转述 CNNIC</a>。均为二手已核验；人口×全国率为有假设的推算，非广东实测网民数。</p>
+      <p style="margin-top:12px">华师普通本科生 <b>3.1 万余</b>；汕尾教育科学学院在校本科生 <b>1,859</b>，分设 <b>5 个专业</b>。</p>
+      <p class="cite">一手已核验：<a href="https://www.scnu.edu.cn/a/20161025/1.html?menu_id=10988">华师学校简介</a>（现行页面，人数统计日期未写）；<a href="https://jykxsw.scnu.edu.cn/a/20241006/11.html">学院简介</a>（2024-09）。跨时点只比较量级，不声称是当前实时交叉计数。</p>
+      <label class="row" style="margin-top:14px;font-size:14px"><input type="checkbox" id="majorEqual">估一个专业时，暂按 5 个专业等规模</label>
+      <p class="muted">勾选才计算 1,859 ÷ 5；这是结构假设，不是专业实测人数。未确认具体学校前，不能把华师人数当成广东全部 211。</p>
+    </div>
+  </div>
+  <aside class="notes"><h3>从上网地点估，不从户籍推</h3><p>接受有依据的估算。广东网民=常住人口×普及率代理约1亿；学生基本会上网、日常在本省校区是工作假设。广东生源去北京上学时不能按生源归入广东IP；在广东读书的外省生源则应纳入在粤学生代理。IP显示仍可能有漫游偏差。</p><p>按钮第二步累计加入了“211身份”和“华师学校名”，第三步再有学院。只知道211而不知道学校时，人群应是各在粤校区的在读学生总和，不能拿广东211招生率相乘。这里选一所真实在粤211演示线索继续变具体；不冒充全省211合计。</p><p>1859/5仅在讲师主动勾选等规模假设后显示约372人；专业规模不等时会偏差。更细的年级、专业实测人数应继续补资料，不能随意再乘性别、年级等边际比例。</p><p>详见data/gd-identity-estimation.md。下一步让学员提出：哪项假设最可能影响结果？需要什么数据校正？</p></aside>
 </section>
 
 <!-- 4 ============================================================ -->
@@ -1145,20 +1232,65 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   </aside>
 </section>
 
+
+<section class="slide gutter" data-part="5" data-t="+" data-title="X：行为数据结构与分发记录">
+  <div class="formhead"><b>平台字段 → 推荐 · 1/2</b><span>一手已核验 · 固定版本源代码</span></div>
+  <h2>X 的源码，实际定义了哪些行为字段？</h2>
+  <div class="grid2">
+    <div>
+      <h3>行为结构：谁、哪条内容、什么动作</h3>
+      <pre class="code">message UserAction {
+  uint64 userId = 1;
+  TweetInfo tweetInfo = 2;
+  ActionInfo actionInfo = 3;
+  AdInfo adInfo = 4;
+}</pre>
+      <p style="margin-top:12px"><span class="num">ActionInfo</span> 另含 <span class="num">engagementTimeMs</span>、<span class="num">actionName</span>、<span class="num">userActionMeta</span>。动作枚举包含点赞、回复、停留、不感兴趣、举报。</p>
+      <p class="cite">源码原文节选与字段：<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1519" data-x-end="1544">recsys.proto L1519–1544</a>；<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="443" data-x-end="474">动作枚举 L443–474</a>。</p>
+      <table style="margin-top:12px"><thead><tr><th>元数据字段原名</th><th>代码能确认的内容</th></tr></thead><tbody><tr><td class="num">dwellTime</td><td>停留值；此处未标注单位</td></tr><tr><td class="num">clientPlatform</td><td>客户端平台</td></tr><tr><td class="num">ipAddress / timeZone</td><td>IP 地址 / 时区</td></tr><tr><td class="num">searchQuery</td><td>搜索词</td></tr></tbody></table>
+      <p class="cite"><a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1374" data-x-end="1400">UserActionMeta L1374–1400</a>。这是数据结构定义，不能推出所有字段每次都采集、填充或保存。</p>
+    </div>
+    <div class="sheet">
+      <h3>已找到写入实现：记录“发给了你什么”</h3>
+      <p><span class="num">UpdateServedHistorySideEffect</span> 为选中的内容构建分发记录，包括请求标识、帖子、位置、得分等，再调用 <span class="num">client.put(...)</span>。</p>
+      <p class="cite"><a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="31" data-x-end="77">触发条件与写入调用 L31–77</a>；<a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="145" data-x-end="180">条目构造 L145–180</a>。</p>
+      <p>存储客户端把 <span class="num">ServedHistory</span> 序列化，按用户、平台和时间组成键，写入 Manhattan。</p>
+      <p class="cite"><a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="154" data-x-end="170">存储实现 L154–170</a>；<a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="37" data-x-end="44">用户 / 平台键 L37–44</a>。</p>
+      <div class="weld"><b>分清三件事：</b>定义了行为字段；实现了某类记录写入；某个用户实际被记录了什么。这里前两件可查代码，第三件需要实际日志与运行配置。</div>
+      <p style="margin-top:12px">“已分发”也不等于“用户实际看见”。完整客户端采集链、字段覆盖率和留存期，本次未核实。</p>
+    </div>
+  </div>
+  <p class="cite x-version" style="margin-top:12px"></p>
+  <aside class="notes"><h3>从实际数据结构开始</h3><p>这页替换了之前虚构的JSON日志。所有字段名、结构和写入调用都来自固定commit。存储证据只对应分发历史，不把它冒充所有行为事件的存储实现。触发受is_prod和EnableUrtMigrationComponents约束。</p><p>完整台账：data/trial-evidence-2026-10-29.md。</p></aside>
+</section>
+
+<section class="slide gutter" data-part="5" data-t="+" data-title="X：从行为序列到推荐反馈">
+  <div class="formhead"><b>平台字段 → 推荐 · 2/2</b><span>点击环节，展开对应代码证据</span></div>
+  <h2>历史怎样进入预测，预测怎样变成顺序？</h2>
+  <div class="seg-btns" id="xTraceSteps" role="group" aria-label="X 源码链路"><button type="button" data-trace="0" aria-pressed="true">1 行为序列</button><button type="button" data-trace="1" aria-pressed="false">2 特征编码</button><button type="button" data-trace="2" aria-pressed="false">3 预测</button><button type="button" data-trace="3" aria-pressed="false">4 加权与排序</button><button type="button" data-trace="4" aria-pressed="false">5 反馈回读</button></div>
+  <div class="sheet" id="xTracePanel" aria-live="polite"></div>
+  <div class="grid2" style="margin-top:18px">
+    <div><h3>可以据代码讨论</h3><p>行为与分发历史会影响后续请求的输入。选择什么预测目标、怎样给目标加权、是否过滤已分发内容，是不同环节的设计决定。</p><p>闭环也可能减少重复、响应负反馈；是否加强某类内容，需要实际分发数据或实验来检验。</p></div>
+    <div><h3>衔接下一页权重模拟器</h3><p>先确认权重乘的是预测概率，再看改变权重如何影响计算。完整源码还含连续值预测、条件权重、分数变换、重排和过滤。</p><p class="cite">原有模拟器的帖子概率是合成样例，没有真实预测输出来源；它只能演示公式，不能作为 X 实际推荐效果的证据。</p></div>
+  </div>
+  <p class="cite x-version" style="margin-top:12px"></p>
+  <aside class="notes"><h3>闭环的证据与边界</h3><p>历史序列通过聚合服务读取；动作编码由multi_hot_to_embeddings实现；候选与序列装入预测请求；预测头传入value_model；分发历史由side effect写入，下次请求回读为served_ids。每一步的精确链接在页内交互中。</p><p>不能从这条链直接断言每次互动立即重训、用户被心理奖励强化，或争议内容一定放大。可以把这些说法改写为待实验检验的研究问题。</p></aside>
+</section>
+
 <!-- 17 ============================================================ -->
 <section class="slide gutter" data-part="5" data-t="+" data-title="附加：推荐算法的权重">
   <div class="formhead"><b>附加 · 时间多出来时用</b><span>X 的开源推荐代码</span></div>
   <h2>谁排在你的信息流第一位，取决于平台选的权重</h2>
   <div class="grid2" style="--cols: minmax(0, 1fr) minmax(0, 1.2fr)">
     <div class="sheet">
-      <pre class="code">最终得分 = Σ（权重 × 你做出这个动作的预测概率）</pre>
+      <pre class="code">本页简化得分 = Σ（所选权重 × 动作预测概率）</pre>
       <div id="wSliders" style="margin-top:12px"></div>
-      <button class="btn" id="wReset">恢复 X 的默认权重</button>
-      <p class="cite" style="margin-top:8px">权重取自 xai-org/x-algorithm <span class="num">home-mixer/params/param.rs</span>（2026-10-26 main 分支）。转发 1.0、引用转发 5.0、私信分享 5.0、关注作者 4.0、拉黑 −31.2、屏蔽 −58.8 固定不变。</p>
+      <button class="btn" id="wReset">恢复代码默认权重（所选项）</button>
+      <p class="cite" style="margin-top:8px">一手已核验：<a data-x-path="home-mixer/params/param.rs" data-x-line="396" data-x-end="508">param.rs L396–508，commit 5ed796374ea4</a>。本页固定：转发 1.0、引用 5.0、私信分享 5.0、关注 4.0、拉黑 −31.2、屏蔽 −58.8。仅演示所选概率头，省略连续值、条件权重、offset 与后续重排；默认值不保证线上配置相同。</p>
     </div>
     <div>
       <div class="rank" id="rank"></div>
-      <p class="cite" style="margin-top:8px">五条帖子和每个动作的预测概率都是虚构的示例。</p>
+      <p class="cite" style="margin-top:8px">证据状态：沿用旧版合成样例。五条帖子及预测概率没有真实数据来源；排名变化仅演示公式，不验证平台实际推荐效果。</p>
     </div>
   </div>
   <aside class="notes">
@@ -1175,6 +1307,56 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li><a href="https://github.com/xai-org/x-algorithm/blob/main/home-mixer/params/param.rs" target="_blank" rel="noopener">权重参数 home-mixer/params/param.rs</a></li>
       <li><a href="https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/visibility-filtering/models/verdict.rs" target="_blank" rel="noopener">可见性判决 verdict.rs（commit 6258a15）</a></li>
       <li><a href="https://github.com/twitter/the-algorithm-ml/blob/main/projects/home/recap/README.md" target="_blank" rel="noopener">2023 年 Twitter 旧版权重 README</a></li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 18 ============================================================ -->
+
+<!-- 19 ============================================================ -->
+
+<!-- 20 ============================================================ -->
+
+<!-- 21 ============================================================ -->
+
+<!-- 22 ============================================================ -->
+<section class="slide gutter" data-part="5" data-t="+" data-title="附加：系统背后的岗位与个人数据实践">
+  <div class="formhead"><b>附加 · 人在回路里</b><span>把「算法」拆成可追问的工作</span></div>
+  <h2>一条推荐背后，不是一个算法，而是一串人和交付物</h2>
+  <div class="grid2" style="--cols: minmax(0, 1.1fr) minmax(0, .9fr)">
+    <div class="sheet">
+      <div class="jobline"><span class="who">产品 / 增长</span><span>选择要优化的指标与实验</span><span class="artifact">指标树、A/B 实验方案</span></div>
+      <div class="jobline"><span class="who">用户研究 / 问卷</span><span>招募受试者、设计问题、解释反馈</span><span class="artifact">问卷、访谈记录</span></div>
+      <div class="jobline"><span class="who">数据标注员</span><span>按指南判断内容、实体、质量与安全</span><span class="artifact">标签、边界案例</span></div>
+      <div class="jobline"><span class="who">质检 / 数据运营</span><span>抽查标注、校准一致性、追踪错误</span><span class="artifact">质检报告、标注规范</span></div>
+      <div class="jobline"><span class="who">数据工程</span><span>清洗事件、连接表、控制权限与保留期</span><span class="artifact">日志表、数据管道</span></div>
+      <div class="jobline"><span class="who">机器学习 / 推荐</span><span>训练模型、定义损失、做离线与在线评估</span><span class="artifact">特征、模型、评估表</span></div>
+      <div class="jobline"><span class="who">信任与安全 / 审核</span><span>制定政策、处理举报与申诉</span><span class="artifact">政策、处置记录</span></div>
+      <div class="jobline"><span class="who">隐私 / 法务 / 安全</span><span>审查用途、访问、合规和风险</span><span class="artifact">数据地图、风险评估</span></div>
+      <p class="cite" style="margin-top:8px">真实招聘例：标注系统工程师会写标注指南、数据质检、错误挖掘与版本管理；数据质检岗位会审核标注员输出并解释指南。岗位会下线，链接用于课前更新。</p>
+    </div>
+    <div class="sheet">
+      <h3>Practice：下载一份自己的平台数据</h3>
+      <div class="practice-steps">
+        <div><span>选一个你愿意研究的平台；不要在课堂共享真实压缩包。</span></div>
+        <div><span>在「设置 / 隐私 / 账户」里找「下载、导出或获取数据副本」。</span></div>
+        <div><span>只在自己的设备上解压；先看目录名、文件格式、日期范围和 README。</span></div>
+        <div><span>做三栏盘点：<b>我提供的 / 平台观察的 / 平台推断的</b>。哪一栏缺了？</span></div>
+        <div><span>记录一个可追问的问题：字段是什么意思？保存多久？能否删除？是否用于推荐或广告？</span></div>
+      </div>
+      <p class="weld"><b>安全边界：</b>不上传到公共 AI、不交作业原文件、不展示私信/联系人/位置历史。只提交字段清单和反思。</p>
+      <h3 style="margin-top:14px">这节课最终检验的能力</h3>
+      <p>不是背诵「算法会监控人」，而是能把一个系统拆开问：<b>谁定义？记录什么？怎样推断？优化什么？谁获利、谁付成本？如何退出和申诉？</b></p>
+    </div>
+  </div>
+  <aside class="notes">
+    <h3>附加页 · 岗位与实践</h3>
+    <ul><li>让学员任选一行，说出这个岗位可以在哪里改变结果、又受什么指标约束。「螺丝钉」不是没有责任，而是责任被切分在交付物和审批链上。</li><li>个人数据下载适合课后做；课堂只展示讲师提前清洗过的目录截图或合成样例。</li></ul>
+    <h3>招聘例（课前检查是否仍在线）</h3>
+    <ul class="links">
+      <li><a href="https://jobs.lever.co/SimbeRobotics/f988244c-5dba-47b9-8bb0-6d6edb6ca65b" target="_blank" rel="noopener">Simbe Robotics · Data Engine &amp; Annotation Systems Engineer</a></li>
+      <li><a href="https://jobs.lever.co/weloglobal/a46fae09-3c94-45ed-8956-91bba19aa8c2" target="_blank" rel="noopener">Welo Data · Data Quality Analyst (Human-in-the-Loop AI)</a></li>
+      <li><a href="https://jobs.lever.co/weloglobal/b26aa765-1a9d-46f7-a899-0354c3ee428d" target="_blank" rel="noopener">Welo Data · Data Labeling Analyst</a></li>
     </ul>
   </aside>
 </section>
@@ -1751,6 +1933,98 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
   render();
 })();
 
+/* ---------------- evidence-backed identity and code trace ---------------- */
+(() => {
+  const commit = "5ed796374ea48ee26058aab66ab10c266bea2bef";
+  const base = `https://github.com/xai-org/x-algorithm/blob/${commit}/`;
+  const link = (path, first, last, label) => `<a href="${base}${path}#L${first}${last ? '-L' + last : ''}" target="_blank" rel="noopener">${label}</a>`;
+  $$('[data-x-path]').forEach(a => {
+    a.href = base + a.dataset.xPath + '#L' + a.dataset.xLine + (a.dataset.xEnd ? '-L' + a.dataset.xEnd : '');
+    a.target = '_blank'; a.rel = 'noopener';
+  });
+  $$('.x-version').forEach(p => p.innerHTML = `一手已核验 · xai-org/x-algorithm · commit ${link('README.md', 1, null, commit.slice(0, 12))} · 本次核验 2026-10-29。描述该版本实现；线上开关与实际字段覆盖率未核实。`);
+  // Admissions stays on the Guangdong applicant axis, separately from IP estimates.
+  let tierExpanded = true, eduSubject = 'all';
+  const EDU = {
+    physics:{label:'物理类',candidates:440208,above:276586,placed:218024,tiers:[10485,11717,63454,132368],color:'var(--rec)'},
+    history:{label:'历史类',candidates:292200,above:91654,placed:66013,tiers:[1760,3302,11844,49107],color:'var(--warn)'}
+  };
+  const drawEducation = () => {
+    const svg=$('#eduExtension');svg.textContent='';svg.setAttribute('viewBox','0 0 1360 610');
+    const selected=eduSubject==='all'?[EDU.physics,EDU.history]:[EDU[eduSubject]];
+    const total=selected.reduce((s,d)=>s+d.placed,0), candidates=selected.reduce((s,d)=>s+d.candidates,0), above=selected.reduce((s,d)=>s+d.above,0);
+    const tiers=[0,1,2,3].map(i=>selected.reduce((s,d)=>s+d.tiers[i],0));
+    const k=320/284037,nw=18;
+    const node=(x,y,n,color)=>el('rect',{x,y,width:nw,height:n*k,fill:color,rx:2},svg);
+    const text=(x,y,t,size=15,color='var(--ink)')=>el('text',{x,y,'font-size':size,style:`fill:${color}`},svg,t);
+    const ribbon=(x,y,tx,ty,n,color)=>{const h=n*k,m=(x+nw+tx)/2;el('path',{d:`M${x+nw},${y} C${m},${y} ${m},${ty} ${tx},${ty} L${tx},${ty+h} C${m},${ty+h} ${m},${y+h} ${x+nw},${y+h} Z`,fill:color,opacity:.25},svg);};
+    text(25,30,'本轮本科普通批投档',18);text(25,55,fmt(total)+' 人',21);node(25,80,total,'var(--rec)');
+    let rootOffset=80;const targetY=[70,145,220,350],targetOffsets=[0,0,0,0];
+    selected.forEach((d,i)=>{
+      const y=selected.length===1?80:i===0?80:365;
+      ribbon(25,rootOffset,375,y,d.placed,d.color);node(375,y,d.placed,d.color);
+      text(375,y-28,d.label,17,d.color);text(375,y-8,fmt(d.placed)+' 人',16,d.color);
+      let partY=y;
+      if(tierExpanded)d.tiers.forEach((n,j)=>{ribbon(375,partY,815,targetY[j]+targetOffsets[j],n,d.color);partY+=n*k;targetOffsets[j]+=n*k;});
+      rootOffset+=d.placed*k;
+    });
+    if(tierExpanded){
+      ['985','211 非 985','其他本科 · 组投档线达到特控线','其他本科 · 组投档线低于特控线'].forEach((label,i)=>{const color=['var(--dec)','var(--warn)','var(--ok)','var(--rec)'][i];node(815,targetY[i],tiers[i],color);text(845,targetY[i]+5,label,17);text(845,targetY[i]+28,fmt(tiers[i])+' 人',19,color);});
+      text(650,580,'其他本科合计 '+fmt(tiers[2]+tiers[3])+' 人；按组最低分归类',14);
+    }else{text(690,110,'继续展开院校类型 →',21,'var(--rec)');}
+    text(25,602,'同一人数尺度；仅此轮投档。达到包含等于特控线；不是个人分数分布。',13,'var(--ink-3)');
+    $('#eduPopulationSummary').textContent=`${eduSubject==='all'?'普通类两类合计':EDU[eduSubject].label}：考生 ${fmt(candidates)} 人 ｜ 本科线上 ${fmt(above)} 人 ｜ 本轮普通本科批投档 ${fmt(total)} 人`;
+    $('#eduTierToggle').setAttribute('aria-pressed',tierExpanded);$('#eduTierToggle').textContent=tierExpanded?'收起院校类型':'展开 985 / 211 / 其他本科';
+    $$('#eduSubjectBtns button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.subject===eduSubject));
+  };
+  $('#eduTierToggle').onclick=()=>{tierExpanded=!tierExpanded;drawEducation();fit();};
+  $$('#eduSubjectBtns button').forEach(b=>b.onclick=()=>{eduSubject=b.dataset.subject;drawEducation();fit();});drawEducation();
+  let identityStep=0;
+  const drawIdentity=()=>{
+    const rate=+$('#gdNetRate').value/100,net=127800000*rate;
+    const equal=$('#majorEqual').checked;
+    const stages=[
+      {n:net,post:'IP 属地：广东',label:'广东上网人口的量级估算',calc:`1.278 亿 × ${(rate*100).toFixed(1)}% ≈ ${(net/10000).toFixed(0)} 万人`,basis:'借常住人口和上网普及率近似。它不是某个平台的广东活跃账号数。'},
+      {n:31000,post:'IP 属地：广东；211 在读；进一步确认是华师本科生',label:'约 3.1 万余名本科生',calc:'采用华师公开在校本科生规模，不乘广东生源录取率',basis:'校区在广东，先近似学生日常在粤上网；包括外省生源。这里已增加学校名，非全部在粤211学生的总数。'},
+      {n:1859,post:'再加：华师汕尾校区，教育科学学院本科',label:'学院公开在校本科生规模',calc:'学院简介：2024 年 9 月，本科生 1,859 人',basis:'采用真实学院规模作为量级代理。它不是实时IP交叉名册；与学校现行简介时点不同。'},
+      {n:equal?1859/5:1859,post:'再加：学院里的一个具体专业',label:equal?'等规模假设下的单专业估计':'先停在学院规模，勾选右侧假设后再估专业',calc:equal?'1,859 ÷ 5 ≈ 372 人':'已知学院 5 个专业，尚没有分专业在读实测数',basis:equal?'按专业等规模只是粗估：热门专业可能远大于平均。这个数不是实际专业人数。':'可以做有依据的估算，但假设要显式启用；不拿只含广东生源的录取数冒充全部生源的在读数。'}
+    ];
+    const d=stages[identityStep];
+    $('#gdNetRateO').textContent=(rate*100).toFixed(1)+'%';
+    $('#identityPost').textContent=d.post;
+    $('#identityN').textContent=identityStep===0?'约 '+(net/10000).toFixed(0)+' 万':identityStep===1?'约 3.1 万余':identityStep===3&&equal?'约 372':fmt(d.n);
+    $('#identityUnit').textContent=d.label;$('#identityCalc').textContent=d.calc;$('#identityBasis').textContent=d.basis;
+    // Separate numerical rows avoid making tiny groups look large on an arbitrary bar scale.
+    $('#identityBars').innerHTML=stages.slice(0,identityStep+1).map((v,i)=>`<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--rule);padding:5px 0;font-size:14px"><span>${['广东网民（估）','华师本科（公开规模）','具体学院（2024）','单专业（假设）'][i]}</span><b class="num">${i===3&&!equal?'待启用假设':i===0?'约 '+fmt(v.n):i===1?'3.1 万余':i===3?'约 '+fmt(v.n):fmt(v.n)}</b></div>`).join('');
+    $$('#identitySteps button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.i===identityStep));fit();
+  };
+  $$('#identitySteps button').forEach(b=>b.onclick=()=>{identityStep=+b.dataset.i;drawIdentity();});
+  $('#gdNetRate').oninput=drawIdentity;$('#majorEqual').onchange=drawIdentity;drawIdentity();
+  const traces = [
+    ['读取行为序列', '按用户 ID 调用聚合服务，取回 scoring_sequence。窗口、序列长度和数据类型由配置参与决定。随后把历史序列与候选帖一起装入预测请求。',
+      link('home-mixer/query_hydrators/scoring_sequence_query_hydrator.rs',90,121,'聚合服务调用 L90–121') + '；' + link('home-mixer/util/phoenix_request.rs',290,303,'序列与候选进入请求 L290–303'),
+      '能确认服务端读取接口；客户端如何采集每个动作、保留多久，尚缺完整证据。'],
+    ['把动作编码成模型特征', '模型读取 history_seq 中的 actions，用 multi_hot_to_embeddings 编成向量；历史作者、帖子、动作等表示在 block_history_reduce 中拼接、投影。连续动作值按配置加入。',
+      link('phoenix/xrex/models/recsys_model.py',3768,3780,'动作编码 L3768–3780') + '；' + link('phoenix/xrex/models/recsys_model.py',1884,1996,'历史表示组合 L1884–1996'),
+      '特征由代码处理得到；“喜欢争吵”不是这里直接记录的字段。'],
+    ['预测动作概率与连续值', 'PhoenixScorer 构建请求，调用 dispatch.predict，再按候选帖取回 candidate_scores。预测结果中有 favorite_score、reply_score、report_score 等头，也有 dwell_time 等连续值。',
+      link('home-mixer/scorers/phoenix_scorer.rs',104,144,'调用预测与取回结果 L104–144') + '；' + link('home-mixer/scorers/value_model.rs',86,122,'预测结果字段映射 L86–122'),
+      '仓库里的结构不是某个用户的真实预测输出；本页不生成行为概率。'],
+    ['按目标加权，再选择内容', 'value_model 读取参数；compute_weighted_score 对各预测头乘权重后求和。还存在条件权重和 offset；TopKScoreSelector 对候选最终 score 排序截取。',
+      link('home-mixer/params/param.rs',396,508,'默认权重 L396–508') + '；' + link('xai-value-model/scoring.rs',57,139,'加权求和 L57–139') + '；' + link('home-mixer/selectors/top_k_score_selector.rs',10,33,'TopK 选择 L10–33'),
+      '下一页模拟器只选择部分概率头，省略完整系统的重排、过滤和混排。'],
+    ['分发历史回到下一次请求', 'UpdateServedHistorySideEffect 写入已分发内容；ServedHistoryQueryHydrator 在后续请求读取历史并构建 served_ids。与此同时，行为历史序列是预测输入，形成可追踪的反馈路径。',
+      link('home-mixer/side_effects/update_served_history_side_effect.rs',31,77,'分发后写入 L31–77') + '；' + link('home-mixer/query_hydrators/served_history_query_hydrator.rs',25,79,'下一次请求回读 L25–79'),
+      '这证明信息反馈路径，不证明某次点击会即时重训，也不证明特定心理或社会后果。']
+  ];
+  $$('#xTraceSteps button').forEach(b => b.onclick = () => {
+    $$('#xTraceSteps button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    const [title, body, refs, boundary] = traces[+b.dataset.trace];
+    $('#xTracePanel').innerHTML = `<h3>${title}</h3><p class="lede">${body}</p><p class="cite">一手已核验：${refs}</p><div class="weld">证据边界：${boundary}</div>`; fit();
+  });
+  $('#xTraceSteps button').click();
+})();
+
 /* ---------------- X ranking ---------------- */
 (() => {
   const DEF = { like: 0.66, reply: 5, copy: 20, dwell: 0.05, ni: -52.272, report: -234 };
@@ -1790,8 +2064,11 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
   draw();
 })();
 
+
 /* ---------------- start ---------------- */
 const m = /^#s(\d+)$/.exec(location.hash);
 go(m ? +m[1] - 1 : 0, false);
 })();
 </script>
+</body>
+</html>
