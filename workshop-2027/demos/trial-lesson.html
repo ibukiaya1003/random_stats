@@ -828,7 +828,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <ul>
       <li><b>BMI（约 1 分钟）</b>：拖身高、体重，停在 170 cm、70 kg（BMI 24.2）：按世卫国际标准"正常"，按中国标准"超重"，按世卫亚洲行动点"风险升高"。<b>同一个人，换一条线就换一个类别。</b>再讲左边的来历：一个描述人群的统计量，用男性数据命名，后来变成给每个人下诊断的线，之后才陆续加了分人群的线和腰围。</li>
       <li>BMI 的说法边界：凯特勒的本意是描述人群（Eknoyan 2008）；基斯 1972 年的数据只有男性（论文摘要）。网上常说"基斯明确说 BMI 不适合个人诊断"，这句我没能在原文里核实到，课上不要这样引用。世卫 2004 年的专家组<b>没有</b>改国际标准，只是加了供各国参考的行动点（23、27.5、32.5、37.5）。</li>
-      <li>过渡到要点三："这一页里，一条线决定了谁算病人。接下来看：一个数字被直接拿来做决定时，会发生什么？"（后面的"阈值由谁决定"可以回扣这里。）</li>
+      <li>过渡到要点三："这一页里，一条线决定了谁算病人。接下来看：一个数字被直接拿来做决定时，会发生什么？"</li>
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
@@ -920,167 +920,16 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 11 ============================================================ -->
-<section class="slide gutter" data-part="3" data-t="32-34" data-title="收入越不稳定，越容易被冤枉">
-  <div class="formhead"><b>要点三 · 被用来做决定</b><span>模拟器</span></div>
-  <h2>收入越不稳定，越容易被冤枉</h2>
-  <p class="lede">全年收入都是 26,000 元。规则：某两周收入不超过 1,000 元就领福利，并如实申报。</p>
-  <div class="grid2" style="--cols: minmax(0, 1.6fr) minmax(0, 1fr)">
-    <div class="sheet">
-      <div class="seg-btns" id="patBtns" role="group" aria-label="收入模式">
-        <button type="button" data-pat="xl" aria-pressed="true">小林：前半年打工</button>
-        <button type="button" data-pat="gig" aria-pressed="false">零工：时有时无</button>
-        <button type="button" data-pat="care" aria-pressed="false">照护者：断断续续</button>
-      </div>
-      <div class="scroll-x"><svg id="incSvg" viewBox="0 0 620 250" role="img" aria-label="26 个两周的收入柱状图与平均线"></svg></div>
-      <div class="legend"><span><i style="background:var(--ink-3)"></i>工作、未领福利</span><span><i style="background:var(--rec)"></i>领福利、如实申报</span><span><i style="background:var(--dec)"></i>系统认定的"少报"</span><span>— 平均线</span></div>
-    </div>
-    <div class="sheet">
-      <div class="slider"><label for="spread">收入波动程度</label><output id="spreadOut">100%</output><input type="range" id="spread" min="0" max="100" value="100"></div>
-      <p class="muted">0% = 每两周都挣 1,000 元；100% = 上面选的模式。</p>
-      <div class="kpi" id="debtOut">13,000</div>
-      <div class="muted">系统认定的"少报收入"（元）</div>
-      <div class="kpi" style="color:var(--ok); font-size:24px; margin-top:10px">0</div>
-      <div class="muted">实际少报（元）</div>
-      <svg id="debtLine" viewBox="0 0 260 120" style="margin-top:12px" role="img" aria-label="波动程度与被认定债务的关系"></svg>
-    </div>
-  </div>
-  <aside class="notes">
-    <h3>32–34 分钟 · 模拟器（可跳过）</h3>
-    <ul>
-      <li>先停在"小林"，和手算对上：13,000。</li>
-      <li>把波动拖到 0：每两周都挣 1,000 元的人，被认定的债务是 0。再拖回去：<b>同样的年收入，越不平均，被认定的"债"越多。</b></li>
-      <li>换"零工""照护者"：模式是讲师虚构的示例，不是真实个案。</li>
-      <li>超时就跳过，直接到决策树或讨论。</li>
-    </ul>
-    <h3>证据链接</h3>
-    <ul class="links">
-      <li><a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case" target="_blank" rel="noopener">模拟规则依据：Victoria Legal Aid 对平均法的说明</a></li>
-      <li><a href="https://www.acoss.org.au/wp-content/uploads/2019/10/Community-Affairs-Robodebt-and-compliance.pdf" target="_blank" rel="noopener">ACOSS 2019（受影响人群：临时工、照护者）</a></li>
-    </ul>
-  </aside>
-</section>
+
 
 <!-- 12 ============================================================ -->
-<section class="slide gutter" data-part="3" data-t="34-37" data-title="小林的决策树">
-  <div class="formhead"><b>要点三 · 被用来做决定</b><span>决策树 · 3 分钟</span></div>
-  <h2>收到通知之后：付钱、申诉，还是不理？</h2>
-  <div class="grid2" style="--cols: minmax(0, 1.5fr) minmax(0, 1fr)">
-    <div class="sheet">
-      <div class="scroll-x"><svg id="tree" viewBox="0 0 640 300" role="img" aria-label="小林的决策树"></svg></div>
-      <p class="cite">□ 决策节点（你选）；○ 机会节点（不由你决定）。终点是小林的损失，单位：元。</p>
-    </div>
-    <div class="sheet">
-      <div class="seg-btns" id="treePre" role="group" aria-label="预设">
-        <button type="button" data-d="13000" data-t="1000" aria-pressed="true">小林 13,000</button>
-        <button type="button" data-d="1500" data-t="1000" aria-pressed="false">平均量级 1,500</button>
-        <button type="button" data-d="500" data-t="1000" aria-pressed="false">小额 500</button>
-      </div>
-      <div class="slider"><label for="tD">通知上的债务 D</label><output id="tDo"></output><input type="range" id="tD" min="200" max="20000" step="100" value="13000"></div>
-      <div class="slider"><label for="tT">申诉成本 t（找工资单、请假、排队，折算成钱）</label><output id="tTo"></output><input type="range" id="tT" min="100" max="5000" step="100" value="1000"></div>
-      <div class="slider"><label for="tP">能找齐材料、申诉成功的把握 p</label><output id="tPo"></output><input type="range" id="tP" min="0" max="100" value="50"></div>
-      <div style="border-top:1px solid var(--rule); padding-top:10px">
-        <div class="muted">申诉比付钱划算，需要把握至少</div>
-        <div class="kpi" id="pStar">8%</div>
-        <div class="muted">p* = t ÷ D</div>
-        <p id="treeVerdict" style="margin-top:8px"></p>
-      </div>
-    </div>
-  </div>
-  <aside class="notes">
-    <h3>34–37 分钟 · 决策树（可替换讨论问题 3）</h3>
-    <ul>
-      <li>问学员：1）申诉成功的把握至少要多少，申诉才比直接付钱划算？2）如果通知上只有 500 元呢？</li>
-      <li>答案：1,000 ÷ 13,000 ≈ 8%；500 元时要 200%，不可能，<b>付钱更"划算"</b>。</li>
-      <li>一句话："系统不需要每个人都相信自己欠钱，只需要申诉比付钱更贵。"</li>
-      <li>不理永远最差（加 10% 追缴费），但很多人"不理"是没看到通知：这条路径是系统替他们选的。</li>
-      <li>t 是假设值；10% 追缴费据 Victoria Legal Aid，课前核对。来源：robodebt-decision-trees.md 第 2 节。</li>
-    </ul>
-    <h3>证据链接</h3>
-    <ul class="links">
-      <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/robodebt-decision-trees.md" target="_blank" rel="noopener">决策树全文 robodebt-decision-trees.md 第 2 节</a></li>
-      <li><a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case" target="_blank" rel="noopener">10% 追缴费、举证责任：Victoria Legal Aid</a></li>
-      <li><a href="https://ministers.ag.gov.au/media-centre/robodebt-class-action-appeal-settlement-04-09-2025" target="_blank" rel="noopener">2025 年追加和解：澳大利亚总检察长部</a></li>
-    </ul>
-  </aside>
-</section>
+
 
 <!-- 群聊选择：决策树讨论 -->
-<section class="slide gutter" data-part="3" data-t="+" data-title="我们的群在哪里长期交流">
-  <div class="formhead"><b>要点三 · 被用来做决定</b><span>决策树 · 讨论</span></div>
-  <h2>我们的群在哪里长期交流？</h2>
-  <p class="lede">□ 决策：我们选哪条路？沿着每条分支，看看钱、时间、便利和规则怎样分配。</p>
-  <div class="grid3" aria-label="群聊平台的三个决策分支">
-    <div class="sheet">
-      <h3>A · 继续用大平台</h3>
-      <p><b>谁付钱？</b>平台靠其收入支持运营；我们可能通过付费或广告注意力等方式参与其中，具体看服务。</p>
-      <p><b>谁花时间？</b>平台负责大部分基础维护；用户负责设置和学习规则。</p>
-      <p><b>谁更方便？</b>如果群成员已经在那里，无需全群迁移。</p>
-      <p><b>谁定规则？</b>平台决定产品、政策和服务是否继续。</p>
-    </div>
-    <div class="sheet">
-      <h3>B · 独立服务／社区服务器</h3>
-      <p><b>谁付钱？</b>看具体服务：捐赠、收费、机构资助或运营者承担。</p>
-      <p><b>谁花时间？</b>独立团队或社区管理员维护；群成员学习并迁移。</p>
-      <p><b>谁更方便？</b>取决于熟人是否加入、服务是否易用和可访问。</p>
-      <p><b>资金或管理员不足？</b>可能需要付费、迁移或寻找替代服务。</p>
-    </div>
-    <div class="sheet">
-      <h3>C · 自己搭建</h3>
-      <p><b>谁付钱？</b>群体或运营者承担服务器、域名、备份等费用。</p>
-      <p><b>谁花时间？</b>指定的人安装、更新、排障、备份和管理账号。</p>
-      <p><b>谁更方便？</b>群体能自行定规则，但成员要适应新的使用方式。</p>
-      <p><b>维护者退出？</b>需要交接；否则服务和数据可能面临中断。</p>
-    </div>
-  </div>
-  <p style="margin-top:14px"><b>每个人的取舍不同，决策树里的节点也可以不同。</b>金钱和时间只是讲师日常会考虑的权衡；你们也可以从关系、隐私、便利、价值观或其他关心的因素出发。</p>
-  <p class="cite">服务和成本取决于具体方案：<a href="https://docs.joinmastodon.org/user/run-your-own/" target="_blank" rel="noopener">Mastodon 自建指南</a> · <a href="https://blog.joinmastodon.org/2025/07/a-nudge-to-fund-our-future/" target="_blank" rel="noopener">Mastodon 筹款与运营</a> · <a href="https://blog.joinmastodon.org/2025/09/service-offerings-from-mastodon/" target="_blank" rel="noopener">机构付费服务</a>。Mastodon 是公开社交服务的例子，私信并非端到端加密：<a href="https://docs.joinmastodon.org/user/posting/" target="_blank" rel="noopener">官方可见性说明</a>。</p>
-  <aside class="notes">
-    <h3>用自己的取舍重画决策树</h3>
-    <p>这是组织讨论的选项树；每条路内部的运营、资金、隐私设置和便利性都取决于具体服务。它没有提供机会节点的概率，不能直接算期望值。可以请学员替换或增加节点，不要求大家都按金钱和时间衡量，也不要把这两个维度说成唯一正确的选择。</p>
-    <p>先请学员凭直觉选择，再讨论各分支中钱、时间、便利和规则由谁承担，允许每个人坚持或改变选择。时间和金钱是讲师日常会思考的 trade-off；别人的节点可能是能否联系家人、可访问性、安全、工作要求、社区治理或其他因素。</p>
-    <h3>讲师追问</h3>
-    <p><b>“你愿意为隐私每月付多少钱、每周花多少时间？”</b></p>
-    <p>接着问：<b>“如果你没有钱或时间，是不是就意味着你不重视隐私？”</b> 讨论同样重视隐私的人可能面临不同资源约束；不要把付费能力或空闲时间当成道德态度的测量。</p>
-    <p><b>“如果一个服务符合我们的价值观，但只能依靠少数人持续无偿劳动，它能长期维持吗？我们愿不愿意为它建立一套可持续的分担方式？”</b></p>
-    <p>课堂资料：<a href="https://docs.joinmastodon.org/user/run-your-own/">Mastodon 官方自建指南</a>列出持续联网、域名、邮件和可选存储，并提醒公共服务需要社区管理；<a href="https://blog.joinmastodon.org/2025/07/a-nudge-to-fund-our-future/">官方筹款说明</a>区分软件开发、服务器及管理所需资源；<a href="https://blog.joinmastodon.org/2025/09/service-offerings-from-mastodon/">机构服务说明</a>提到付费托管和支持。上述仅作具体例子，不代表所有独立服务；不编造费用或维护时间。</p>
-  </aside>
-</section>
+
 
 <!-- 13 ============================================================ -->
-<section class="slide gutter" data-part="3" data-t="37-39" data-title="阈值由谁决定">
-  <div class="formhead"><b>要点三 · 被用来做决定</b><span>阈值 · 讨论问题 3</span></div>
-  <h2>把阈值往哪边拧？冤枉诚实的人，还是放过少报的人</h2>
-  <div class="grid2" style="--cols: minmax(0, 1.6fr) minmax(0, 1fr)">
-    <div class="sheet">
-      <div class="scroll-x"><svg id="thSvg" viewBox="0 0 620 260" role="img" aria-label="诚实申报者和少报者的风险分数分布，以及阈值线"></svg></div>
-      <div class="legend"><span><i style="background:var(--rec)"></i>诚实申报的人</span><span><i style="background:var(--warn)"></i>真正少报的人</span><span>分数超过阈值 → 自动寄出通知</span></div>
-    </div>
-    <div class="sheet">
-      <div class="slider"><label for="th">阈值（风险分数）</label><output id="thOut"></output><input type="range" id="th" min="10" max="90" value="50"></div>
-      <div class="slider"><label for="base">1,000 人里真正少报的人数</label><output id="baseOut"></output><input type="range" id="base" min="20" max="300" step="10" value="100"></div>
-      <div class="grid2" style="gap:12px">
-        <div><div class="kpi" id="fpOut">0</div><div class="muted">诚实的人收到通知</div></div>
-        <div><div class="kpi" id="fnOut" style="color:var(--warn)">0</div><div class="muted">少报的人被放过</div></div>
-      </div>
-      <p id="thShare" style="margin-top:10px"></p>
-    </div>
-  </div>
-  <p class="lede" style="margin-top:14px">一个错误把 100 个诚实的人标记为欺诈，和一个错误放过 100 个真正少报的人，哪个代价更大？<b>由谁来决定这个比例？</b></p>
-  <aside class="notes">
-    <h3>37–39 分钟 · 阈值（讨论问题 3）</h3>
-    <ul>
-      <li>人群和分数分布是虚构的示意，不是 Robo-debt 的真实数据。</li>
-      <li>把阈值往左拉：放过的人少了，冤枉的人多了。再把"真正少报的人数"拉低：<b>真正少报的人越少，收到通知的人里诚实者占比越高</b>（基础比率）。</li>
-      <li>只点到为止，引出 Day 4 的阈值与"公平定义不可兼得"。</li>
-      <li>超时：本页改为收尾时留下的问题。</li>
-    </ul>
-    <h3>证据链接</h3>
-    <ul class="links">
-      <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/decision-trees.md" target="_blank" rel="noopener">阈值与"公平定义不可兼得"：Day 4 材料 decision-trees.md</a></li>
-      <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/credit-decision-trees.md" target="_blank" rel="noopener">信用评分的阈值案例 credit-decision-trees.md</a></li>
-    </ul>
-  </aside>
-</section>
+
 
 <!-- 14 ============================================================ -->
 <section class="slide gutter" data-part="3" data-t="39-42" data-title="主持讨论">
@@ -1143,6 +992,91 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 15 ============================================================ -->
+<section class="slide gutter" data-part="3" data-t="+" data-title="X：行为数据结构与分发记录">
+  <div class="formhead"><b>要点三 · 平台字段 → 推荐 · 1/2</b><span>X 开源代码</span></div>
+  <h2>X 的源码，实际定义了哪些行为字段？</h2>
+  <p class="muted">政府决策之后，看平台如何利用行为数据作预测与分发：迭代频率、速度及其后果需要哪些实际运行数据才能比较？</p>
+  <div class="grid2">
+    <div>
+      <h3>行为结构：谁、哪条内容、什么动作</h3>
+      <pre class="code">message UserAction {
+  uint64 userId = 1;
+  TweetInfo tweetInfo = 2;
+  ActionInfo actionInfo = 3;
+  AdInfo adInfo = 4;
+}</pre>
+      <p style="margin-top:12px"><span class="num">ActionInfo</span> 另含 <span class="num">engagementTimeMs</span>、<span class="num">actionName</span>、<span class="num">userActionMeta</span>。动作枚举包含点赞、回复、停留、不感兴趣、举报。</p>
+
+      <table style="margin-top:12px"><thead><tr><th>元数据字段原名</th><th>代码能确认的内容</th></tr></thead><tbody><tr><td class="num">dwellTime</td><td>停留值；此处未标注单位</td></tr><tr><td class="num">clientPlatform</td><td>客户端平台</td></tr><tr><td class="num">ipAddress / timeZone</td><td>IP 地址 / 时区</td></tr><tr><td class="num">searchQuery</td><td>搜索词</td></tr></tbody></table>
+
+    </div>
+    <div class="sheet">
+      <h3>已找到写入实现：记录“发给了你什么”</h3>
+      <p><span class="num">UpdateServedHistorySideEffect</span> 为选中的内容构建分发记录，包括请求标识、帖子、位置、得分等，再调用 <span class="num">client.put(...)</span>。</p>
+
+      <p>存储客户端把 <span class="num">ServedHistory</span> 序列化，按用户、平台和时间组成键，写入 Manhattan。</p>
+
+      <div class="weld"><b>分清三件事：</b>定义了行为字段；实现了某类记录写入；某个用户实际被记录了什么。这里前两件可查代码，第三件需要实际日志与运行配置。</div>
+      <p style="margin-top:12px">“已分发”也不等于“用户实际看见”。完整客户端采集链、字段覆盖率和留存期，本次未核实。</p>
+    </div>
+  </div>
+  <p class="cite x-version" style="margin-top:12px"></p>
+<aside class="notes"><h3>从实际数据结构开始</h3><p>这页替换了之前虚构的JSON日志。所有字段名、结构和写入调用都来自固定commit。存储证据只对应分发历史，不把它冒充所有行为事件的存储实现。触发受is_prod和EnableUrtMigrationComponents约束。</p><p>完整台账：data/trial-evidence-2026-10-29.md。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">源码原文节选与字段：<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1519" data-x-end="1544">recsys.proto L1519–1544</a>；<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="443" data-x-end="474">动作枚举 L443–474</a>。</p><p class="cite"><a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1374" data-x-end="1400">UserActionMeta L1374–1400</a>。这是数据结构定义，不能推出所有字段每次都采集、填充或保存。</p><p class="cite"><a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="31" data-x-end="77">触发条件与写入调用 L31–77</a>；<a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="145" data-x-end="180">条目构造 L145–180</a>。</p><p class="cite"><a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="154" data-x-end="170">存储实现 L154–170</a>；<a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="37" data-x-end="44">用户 / 平台键 L37–44</a>。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p></aside>
+</section>
+
+<section class="slide gutter" data-part="3" data-t="+" data-title="X：从行为序列到推荐反馈">
+  <div class="formhead"><b>要点三 · 平台字段 → 推荐 · 2/2</b><span>点击环节，查看对应源码</span></div>
+  <h2>历史怎样进入预测，预测怎样变成顺序？</h2>
+  <div class="seg-btns" id="xTraceSteps" role="group" aria-label="X 源码链路"><button type="button" data-trace="0" aria-pressed="true">1 行为序列</button><button type="button" data-trace="1" aria-pressed="false">2 特征编码</button><button type="button" data-trace="2" aria-pressed="false">3 预测</button><button type="button" data-trace="3" aria-pressed="false">4 加权与排序</button><button type="button" data-trace="4" aria-pressed="false">5 反馈回读</button></div>
+  <div class="sheet" id="xTracePanel" aria-live="polite"></div>
+  <div class="grid2" style="margin-top:18px">
+    <div><h3>可以据代码讨论</h3><p>行为与分发历史会影响后续请求的输入。选择什么预测目标、怎样给目标加权、是否过滤已分发内容，是不同环节的设计决定。</p><p>闭环也可能减少重复、响应负反馈；是否加强某类内容，需要实际分发数据或实验来检验。</p></div>
+    <div><h3>延伸：权重模拟器</h3><p>先确认权重乘的是预测概率，再看改变权重如何影响计算。完整源码还含连续值预测、条件权重、分数变换、重排和过滤。</p></div>
+  </div>
+  <p class="cite x-version" style="margin-top:12px"></p>
+<aside class="notes"><h3>闭环的证据与边界</h3><p>历史序列通过聚合服务读取；动作编码由multi_hot_to_embeddings实现；候选与序列装入预测请求；预测头传入value_model；分发历史由side effect写入，下次请求回读为served_ids。每一步的精确链接在页内交互中。</p><p>不能从这条链直接断言每次互动立即重训、用户被心理奖励强化，或争议内容一定放大。可以把这些说法改写为待实验检验的研究问题。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">原有模拟器的帖子概率是合成样例，没有真实预测输出来源；它只能演示公式，不能作为 X 实际推荐效果的证据。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p><h3>各环节证据边界（讲师）</h3><ul><li><b>读取行为序列：</b>能确认服务端读取接口；客户端如何采集每个动作、保留多久，尚缺完整证据。</li><li><b>把动作编码成模型特征：</b>特征由代码处理得到；“喜欢争吵”不是这里直接记录的字段。</li><li><b>预测动作概率与连续值：</b>仓库里的结构不是某个用户的真实预测输出；本页不生成行为概率。</li><li><b>按目标加权，再选择内容：</b>下一页模拟器只选择部分概率头，省略完整系统的重排、过滤和混排。</li><li><b>分发历史回到下一次请求：</b>这证明信息反馈路径，不证明某次点击会即时重训，也不证明特定心理或社会后果。</li></ul></aside>
+</section>
+
+<section class="slide gutter" data-part="0" data-t="+" data-title="我们的群在哪里长期交流">
+  <div class="formhead"><b>个人选择 · 我们能做什么</b><span>决策树 · 3 分钟</span></div>
+  <h2>我们的群在哪里长期交流？</h2>
+  <div class="grid2" style="--cols:minmax(0,1.5fr) minmax(0,1fr)">
+    <div class="sheet">
+      <div class="scroll-x"><svg viewBox="0 0 680 360" role="img" aria-label="群聊选择决策树：大平台、独立服务、自己搭建或其他选择；各有金钱、时间、便利及稳定性取舍">
+        <path d="M52 180 H95 L140 48 H175 M95 180 L140 135 H175 M95 180 L140 224 H175 M95 180 L140 312 H175" fill="none" stroke="var(--ink)" stroke-width="2"/>
+        <rect x="24" y="166" width="28" height="28" fill="var(--sheet)" stroke="var(--ink)" stroke-width="2"/>
+        <text x="38" y="222" text-anchor="middle" class="val">我们的选择</text>
+        <text x="185" y="40" font-size="16" font-weight="700" fill="var(--ink)">A · 大平台</text>
+        <text x="185" y="61" font-size="13" fill="var(--ink-2)">可能免费 · 使用时间 · 便利、稳定视情况</text>
+        <text x="185" y="127" font-size="16" font-weight="700" fill="var(--ink)">B · 独立服务／社区服务器</text>
+        <text x="185" y="148" font-size="13" fill="var(--ink-2)">可能免费 · 使用与迁移时间 · 稳定性待查</text>
+        <text x="185" y="216" font-size="16" font-weight="700" fill="var(--ink)">C · 自己搭建</text>
+        <text x="185" y="237" font-size="13" fill="var(--ink-2)">服务器费起 · 使用＋维护时间 · 依赖服务商</text>
+        <text x="185" y="304" font-size="16" font-weight="700" fill="var(--ink)">D · 其他选择</text>
+        <text x="185" y="325" font-size="13" fill="var(--ink-2)">你还会考虑什么？自己补一条分支</text>
+      </svg></div>
+      <p class="cite">□ 决策节点：选择一条路。这里比较取舍，不计算期望值或预测故障概率。</p>
+    </div>
+    <div class="sheet">
+      <h3>沿每条路看看代价</h3>
+      <div class="seg-btns" id="groupChoice" role="group" aria-label="选择决策树分支"><button type="button" data-choice="a" aria-pressed="true">A 大平台</button><button type="button" data-choice="b" aria-pressed="false">B 独立服务</button><button type="button" data-choice="c" aria-pressed="false">C 自己搭建</button><button type="button" data-choice="d" aria-pressed="false">D 其他</button></div>
+      <div id="groupChoicePanel" aria-live="polite" style="margin-top:12px"></div>
+      <p class="cite">便利与稳定取决于群成员、所在地区和具体服务，页面是讨论时的判断，不是实测排名。服务器价格查询：2026-10-30。</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <h3>用自己的取舍重画决策树</h3>
+    <p><b>每个人的取舍不同，决策树里的节点也可以不同。</b>金钱和时间是讲师日常会考虑的权衡；也可以从关系、隐私、便利、价值观或其他关心的因素出发。请学员自己定义“便利”“稳定”和需要比较的节点。</p>
+    <p>这是讨论用的选项树，不是含可靠机会概率的完整期望值模型。A、B 的零元指存在免费方案，不代表没有隐性成本，也不代表所有服务免费。假如熟人都在大平台，可以认为便利较高；小平台便利中等及大平台稳定性较高仅是讨论判断，缺少同口径数据，不能作为事实结论。B 的稳定性需要按运营者核查；C 依赖托管商，也依赖管理员、网络和备份。</p>
+    <h3>自建成本：有来源的具体参照</h3>
+    <p>采用 DigitalOcean 公开的 Matrix（Synapse backend）一键部署文档：示例为 SFO2 地区一台 4 GiB、2 vCPU 机器，文档建议至少 2 GiB 内存，列出 Synapse、Element Web、PostgreSQL 和 Caddy，并要求域名与 DNS 管理。<a href="https://docs.digitalocean.com/products/marketplace/catalog/matrix-synapse-backend/">部署说明</a>（托管商平台刊载的第三方应用文档，一手已核读）。按该平台 <a href="https://www.digitalocean.com/pricing/droplets">Basic Regular 价格表</a>，4 GiB、2 vCPU、80 GiB SSD、包含 4,000 GiB 传输的报价为 24 美元／月（2026-10-30 核读）。全年持续开机、按标价、不超套餐时，服务器费 24×1＝24 美元／月。是否足够满足具体群规模和使用量未测试；域名、备份、超额流量、税费及其他服务费另算，维护时间无可靠估计，因此完整月成本不能从该报价确定。报价美元，人民币数受实际汇率与支付费用影响，不凭空换算。</p>
+    <h3>讲师追问</h3>
+    <p><b>“你愿意为隐私每月付多少钱、每周花多少时间？”</b></p>
+    <p>接着问：<b>“如果你没有钱或时间，是不是就意味着你不重视隐私？”</b> 不把付费能力或空闲时间当成道德态度的测量。</p>
+    <p><b>“如果一个服务符合我们的价值观，但只能依靠少数人持续无偿劳动，它能长期维持吗？我们愿不愿意为它建立一套可持续的分担方式？”</b></p>
+  </aside>
+</section>
+
 <section class="slide gutter" data-part="0" data-t="42-45" data-title="收尾">
   <div class="formhead"><b>收尾</b><span>出门卡</span></div>
   <h2>回到三道工序</h2>
@@ -1206,49 +1140,9 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 
-<section class="slide gutter" data-part="5" data-t="+" data-title="X：行为数据结构与分发记录">
-  <div class="formhead"><b>平台字段 → 推荐 · 1/2</b><span>X 开源代码</span></div>
-  <h2>X 的源码，实际定义了哪些行为字段？</h2>
-  <div class="grid2">
-    <div>
-      <h3>行为结构：谁、哪条内容、什么动作</h3>
-      <pre class="code">message UserAction {
-  uint64 userId = 1;
-  TweetInfo tweetInfo = 2;
-  ActionInfo actionInfo = 3;
-  AdInfo adInfo = 4;
-}</pre>
-      <p style="margin-top:12px"><span class="num">ActionInfo</span> 另含 <span class="num">engagementTimeMs</span>、<span class="num">actionName</span>、<span class="num">userActionMeta</span>。动作枚举包含点赞、回复、停留、不感兴趣、举报。</p>
 
-      <table style="margin-top:12px"><thead><tr><th>元数据字段原名</th><th>代码能确认的内容</th></tr></thead><tbody><tr><td class="num">dwellTime</td><td>停留值；此处未标注单位</td></tr><tr><td class="num">clientPlatform</td><td>客户端平台</td></tr><tr><td class="num">ipAddress / timeZone</td><td>IP 地址 / 时区</td></tr><tr><td class="num">searchQuery</td><td>搜索词</td></tr></tbody></table>
 
-    </div>
-    <div class="sheet">
-      <h3>已找到写入实现：记录“发给了你什么”</h3>
-      <p><span class="num">UpdateServedHistorySideEffect</span> 为选中的内容构建分发记录，包括请求标识、帖子、位置、得分等，再调用 <span class="num">client.put(...)</span>。</p>
 
-      <p>存储客户端把 <span class="num">ServedHistory</span> 序列化，按用户、平台和时间组成键，写入 Manhattan。</p>
-
-      <div class="weld"><b>分清三件事：</b>定义了行为字段；实现了某类记录写入；某个用户实际被记录了什么。这里前两件可查代码，第三件需要实际日志与运行配置。</div>
-      <p style="margin-top:12px">“已分发”也不等于“用户实际看见”。完整客户端采集链、字段覆盖率和留存期，本次未核实。</p>
-    </div>
-  </div>
-  <p class="cite x-version" style="margin-top:12px"></p>
-<aside class="notes"><h3>从实际数据结构开始</h3><p>这页替换了之前虚构的JSON日志。所有字段名、结构和写入调用都来自固定commit。存储证据只对应分发历史，不把它冒充所有行为事件的存储实现。触发受is_prod和EnableUrtMigrationComponents约束。</p><p>完整台账：data/trial-evidence-2026-10-29.md。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">源码原文节选与字段：<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1519" data-x-end="1544">recsys.proto L1519–1544</a>；<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="443" data-x-end="474">动作枚举 L443–474</a>。</p><p class="cite"><a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1374" data-x-end="1400">UserActionMeta L1374–1400</a>。这是数据结构定义，不能推出所有字段每次都采集、填充或保存。</p><p class="cite"><a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="31" data-x-end="77">触发条件与写入调用 L31–77</a>；<a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="145" data-x-end="180">条目构造 L145–180</a>。</p><p class="cite"><a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="154" data-x-end="170">存储实现 L154–170</a>；<a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="37" data-x-end="44">用户 / 平台键 L37–44</a>。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p></aside>
-</section>
-
-<section class="slide gutter" data-part="5" data-t="+" data-title="X：从行为序列到推荐反馈">
-  <div class="formhead"><b>平台字段 → 推荐 · 2/2</b><span>点击环节，查看对应源码</span></div>
-  <h2>历史怎样进入预测，预测怎样变成顺序？</h2>
-  <div class="seg-btns" id="xTraceSteps" role="group" aria-label="X 源码链路"><button type="button" data-trace="0" aria-pressed="true">1 行为序列</button><button type="button" data-trace="1" aria-pressed="false">2 特征编码</button><button type="button" data-trace="2" aria-pressed="false">3 预测</button><button type="button" data-trace="3" aria-pressed="false">4 加权与排序</button><button type="button" data-trace="4" aria-pressed="false">5 反馈回读</button></div>
-  <div class="sheet" id="xTracePanel" aria-live="polite"></div>
-  <div class="grid2" style="margin-top:18px">
-    <div><h3>可以据代码讨论</h3><p>行为与分发历史会影响后续请求的输入。选择什么预测目标、怎样给目标加权、是否过滤已分发内容，是不同环节的设计决定。</p><p>闭环也可能减少重复、响应负反馈；是否加强某类内容，需要实际分发数据或实验来检验。</p></div>
-    <div><h3>衔接下一页权重模拟器</h3><p>先确认权重乘的是预测概率，再看改变权重如何影响计算。完整源码还含连续值预测、条件权重、分数变换、重排和过滤。</p></div>
-  </div>
-  <p class="cite x-version" style="margin-top:12px"></p>
-<aside class="notes"><h3>闭环的证据与边界</h3><p>历史序列通过聚合服务读取；动作编码由multi_hot_to_embeddings实现；候选与序列装入预测请求；预测头传入value_model；分发历史由side effect写入，下次请求回读为served_ids。每一步的精确链接在页内交互中。</p><p>不能从这条链直接断言每次互动立即重训、用户被心理奖励强化，或争议内容一定放大。可以把这些说法改写为待实验检验的研究问题。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">原有模拟器的帖子概率是合成样例，没有真实预测输出来源；它只能演示公式，不能作为 X 实际推荐效果的证据。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p><h3>各环节证据边界（讲师）</h3><ul><li><b>读取行为序列：</b>能确认服务端读取接口；客户端如何采集每个动作、保留多久，尚缺完整证据。</li><li><b>把动作编码成模型特征：</b>特征由代码处理得到；“喜欢争吵”不是这里直接记录的字段。</li><li><b>预测动作概率与连续值：</b>仓库里的结构不是某个用户的真实预测输出；本页不生成行为概率。</li><li><b>按目标加权，再选择内容：</b>下一页模拟器只选择部分概率头，省略完整系统的重排、过滤和混排。</li><li><b>分发历史回到下一次请求：</b>这证明信息反馈路径，不证明某次点击会即时重训，也不证明特定心理或社会后果。</li></ul></aside>
-</section>
 
 <!-- 17 ============================================================ -->
 <section class="slide gutter" data-part="5" data-t="+" data-title="附加：推荐算法的权重">
@@ -1707,145 +1601,6 @@ $("#calcFb").insertAdjacentHTML("afterend", "");
 $("#calcAns").insertAdjacentHTML("beforebegin", `<button class="btn" id="showCalc" style="margin-top:6px">直接显示答案</button>`);
 $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
 
-/* ---------------- income simulator ---------------- */
-(() => {
-  // zero-mean shapes in [-1, 1], 26 fortnights
-  const PAT = {
-    xl: Array.from({ length: 26 }, (_, i) => i < 13 ? 1 : -1),
-    gig: [1, -1, -0.4, 1, -1, 0.6, 0.2, -1, 1, -0.8, -1, 0.8, 0.4, -0.6, 1, -1, -0.2, 0.6, -1, 1, 0.2, -0.6, 0.8, -1, 0.4, -0.2],
-    care: [0.8, 0.8, 0.8, -1, -1, -1, -1, 0.8, 0.8, 0.8, 0.8, -1, -1, 0.6, 0.6, 0.6, 0.6, -1, -1, -1, 0.8, 0.8, -0.6, -0.6, 0.6, 0.6]
-  };
-  // force exact zero mean so the annual total stays 26,000
-  for (const k in PAT) { const m = PAT[k].reduce((a, b) => a + b, 0) / 26; PAT[k] = PAT[k].map(v => v - m); }
-  let pat = "xl";
-  const svg = $("#incSvg"), W = 620, H = 250, L = 46, R = 10, T = 14, B = 26, MAXY = 2400;
-  const xs = i => L + i * ((W - L - R) / 26), bw = (W - L - R) / 26 - 3, ys = v => T + (1 - v / MAXY) * (H - T - B);
-  const dl = $("#debtLine");
-  const debtFor = (p, s) => p.reduce((acc, w) => { const inc = 1000 + s * 1000 * w; return acc + (inc <= 1000 + 1e-9 ? 1000 - inc : 0); }, 0);
-  function draw() {
-    const s = +$("#spread").value / 100;
-    $("#spreadOut").textContent = Math.round(s * 100) + "%";
-    svg.innerHTML = "";
-    [0, 1000, 2000].forEach(v => {
-      el("line", { x1: L, x2: W - R, y1: ys(v), y2: ys(v), stroke: "var(--rule)" }, svg);
-      el("text", { x: L - 6, y: ys(v) + 4, "text-anchor": "end", class: "val" }, svg, fmt(v));
-    });
-    let debt = 0;
-    PAT[pat].forEach((w, i) => {
-      const inc = Math.max(0, 1000 + s * 1000 * w), onB = inc <= 1000 + 1e-9;
-      el("rect", { x: xs(i), y: ys(inc), width: bw, height: Math.max(ys(0) - ys(inc), 0.5), fill: onB ? "var(--rec)" : "var(--ink-3)", rx: 1 }, svg);
-      if (onB && inc < 1000) {
-        debt += 1000 - inc;
-        el("rect", { x: xs(i), y: ys(1000), width: bw, height: ys(inc) - ys(1000), fill: "var(--dec)", opacity: .75 }, svg);
-      }
-    });
-    el("line", { x1: L, x2: W - R, y1: ys(1000), y2: ys(1000), stroke: "var(--ink)", "stroke-width": 2, "stroke-dasharray": "6 4" }, svg);
-    el("text", { x: W - R, y: ys(1000) - 6, "text-anchor": "end", "font-size": 12, "font-weight": 700 }, svg, "系统推算：每两周 1,000");
-    el("text", { x: L, y: H - 6, class: "val" }, svg, "第 1 个两周");
-    el("text", { x: W - R, y: H - 6, class: "val", "text-anchor": "end" }, svg, "第 26 个两周");
-    $("#debtOut").textContent = fmt(debt);
-    // debt vs spread line
-    dl.innerHTML = "";
-    const dmax = debtFor(PAT[pat], 1) || 1, lx = v => 30 + v * 220, ly = v => 100 - v / dmax * 80;
-    el("line", { x1: 30, y1: 100, x2: 250, y2: 100, stroke: "var(--rule)" }, dl);
-    el("line", { x1: lx(0), y1: ly(0), x2: lx(1), y2: ly(dmax), stroke: "var(--dec)", "stroke-width": 2 }, dl);
-    el("circle", { cx: lx(s), cy: ly(debt), r: 5, fill: "var(--dec)" }, dl);
-    el("text", { x: 30, y: 116, class: "val" }, dl, "平稳");
-    el("text", { x: 250, y: 116, class: "val", "text-anchor": "end" }, dl, "不稳定");
-    el("text", { x: 30, y: 12, class: "val" }, dl, "被认定的债务");
-  }
-  $("#spread").oninput = draw;
-  $$("#patBtns button").forEach(b => b.onclick = () => { pat = b.dataset.pat; $$("#patBtns button").forEach(x => x.setAttribute("aria-pressed", x === b)); draw(); });
-  draw();
-})();
-
-/* ---------------- decision tree ---------------- */
-(() => {
-  const svg = $("#tree");
-  function draw() {
-    const D = +$("#tD").value, t = +$("#tT").value, p = +$("#tP").value / 100;
-    $("#tDo").textContent = fmt(D) + " 元"; $("#tTo").textContent = fmt(t) + " 元"; $("#tPo").textContent = Math.round(p * 100) + "%";
-    const evPay = -D, evApp = p * -t + (1 - p) * (-t - D), evIgn = -1.1 * D;
-    const best = Math.max(evPay, evApp, evIgn);
-    svg.innerHTML = "";
-    const line = (x1, y1, x2, y2, on) => el("path", { d: `M${x1},${y1} L${x1 + 30},${y2} L${x2},${y2}`, fill: "none", stroke: on ? "var(--ink)" : "var(--rule)", "stroke-width": on ? 2.5 : 1.5 }, svg);
-    const end = (x, y, label, val, on) => {
-      el("path", { d: `M${x},${y} l14,-8 l0,16 z`, fill: on ? "var(--ink)" : "var(--ink-3)" }, svg);
-      el("text", { x: x + 20, y: y - 2, "font-size": 13 }, svg, label);
-      el("text", { x: x + 20, y: y + 15, class: "val" }, svg, val);
-    };
-    // root
-    line(40, 150, 170, 50, evPay === best); line(40, 150, 170, 150, evApp === best); line(40, 150, 170, 250, evIgn === best);
-    el("rect", { x: 26, y: 136, width: 28, height: 28, fill: "var(--sheet)", stroke: "var(--ink)", "stroke-width": 2 }, svg);
-    el("text", { x: 40, y: 190, "text-anchor": "middle", class: "val" }, svg, "小林");
-    el("text", { x: 100, y: 44, "font-weight": 700, "font-size": 14 }, svg, "付钱");
-    el("text", { x: 100, y: 144, "font-weight": 700, "font-size": 14 }, svg, "申诉");
-    el("text", { x: 100, y: 244, "font-weight": 700, "font-size": 14 }, svg, "不理（21 天内不回应）");
-    end(430, 50, "直接付钱", `−D = −${fmt(D)}`, evPay === best);
-    end(430, 250, "加 10% 追缴费，转追债", `−1.1D − g = −${fmt(1.1 * D)} − g`, false);
-    // chance node
-    el("line", { x1: 170, y1: 150, x2: 230, y2: 150, stroke: evApp === best ? "var(--ink)" : "var(--rule)", "stroke-width": evApp === best ? 2.5 : 1.5 }, svg);
-    el("circle", { cx: 244, cy: 150, r: 14, fill: "var(--sheet)", stroke: "var(--ink)", "stroke-width": 2 }, svg);
-    line(258, 150, 420, 110, false); line(258, 150, 420, 190, false);
-    el("text", { x: 300, y: 104, "font-size": 12 }, svg, `找齐、成功 p=${Math.round(p * 100)}%`);
-    el("text", { x: 300, y: 184, "font-size": 12 }, svg, `找不齐、失败 ${Math.round((1 - p) * 100)}%`);
-    end(430, 110, "只付出申诉成本", `−t = −${fmt(t)}`, false);
-    end(430, 190, "申诉成本 + 债务", `−t − D = −${fmt(t + D)}`, false);
-    el("text", { x: 244, y: 182, "text-anchor": "middle", class: "val" }, svg, `期望 −${fmt(-evApp)}`);
-    const ps = t / D;
-    $("#pStar").textContent = ps > 1 ? `${Math.round(ps * 100)}%（不可能）` : `${Math.round(ps * 100)}%`;
-    $("#pStar").style.color = ps > 1 ? "var(--dec)" : ps > .5 ? "var(--warn)" : "var(--ok)";
-    $("#treeVerdict").innerHTML = ps > 1
-      ? "<b>申诉成本超过债务本身。</b>即使明知债务是错的，付钱也是\"理性\"的。"
-      : evApp > evPay ? `按当前把握 ${Math.round(p * 100)}%，<b>申诉</b>更划算（期望损失 ${fmt(-evApp)} &lt; ${fmt(D)}）。`
-      : `按当前把握 ${Math.round(p * 100)}%，<b>付钱</b>更划算。把握要超过 ${Math.round(ps * 100)}% 才值得申诉。`;
-  }
-  ["tD", "tT", "tP"].forEach(id => $("#" + id).oninput = () => { $$("#treePre button").forEach(x => x.setAttribute("aria-pressed", false)); draw(); });
-  $$("#treePre button").forEach(b => b.onclick = () => {
-    $("#tD").value = b.dataset.d; $("#tT").value = b.dataset.t;
-    $$("#treePre button").forEach(x => x.setAttribute("aria-pressed", x === b)); draw();
-  });
-  draw();
-})();
-
-/* ---------------- threshold ---------------- */
-(() => {
-  // deterministic pseudo-random normal samples
-  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  const norm = () => { let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
-  const clamp = v => Math.max(0, Math.min(99.9, v));
-  const honestAll = Array.from({ length: 980 }, () => clamp(38 + 12 * norm()));
-  const cheatAll = Array.from({ length: 300 }, () => clamp(62 + 12 * norm()));
-  const svg = $("#thSvg"), W = 620, H = 260, L = 34, R = 10, T = 14, B = 30, BIN = 4, NB = 25;
-  const xs = v => L + v / 100 * (W - L - R);
-  function draw() {
-    const th = +$("#th").value, nc = +$("#base").value, nh = 1000 - nc;
-    $("#thOut").textContent = th; $("#baseOut").textContent = `${nc} 人`;
-    const hon = honestAll.slice(0, nh), che = cheatAll.slice(0, nc);
-    const hb = Array(NB).fill(0), cb = Array(NB).fill(0);
-    hon.forEach(v => hb[Math.floor(v / BIN)]++); che.forEach(v => cb[Math.floor(v / BIN)]++);
-    const maxC = Math.max(...hb.map((v, i) => v + cb[i]), 1);
-    const ys = c => T + (1 - c / maxC) * (H - T - B);
-    svg.innerHTML = "";
-    el("line", { x1: L, x2: W - R, y1: H - B, y2: H - B, stroke: "var(--rule)" }, svg);
-    for (let i = 0; i < NB; i++) {
-      const x = xs(i * BIN) + 1, w = xs(BIN) - xs(0) - 2;
-      el("rect", { x, y: ys(hb[i]), width: w, height: ys(0) - ys(hb[i]), fill: "var(--rec)", opacity: i * BIN >= th ? 1 : .45 }, svg);
-      el("rect", { x, y: ys(hb[i] + cb[i]), width: w, height: ys(0) - ys(cb[i]), fill: "var(--warn)", opacity: i * BIN >= th ? 1 : .45 }, svg);
-    }
-    el("rect", { x: xs(th), y: T - 4, width: W - R - xs(th), height: H - B - T + 4, fill: "var(--dec)", opacity: .06 }, svg);
-    el("line", { x1: xs(th), x2: xs(th), y1: T - 4, y2: H - B, stroke: "var(--dec)", "stroke-width": 2.5 }, svg);
-    el("text", { x: xs(th) + 6, y: T + 8, "font-size": 12, "font-weight": 700, style: "fill: var(--dec)" }, svg, "寄出通知 →");
-    [0, 25, 50, 75, 100].forEach(v => el("text", { x: xs(v), y: H - 10, "text-anchor": "middle", class: "val" }, svg, v));
-    const fp = hon.filter(v => v >= th).length, fn = che.filter(v => v < th).length, tp = nc - fn;
-    $("#fpOut").textContent = fp; $("#fnOut").textContent = fn;
-    const flagged = fp + tp;
-    $("#thShare").innerHTML = flagged ? `共寄出 <b class="num">${flagged}</b> 封通知，其中 <b class="num" style="color:var(--dec)">${Math.round(fp / flagged * 100)}%</b> 寄给了诚实申报的人。` : "一封通知都没寄出。";
-  }
-  $("#th").oninput = draw; $("#base").oninput = draw;
-  draw();
-})();
-
 /* ---------------- audit list ---------------- */
 (() => {
   let items = store.get("tl.audit", []);
@@ -1864,6 +1619,19 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
   $("#auditHint").onclick = () => { HINTS.forEach(h => { if (!items.includes(h)) items.push(h); }); store.set("tl.audit", items); render(); };
   $("#auditClear").onclick = () => { items = []; store.set("tl.audit", items); render(); };
   render();
+})();
+
+/* ---------------- group platform decision tree ---------------- */
+(() => {
+  const descriptions = {
+    a: `<h3>A · 继续用大平台</h3><p><b>钱：</b>免费方案可能直接付 0 元；广告、付费功能等依具体服务而异。</p><p><b>时间：</b>使用平台；基础维护通常由平台负责。</p><p><b>便利／稳定：</b>如果熟人都在，便利可能高；稳定性要看具体服务，不能保证。</p>`,
+    b: `<h3>B · 独立服务／社区服务器</h3><p><b>钱：</b>可能直接付 0 元，也可能靠捐赠、收费或机构支持。</p><p><b>时间：</b>使用＋迁移、学习；服务由团队或管理员维护。</p><p><b>便利／稳定：</b>熟人是否加入影响便利；运营者和持续资金需要核查，稳定性未知。</p>`,
+    c: `<h3>C · 自己搭建</h3><p><b>钱：</b>Matrix 一键部署参考：4 GiB 云服务器 <b>24 美元／月</b>；域名、备份等另算，总额待定。</p><p><b>时间：</b>自己运营维护＋使用；实际维护时间待估。</p><p><b>便利／稳定：</b>需要安装与迁移，依赖云服务商、网络及维护者；不可保证。</p><p class="cite"><a href="https://docs.digitalocean.com/products/marketplace/catalog/matrix-synapse-backend/" target="_blank" rel="noopener">部署示例</a> · <a href="https://www.digitalocean.com/pricing/droplets" target="_blank" rel="noopener">2026-10-30 服务器报价</a>。适合本群的容量未测试。</p>`,
+    d: `<h3>D · 其他选择</h3><p>还有其他办法：例如保留多个沟通渠道，或使用群体已具备的服务。请补上自己的分支，以及钱、时间、便利、隐私或其他你在意的结果。</p>`
+  };
+  const buttons = $$('#groupChoice button');
+  function choose(b) { buttons.forEach(x=>x.setAttribute('aria-pressed',x===b)); $('#groupChoicePanel').innerHTML=descriptions[b.dataset.choice]; fit(); }
+  buttons.forEach(b=>b.onclick=()=>choose(b)); choose(buttons[0]);
 })();
 
 /* ---------------- evidence-backed identity and code trace ---------------- */
