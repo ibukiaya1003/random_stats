@@ -1052,16 +1052,15 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
         <text x="185" y="148" font-size="13" fill="var(--ink-2)">可能免费 · 使用与迁移时间 · 稳定性待查</text>
         <text x="185" y="216" font-size="16" font-weight="700" fill="var(--ink)">C · 自己搭建</text>
         <text x="185" y="237" font-size="13" fill="var(--ink-2)">服务器费起 · 使用＋维护时间 · 依赖服务商</text>
-        <text x="185" y="304" font-size="16" font-weight="700" fill="var(--ink)">D · 其他选择</text>
-        <text x="185" y="325" font-size="13" fill="var(--ink-2)">你还会考虑什么？自己补一条分支</text>
+        <text x="185" y="304" font-size="16" font-weight="700" fill="var(--ink)">其他选择</text>
       </svg></div>
       <p class="cite">□ 决策节点：选择一条路。这里比较取舍，不计算期望值或预测故障概率。</p>
     </div>
     <div class="sheet">
       <h3>沿每条路看看代价</h3>
-      <div class="seg-btns" id="groupChoice" role="group" aria-label="选择决策树分支"><button type="button" data-choice="a" aria-pressed="true">A 大平台</button><button type="button" data-choice="b" aria-pressed="false">B 独立服务</button><button type="button" data-choice="c" aria-pressed="false">C 自己搭建</button><button type="button" data-choice="d" aria-pressed="false">D 其他</button></div>
+      <div class="seg-btns" id="groupChoice" role="group" aria-label="选择决策树分支"><button type="button" data-choice="a" aria-pressed="true">A 大平台</button><button type="button" data-choice="b" aria-pressed="false">B 独立服务</button><button type="button" data-choice="c" aria-pressed="false">C 自己搭建</button></div>
       <div id="groupChoicePanel" aria-live="polite" style="margin-top:12px"></div>
-      <p class="cite">便利与稳定取决于群成员、所在地区和具体服务，页面是讨论时的判断，不是实测排名。服务器价格查询：2026-10-30。</p>
+      <p class="cite">便利与稳定取决于群成员、所在地区和具体服务，页面是讨论时的判断，不是实测排名。</p>
     </div>
   </div>
   <aside class="notes">
@@ -1626,8 +1625,7 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
   const descriptions = {
     a: `<h3>A · 继续用大平台</h3><p><b>钱：</b>免费方案可能直接付 0 元；广告、付费功能等依具体服务而异。</p><p><b>时间：</b>使用平台；基础维护通常由平台负责。</p><p><b>便利／稳定：</b>如果熟人都在，便利可能高；稳定性要看具体服务，不能保证。</p>`,
     b: `<h3>B · 独立服务／社区服务器</h3><p><b>钱：</b>可能直接付 0 元，也可能靠捐赠、收费或机构支持。</p><p><b>时间：</b>使用＋迁移、学习；服务由团队或管理员维护。</p><p><b>便利／稳定：</b>熟人是否加入影响便利；运营者和持续资金需要核查，稳定性未知。</p>`,
-    c: `<h3>C · 自己搭建</h3><p><b>钱：</b>Matrix 一键部署参考：4 GiB 云服务器 <b>24 美元／月</b>；域名、备份等另算，总额待定。</p><p><b>时间：</b>自己运营维护＋使用；实际维护时间待估。</p><p><b>便利／稳定：</b>需要安装与迁移，依赖云服务商、网络及维护者；不可保证。</p><p class="cite"><a href="https://docs.digitalocean.com/products/marketplace/catalog/matrix-synapse-backend/" target="_blank" rel="noopener">部署示例</a> · <a href="https://www.digitalocean.com/pricing/droplets" target="_blank" rel="noopener">2026-10-30 服务器报价</a>。适合本群的容量未测试。</p>`,
-    d: `<h3>D · 其他选择</h3><p>还有其他办法：例如保留多个沟通渠道，或使用群体已具备的服务。请补上自己的分支，以及钱、时间、便利、隐私或其他你在意的结果。</p>`
+    c: `<h3>C · 自己搭建</h3><p><b>Matrix 是什么？</b>一种开放的即时通信协议，可以用兼容的应用聊天，也可以选择或自行运营服务器。<a href="https://matrix.org/docs/technical/" target="_blank" rel="noopener">Matrix 官方介绍</a></p><p><b>钱：</b>Matrix 一键部署参考：4 GiB 云服务器 <b>24 美元／月</b>；域名、备份等另算，总额待定。</p><p><b>时间：</b>自己运营维护＋使用；实际维护时间待估。</p><p><b>便利／稳定：</b>需要安装与迁移，依赖云服务商、网络及维护者；不可保证。</p><p class="cite"><a href="https://docs.digitalocean.com/products/marketplace/catalog/matrix-synapse-backend/" target="_blank" rel="noopener">部署示例</a> · <a href="https://www.digitalocean.com/pricing/droplets" target="_blank" rel="noopener">2026-10-30 服务器报价</a>。适合本群的容量未测试。</p>`
   };
   const buttons = $$('#groupChoice button');
   function choose(b) { buttons.forEach(x=>x.setAttribute('aria-pressed',x===b)); $('#groupChoicePanel').innerHTML=descriptions[b.dataset.choice]; fit(); }
