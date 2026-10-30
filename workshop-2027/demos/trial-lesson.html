@@ -491,6 +491,11 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       </div>
       <div class="attrs" id="attrs"></div>
       <div class="row" style="margin-top:10px"><button class="btn" id="weldBtn">Weld 的例子：邮编 + 出生日期 + 性别 + 子女数</button><button class="btn" id="attrAll">全选 15 项</button><button class="btn" id="attrNone">清空</button></div>
+      <div class="muted" id="uniqFormula" aria-live="polite" style="margin-top:12px;overflow-wrap:anywhere">
+        <p id="uniqGrouping" style="margin:0"></p>
+        <p id="uniqEquation" style="margin:0"></p>
+        <p id="sameEquation" style="margin:0"></p>
+      </div>
       <div class="row" style="align-items:flex-end; gap:20px; margin-top:12px">
         <div><div class="big" id="uniqOut" style="font-size:56px">0%</div><div class="muted">在这 73,126 人里<br>独一无二的人</div></div>
         <div><div class="big" id="sameOut" style="font-size:56px; color:var(--ink-2)">73,126</div><div class="muted">平均每人有几个"一模一样"的人<br>（含自己）</div></div>
@@ -564,6 +569,12 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li><b>Weld 的例子</b>：按钮选中邮编、出生日期、性别、子女数，并切到完整出生日期模式，同时显示论文里关于 Weld 的四个数（77%、99.8%、79.4%、99.98%）。Weld 是公众人物，案例在论文里公开讨论；课上只讲方法，不讲病历内容。</li>
       <li>补充（论文图 3c）：有 3 辆车或没有车的人，比有 2 辆车的人更难认出；住在小镇的人更容易被认出。<b>和多数人不一样，本身就更容易被认出来。</b></li>
     </ul>
+    <h3>动态公式怎么讲</h3>
+    <p><b>先解释分组：</b>“按你勾选的属性，所有已选属性都相同的人放进同一组。多勾一项，原来的组就可能继续拆小。”</p>
+    <p><b>‘仅含 1 人的组数’是什么意思？</b>“就是只有一个人的组有多少个。每个这样的组都对应一个在样本里独一无二的人，所以单人组的组数，等于单人组里的人数。”因此，独一无二的比例＝单人组的人数 ÷ 总人数 × 100%。若当前显示约 78.0%，意思是样本里约 78% 的人找不到另一位所选属性全部相同的人；这个数随勾选变化，不是固定结论。</p>
+    <p><b>平均相似人数为什么要平方？</b>“因为我们是对每个人取平均，不是对每个组取平均。一组有 n 人，这 n 人每人的相似人数都是 n（含自己），这一组对总和的贡献就是 n × n＝n²。把各组贡献加起来，再除以总人数，就得到 Σ(每组人数²) ÷ 总人数。”平方来自逐人计数，不是在假设属性独立，也不是把概率相乘。</p>
+    <p><b>结果怎么读？</b>“若当前显示 1.53，从样本中等可能随机抽一个人，与他所选属性全部相同的人平均有 1.53 个，包含他自己；减去自己，平均还有 0.53 个同属性的人。”这是平均值，不表示某个人所在的组真的有小数个人。</p>
+    <p><b>最后提醒：</b>两个指标描述的是样本内的唯一与相似情况，不直接等于真实世界的识别成功率，也不同于广东页的 1/候选人数。78.0% 和 1.53 是用户当时界面的读数，讲课时以当前勾选结果为准；不从四舍五入后的百分比反推精确人数。</p>
     <h3>证据链接</h3>
     <ul class="links">
       <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6650473" target="_blank" rel="noopener">Rocher, Hendrickx &amp; de Montjoye 2019, Estimating the success of re-identifications in incomplete datasets using generative models, Nature Communications</a></li>
@@ -785,88 +796,15 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 7 ============================================================ -->
-<section class="slide gutter" data-part="2" data-t="19-25" data-title="标准侦探">
-  <div class="formhead"><b>要点二 · 没被记录</b><span>活动 · 分组讨论室 · 6 分钟</span></div>
-  <h2>标准侦探：一条"正常线"，让一半女性的心梗没被诊断</h2>
-  <div class="grid2">
-    <div class="matcard" id="matCard">
-      <ul>
-        <li>医院判断是不是心梗，要验血里的<b>肌钙蛋白</b>：心肌受损时它会升高。超过一条"正常上限"，才算心梗。</li>
-        <li>这条线是这样定的：找一批健康人验血，取最高的 1%（第 99 百分位）。<b>男女放在一起算，只得到一条线。</b></li>
-        <li>分开算：健康男性的上限是 34，女性是 16（ng/L），差了一倍。</li>
-        <li>英国爱丁堡 1,126 名疑似心梗的急诊病人（46% 是女性）：按医院原来用的单一线，11% 的女性被诊断为心梗；改用女性自己的线，变成 22%。男性只从 19% 变成 21%。</li>
-        <li>一年后：那些肌钙蛋白在两条线之间、原来没被诊断的女性，<b>25%</b> 死亡或再次心梗，和已被诊断的女性（24%）一样高。</li>
-      </ul>
-      <h3>任务</h3>
-      <ol>
-        <li>这里出现了哪一种（或哪几种）"看不见"？</li>
-        <li>那条"正常线"是从谁身上算出来的？在收集任何新数字之前，你会先去问谁？</li>
-        <li>如果改用分性别的线，问题就解决了吗？还可能缺什么？</li>
-      </ol>
-      <button class="btn" data-copy="matCard">复制材料卡到聊天区</button>
-    </div>
-    <div class="sheet">
-      <h3>换一条线，看看谁"出现"了</h3>
-      <div class="denoms" id="tropBtns" role="group" aria-label="选择诊断阈值">
-        <button type="button" data-k="0">医院原来的：一条线 50</button>
-        <button type="button" data-k="1">新检测：一条线 26</button>
-        <button type="button" data-k="2">分性别：女 16 · 男 34</button>
-      </div>
-      <svg id="tropChart" viewBox="0 0 460 250" role="img" aria-label="不同阈值下女性和男性被诊断为心梗的比例，以及女性一年内死亡或再次心梗的比例"></svg>
-      <p class="cite">Shah et al., <i>BMJ</i> 2015。上：被诊断为 1 型心梗的比例。下：女性按肌钙蛋白分段，一年内死亡或再次心梗的比例。</p>
-      <h3 style="margin-top:12px">分组倒计时</h3>
-      <div class="row">
-        <div class="countdown" id="cd">6:00</div>
-        <button class="btn primary" id="cdStart">开始</button>
-        <button class="btn" id="cdReset">重置</button>
-        <span class="muted" id="cdMsg">剩 1 分钟时变红，提醒收尾。</span>
-      </div>
-    </div>
-  </div>
-  <aside class="notes">
-    <h3>19–25 分钟 · 分组</h3>
-    <ul>
-      <li>先花 1 分钟讲右图：依次点三个按钮。<b>病人没变，只是线变了</b>，女性心梗诊断从 11% 变成 22%。再看下面的灰条：被旧线判为"正常"的女性，一年风险和确诊的女性一样高。</li>
-      <li>然后复制材料卡进聊天区，开分组讨论室（团队只有 2 人时就是 1 组），6 分钟、提前 1 分钟提醒。</li>
-      <li>没有主持人权限：请一位团队成员开房间。屏幕共享出问题：材料卡已经在聊天区，口头讲。</li>
-      <li><b>这叫什么</b>：严格说这不是"缺失数据"，而是<b>标准本身的来源有偏</b>。医学和统计里有几个对应的说法：
-        <ul>
-          <li><b>参考区间 / 参考人群</b>（reference interval / reference population）：一个"正常范围"是从哪批健康人身上算出来的。检验医学的通行做法是：如果男女、年龄组的分布明显不同，就要<b>分组</b>给参考区间。肌钙蛋白的问题就是没有分组。</li>
-          <li><b>Yentl 综合征</b>（Healy, <i>NEJM</i> 1991）：女性的心脏病只有在"像男性的心脏病"时才被认真对待。名字来自辛格的小说，女主角要扮成男人才能去读书。</li>
-          <li>统计术语：<b>误分类</b>（misclassification），而且是<b>差异性误分类</b>（differential）：错误在不同群体里不一样多。放进今天的三种"看不见"，它属于 B"被计错了类别"。</li>
-        </ul>
-        课上一句话版本："<b>一条用了很久的线，不一定是从所有人身上算出来的。</b>"</li>
-      <li><b>为什么换掉"妊娠勾选框"</b>：心梗这个例子学员更熟悉、能直接看到数字变化，而且接得上上一页小测里的 VIRGO（女性 53% vs 男性 37% 被告知"不是心脏问题"）和后面的"阈值由谁决定"。</li>
-      <li><b>数字出处（已对照原文）</b>：
-        <ul>
-          <li>34 / 16 ng/L：厂商用 4,590 份健康人样本定的第 99 百分位，合算是 26 ng/L，分开算男 34、女 16（Shah 2015，方法部分）。</li>
-          <li>被诊断为 1 型心梗的比例：旧检测单一阈值 50 → 女 11%、男 19%；高敏检测单一阈值 26 → 女 16%（80 人）、男 23%（142 人）；分性别阈值 → 女 22%（111 人）、男 21%（131 人）。</li>
-          <li>12 个月死亡或再梗（女性）：≤16 ng/L 4%；17–49 ng/L（原来未诊断）25%；≥50 ng/L 24%。用 26 作分界时：17–26 ng/L 23%，27–49 ng/L 25%。</li>
-        </ul></li>
-      <li><b>讲的时候注意</b>：这是单中心观察性研究，说明的是"被重新分类的人风险高"，不能直接说"改线能救命"。这正是第 3 题的伏笔（见下一页 Lee 2019）。</li>
-      <li>"一半女性的心梗消失了"指的是：分性别阈值下确诊的 22% 里，有一半（11 个百分点）在原来的方法下没有被诊断。讲的时候说清楚是这个研究里的病人。</li>
-    </ul>
-    <h3>证据链接</h3>
-    <ul class="links">
-      <li><a href="https://doi.org/10.1136/bmj.g7873" target="_blank" rel="noopener">Shah et al. 2015, High sensitivity cardiac troponin and the under-diagnosis of myocardial infarction in women, BMJ 350:g7873</a>（<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4301191/" target="_blank" rel="noopener">PMC 全文</a>）</li>
-      <li><a href="https://doi.org/10.1161/CIRCULATIONAHA.117.031650" target="_blank" rel="noopener">Lichtman et al. 2018, VIRGO 研究, Circulation 137:781</a>（<a href="https://news.yale.edu/2018/02/19/heart-attack-symptoms-often-misinterpreted-younger-women" target="_blank" rel="noopener">耶鲁新闻稿：53% vs 37%</a>）</li>
-      <li><a href="https://doi.org/10.1016/j.jacc.2019.07.082" target="_blank" rel="noopener">Lee et al. 2019, Sex-specific thresholds of high-sensitivity troponin, JACC 74:2032（下一页参考答案）</a></li>
-    </ul>
-  </aside>
-</section>
+
 
 <!-- 8 ============================================================ -->
-<section class="slide gutter" data-part="2" data-t="25-28" data-title="汇报与小结">
-  <div class="formhead"><b>要点二 · 没被记录</b><span>汇报 · 每组 1 分钟</span></div>
-  <h2>汇报：你们找到了什么？</h2>
-  <div class="grid3">
-    <div class="sheet"><h3>1 · 哪种看不见</h3><button class="btn" data-reveal="r1">显示参考答案</button><div class="reveal-box" id="r1">主要是 <b>B 被计错了类别</b>：女性就在急诊室里、也验了血，却被一条按混合人群定的线归为"正常"。往上游看还有 <b>A</b>：心脏病临床试验里女性偏少，急性冠脉综合征试验中位数每 1 位男性只有 0.34 位女性。往下游看还有 <b>C</b>：VIRGO 里 53% 的年轻女性被告知"不是心脏问题"。</div></div>
-    <div class="sheet"><h3>2 · 先问谁</h3><button class="btn" data-reveal="r2">显示参考答案</button><div class="reveal-box" id="r2">先问<b>定这条线的人</b>：检验科和试剂厂商，参考人群是谁、男女各多少、有没有分开算。再问<b>用这条线的人</b>：急诊医生看到一个 20 ng/L 的女性时会怎么判断。</div></div>
-    <div class="sheet"><h3>3 · 改了线就够了吗</h3><button class="btn" data-reveal="r3">显示参考答案</button><div class="reveal-box" id="r3">不够。苏格兰 10 家医院、48,282 名病人的试验：换成分性别的线后，新"出现"的女性是男性的 5 倍；但女性接受冠脉介入的只有 15%，男性 34%，一年结局没有改善。<b>被看见，不等于被当回事。</b>线降低也意味着更多检查，要权衡。</div></div>
-  </div>
+<section class="slide gutter" data-part="2" data-t="25-28" data-title="BMI 的线">
+  <div class="formhead"><b>要点二 · 没被记录</b><span>标准与分类</span></div>
+  <h2>一条标准线，是为谁画的？</h2>
   <div class="grid2" style="margin-top:18px">
     <div class="sheet">
-      <h3>同一类问题：BMI 的线是给谁画的？</h3>
+      <h3>BMI 的线是给谁画的？</h3>
       <ol class="bmi-hist">
         <li><b>1832</b> 比利时统计学家凯特勒用"体重 ÷ 身高²"描述"平均人"：一个<b>人口统计</b>工具，不是用来给个人看病的。</li>
         <li><b>1972</b> 生理学家基斯把它命名为 BMI。依据是 5 个国家 7,424 名<b>男性</b>的数据。</li>
@@ -881,28 +819,19 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     </div>
     <div class="sheet">
       <h3>小结两句</h3>
-      <p><b>1. 一条用了很久的线，不一定是从所有人身上算出来的。</b>肌钙蛋白的线男女合算，BMI 的线来自欧洲男性。先问：这条线是从谁身上算出来的？</p>
-      <p><b>2. 把人"算进来"只是第一步。</b>线改了，后面的判断和资源不一定跟上。</p>
+      <p><b>1. 一条用了很久的线，不一定是从所有人身上算出来的。</b>BMI 的相关研究和标准有各自的研究人群与用途。先问：这条线是从谁身上算出来的？</p>
+      <p><b>2. 把人"算进来"只是第一步。</b>不同标准和测量方式可能带来不同判断。</p>
     </div>
   </div>
   <aside class="notes">
-    <h3>25–28 分钟 · 汇报</h3>
+    <h3>标准与分类 · BMI</h3>
     <ul>
-      <li>每组 1 分钟。先听学员，再点"显示参考答案"。</li>
-      <li>第 1 题没有唯一答案。学员说"被误读"也对：重点是让他们说出<b>是在哪一步</b>看不见的（谁被纳入试验 → 线怎么定 → 医生怎么读）。</li>
-      <li>第 3 题的数字（已对照摘要）：High-STEACS 阶梯式整群随机试验，10 家医院，48,282 人（47% 女性）；分性别阈值使女性心肌损伤诊断增加 42%、男性 6%；新识别女性是男性的 5 倍；女性 vs 男性：冠脉血运重建 15% vs 34%，双抗 26% vs 43%，他汀 16% vs 26%；一年复发心梗或心血管死亡没有改善。作者说明：设计上不能判断这些治疗差距是否导致女性结局更差。</li>
-      <li>Jin 2020 的数字：2010–2017 年 ClinicalTrials.gov 上 740 项已完成的心血管试验，共 86 万人，女性 38.2%；急性冠脉综合征试验女:男中位数 0.34；冠心病、急性冠脉综合征、心衰等试验的"参与/患病比"为 0.48–0.78（0.8–1.2 才算代表性足够）。</li>
       <li><b>BMI（约 1 分钟）</b>：拖身高、体重，停在 170 cm、70 kg（BMI 24.2）：按世卫国际标准"正常"，按中国标准"超重"，按世卫亚洲行动点"风险升高"。<b>同一个人，换一条线就换一个类别。</b>再讲左边的来历：一个描述人群的统计量，用男性数据命名，后来变成给每个人下诊断的线，之后才陆续加了分人群的线和腰围。</li>
       <li>BMI 的说法边界：凯特勒的本意是描述人群（Eknoyan 2008）；基斯 1972 年的数据只有男性（论文摘要）。网上常说"基斯明确说 BMI 不适合个人诊断"，这句我没能在原文里核实到，课上不要这样引用。世卫 2004 年的专家组<b>没有</b>改国际标准，只是加了供各国参考的行动点（23、27.5、32.5、37.5）。</li>
-      <li>超时：汇报只请一组，跳过 BMI，小结只讲第一句。</li>
       <li>过渡到要点三："这一页里，一条线决定了谁算病人。接下来看：一个数字被直接拿来做决定时，会发生什么？"（后面的"阈值由谁决定"可以回扣这里。）</li>
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
-      <li><a href="https://doi.org/10.1016/j.jacc.2019.07.082" target="_blank" rel="noopener">Lee et al. 2019, JACC 74:2032（第 3 题）</a>（<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6876271/" target="_blank" rel="noopener">PMC 全文</a>）</li>
-      <li><a href="https://doi.org/10.1161/CIRCULATIONAHA.119.043594" target="_blank" rel="noopener">Jin et al. 2020, Women's participation in cardiovascular clinical trials 2010–2017, Circulation 141:540（第 1 题 A）</a></li>
-      <li><a href="https://doi.org/10.1161/CIRCULATIONAHA.117.031650" target="_blank" rel="noopener">Lichtman et al. 2018, VIRGO, Circulation（第 1 题 C）</a></li>
-      <li><a href="https://doi.org/10.1136/bmj.g7873" target="_blank" rel="noopener">Shah et al. 2015, BMJ（第 2 题：99 百分位怎么定）</a></li>
       <li><a href="https://doi.org/10.1093/ndt/gfm517" target="_blank" rel="noopener">Eknoyan 2008, Adolphe Quetelet (1796–1874): the average man and indices of obesity, Nephrol Dial Transplant 23:47（BMI 的人口统计本意）</a></li>
       <li><a href="https://doi.org/10.1093/ije/dyu058" target="_blank" rel="noopener">Keys et al. 1972, Indices of relative weight and obesity（IJE 2014 重刊；7,424 名男性、5 国）</a></li>
       <li><a href="https://doi.org/10.1016/S0140-6736(03)15268-3" target="_blank" rel="noopener">WHO Expert Consultation 2004, Appropriate body-mass index for Asian populations, Lancet 363:157（23 / 27.5）</a></li>
@@ -1587,11 +1516,18 @@ buildSort();
   function calc() {
     const m = boxes.reduce((acc, b, i) => acc | (b.checked ? 1 << i : 0), 0);
     const pc = T[mode].u[m] / 100, avg = m ? T[mode].a[m] : N;
-    $("#uniqOut").textContent = (pc >= 99.95 && pc < 100 ? pc.toFixed(2) : pc.toFixed(1)) + "%";
+    const uniqueText = (pc >= 99.95 && pc < 100 ? pc.toFixed(2) : pc.toFixed(1)) + "%";
+    const averageText = avg >= 10 ? fmt(avg) : avg.toFixed(2);
+    const selected = ATTR.flatMap(([name], i) => boxes[i].checked ? [i === 1 ? (mode === "age" ? "年龄" : "出生日期（模拟月日）") : name] : []);
+    $("#uniqGrouping").textContent = selected.length ? `按「${selected.join(" ＋ ")}」分组，所选属性全部相同的人归为同组。` : "未选属性：所有 73,126 人归为同一组。";
+    $("#uniqEquation").textContent = `独一无二的比例＝${m ? "仅含 1 人的组数" : "0"} ÷ 73,126 × 100% ≈ ${uniqueText}`;
+    $("#sameEquation").textContent = `平均相似人数（含自己）＝${m ? "Σ(每组人数²)" : "73,126 × 73,126"} ÷ 73,126 ≈ ${averageText}`;
+    $("#uniqOut").textContent = uniqueText;
     $("#uniqFill").style.width = pc + "%";
-    $("#sameOut").textContent = avg >= 10 ? fmt(avg) : avg.toFixed(2);
+    $("#sameOut").textContent = averageText;
     const weld = m === 0b1111;
     $("#weldBox").hidden = !weld;
+    fit();
   }
   function setMode(m) { mode = m; $$("#dobMode button").forEach(b => b.setAttribute("aria-pressed", b.dataset.m === m)); lbl(); calc(); }
   $$("#dobMode button").forEach(b => b.onclick = () => setMode(b.dataset.m));
@@ -1700,41 +1636,6 @@ QUIZ.forEach(([q, ans, why]) => {
   });
   $("#quiz").appendChild(c);
 });
-
-/* ---------------- troponin thresholds (Shah et al. 2015) ---------------- */
-(() => {
-  const svg = $("#tropChart"), btns = $$("#tropBtns button");
-  const DX = [{ f: 11, m: 19 }, { f: 16, m: 23 }, { f: 22, m: 21 }];
-  const LINE = [50, 26, 16]; // the line women are judged against
-  const X0 = 110, XW = 320, sx = v => X0 + v / 30 * XW;
-  const g = el("g", {}, svg);
-  function draw(k) {
-    g.textContent = "";
-    el("text", { x: 0, y: 14, class: "val" }, g, "被诊断为心梗");
-    [["女性", "f", "var(--dec)", 28], ["男性", "m", "var(--ink-3)", 58]].forEach(([lab, key, c, y]) => {
-      el("text", { x: X0 - 8, y: y + 15, "text-anchor": "end", "font-size": 14, "font-weight": 600 }, g, lab);
-      el("rect", { x: X0, y, width: XW, height: 22, fill: "var(--field)", rx: 2 }, g);
-      el("rect", { x: X0, y, width: sx(DX[k][key]) - X0, height: 22, fill: c, rx: 2, style: "transition: width .3s" }, g);
-      el("text", { x: sx(DX[k][key]) + 6, y: y + 16, "font-size": 14, "font-weight": 700, style: `fill: ${c}` }, g, DX[k][key] + "%");
-    });
-    // women's one-year risk by troponin band
-    el("text", { x: 0, y: 112, class: "val" }, g, "女性一年内死亡或再次心梗（按肌钙蛋白分段）");
-    const bands = k === 1 ? [["≤16", 4], ["17–26", 23], ["27–49", 25], ["≥50", 24]] : [["≤16", 4], ["17–49", 25], ["≥50", 24]];
-    const lo = { "≤16": 0, "17–26": 17, "17–49": 17, "27–49": 27, "≥50": 50 };
-    const bw = (460 - X0) / bands.length;
-    bands.forEach(([lab, r], i) => {
-      const x = X0 + i * bw, h = r / 25 * 80, diag = lo[lab] >= LINE[k];
-      el("rect", { x: x + 6, y: 210 - h, width: bw - 12, height: h, fill: diag ? "var(--dec)" : "var(--gap)", opacity: diag ? .85 : .6, rx: 2 }, g);
-      el("text", { x: x + bw / 2, y: 204 - h, "text-anchor": "middle", "font-size": 14, "font-weight": 700 }, g, r + "%");
-      el("text", { x: x + bw / 2, y: 226, "text-anchor": "middle", class: "val" }, g, lab + " ng/L");
-      el("text", { x: x + bw / 2, y: 243, "text-anchor": "middle", class: "val", style: `fill: ${diag ? "var(--dec)" : "var(--ink-3)"}` }, g, diag ? "算心梗" : "算正常");
-    });
-    el("text", { x: 0, y: 170, class: "val" }, g, "红 = 按这条线");
-    el("text", { x: 0, y: 186, class: "val" }, g, "会被诊断");
-  }
-  btns.forEach((b, k) => b.onclick = () => { btns.forEach(x => x.setAttribute("aria-pressed", x === b)); draw(k); });
-  btns[0].click();
-})();
 
 /* ---------------- BMI: same person, three sets of cut-offs ---------------- */
 (() => {
@@ -1988,10 +1889,10 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
   $$('#eduSubjectBtns button').forEach(b=>b.onclick=()=>{eduSubject=b.dataset.subject;drawEducation();fit();});drawEducation();
   let identityStep=0, identityGender='female';
   const drawIdentity=()=>{
-    const denominator=127800000, rate=+$('#gdNetRate').value/100, net=denominator*rate;
+    const gdPopulation=127800000, rate=+$('#gdNetRate').value/100, net=gdPopulation*rate;
     const female=identityGender==='female', sex=female?'女性':'男性', sexN=female?4458:3549;
     const count=n=>Math.round(n).toLocaleString('zh-CN');
-    const pct=n=>(n/denominator*100).toFixed(n===net?1:5)+'%';
+    const pct=n=>(n/gdPopulation*100).toFixed(n===net?1:5)+'%';
     const stages=[
       {n:net,post:'IP 属地：广东',label:'广东 IP（在粤网民规模代理）',basis:'借全国上网普及率近似广东普及率；不是某个平台的广东 IP 实测人数。'},
       {n:8007,post:'广东 IP；211 华师；2025 级本科新生',label:'＋211 华师 · 本科新生',basis:'供图 8,007 人。暂按本届新生均常住广东、日常在粤上网近似；学校名和新生届别已明确。'},
@@ -2002,7 +1903,7 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
     $('#identityPost').textContent=d.post;
     $('#identityN').textContent='≈'+pct(d.n);
     $('#identityUnit').textContent=d.label+' · 占广东常住人口的估算比例';
-    $('#identityCalc').textContent=`${count(d.n)} ÷ ${count(denominator)} × 100% ≈ ${pct(d.n)}`;
+    $('#identityCalc').textContent=`${count(d.n)} ÷ ${count(gdPopulation)} × 100% ≈ ${pct(d.n)}`;
     $('#identityBasis').textContent=d.basis;
     $('#identityBars').innerHTML='<table style="width:100%;font-size:14px"><thead><tr><th style="text-align:left">累计线索</th><th>人数 / 代理</th><th>占广东人口</th></tr></thead><tbody>'+stages.map((v,i)=>`<tr style="opacity:${i<=identityStep?1:.45};font-weight:${i===identityStep?700:400}"><td>${i+1} · ${v.label}</td><td class="num">${count(v.n)}</td><td class="num">≈${pct(v.n)}</td></tr>`).join('')+'</tbody></table>';
     $$('#identitySteps button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.i===identityStep));
