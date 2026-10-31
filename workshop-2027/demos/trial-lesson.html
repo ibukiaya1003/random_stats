@@ -67,6 +67,20 @@ button { cursor: pointer; }
 .x-map-detail h3 { margin:0 0 4px; } .x-map-detail p { margin:0 0 5px; max-width:none; }
 .x-map-detail button { float:right; }
 .x-map-detail pre { white-space:pre-wrap; margin:5px 0 8px; padding:9px 12px; background:var(--field); border-radius:4px; font:13px/1.45 var(--f-mono); overflow-wrap:anywhere; }
+
+/* Pew: one 100% tweet-share bar per study */
+.pew-chart { border-top:2px solid var(--ink); border-bottom:1px solid var(--rule); padding:8px 0; }
+.pew-chart h3 { margin:0 0 3px; }
+.pew-chart-sub { font-size:12px; color:var(--ink-2); margin:0 0 6px; }
+.pew-study { border-top:1px solid var(--rule); padding:6px 0; }
+.pew-study-top { display:flex; justify-content:space-between; flex-wrap:wrap; gap:3px 8px; font-size:12px; line-height:1.3; }
+.pew-study-top a { font-weight:700; } .pew-study-top .pew-high { color:#a95c00; font-weight:700; }
+.pew-study-bar { display:flex; width:100%; height:23px; margin:4px 0 2px; }
+.pew-study-main { background:#e79a36; color:#172238; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; }
+.pew-study-rest { background:#0794c1; border-left:2px solid var(--sheet); }
+.pew-study-foot { display:flex; justify-content:space-between; gap:6px; font-size:11px; line-height:1.35; color:var(--ink-2); }
+.pew-study-foot b { color:#08789c; white-space:nowrap; }
+.pew-chart-foot { font-size:12px; line-height:1.4; color:var(--ink-2); margin-top:8px; }
 /* ---------- top bar ---------- */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--sheet); border-bottom: 1px solid var(--rule); }
 .top-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding-block: 8px; }
@@ -77,7 +91,8 @@ button { cursor: pointer; }
 .steps3 span.on[data-p="1"] { background: var(--rec); }
 .steps3 span.on[data-p="2"] { background: var(--miss); }
 .steps3 span.on[data-p="3"] { background: var(--dec); }
-.steps3 span.on[data-p="0"], .steps3 span.on[data-p="4"], .steps3 span.on[data-p="5"] { background: var(--ink); }
+.steps3 span.on[data-p="4"] { background: var(--ok); }
+.steps3 span.on[data-p="0"], .steps3 span.on[data-p="5"] { background: var(--ink); }
 .tools { margin-left: auto; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .btn { border: 1px solid var(--rule); background: var(--sheet); padding: 4px 10px; border-radius: 4px; font-size: 14px; line-height: 1.4; }
 .btn:hover { border-color: var(--ink-3); }
@@ -255,13 +270,6 @@ svg .val { fill: var(--ink-2); font-size: 12px; font-family: var(--f-mono); }
 .approve { margin: 0 0 4px; padding-left: 20px; display: grid; gap: 4px; font-size: 15px; }
 .qlist li::before { content: counter(q); font-family: var(--f-mono); font-weight: 600; color: var(--dec); font-size: 22px; }
 
-/* ---------- x ranking ---------- */
-.rank { display: grid; gap: 6px; position: relative; }
-.post { display: grid; grid-template-columns: 30px minmax(0, 1fr) 84px; gap: 10px; align-items: center; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 12px; transition: transform .35s ease; }
-.post .pos { font-family: var(--f-mono); font-weight: 600; color: var(--ink-3); }
-.post .score { font-family: var(--f-mono); text-align: right; font-variant-numeric: tabular-nums; }
-.post .score.neg { color: var(--dec); }
-.post .meta { font-size: 12px; color: var(--ink-3); }
 .evi { min-width: 760px; }
 .evi td:first-child { white-space: nowrap; }
 .evi tr.hot td { background: var(--hl); }
@@ -336,8 +344,8 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 <header class="top">
   <div class="top-row gutter">
     <span class="brand">一个人怎样变成一个数字</span>
-    <div class="steps3" id="steps3" aria-label="三道工序">
-      <span data-p="1">① 被记录</span><span data-p="2">② 没被记录</span><span data-p="3">③ 被用来做决定</span>
+    <div class="steps3" id="steps3" aria-label="四道工序">
+      <span data-p="1">① 被记录</span><span data-p="2">② 没被记录</span><span data-p="3">③ 被用来做决定</span><span data-p="4">④ 被看见</span>
     </div>
     <div class="tools">
       <button class="btn" id="timerBtn" title="开始 / 暂停计时（T）"><span class="clock" id="clock">00:00</span> <span id="timerState">开始计时</span></button>
@@ -1032,7 +1040,65 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   </aside>
 </section>
 
-<section class="slide gutter" data-part="3" data-t="+" data-title="X 推荐架构：从候选到信息流">
+<section class="slide gutter" data-part="4" data-t="+" data-title="工序四：谁发声，谁被看见？">
+  <div class="formhead"><b>工序四 · 被看见</b><span>Pew Research Center · 美国成年 Twitter 用户</span></div>
+  <h2>少数人生产了大量推文，他们也占据了同样比例的曝光吗？</h2>
+  <p class="muted">全球规模参考：<b>约 5.5 亿月活跃用户</b>，X 与 Grok 合并估算，截至 2026 年 3 月 31 日；<a href="https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm" target="_blank" rel="noopener">SpaceX 2026 年 S-1 申报文件</a>。不是单独的 X 用户数，也不能作为下方 Pew 美国成年 Twitter 样本的分母。</p>
+  <div class="grid2" style="--cols:minmax(0,1.35fr) minmax(0,1fr)">
+    <div class="sheet">
+      <div class="pew-chart">
+        <h3>四次研究：谁产生了多少推文？</h3>
+        <p class="pew-chart-sub">每条满格代表该研究中美国成年用户产生的推文总量；按发帖数量划分用户。</p>
+        <div class="pew-study" role="group" aria-label="2019 年，发帖最多的前 10% 用户产生约 80% 的推文，其余 90% 约产生 20%。">
+          <div class="pew-study-top"><a href="https://www.pewresearch.org/internet/2019/04/24/sizing-up-twitter-users/" target="_blank" rel="noopener">2019 · Pew 原报告</a><span class="pew-high">前 10% 用户</span><span>其余 90%</span></div>
+          <div class="pew-study-bar"><div class="pew-study-main" style="width:80%">约 80%</div><div class="pew-study-rest" style="width:20%"></div></div>
+          <div class="pew-study-foot"><span>样本：2,791 名有效账号受访者</span><b>其余约 20%*</b></div>
+        </div>
+        <div class="pew-study" role="group" aria-label="2020 年，发帖最多的前 10% 用户产生约 92% 的推文，其余 90% 约产生 8%。">
+          <div class="pew-study-top"><a href="https://www.pewresearch.org/politics/2020/10/15/differences-in-how-democrats-and-republicans-behave-on-twitter/" target="_blank" rel="noopener">2020 · Pew 原报告</a><span class="pew-high">前 10% 用户</span><span>其余 90%</span></div>
+          <div class="pew-study-bar"><div class="pew-study-main" style="width:92%">约 92%</div><div class="pew-study-rest" style="width:8%"></div></div>
+          <div class="pew-study-foot"><span>样本：3,518 名有效公开账号受访者</span><b>其余约 8%*</b></div>
+        </div>
+        <div class="pew-study" role="group" aria-label="2021 年，发帖最多的前 25% 用户产生约 97% 的推文，其余 75% 约产生 3%。">
+          <div class="pew-study-top"><a href="https://www.pewresearch.org/internet/2021/11/15/2-comparing-highly-active-and-less-active-tweeters/" target="_blank" rel="noopener">2021 · Pew 原报告</a><span class="pew-high">前 25% 用户</span><span>其余 75%</span></div>
+          <div class="pew-study-bar"><div class="pew-study-main" style="width:97%">约 97%</div><div class="pew-study-rest" style="width:3%"></div></div>
+          <div class="pew-study-foot"><span>行为观察：917 个公开账号；调查中 1,026 个有效账号</span><b>其余约 3%*</b></div>
+        </div>
+        <div class="pew-study" role="group" aria-label="2023 年，发帖最多的前 20% 用户产生约 98% 的推文，其余 80% 约产生 2%。">
+          <div class="pew-study-top"><a href="https://www.pewresearch.org/short-reads/2023/05/17/how-us-adults-on-twitter-use-the-site-in-the-elon-musk-era/" target="_blank" rel="noopener">2023 · Pew 原报告</a><span class="pew-high">前 20% 用户</span><span>其余 80%</span></div>
+          <div class="pew-study-bar"><div class="pew-study-main" style="width:98%">约 98%</div><div class="pew-study-rest" style="width:2%"></div></div>
+          <div class="pew-study-foot"><span>调查：1,002 个有效活跃账号；全观察期 639 个公开发帖账号</span><b>其余约 2%*</b></div>
+        </div>
+      </div>
+      <p class="pew-chart-foot">* 其余用户的比例按 100% 减报告中四舍五入的百分比推算。2019 账号汇总含公开与私密账号；2020、2021、2023 发帖分析使用公开账号。2021、2023 包含原创、转推、引用和回复；样本、时间与分组不同，不应直接比较为时间趋势。<a href="https://www.pewresearch.org/internet/2021/11/15/methodology-186-2/" target="_blank" rel="noopener">2021 年方法</a>；各年细节见讲师备注。</p>
+    </div>
+    <div class="sheet">
+      <h3>从发声到看见，有几层？</h3>
+      <p>谁在平台上？<br>↓<br><b style="color:var(--ok)">谁发了内容？ ← Pew 研究这一层</b><br>↓<br>哪些内容被传播？<br>↓<br>具体的人看到了什么？</p>
+      <div class="weld"><b>发帖量 ≠ 曝光量。</b>这几项结果不能告诉我们帖子在时间线上获得多少曝光，也不能直接证明高频发帖者代表多数人的观点。</div>
+      <p class="muted" style="margin-top:10px">需要什么证据？曝光日志、信息流观察或合适的研究设计。下一页看推荐系统的哪些环节可能影响内容被看见。</p>
+    </div>
+  </div>
+  <aside class="notes"><h3>这些是抽样调查吗？</h3><p>是：四项研究都从调查样本中选取愿意提供 Twitter 账号的美国成年人，再把问卷与账号行为数据相连；部分分析使用公开账号的实际推文。账号行为不是只靠受访者回忆，但研究对象仍是经过筛选的样本，并非美国或全球 Twitter 账号的普查。2019 和 2023 报告明确介绍了加权；不要把样本中的推文总量当作全平台总量。</p><h3>讲述顺序</h3><p>先问“看到很多帖子，能否推断大多数人都这样想？”再展示各项研究，区分谁在平台上、谁发帖、内容如何分发、谁实际看到。Pew 的结果回答发帖生产的集中程度，不提供这些帖子的曝光份额或观点代表性。</p><h3>2019：样本与收集方法（一手已核验）</h3>
+<p><b>样本：</b>2018 年 11 月 21 日至 12 月 17 日，Ipsos 从美国成年人的 KnowledgePanel 在线调查样本中筛选 Twitter 用户；4,829 人回应，3,649 人确认使用 Twitter，3,293 人同意提供账号并完成问卷。剔除无效或不属于目标个人用户的账号后，最终有 <b>2,791 人</b>。这是经过筛选与加权的调查样本，不是全球 Twitter 用户普查。<a href="https://www.pewresearch.org/internet/2019/04/24/sizing-up-twitter-users-methodology/">Pew 2019 方法</a></p>
+<p><b>收集：</b>参与者同意研究者访问其账号，并将问卷回答与 Twitter 账号行为信息相连；Twitter API 提供公开和私密账号的汇总统计。研究者将样本加权，使其与 Pew 2018 年 11 月的美国 Twitter 用户调查基准相匹配。<a href="https://www.pewresearch.org/internet/2019/04/24/sizing-up-twitter-users/">Pew 2019 报告：调查与账号匹配</a></p>
+<p><b>报告结果：</b>最活跃 10% 用户产生约 80% 的美国成年用户推文；总体用户的每月发帖中位数为 2 条，前 10% 用户内部的中位数为每月 138 条。</p>
+<h3>2020：样本与收集方法（一手已核验）</h3>
+<p><b>样本：</b>Pew 使用两项美国成年人调查，让受访者自愿提供 Twitter 账号；去除无效账号和私密账号后，得到 <b>3,518 名</b>拥有有效公开账号、可将 Twitter 活动与问卷回答匹配的美国成年人。<a href="https://www.pewresearch.org/politics/2020/10/15/differences-in-how-democrats-and-republicans-behave-on-twitter/">Pew 2020 报告：How we did this</a></p>
+<p><b>收集：</b>研究将公开账号的 Twitter 活动与受访者调查资料相连，研究期约 10 个月；报告另用美国成年人的独立调查作总体比较。方法附页本次访问超时，因此不在此补写未直接核验的取数接口或更细筛选步骤。<a href="https://www.pewresearch.org/politics/2020/10/15/methodology-232/">Pew 2020 方法附页（本次未能打开）</a></p>
+<p><b>报告结果：</b>估计研究期内最活跃 10% 产生 92% 的美国成年用户推文，用户每月发帖中位数为 1 条。</p>
+<h3>2021：样本与收集方法（一手已核验）</h3>
+<p><b>样本与收集：</b>2021 年 5 月 17–31 日的调查有 2,548 名美国成年 Twitter 用户完成；其中 1,026 名提供有效 Twitter 账号，研究者通过 Twitter API 获取行为信息；其中 <b>917 个公开账号</b>可供观察 2021 年 6 月 12 日至 9 月 12 日的推文内容和互动。公开账号这段观察期内，按发帖量排序前 25% 的用户产生 97% 的推文，包含原创、回复、引用和转推。<a href="https://www.pewresearch.org/internet/2021/11/15/2-comparing-highly-active-and-less-active-tweeters/">Pew 2021，Comparing highly active and less active tweeters</a></p>
+<p><b>推算：</b>在相同用户及推文总体内，其余 75% 的推文占比 = 100% − 97% ≈ 3%；由于 97% 是报告呈现的整数，3% 是近似补数。该报告这一段没有报告“前 10% 产生 80%”；课件中的 10% / 80% 对应上面的 2019 研究，不能归给 2021。</p>
+<h3>2023：样本与收集方法（一手已核验）</h3>
+<p><b>样本：</b>Pew 在 2022 年 12 月 12–18 日的 American Trends Panel 第 119 轮中，选取自称使用 Twitter 且同意提供账号的美国成年受访者；排除停用、无效及机构、产品或国际实体账号，得到 <b>1,002 个有效活跃账号</b>，并据调查中的美国 Twitter 用户进行加权。此数字是调查账号样本，不等于公开发帖样本。<a href="https://www.pewresearch.org/short-reads/2023/05/17/how-us-adults-on-twitter-use-the-site-in-the-elon-musk-era/">Pew 2023 报告：How we did this</a></p>
+<p><b>收集：</b>发帖分析使用研究期间设置为公开的账号，以 Twitter API 收集 2022 年 1 月 1 日至 2023 年 4 月 10 日的推文，包括原创、回复、引用和转推；在整个收集窗口内，共有 <b>639 个至少发过一次帖的公开账号</b>，收集到 <b>620,116 条</b>。这两个数覆盖整个窗口，不能误称仅是收购后的样本与推文数。</p>
+<p><b>报告结果：</b>收购后，最活跃的 20% 美国成年用户产生该群体约 98% 的推文。</p>
+<h3>SpaceX 月活口径（一手公司披露已核验）</h3><p><a href="https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm">SpaceX S-1 申报文件</a>称，截至 2026 年 3 月 31 日，Grok 和 X 合并约 5.5 亿月活跃用户。MAU 定义为截至统计日的 30 天内，通过网页或移动应用至少一次与 Grok 或 X 互动的注册用户；公司按登录流量尝试对跨平台用户去重，并说明可能无法消除全部重复，因此是估算值。这是公司在 SEC 文件中的运营指标披露，本页未核实它是否经独立审计。全球合并 MAU 和 Pew 的美国成年 Twitter 用户研究属于不同总体与时间，不能相除或套用比例。</p>
+<h3>研究边界</h3><p>四份是一手研究报告，不是全球普查。它们的分组、样本及测量方式不同；20%/98% 与 10%/80% 不能直接比较成集中度变化。发帖量不等于获得的曝光，也不自动代表其他人的态度。</p></aside>
+</section>
+
+<section class="slide gutter" data-part="4" data-t="+" data-title="X 推荐架构：从候选到信息流">
   <div class="formhead"><b>平台推荐 · 1 / 5</b><span>一张推荐系统地图</span></div>
   <h2>你的 For You 由什么决定？</h2>
   <div class="x-map" role="group" aria-label="推荐流程图：用户上下文分流到 Thunder、Phoenix 和 SimClusters，汇合后依次进入特征补充与过滤、行为预测、评分和重排、可见性判断，最后与其他内容混排形成信息流。">
@@ -1072,7 +1138,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 15 ============================================================ -->
-<section class="slide gutter" data-part="3" data-t="+" data-title="X：行为数据结构与分发记录">
+<section class="slide gutter" data-part="4" data-t="+" data-title="X：行为数据结构与分发记录">
   <div class="formhead"><b>平台推荐 · 数据基础</b><span>X 开源代码</span></div>
   <h2>X 的源码，实际定义了哪些行为字段？</h2>
   <p class="muted">政府决策之后，看平台如何利用行为数据作预测与分发：迭代频率、速度及其后果需要哪些实际运行数据才能比较？</p>
@@ -1104,7 +1170,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 <aside class="notes"><h3>从实际数据结构开始</h3><p>这页替换了之前虚构的JSON日志。所有字段名、结构和写入调用都来自固定commit。存储证据只对应分发历史，不把它冒充所有行为事件的存储实现。触发受is_prod和EnableUrtMigrationComponents约束。</p><p>完整台账：data/trial-evidence-2026-10-29.md。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">源码原文节选与字段：<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1519" data-x-end="1544">recsys.proto L1519–1544</a>；<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="443" data-x-end="474">动作枚举 L443–474</a>。</p><p class="cite"><a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1374" data-x-end="1400">UserActionMeta L1374–1400</a>。这是数据结构定义，不能推出所有字段每次都采集、填充或保存。</p><p class="cite"><a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="31" data-x-end="77">触发条件与写入调用 L31–77</a>；<a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="145" data-x-end="180">条目构造 L145–180</a>。</p><p class="cite"><a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="154" data-x-end="170">存储实现 L154–170</a>；<a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="37" data-x-end="44">用户 / 平台键 L37–44</a>。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p></aside>
 </section>
 
-<section class="slide gutter" data-part="3" data-t="+" data-title="X：从行为序列到推荐反馈">
+<section class="slide gutter" data-part="4" data-t="+" data-title="X：从行为序列到推荐反馈">
   <div class="formhead"><b>平台推荐 · 2 / 5</b><span>点击环节，查看对应源码</span></div>
   <h2>历史怎样进入预测，预测怎样变成顺序？</h2>
   <div class="seg-btns" id="xTraceSteps" role="group" aria-label="X 源码链路"><button type="button" data-trace="0" aria-pressed="true">1 行为序列</button><button type="button" data-trace="1" aria-pressed="false">2 特征编码</button><button type="button" data-trace="2" aria-pressed="false">3 预测</button><button type="button" data-trace="3" aria-pressed="false">4 加权与排序</button><button type="button" data-trace="4" aria-pressed="false">5 反馈回读</button></div>
@@ -1114,21 +1180,21 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <div><h3>模型预测的是什么？</h3><p>代码包含点赞、回复、停留和负面反馈等预测头。预测是对可能行为的估计，不是已经发生的行为，也不是对满意度的直接测量。</p></div>
   </div>
   <p class="cite x-version" style="margin-top:12px"></p>
-<aside class="notes"><h3>闭环的证据与边界</h3><p>历史序列通过聚合服务读取；动作编码由multi_hot_to_embeddings实现；候选与序列装入预测请求；预测头传入value_model；分发历史由side effect写入，下次请求回读为served_ids。每一步的精确链接在页内交互中。</p><p>不能从这条链直接断言每次互动立即重训、用户被心理奖励强化，或争议内容一定放大。可以把这些说法改写为待实验检验的研究问题。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">原有模拟器的帖子概率是合成样例，没有真实预测输出来源；它只能演示公式，不能作为 X 实际推荐效果的证据。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p><h3>各环节证据边界（讲师）</h3><ul><li><b>读取行为序列：</b>能确认服务端读取接口；客户端如何采集每个动作、保留多久，尚缺完整证据。</li><li><b>把动作编码成模型特征：</b>特征由代码处理得到；“喜欢争吵”不是这里直接记录的字段。</li><li><b>预测动作概率与连续值：</b>仓库里的结构不是某个用户的真实预测输出；本页不生成行为概率。</li><li><b>按目标加权，再选择内容：</b>加权只是评分的一部分，完整系统还有重排、过滤和混排。</li><li><b>分发历史回到下一次请求：</b>这证明信息反馈路径，不证明某次点击会即时重训，也不证明特定心理或社会后果。</li></ul></aside>
+<aside class="notes"><h3>闭环的证据与边界</h3><p>历史序列通过聚合服务读取；动作编码由multi_hot_to_embeddings实现；候选与序列装入预测请求；预测头传入value_model；分发历史由side effect写入，下次请求回读为served_ids。每一步的精确链接在页内交互中。</p><p>不能从这条链直接断言每次互动立即重训、用户被心理奖励强化，或争议内容一定放大。可以把这些说法改写为待实验检验的研究问题。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">评分示例以固定版本公开默认权重为依据；开源仓库不提供本页用户的真实预测输出，也不能证明线上配置。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p><h3>各环节证据边界（讲师）</h3><ul><li><b>读取行为序列：</b>能确认服务端读取接口；客户端如何采集每个动作、保留多久，尚缺完整证据。</li><li><b>把动作编码成模型特征：</b>特征由代码处理得到；“喜欢争吵”不是这里直接记录的字段。</li><li><b>预测动作概率与连续值：</b>仓库里的结构不是某个用户的真实预测输出；本页不生成行为概率。</li><li><b>按目标加权，再选择内容：</b>加权只是评分的一部分，完整系统还有重排、过滤和混排。</li><li><b>分发历史回到下一次请求：</b>这证明信息反馈路径，不证明某次点击会即时重训，也不证明特定心理或社会后果。</li></ul></aside>
 </section>
 
-<section class="slide gutter" data-part="3" data-t="+" data-title="X：行为预测如何转成分数">
+<section class="slide gutter" data-part="4" data-t="+" data-title="X：行为预测如何转成分数">
   <div class="formhead"><b>平台推荐 · 3 / 5</b><span>预测值 × 权重</span></div>
   <h2>平台如何给不同行为赋予价值？</h2>
   <div class="grid2"><div class="sheet"><h3>一个评分环节的核心形式</h3><p style="font-size:1.6em" class="num">加权分数 = Σ（权重 × 预测值）</p><p>预测值可以是行为概率或连续数值；权重由配置提供。各项单位不同，不能把每个预测值都当作概率。</p><p>这是评分环节的概括；代码还包含条件权重、分数变换和其他修正。</p></div><div class="sheet"><h3>课堂互动：点开讨论</h3><details><summary>提高回复的权重会发生什么？</summary><p>在其他输入固定时，回复预测值的贡献随权重变化。最终名次还取决于其他候选、修正和过滤；没有真实预测输出不能计算实际排名。</p></details><details><summary>一次举报能抵消多少次点赞？</summary><p>不能从权重直接这样换算：这里相乘的是对特定用户和帖子的预测值，而不是实际互动次数。</p></details><details><summary>为什么没有预填滑块数值？</summary><p>目前没有可核验的真实用户预测输出；因此不编造概率或演示排名。</p></details></div></div>
   <p class="cite">一手已核验：<a data-x-path="home-mixer/params/param.rs" data-x-line="396" data-x-end="508">权重参数 L396–508</a>；<a data-x-path="xai-value-model/scoring.rs" data-x-line="57" data-x-end="139">加权评分 L57–139</a>；<a data-x-path="home-mixer/scorers/value_model.rs" data-x-line="8" data-x-end="84">评分调用 L8–84</a>。固定提交的代码不证明实际线上权重。</p>
 </section>
-<section class="slide gutter" data-part="3" data-t="+" data-title="优化目标与用户福祉">
+<section class="slide gutter" data-part="4" data-t="+" data-title="优化目标与用户福祉">
   <div class="formhead"><b>平台推荐 · 4 / 5</b><span>代理指标</span></div>
   <h2>可预测的行为，就是用户得到的价值吗？</h2>
   <div class="grid2"><div class="sheet"><h3>代码可以告诉我们</h3><p>模型预测多种行为，评分代码把预测值与权重结合。行为可被定义和计算，但它们不直接等同于满意度或信息价值。</p><p class="cite"><a data-x-path="home-mixer/scorers/phoenix_scorer.rs" data-x-line="104" data-x-end="144">预测结果 L104–144</a> · <a data-x-path="xai-value-model/scoring.rs" data-x-line="57" data-x-end="139">加权计算 L57–139</a> · 一手代码已核验</p></div><div class="sheet"><h3>还需要独立证据</h3><p>长时间阅读可能对应不同体验；回复也可能有不同动机。仅凭代码无法判断用户是否受益，也无法确认商业目标的具体优先级。</p><div class="weld"><b>区分三个层次：</b>模型预测任务 → 排序使用的目标 → 平台商业目标。它们有关联，但不能直接画等号。</div></div></div>
 </section>
-<section class="slide gutter" data-part="3" data-t="+" data-title="从推荐机制到研究问题">
+<section class="slide gutter" data-part="4" data-t="+" data-title="从推荐机制到研究问题">
   <div class="formhead"><b>平台推荐 · 5 / 5</b><span>提出可检验的问题</span></div>
   <h2>互动越多，用户获得的价值越高吗？</h2>
   <div class="grid2"><div class="sheet"><h3>研究命题</h3><p class="lede">预测互动价值更高的推荐，是否也得到更高的用户满意度与信息价值评价？</p><p>这是待检验的问题，不是源码已经证明的结论。</p></div><div class="sheet"><h3>如何设计观察？</h3><ol><li>明确“价值”：让参与者评价满意度与信息帮助，而不是只统计点击。</li><li>记录推荐及评价，说明样本、时间、账户和观察条件。</li><li>比较行为与评价；要判断推荐策略的因果影响，需设计可执行的对照并考虑混杂因素。</li></ol><p>外部观察通常看不到预测分数、未召回候选或线上配置，要保留这些证据缺口。</p></div></div>
@@ -1175,11 +1241,12 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 
 <section class="slide gutter" data-part="0" data-t="42-45" data-title="收尾">
   <div class="formhead"><b>收尾</b><span>出门卡</span></div>
-  <h2>回到三道工序</h2>
-  <div class="pipeline">
+  <h2>回到四道工序</h2>
+  <div class="pipeline pipeline-four">
     <div style="border-color: var(--rec)"><div class="w">被记录</div><div class="d">记下什么、怎么算是设计出来的；分母和定义一换，数字就变了。</div></div>
     <div style="border-color: var(--miss)"><div class="w">没被记录</div><div class="d">没有格子的人，统计补不回来。</div></div>
     <div style="border-color: var(--dec)"><div class="w">被用来做决定</div><div class="d">一个看似合理的规则被自动执行后，错误落在最不稳定的人身上。</div></div>
+    <div style="border-color: var(--ok)"><div class="w">被看见</div><div class="d">谁发了内容、平台如何分发、谁实际看见，是不同的问题。</div></div>
   </div>
   <div class="matcard" id="exitCard" style="margin-top:28px">
     <p style="font-size:22px; font-family:var(--f-display); font-weight:600; margin:0">以后看到一个关于"某类人"的数字，我会先问 ________。</p>
@@ -1188,7 +1255,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   <aside class="notes">
     <h3>42–45 分钟 · 收尾</h3>
     <ul>
-      <li>三道工序各一句，然后出门卡。读两条，结束。</li>
+      <li>四道工序各一句，然后出门卡。读两条，结束。</li>
       <li>提前结束：追问"如果让你重新设计 Robo-debt，你会在哪一步加回人工？你需要什么数据来评估它的错误率？"，或进入附加页。</li>
     </ul>
     <h3>证据链接</h3>
@@ -1241,39 +1308,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 
 
 <!-- 17 ============================================================ -->
-<section class="slide gutter" data-part="5" data-t="+" data-title="附加：推荐算法的权重">
-  <div class="formhead"><b>附加 · 时间多出来时用</b><span>X 的开源推荐代码</span></div>
-  <h2>谁排在你的信息流第一位，取决于平台选的权重</h2>
-  <div class="grid2" style="--cols: minmax(0, 1fr) minmax(0, 1.2fr)">
-    <div class="sheet">
-      <pre class="code">本页简化得分 = Σ（所选权重 × 动作预测概率）</pre>
-      <div id="wSliders" style="margin-top:12px"></div>
-      <button class="btn" id="wReset">恢复代码默认权重（所选项）</button>
-      <p class="cite">来源：<a href="https://github.com/xai-org/x-algorithm" target="_blank" rel="noopener">X 推荐算法开源项目</a></p>
-    </div>
-    <div>
-      <p class="muted">公式演示 · 合成帖子与预测概率</p>
-      <div class="rank" id="rank"></div>
 
-    </div>
-  </div>
-  <aside class="notes">
-    <h3>附加页 · 权重</h3>
-    <ul>
-      <li><b>权重乘的是概率，不是次数。</b>README 澄清：不能说"一次举报抵消 468 个赞"。举报的基础概率比点赞低一千多倍。</li>
-      <li>演示：把"回复"从 5 降到 1，争议帖从第一位掉下去。<b>权重是平台选的，而且会改</b>：2023 年旧版里"回复且被作者回应"权重高达 75；README 写明权重为"optimize for platform metrics"而调整。</li>
-      <li>模型的主要输入是你最近的互动序列，就是小周留下的那些足迹：被记录和被推荐是同一条流水线。</li>
-      <li>开源也有边界：部分规则没有公开，理由是防止被钻空子。</li>
-    </ul>
-    <h3>证据链接</h3>
-    <ul class="links">
-      <li><a href="https://github.com/xai-org/x-algorithm" target="_blank" rel="noopener">xai-org/x-algorithm（README）</a></li>
-      <li><a href="https://github.com/xai-org/x-algorithm/blob/main/home-mixer/params/param.rs" target="_blank" rel="noopener">权重参数 home-mixer/params/param.rs</a></li>
-      <li><a href="https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/visibility-filtering/models/verdict.rs" target="_blank" rel="noopener">可见性判决 verdict.rs（commit 6258a15）</a></li>
-      <li><a href="https://github.com/twitter/the-algorithm-ml/blob/main/projects/home/recap/README.md" target="_blank" rel="noopener">2023 年 Twitter 旧版权重 README</a></li>
-    </ul>
-  <h3>来源、口径与核验记录（讲师）</h3><p class="cite" style="margin-top:8px">一手已核验：<a data-x-path="home-mixer/params/param.rs" data-x-line="396" data-x-end="508">param.rs L396–508，commit 5ed796374ea4</a>。本页固定：转发 1.0、引用 5.0、私信分享 5.0、关注 4.0、拉黑 −31.2、屏蔽 −58.8。仅演示所选概率头，省略连续值、条件权重、offset 与后续重排；默认值不保证线上配置相同。</p><p class="cite" style="margin-top:8px">证据状态：沿用旧版合成样例。五条帖子及预测概率没有真实数据来源；排名变化仅演示公式，不验证平台实际推荐效果。</p></aside>
-</section>
 
 <!-- 18 ============================================================ -->
 
@@ -1845,46 +1880,6 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
   $('#xTraceSteps button').click();
 })();
 
-/* ---------------- X ranking ---------------- */
-(() => {
-  const DEF = { like: 0.66, reply: 5, copy: 20, dwell: 0.05, ni: -52.272, report: -234 };
-  const FIXED = { repost: 1, quote: 5, dm: 5, follow: 4, block: -31.2, mute: -58.8 };
-  const NAMES = { like: ["点赞", 0, 5, .01], reply: ["回复", 0, 20, .5], copy: ["复制链接分享", 0, 40, 1], dwell: ["停留", 0, 1, .01], ni: ["不感兴趣", -100, 0, 1], report: ["举报", -400, 0, 2] };
-  const POSTS = [
-    ["朋友拍的乐队演出现场", "你关注的人", { like: .15, reply: .03, repost: .005, copy: .002, follow: .003, dwell: .5, ni: .001, block: .0001, mute: .0001, report: .00001 }],
-    ["一条吵起来的热帖", "大量回复和引用", { like: .06, reply: .08, repost: .03, quote: .03, copy: .004, dwell: .55, ni: .004, block: .0008, mute: .0006, report: .0002 }],
-    ["大V 的搞笑视频", "高点赞、常被转发", { like: .22, reply: .01, repost: .05, copy: .008, follow: .01, dwell: .65, ni: .002, block: .0001, mute: .0001, report: .00001 }],
-    ["一篇科普长文", "看得久，偶尔被收藏分享", { like: .05, reply: .005, repost: .01, copy: .006, follow: .004, dwell: .8, ni: .003, block: .0001, mute: .0001, report: .000005 }],
-    ["营销广告", "很多人点\"不感兴趣\"", { like: .01, dwell: .2, copy: .001, ni: .012, mute: .002, report: .0003 }]
-  ];
-  let W = { ...DEF };
-  const box = $("#wSliders");
-  for (const k in NAMES) {
-    const [n, mn, mx, st] = NAMES[k];
-    const d = document.createElement("div"); d.className = "slider";
-    d.innerHTML = `<label for="w_${k}">${n}</label><output id="wo_${k}"></output><input type="range" id="w_${k}" min="${mn}" max="${mx}" step="${st}" value="${W[k]}">`;
-    box.appendChild(d);
-    $("input", d).oninput = e => { W[k] = +e.target.value; draw(); };
-  }
-  const rank = $("#rank");
-  const cards = POSTS.map(([t, m]) => { const c = document.createElement("div"); c.className = "post"; c.innerHTML = `<span class="pos"></span><span><b>${t}</b><div class="meta">${m}</div></span><span class="score"></span>`; rank.appendChild(c); return c; });
-  function draw() {
-    for (const k in NAMES) $("#wo_" + k).textContent = W[k];
-    const all = { ...FIXED, ...W };
-    const scored = POSTS.map(([, , p], i) => ({ i, s: Object.keys(p).reduce((a, k) => a + (all[k] || 0) * p[k], 0) })).sort((a, b) => b.s - a.s);
-    const h = cards[0].offsetHeight + 6 || 58;
-    scored.forEach((r, pos) => {
-      const c = cards[r.i];
-      c.style.order = pos;
-      $(".pos", c).textContent = pos + 1;
-      const sc = $(".score", c); sc.textContent = r.s.toFixed(3); sc.classList.toggle("neg", r.s < 0);
-    });
-  }
-  $("#wReset").onclick = () => { W = { ...DEF }; for (const k in NAMES) $("#w_" + k).value = W[k]; draw(); };
-  draw();
-})();
-
-
 /* ---------------- X map explanations ---------------- */
 (() => {
   const root = 'https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/';
@@ -1899,7 +1894,7 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
     clusters: ['SimClusters：社群召回', '根据用户与帖子的互动关系构建社群，用聚类帮助寻找候选。', readme + '；' + directory('simclusters','SimClusters'), '不能据此推断某位用户具体属于什么社群。'],
     filter: ['候选补充与初步过滤', '多个来源的候选合并后，补充帖子和作者等特征，并在评分前应用去重、屏蔽、静音等过滤。热门帖子也是可能的候选来源。', readme + '；' + directory('home-mixer/filters','过滤器'), '不同过滤器可受配置影响；不能据此确认所有请求的实际执行情况。'],
     predict: ['Phoenix：行为预测', '排序模型对每条候选预测多种用户行为；代码中也有连续值预测。预测是模型输出，不是实际发生的行为。', ref('home-mixer/util/phoenix_request.rs','#L290-L303','候选与历史进入请求 L290–303') + '；' + ref('home-mixer/scorers/phoenix_scorer.rs','#L104-L144','调用预测和取回结果 L104–144'), '公开代码不提供本页用户的真实预测值。'],
-    score: ['加权评分与重排', '评分将预测值与权重结合；还可对重复作者等进行修正，并通过 VMRanker 重排。最后的选择器按得分选取候选。', ref('xai-value-model/scoring.rs','#L57-L139','加权评分 L57–139') + '；' + ref('home-mixer/selectors/top_k_score_selector.rs','#L10-L33','选择 L10–33') + '；' + directory('vm-ranker','VMRanker'), '权重作用于预测值，不是累计互动次数；不保证每个线上请求启用重排。'],
+    score: ['加权评分与重排', '评分将预测值与权重结合；还可对重复作者等进行修正，并通过 VMRanker 重排。最后的选择器按得分选取候选。', ref('home-mixer/params/param.rs','#L396-L508','默认权重 L396–508') + '；' + ref('xai-value-model/scoring.rs','#L57-L139','加权评分 L57–139') + '；' + ref('home-mixer/selectors/top_k_score_selector.rs','#L10-L33','选择 L10–33') + '；' + directory('vm-ranker','VMRanker'), '权重作用于预测值，不是累计互动次数；代码默认值不保证线上配置相同，也不保证每个请求启用重排。'],
     visibility: ['可见性判断', '规则根据内容与观看者关系等信息作出可见性判断；选择后的过滤器会移除判为 drop 的帖子。', ref('home-mixer/filters/vf_filter.rs','','可见性过滤器') + '；' + ref('visibility-filtering/models/verdict.rs','','判决类型') + '；' + readme, '开源规则和线上配置可能不完整；无法从最终页面单独判断某条内容是否被过滤。'],
     feed: ['混排后的 For You', '已排序的帖子与广告、关注推荐等其他内容混排，形成最终信息流。', ref('home-mixer/selectors/blender_selector.rs','','BlenderSelector 实现') + '；' + readme, '流程简化了具体选择器和配置；最终位置不能单独解释为模型分数。']
   };
@@ -1942,6 +1937,11 @@ otherwise: handle according to verdict`],
     panel.hidden = false;
     panel.innerHTML = `<button type="button" class="btn" aria-label="关闭环节说明">关闭</button><h3>${title}</h3><p>${body}</p><p><b>字段与输入：</b>${fields}</p><p class="cite">Pseudocode：根据下列源码概括；除标明的实际字段或符号外，英文名称是解释性标签，并非代码原文。</p><pre></pre><p class="cite">源码：${refs}</p><p class="cite">边界：${boundary} 固定提交 5ed7963；线上实际配置待核验。</p>`;
     panel.querySelector('pre').textContent = pseudo;
+    if (hit.dataset.xInfo === 'score') {
+      const weights = document.createElement('div');
+      weights.innerHTML = `<p><b>公开源码中的部分默认权重</b> <span class="cite">（固定提交 5ed7963）</span></p><table><thead><tr><th>预测行为 / 参数</th><th>默认值</th><th>预测行为 / 参数</th><th>默认值</th></tr></thead><tbody><tr><td>点赞 FavoriteWeight</td><td>0.66</td><td>回复 ReplyWeight</td><td>5</td></tr><tr><td>转发 RetweetWeight</td><td>1</td><td>引用 QuoteWeight</td><td>5</td></tr><tr><td>私信分享 ShareViaDmWeight</td><td>5</td><td>复制链接 ShareViaCopyLinkWeight</td><td>20</td></tr><tr><td>停留 DwellWeight</td><td>0.05</td><td>关注作者 FollowAuthorWeight</td><td>4</td></tr><tr><td>不感兴趣 NotInterestedWeight</td><td>−52.272</td><td>屏蔽作者 BlockAuthorWeight</td><td>−31.2</td></tr><tr><td>静音作者 MuteAuthorWeight</td><td>−58.8</td><td>举报 ReportWeight</td><td>−234</td></tr></tbody></table><p class="cite">这里只展示部分代码默认值，不代表实际线上权重；权重乘预测值，不是已发生的互动次数。完整评分还包含其他预测项、条件权重和后续处理。</p>`;
+      panel.querySelector('pre').after(weights);
+    }
     panel.querySelector('button').onclick = () => { panel.hidden = true; hit.setAttribute('aria-pressed','false'); hit.focus(); fit(); };
     fit();
   }
