@@ -300,6 +300,19 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   .switch-cost { grid-template-columns: 1fr; }
   .jobline { grid-template-columns: 1fr; gap: 2px; }
 }
+
+/* Robo-debt timeline: wide classrooms and narrow screens */
+.robo-timeline { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); position:relative; gap:24px; margin:22px 0 16px; }
+.robo-timeline::before { content:""; position:absolute; left:7%; right:7%; top:18px; height:3px; background:var(--rule); }
+.robo-node { position:relative; border:0; background:transparent; text-align:left; padding:0 5px; min-width:0; }
+.robo-node .dot { display:block; width:16px; height:16px; margin:11px 0 14px; border:3px solid var(--dec); border-radius:50%; background:var(--sheet); }
+.robo-node[aria-pressed="true"] .dot { background:var(--dec); box-shadow:0 0 0 4px var(--field); }
+.robo-node .year { display:block; font-family:var(--f-mono); font-weight:600; font-size:20px; color:var(--dec); }
+.robo-node .event { display:block; font-size:14px; line-height:1.4; color:var(--ink-2); }
+.robo-detail { border-left:4px solid var(--dec); padding:12px 18px; background:var(--sheet); min-height:130px; }
+.robo-detail p { max-width:none; }
+@media (max-width:760px) { .robo-timeline { grid-template-columns:1fr; gap:12px; margin:10px 0; } .robo-timeline::before { left:12px; right:auto; top:15px; bottom:15px; width:3px; height:auto; } .robo-node { display:grid; grid-template-columns:24px 70px minmax(0,1fr); align-items:center; padding:4px 0; } .robo-node .dot { margin:0 0 0 5px; width:16px; height:16px; } .robo-node .year { font-size:16px; } .robo-node .event { font-size:13px; } }
+
 </style>
 </head>
 <body>
@@ -686,25 +699,20 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 4 ============================================================ -->
-<section class="slide gutter" data-part="1" data-t="12-13" data-title="数字体检表八问">
+<section class="slide gutter" data-part="1" data-t="12-13" data-title="数字体检表">
   <div class="formhead"><b>要点一 · 被记录</b><span>工具</span></div>
-  <h2>「数字体检表」八问</h2>
-  <p class="lede">看到一个数字，可以从这八个维度检查它。</p>
+  <h2>「数字体检表」</h2>
+  <p class="lede">点击每个维度，查看具体问题。</p>
   <div class="grid2">
-    <div class="sheet">
-      <table>
-        <thead><tr><th>检查维度</th><th>具体要问的问题</th></tr></thead>
-        <tbody>
-          <tr><th>1. 来源</th><td>谁生产了这个数字？能找到原始数据或完整报告吗？</td></tr>
-          <tr><th>2. 定义</th><td>“活跃用户”“收入”“失业”具体如何定义？</td></tr>
-          <tr><th>3. 分母</th><td>百分比是除以谁？全部用户、付费用户，还是受访者？</td></tr>
-          <tr><th>4. 范围</th><td>涵盖什么时间、地域、人群？是否有被排除者？</td></tr>
-          <tr><th>5. 方法</th><td>普查、随机调查、自愿问卷、平台后台数据，还是模型估计？</td></tr>
-          <tr><th>6. 不确定性</th><td>有多少样本？有无误差、缺失、偏差或置信区间？</td></tr>
-          <tr><th>7. 可比性</th><td>与其他年份、地区或平台相比，统计口径是否相同？</td></tr>
-          <tr><th>8. 解释</th><td>数字实际支持什么结论？报道有没有暗示未经证明的因果关系？</td></tr>
-        </tbody>
-      </table>
+    <div class="checks" id="checks">
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>01</em>来源</span><span class="a">谁生产了这个数字？能找到原始数据或完整报告吗？</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>02</em>定义</span><span class="a">“活跃用户”“收入”“失业”具体如何定义？</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>03</em>分母</span><span class="a">百分比是除以谁？全部用户、付费用户，还是受访者？</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>04</em>范围</span><span class="a">涵盖什么时间、地域、人群？是否有被排除者？</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>05</em>方法</span><span class="a">普查、随机调查、自愿问卷、平台后台数据，还是模型估计？</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>06</em>不确定性</span><span class="a">有多少样本？有无误差、缺失、偏差或置信区间？</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>07</em>可比性</span><span class="a">与其他年份、地区或平台相比，统计口径是否相同？</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>08</em>解释</span><span class="a">数字实际支持什么结论？报道有没有暗示未经证明的因果关系？</span></span></button>
     </div>
     <div class="sheet">
       <h3>下一步：把观点变成研究问题</h3>
@@ -735,16 +743,17 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 <section class="slide gutter" data-part="1" data-t="+" data-title="研究方法：从观点到检验">
   <div class="formhead"><b>要点一 · 被记录</b><span>研究方法 · 六步</span></div>
   <h2>从一个观点，到可以检验的问题</h2>
-  <div class="grid2">
-    <div class="sheet">
-      <p><b>1. 写下原始观点。</b>例如“外卖平台越来越压榨骑手”。这包含价值判断，也包含可能的经验事实。</p>
-      <p><b>2. 拆解抽象概念。</b>“压榨”可能意味着净收入下降、劳动时长增加、劳动强度增加、事故风险上升或缺少议价能力。不能默认这些是同一件事。</p>
-      <p><b>3. 定义测量指标。</b>例如：<br><span class="num">每小时净收入＝（接单收入＋奖励－工作相关成本）÷ 总工作小时数</span>。<br>总工作时间是否包含等单时间，需要预先规定。</p>
+  <p class="lede">点击每一步，查看具体内容。</p>
+  <div class="grid2" id="researchSteps">
+    <div class="checks">
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>01</em>写下原始观点</span><span class="a">例如“外卖平台越来越压榨骑手”。这包含价值判断，也包含可能的经验事实。</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>02</em>拆解抽象概念</span><span class="a">“压榨”可能意味着净收入下降、劳动时长增加、劳动强度增加、事故风险上升或缺少议价能力。不能默认这些是同一件事。</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>03</em>定义测量指标</span><span class="a">例如：<br><span class="num">每小时净收入＝（接单收入＋奖励－工作相关成本）÷ 总工作小时数</span>。<br>总工作时间是否包含等单时间，需要预先规定。</span></span></button>
     </div>
-    <div class="sheet">
-      <p><b>4. 明确比较对象。</b>例如：“同一城市的骑手，在促销日与非促销日，每小时净收入是否存在差异？”</p>
-      <p><b>5. 写出可检验的预测。</b>例如 H₀：两类日期的平均每小时净收入相同；H₁：不同。也可以事先提出有方向的假设。</p>
-      <p><b>6. 规定判定方式。</b>收集哪些记录、如何抽样、比较什么指标、哪些结果支持或不支持假设，并说明哪些因素可能混淆观察结果。</p>
+    <div class="checks">
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>04</em>明确比较对象</span><span class="a">例如：“同一城市的骑手，在促销日与非促销日，每小时净收入是否存在差异？”</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>05</em>写出可检验的预测</span><span class="a">例如 H₀：两类日期的平均每小时净收入相同；H₁：不同。也可以事先提出有方向的假设。</span></span></button>
+      <button type="button" class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>06</em>规定判定方式</span><span class="a">收集哪些记录、如何抽样、比较什么指标、哪些结果支持或不支持假设，并说明哪些因素可能混淆观察结果。</span></span></button>
     </div>
   </div>
   <p class="cite" style="margin-top:12px">这是研究设计的例子，尚未给出数据或研究结论；观察到差异本身不能直接证明促销导致了差异。</p>
@@ -762,25 +771,32 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <p>分类系统看起来是中立的技术工具，实际上决定了什么能被看见、什么不能。</p>
     </div>
     <div class="sheet">
-      <h3>Onuoha, <i>The Library of Missing Datasets</i>：数据缺席是有原因的</h3>
-      <table><tbody>
-        <tr><td class="num">1</td><td>收集的成本高于收益</td></tr>
-        <tr><td class="num">2</td><td>有人不希望它被收集</td></tr>
-        <tr><td class="num">3</td><td>它抗拒被量化</td></tr>
-        <tr><td class="num">4</td><td>没有人有动力去收集</td></tr>
-      </tbody></table>
+      <h3>数据缺席是有原因的</h3>
+      <ul>
+        <li>资源不足</li>
+        <li>没有纳入统计范围</li>
+        <li>缺少制度支持与协调</li>
+        <li>收集可能带来风险</li>
+      </ul>
     </div>
   </div>
   <aside class="notes">
     <h3>13–15 分钟 · 理论</h3>
     <ul>
       <li>开头一句接上页：小周被记到每一秒；但有些人在数据里根本不存在。</li>
-      <li>Onuoha 的四个原因各给一句，不展开。下一页用分类小测把"看不见"拆成三种。</li>
+      <li><b>资源不足：</b>缺少经费、人手、技术或持续收集的能力。</li>
+      <li><b>没有纳入统计范围：</b>调查没有覆盖某些群体，或者分类不够细，无法单独呈现他们的情况。</li>
+      <li><b>缺少制度支持与协调：</b>相关议题没有明确的统计职责，或数据分散在不同部门，难以整合和使用。</li>
+      <li><b>收集可能带来风险：</b>有些人担心被识别、监视或歧视，可能不愿提供信息；在某些情境下，不收集也是一种保护。</li>
+      <li>以上四项为课堂归纳，不是联合国原文的统一分类；具体缺失原因需要个案核查。下一页用分类小测把“看不见”拆成三种。</li>
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
       <li><a href="https://data-feminism.mitpress.mit.edu/" target="_blank" rel="noopener">D'Ignazio & Klein 2020, Data Feminism 第 4 章 "What Gets Counted Counts"</a></li>
       <li><a href="https://mitpress.mit.edu/9780262522953/sorting-things-out/" target="_blank" rel="noopener">Bowker & Star 1999, Sorting Things Out, MIT Press</a></li>
+      <li><a href="https://unstats.un.org/UNSDWebsite/statcom/session_55/documents/BG-3k-Results_of_the_Global_Survey_on_Gender_Statistics_2022_FINAL-E.pdf" target="_blank" rel="noopener">联合国统计司：2022 年全球性别统计调查报告，第 17 页（资源、制度与协调）</a>；一手报告已核读，汇总 107 国统计机构答卷。</li>
+      <li><a href="https://unstats.un.org/UNSDWebsite/statcom/session_55/documents/BG-3j-FoC-WS1-E.pdf" target="_blank" rel="noopener">联合国统计委员会社会统计工作文件，第 14 页（覆盖范围与资源）</a>；一手工作文件已核读。</li>
+      <li><a href="https://id4d.worldbank.org/guide/assess-risks" target="_blank" rel="noopener">世界银行：身份系统中的排除和隐私风险</a>；一手指南已核读，适用身份系统。</li>
       <li><a href="https://github.com/MimiOnuoha/missing-datasets" target="_blank" rel="noopener">Onuoha, The Library of Missing Datasets</a></li>
     </ul>
   </aside>
@@ -870,44 +886,27 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 9 ============================================================ -->
-<section class="slide gutter" data-part="3" data-t="28-30" data-title="Robo-debt">
-  <div class="formhead"><b>要点三 · 被用来做决定</b><span>案例 · 澳大利亚 2016–2019</span></div>
-  <h2>Robo-debt：一封自动寄出的债务通知</h2>
-  <div class="grid2">
-    <div class="facts">
-      <div><span class="k">怎么算</span><span>用税务局的<b>年收入</b>，平均推算每两周的收入，再和领取福利的人每两周如实申报的收入比对。</span></div>
-      <div><span class="k">怎么执行</span><span>对不上就自动寄出债务通知，<b>取消了人工审核</b>。</span></div>
-      <div><span class="k">谁来证明</span><span>收到通知的人要在 21 天内<b>自己证明</b>系统错了，往往要找回多年前的工资单。</span></div>
-      <div><span class="k">结果</span><span>2019 年 11 月 Amato 案和解，法院宣告仅凭平均后的收入不足以认定债务。2023 年皇家调查委员会：这个计划"既不公平，也不合法"。</span></div>
-    </div>
-    <div class="sheet">
-      <div class="row" style="gap:24px; align-items:flex-end">
-        <div><div class="kpi">约 38 万人</div><div class="muted">拿回了不该还的钱</div></div>
-        <div><div class="kpi">7.46 亿</div><div class="muted">澳元退款</div></div>
-        <div><div class="kpi">17.5 亿</div><div class="muted">澳元债务被注销</div></div>
-      </div>
-      <p style="margin-top:16px">Eubanks, <i>Automating Inequality</i>：自动化系统最先、最重地落在<b>最没有能力申诉的人</b>身上。</p>
-      <span class="stamp">平均法</span>
-    </div>
+<section class="slide gutter" data-part="3" data-t="28-30" data-title="Robo-debt 时间线">
+  <div class="formhead"><b>要点三 · 被用来做决定</b><span>案例 · 澳大利亚</span></div>
+  <h2>Robo-debt：一封债务通知，背后发生了什么？</h2>
+  <p class="lede">政府想用更少人工追回福利款；个人却可能需要自己找证据，证明系统的计算有误。</p>
+  <div class="robo-timeline" id="roboTimeline" role="group" aria-label="Robo-debt 关键时间线，点击节点查看说明">
+    <button type="button" class="robo-node" data-step="0" aria-pressed="true"><span class="dot"></span><span class="year">2015</span><span class="event">政府想省钱</span></button>
+    <button type="button" class="robo-node" data-step="1" aria-pressed="false"><span class="dot"></span><span class="year">2016</span><span class="event">系统开始追债</span></button>
+    <button type="button" class="robo-node" data-step="2" aria-pressed="false"><span class="dot"></span><span class="year">2017</span><span class="event">有人说算错了</span></button>
+    <button type="button" class="robo-node" data-step="3" aria-pressed="false"><span class="dot"></span><span class="year">2019</span><span class="event">政府停用这种算法</span></button>
+    <button type="button" class="robo-node" data-step="4" aria-pressed="false"><span class="dot"></span><span class="year">2020</span><span class="event">退款、取消欠款</span></button>
+    <button type="button" class="robo-node" data-step="5" aria-pressed="false"><span class="dot"></span><span class="year">2023</span><span class="event">调查公布结果</span></button>
   </div>
-  <aside class="notes">
-    <h3>28–30 分钟 · 案例</h3>
-    <ul>
-      <li>不评价任何国家的政策立场，只讨论系统设计和证据。</li>
-      <li>数字（已对照皇家调查委员会报告第 1 卷）：政府退还约 <b>7.46 亿澳元给约 38.1 万人</b>，并注销共 <b>17.51 亿澳元</b>的债务；2020 年 11 月集体诉讼开庭当天和解。之前常见的"7.21 亿、约 40 万人 / 47 万笔"是 2020 年最初宣布的口径，以报告为准。</li>
-      <li>Amato 案：2019 年 11 月 27 日法院按和解作出命令，宣告平均后的工资数据不足以认定债务存在。此前 11 月 19 日，部长宣布不再仅凭税务数据认定债务。</li>
-      <li>"21 天"：通知要求收到者在 21 天内登录在线系统提供证据（报告多处记载）。</li>
-      <li>委员会估计：计划原本预算节省 47.7 亿澳元，实际只省下约 4.06 亿，而实施、暂停、收尾的成本约 9.71 亿，<b>净亏损约 5.65 亿</b>。</li>
-    </ul>
-    <h3>证据链接</h3>
-    <ul class="links">
-      <li><a href="https://robodebt.royalcommission.gov.au" target="_blank" rel="noopener">Royal Commission into the Robodebt Scheme, Report (2023)</a></li>
-      <li><a href="https://apo.org.au/node/323427" target="_blank" rel="noopener">报告全文镜像 APO</a>；<a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf" target="_blank" rel="noopener">第 1 卷 PDF 镜像</a>（退款与注销：前言 xxiv–xxv 页；净成本：附录）</li>
-      <li><a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case" target="_blank" rel="noopener">Victoria Legal Aid：Amato 测试案说明</a></li>
-      <li><a href="https://www.hrlc.org.au/case-summaries/2021-9-30-the-federal-court-approves-a-112-million-settlement-for-the-failures-of-the-robodebt-system" target="_blank" rel="noopener">Human Rights Law Centre：Prygodicz 和解（1.12 亿）</a></li>
-      <li><a href="https://aph.gov.au/Parliamentary_Business/Committees/Senate/Community_Affairs/Centrelinkcompliance/Final_Report" target="_blank" rel="noopener">参议院委员会 2022 报告</a></li>
-      <li><a href="https://us.macmillan.com/books/9781250074317/automatinginequality" target="_blank" rel="noopener">Eubanks 2018, Automating Inequality</a></li>
-    </ul>
+  <div class="robo-detail" id="roboDetail" aria-live="polite"><h3>2015 · 政府想省钱</h3><p>政府想追回多发的福利，并用自动化减少人工审核。方案开始试点；相关预算预计一揽子措施五年节省 17 亿澳元，这是预测，不是实际节省。</p></div>
+  <p class="cite" style="margin-top:10px">点击年份查看事件 · <a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=29" target="_blank" rel="noopener">皇家调查委员会报告：方案与时间线</a> · <a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case" target="_blank" rel="noopener">Victoria Legal Aid：Amato 案通俗说明</a> · <a href="https://www.bbc.com/news/world-australia-66130105" target="_blank" rel="noopener">BBC：调查结果与当事人经历</a></p>
+  <aside class="notes"><h3>从预算到个人：Robo-debt</h3>
+    <p><b>谁的数据、怎么算？</b>Centrelink 取得税务局保存的、雇主就某位领取者在相关期间申报的 PAYG 就业收入，与领取者此前向福利机构申报的收入比对。出现差异后要求解释；在特定情形下，将一段时期的收入平均分配到该期间每个两周，再估算福利和债务。雇主申报期不总是完整一年，不能一律说除以 26，也不能假设所有人都如实申报或所有差异都说明欠款。<a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=30">皇家调查报告概述 PDF 第 30 页</a>。</p>
+    <p><b>谁举证？</b>政府需要充分依据认定债务；实践中，系统要求领取者解释差异，未回应或缺少足够信息时可能用平均值举债。找旧工资单、联系雇主和申请复核的负担往往落在个人身上。不是一有差异就必然立刻发债务通知。<a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case">法律援助机构的 Amato 案</a>；<a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=32">报告概述 PDF 第 32 页</a>。</p>
+    <p><b>2015：</b>预算一揽子措施预计五年节省 17 亿澳元，大部分来自就业收入比对；这是当年预计节省，不能称为实际节省或仅为人力成本。2015 年曾试点。<a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=29">报告 PDF 第 29 页</a>。</p>
+    <p><b>2016–2019：</b>2016 年 9 月线上全面推出；2017 年出现持续质疑和行政复核。2019 年 11 月政府宣布不再仅依据平均数据举债；27 日 Amato 案由联邦法院按双方同意命令作出声明，平均收入数据不足以支持该案债务。注意不是说所有合规核查均当日停止。<a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case">Victoria Legal Aid 原始案例说明</a>。</p>
+    <p><b>2020–2023：</b>2020 年政府宣布对相关债务退款或归零，集体诉讼于 11 月和解；2023 年委员会报告称约 38.1 万人获退 7.46 亿澳元。经济章节表述预期冲销债务总额 17.51 亿澳元，<b>包括</b> 7.46 亿退款，不可将两数相加。<a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=446">报告经济章节 PDF 第 446 页</a>。</p>
+    <p><b>易读背景：</b><a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case">Victoria Legal Aid 的 Deanna Amato 案详解</a>由代理案件的法律援助机构撰写，通俗解释收入平均和案件经过，是一手法律案例说明而非新闻报道。<a href="https://www.bbc.com/news/world-australia-66130105">BBC News：Robodebt: Illegal Australian welfare hunt drove people to despair</a>（Frances Mao，2023 年 7 月 7 日）是已核读的二手报道，结合皇家调查结果与当事人经历；精确时间线和退款口径以调查报告及案件材料为准。另可参考 <a href="https://www.abc.net.au/news/2022-08-26/robodebt-royal-commission-explained/101374912">ABC News 2022 年案件梳理</a>和 <a href="https://www.theguardian.com/australia-news/2023/jul/07/robodebt-royal-commission-final-report-what-did-it-find-and-what-will-happen-next">The Guardian 2023 年调查报告解读</a>；两篇均为已核读的二手报道。<a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case">Victoria Legal Aid 案件说明</a>核对了 2019 年的法律挑战与停止收入平均法（一手材料，已核读）。</p>
   </aside>
 </section>
 
@@ -1576,7 +1575,7 @@ buildSort();
 })();
 
 /* ---------------- 五问 ---------------- */
-$$("#checks .check").forEach(c => c.onclick = () => c.setAttribute("aria-expanded", c.getAttribute("aria-expanded") !== "true"));
+$$("#checks .check, #researchSteps .check").forEach(c => c.onclick = () => { c.setAttribute("aria-expanded", c.getAttribute("aria-expanded") !== "true"); fit(); });
 
 /* ---------------- quiz ---------------- */
 const QUIZ = [
@@ -1644,6 +1643,22 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
   $("#auditHint").onclick = () => { HINTS.forEach(h => { if (!items.includes(h)) items.push(h); }); store.set("tl.audit", items); render(); };
   $("#auditClear").onclick = () => { items = []; store.set("tl.audit", items); render(); };
   render();
+})();
+
+/* ---------------- Robo-debt timeline ---------------- */
+(() => {
+  const nodes=$$('#roboTimeline .robo-node'), panel=$('#roboDetail');
+  const events=[
+    ['2015 · 政府想省钱','政府想追回多发的福利，并用自动化减少人工审核。方案开始试点；相关预算预计一揽子措施五年节省 17 亿澳元，这是预测，不是实际节省。','https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=29'],
+    ['2016 · 一封追债信','Centrelink 将税务记录与福利申报比对。资料不足时，政府可能把一段就业收入平均到每两周，以此计算欠款。对收入时高时低的人，这个平均数未必代表实际收入。有些人是在退税被扣或被催收公司联系时才知道自己被追债。','https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case'],
+    ['2017 · 质疑声越来越大','有人说自己根本不欠钱，却要翻找几年前的工资单证明。受影响者、社区组织和法律中心持续发声，引来媒体关注、监察专员调查和参议院调查；系统做了调整，但收入平均法仍在继续。','https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case'],
+    ['2019 · 个案推动转折','在法律援助机构支持下，一名受影响者就自己的债务向联邦法院提起诉讼。11 月，政府承认仅凭税务收入平均值认定欠款不合法，并停止这种做法。此前多年投诉和倡议促成了这场法律挑战。','https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case'],
+    ['2020–2021 · 退款与和解','2020 年政府决定退还相关已收款并取消相关未偿债务；集体诉讼于 11 月达成和解，2021 年获法院批准。皇家调查报告记载约 38.1 万人获退 7.46 亿澳元；这是退款人数和金额，并非全部受影响人数或全部损失。','https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=446'],
+    ['2022–2023 · 追问为什么','2022 年新政府兑现竞选承诺，设立皇家调查委员会；2023 年报告追问方案如何获批、质疑为何未阻止它，以及人们受到的伤害。','https://www.abc.net.au/news/2022-08-26/robodebt-royal-commission-explained/101374912']
+  ];
+  function show(b) { const [title,body,url]=events[+b.dataset.step]; nodes.forEach(n=>n.setAttribute('aria-pressed',n===b)); panel.innerHTML=`<h3>${title}</h3><p>${body}</p><p class="cite"><a href="${url}" target="_blank" rel="noopener">查看本节点依据</a></p>`; fit(); }
+  nodes.forEach(b=>b.onclick=()=>show(b));
+  show(nodes[0]);
 })();
 
 /* ---------------- group platform decision tree ---------------- */
