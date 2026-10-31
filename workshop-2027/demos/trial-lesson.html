@@ -51,6 +51,22 @@ button { cursor: pointer; }
 :focus-visible { outline: 2px solid var(--rec); outline-offset: 2px; }
 .gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 
+
+/* X recommendation field map */
+.x-map { background:#fafbf6; border:1px solid #d9ded4; border-radius:6px; overflow-x:auto; }
+.x-map svg { display:block; width:100%; min-width:900px; height:auto; }
+.x-map text { font-family:var(--f-body); fill:#18251d; }
+.x-map .minor { fill:#53665a; font-size:17px; }
+.x-map .label { font-weight:700; font-size:23px; }
+.x-map .path { fill:none; stroke:#627e69; stroke-width:2.5; stroke-dasharray:8 6; marker-end:url(#xArrow); }
+.x-map .box { fill:#fafbf6; stroke:#1d2b22; stroke-width:2; }
+.x-map .accent { fill:#f6ebe8; stroke:#a35442; }
+.x-map .x-hit { fill:transparent; stroke:transparent; stroke-width:3; cursor:pointer; }
+.x-map .x-hit:hover, .x-map .x-hit:focus, .x-map .x-hit[aria-pressed="true"] { stroke:#a35442; fill:#a3544214; outline:none; }
+.x-map-detail { margin-top:10px; padding:12px 16px; border-left:4px solid var(--rec); background:var(--sheet); }
+.x-map-detail h3 { margin:0 0 4px; } .x-map-detail p { margin:0 0 5px; max-width:none; }
+.x-map-detail button { float:right; }
+.x-map-detail pre { white-space:pre-wrap; margin:5px 0 8px; padding:9px 12px; background:var(--field); border-radius:4px; font:13px/1.45 var(--f-mono); overflow-wrap:anywhere; }
 /* ---------- top bar ---------- */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--sheet); border-bottom: 1px solid var(--rule); }
 .top-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding-block: 8px; }
@@ -967,13 +983,13 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   <div style="margin-top:10px"><button class="btn" data-reveal="rApprove">问题 2 讨论完再点：它当年是怎么被批准的</button>
     <div class="reveal-box" id="rApprove">
       <ol class="approve">
-        <li><b>2014 年底</b> 政府要"控制预算"，部长自称"福利警察"。发放福利的部门提出：用税务数据自动比对，<b>主要为了省钱</b>（预计 12 亿澳元）。</li>
-        <li><b>2014 年 12 月</b> 管福利政策的部门内部律师认为：法律按<b>每两周的实际收入</b>算福利，平均法不合法，要改法律。</li>
-        <li><b>2015 年 2 月</b> 给部长的内部文件写明"需要修改法律"，部长签字同意推进。</li>
-        <li><b>2015 年 3 月</b> 提交内阁的方案<b>删掉了"平均"二字</b>，写着"不需要立法"、"不改变收入的计算方式"。内阁很快批准。</li>
-        <li><b>2015 年 5 月</b> 写进预算：五年节省 17 亿澳元。2015 年试点，2016 年 9 月全面上线。</li>
+        <li><b>2014 年底</b> 政府要"控制预算"，部长自称"福利警察"。发放福利的部门提出：用税务数据自动比对，<b>主要为了省钱</b>（预计 12 亿澳元）。 <a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=31" target="_blank" rel="noopener">[报告概述 xxv 页]</a></li>
+        <li><b>2014 年 12 月</b> 管福利政策的部门内部律师认为：法律按<b>每两周的实际收入</b>算福利，平均法不合法，要改法律。 <a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=31" target="_blank" rel="noopener">[报告概述 xxv 页]</a></li>
+        <li><b>2015 年 2 月</b> 给部长的内部文件写明"需要修改法律"，部长签字同意推进。 <a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=31" target="_blank" rel="noopener">[报告概述 xxv 页]</a></li>
+        <li><b>2015 年 3 月</b> 提交内阁的方案<b>删掉了"平均"二字</b>，写着"不需要立法"、"不改变收入的计算方式"。内阁很快批准。 <a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=31" target="_blank" rel="noopener">[报告概述 xxv 页；详见正文第 88 页]</a></li>
+        <li><b>2015 年 5 月</b> 写进预算：五年节省 17 亿澳元。2015 年试点，2016 年 9 月全面上线。 <a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=30" target="_blank" rel="noopener">[报告概述 xxiii–xxiv 页]</a></li>
       </ol>
-      <p style="margin:6px 0 0"><b>不是没人批准，而是批准的人拿到的文件是错的。</b>该有的证据（法律意见）其实存在，只是没有送到做决定的人面前。</p>
+      <p style="margin:6px 0 0"><b>不是没人批准，而是批准的人拿到的文件是错的。</b>部长收到的文件曾提及需要修法；但提交内阁的方案没有披露平均法及相关法律风险。</p>
     </div>
   </div>
   <div class="sheet" style="margin-top:18px">
@@ -1010,15 +1026,54 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <ul class="links">
       <li><a href="https://carnegieuk.org/wp-content/uploads/2024/10/Automating-Public-Services-Learning-from-Cancelled-Systems-Final-Full-Report-2.pdf" target="_blank" rel="noopener">PRECOBS 与 12 个被叫停系统：Redden et al. 2022, Automating Public Services: Learning from Cancelled Systems (PDF)</a></li>
       <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/cancelled-systems-cases.md" target="_blank" rel="noopener">整理笔记 cancelled-systems-cases.md 第 5 节</a></li>
-      <li><a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf" target="_blank" rel="noopener">皇家调查委员会报告第 1 卷（PDF 镜像）：前言 xxii–xxv 页（起源、法律意见、提交内阁的方案），第 2 章"Overview of the origins of Robodebt"</a></li>
+      <li><a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf" target="_blank" rel="noopener">皇家调查委员会报告第 1 卷（PDF 镜像）：概述 xxiii–xxv 页（PDF 第 29–31 页：起源、法律意见、提交内阁的方案），第 2 章"Overview of the origins of Robodebt"</a></li>
       <li><a href="https://robodebt.royalcommission.gov.au" target="_blank" rel="noopener">Royal Commission 报告（试点与合法性审查）</a></li>
     </ul>
   </aside>
 </section>
 
+<section class="slide gutter" data-part="3" data-t="+" data-title="X 推荐架构：从候选到信息流">
+  <div class="formhead"><b>平台推荐 · 1 / 5</b><span>一张推荐系统地图</span></div>
+  <h2>你的 For You 由什么决定？</h2>
+  <div class="x-map" role="group" aria-label="推荐流程图：用户上下文分流到 Thunder、Phoenix 和 SimClusters，汇合后依次进入特征补充与过滤、行为预测、评分和重排、可见性判断，最后与其他内容混排形成信息流。">
+    <svg viewBox="0 0 1450 440" aria-label="点击任一环节查看解释和代码">
+      <defs><marker id="xArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#627e69"/></marker></defs>
+      <g stroke="#1d2b22" stroke-width="2.5" fill="none"><circle cx="65" cy="172" r="24"/><path d="M65 197 L65 258 M65 218 L30 235 M65 218 L100 235 M65 258 L38 290 M65 258 L93 290"/></g>
+      <text x="65" y="325" text-anchor="middle" class="label">用户</text><text x="65" y="351" text-anchor="middle" class="minor">历史与上下文</text>
+      <path class="path" d="M110 222 C175 222 180 65 250 65"/><path class="path" d="M110 222 H250"/><path class="path" d="M110 222 C175 222 180 375 250 375"/>
+      <path class="box" d="M255 20 Q330 14 405 20 L408 109 Q330 115 252 109 Z"/><text x="330" y="58" text-anchor="middle" class="label">Thunder</text><text x="330" y="85" text-anchor="middle" class="minor">关注账号</text>
+      <path class="box" d="M255 175 Q330 169 405 175 L408 266 Q330 272 252 266 Z"/><text x="330" y="215" text-anchor="middle" class="label">Phoenix</text><text x="330" y="243" text-anchor="middle" class="minor">向量召回</text>
+      <path class="box" d="M255 330 Q330 324 405 330 L408 420 Q330 426 252 420 Z"/><text x="330" y="370" text-anchor="middle" class="label">SimClusters</text><text x="330" y="398" text-anchor="middle" class="minor">互动社群</text>
+      <path class="path" d="M410 65 C455 65 445 221 500 221"/><path class="path" d="M410 221 H500"/><path class="path" d="M410 375 C455 375 445 221 500 221"/>
+      <path class="box" d="M505 163 Q570 157 635 163 L638 280 Q570 286 502 280 Z"/><text x="570" y="201" text-anchor="middle" class="label">补充与过滤</text><text x="570" y="231" text-anchor="middle" class="minor">候选特征 · 去重</text><text x="570" y="255" text-anchor="middle" class="minor">屏蔽 · 静音等</text>
+      <path class="path" d="M640 221 H680"/>
+      <path class="box accent" d="M685 151 Q750 145 815 151 L818 292 Q750 298 682 292 Z"/><text x="750" y="192" text-anchor="middle" class="label">行为预测</text><text x="750" y="222" text-anchor="middle" class="minor">点赞 · 回复</text><text x="750" y="246" text-anchor="middle" class="minor">阅读 · 举报等</text><text x="750" y="270" text-anchor="middle" class="minor">Phoenix Ranker</text>
+      <path class="path" d="M820 221 H860"/>
+      <path class="box" d="M865 163 Q930 157 995 163 L998 280 Q930 286 862 280 Z"/><text x="930" y="201" text-anchor="middle" class="label">评分与重排</text><text x="930" y="231" text-anchor="middle" class="minor">权重 · 作者重复</text><text x="930" y="255" text-anchor="middle" class="minor">可选多样性</text>
+      <path class="path" d="M1000 221 H1040"/>
+      <path d="M1060 175 Q1115 165 1145 153 Q1175 165 1230 175 Q1227 260 1145 291 Q1063 260 1060 175 Z" fill="none" stroke="#1d2b22" stroke-width="2.5"/><path d="M1108 220 l25 25 47 -54" fill="none" stroke="#a35442" stroke-width="4"/><text x="1145" y="325" text-anchor="middle" class="label">可见性</text><text x="1145" y="351" text-anchor="middle" class="minor">允许 · 提示 · 移除</text>
+      <path class="path" d="M1232 221 H1275"/>
+      <path class="box" d="M1280 155 Q1340 150 1400 155 L1403 289 Q1340 295 1277 289 Z"/><path d="M1300 181 H1380 M1300 203 H1370 M1300 225 H1380 M1300 247 H1363" stroke="#1d2b22" stroke-width="2.5"/><text x="1340" y="325" text-anchor="middle" class="label">For You</text><text x="1340" y="351" text-anchor="middle" class="minor">混排广告等</text>
+      <rect class="x-hit" data-x-info="user" x="10" y="140" width="105" height="220" rx="7" role="button" tabindex="0" aria-label="用户：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="thunder" x="250" y="15" width="160" height="100" rx="6" role="button" tabindex="0" aria-label="Thunder：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="retrieval" x="250" y="170" width="160" height="100" rx="6" role="button" tabindex="0" aria-label="Phoenix 召回：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="clusters" x="250" y="325" width="160" height="100" rx="6" role="button" tabindex="0" aria-label="SimClusters：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="filter" x="500" y="158" width="140" height="127" rx="6" role="button" tabindex="0" aria-label="补充与过滤：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="predict" x="680" y="146" width="140" height="150" rx="6" role="button" tabindex="0" aria-label="行为预测：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="score" x="860" y="158" width="140" height="127" rx="6" role="button" tabindex="0" aria-label="评分与重排：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="visibility" x="1050" y="148" width="190" height="210" rx="6" role="button" tabindex="0" aria-label="可见性：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="feed" x="1274" y="150" width="132" height="208" rx="6" role="button" tabindex="0" aria-label="For You 信息流：查看解释和代码" aria-pressed="false"/>
+    </svg>
+  </div>
+  <p class="muted" style="margin:7px 0">点击图中任一环节，查看解释与固定版本源码；也可用 Tab 和 Enter 操作。</p>
+  <div class="x-map-detail" id="xMapDetail" hidden aria-live="polite"></div>
+  <p class="cite" style="margin-top:9px">图示改编自 <a href="https://cneuralnetwork.github.io/x-algorithm-explained/#top" target="_blank" rel="noopener">cneuralnetwork, “What actually decides your For You feed?”</a>；机制依据 <a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/README.md#system-architecture" target="_blank" rel="noopener">X 固定提交源码</a>。简化示意；线上配置待核验。</p>
+  <aside class="notes"><h3>讲述：一次请求，六种决策</h3><ol><li><b>候选：</b>Home Mixer 获取用户上下文与行为历史。Thunder 返回关注账号的近期帖子；Phoenix retrieval 与 SimClusters 寻找其他候选，也有热门帖来源。之后补充特征并初步过滤，包括去重与屏蔽、静音等规则。</li><li><b>预测：</b>Phoenix 排序模型结合用户历史与候选帖，预测点赞、回复、转发、阅读、举报等行为。预测值不是实际行为，也不是满意度。</li><li><b>价值：</b>评分代码将行为预测值与配置权重结合。部分输出为连续值，并不都是概率；权重不是实际互动次数的兑换比例。</li><li><b>排列：</b>评分还可能经过重复作者等修正；VMRanker 可以利用内容表示进行多样性重排。作者衰减与 VMRanker 是不同机制，具体线上是否启用待核验。</li><li><b>可见性：</b>规则依据内容标签、用户关系及其他条件判定允许、提示、遮罩或移除。可见性过滤也用于其他路径，此图突出选择后的步骤。</li><li><b>混排：</b>已排序帖子与广告、关注推荐等产品内容被组合，形成最终信息流。可见结果无法单独说明帖子是未被召回、排序靠后还是被过滤。</li></ol><h3>证据与边界</h3><p>一手已核验：xai-org/x-algorithm 固定提交 <code>5ed796374ea48ee26058aab66ab10c266bea2bef</code> 的 <a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/README.md#system-architecture">README 请求路径与组件</a>、<a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/home-mixer/scorers/value_model.rs#L8-L84">value_model.rs L8–84</a>、<a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/xai-value-model/scoring.rs#L57-L139">scoring.rs L57–139</a>。代码说明该版本的实现，不能证明每次线上请求的开关、效果或生产数据。六个问题的组织方式参考第三方 <a href="https://cneuralnetwork.github.io/x-algorithm-explained/#top">X algorithm field map</a>；其审计所用提交与本课不同。</p></aside>
+</section>
+
 <!-- 15 ============================================================ -->
 <section class="slide gutter" data-part="3" data-t="+" data-title="X：行为数据结构与分发记录">
-  <div class="formhead"><b>要点三 · 平台字段 → 推荐 · 1/2</b><span>X 开源代码</span></div>
+  <div class="formhead"><b>平台推荐 · 数据基础</b><span>X 开源代码</span></div>
   <h2>X 的源码，实际定义了哪些行为字段？</h2>
   <p class="muted">政府决策之后，看平台如何利用行为数据作预测与分发：迭代频率、速度及其后果需要哪些实际运行数据才能比较？</p>
   <div class="grid2">
@@ -1050,16 +1105,33 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <section class="slide gutter" data-part="3" data-t="+" data-title="X：从行为序列到推荐反馈">
-  <div class="formhead"><b>要点三 · 平台字段 → 推荐 · 2/2</b><span>点击环节，查看对应源码</span></div>
+  <div class="formhead"><b>平台推荐 · 2 / 5</b><span>点击环节，查看对应源码</span></div>
   <h2>历史怎样进入预测，预测怎样变成顺序？</h2>
   <div class="seg-btns" id="xTraceSteps" role="group" aria-label="X 源码链路"><button type="button" data-trace="0" aria-pressed="true">1 行为序列</button><button type="button" data-trace="1" aria-pressed="false">2 特征编码</button><button type="button" data-trace="2" aria-pressed="false">3 预测</button><button type="button" data-trace="3" aria-pressed="false">4 加权与排序</button><button type="button" data-trace="4" aria-pressed="false">5 反馈回读</button></div>
   <div class="sheet" id="xTracePanel" aria-live="polite"></div>
   <div class="grid2" style="margin-top:18px">
     <div><h3>可以据代码讨论</h3><p>行为与分发历史会影响后续请求的输入。选择什么预测目标、怎样给目标加权、是否过滤已分发内容，是不同环节的设计决定。</p><p>闭环也可能减少重复、响应负反馈；是否加强某类内容，需要实际分发数据或实验来检验。</p></div>
-    <div><h3>延伸：权重模拟器</h3><p>先确认权重乘的是预测概率，再看改变权重如何影响计算。完整源码还含连续值预测、条件权重、分数变换、重排和过滤。</p></div>
+    <div><h3>模型预测的是什么？</h3><p>代码包含点赞、回复、停留和负面反馈等预测头。预测是对可能行为的估计，不是已经发生的行为，也不是对满意度的直接测量。</p></div>
   </div>
   <p class="cite x-version" style="margin-top:12px"></p>
-<aside class="notes"><h3>闭环的证据与边界</h3><p>历史序列通过聚合服务读取；动作编码由multi_hot_to_embeddings实现；候选与序列装入预测请求；预测头传入value_model；分发历史由side effect写入，下次请求回读为served_ids。每一步的精确链接在页内交互中。</p><p>不能从这条链直接断言每次互动立即重训、用户被心理奖励强化，或争议内容一定放大。可以把这些说法改写为待实验检验的研究问题。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">原有模拟器的帖子概率是合成样例，没有真实预测输出来源；它只能演示公式，不能作为 X 实际推荐效果的证据。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p><h3>各环节证据边界（讲师）</h3><ul><li><b>读取行为序列：</b>能确认服务端读取接口；客户端如何采集每个动作、保留多久，尚缺完整证据。</li><li><b>把动作编码成模型特征：</b>特征由代码处理得到；“喜欢争吵”不是这里直接记录的字段。</li><li><b>预测动作概率与连续值：</b>仓库里的结构不是某个用户的真实预测输出；本页不生成行为概率。</li><li><b>按目标加权，再选择内容：</b>下一页模拟器只选择部分概率头，省略完整系统的重排、过滤和混排。</li><li><b>分发历史回到下一次请求：</b>这证明信息反馈路径，不证明某次点击会即时重训，也不证明特定心理或社会后果。</li></ul></aside>
+<aside class="notes"><h3>闭环的证据与边界</h3><p>历史序列通过聚合服务读取；动作编码由multi_hot_to_embeddings实现；候选与序列装入预测请求；预测头传入value_model；分发历史由side effect写入，下次请求回读为served_ids。每一步的精确链接在页内交互中。</p><p>不能从这条链直接断言每次互动立即重训、用户被心理奖励强化，或争议内容一定放大。可以把这些说法改写为待实验检验的研究问题。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">原有模拟器的帖子概率是合成样例，没有真实预测输出来源；它只能演示公式，不能作为 X 实际推荐效果的证据。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p><h3>各环节证据边界（讲师）</h3><ul><li><b>读取行为序列：</b>能确认服务端读取接口；客户端如何采集每个动作、保留多久，尚缺完整证据。</li><li><b>把动作编码成模型特征：</b>特征由代码处理得到；“喜欢争吵”不是这里直接记录的字段。</li><li><b>预测动作概率与连续值：</b>仓库里的结构不是某个用户的真实预测输出；本页不生成行为概率。</li><li><b>按目标加权，再选择内容：</b>加权只是评分的一部分，完整系统还有重排、过滤和混排。</li><li><b>分发历史回到下一次请求：</b>这证明信息反馈路径，不证明某次点击会即时重训，也不证明特定心理或社会后果。</li></ul></aside>
+</section>
+
+<section class="slide gutter" data-part="3" data-t="+" data-title="X：行为预测如何转成分数">
+  <div class="formhead"><b>平台推荐 · 3 / 5</b><span>预测值 × 权重</span></div>
+  <h2>平台如何给不同行为赋予价值？</h2>
+  <div class="grid2"><div class="sheet"><h3>一个评分环节的核心形式</h3><p style="font-size:1.6em" class="num">加权分数 = Σ（权重 × 预测值）</p><p>预测值可以是行为概率或连续数值；权重由配置提供。各项单位不同，不能把每个预测值都当作概率。</p><p>这是评分环节的概括；代码还包含条件权重、分数变换和其他修正。</p></div><div class="sheet"><h3>课堂互动：点开讨论</h3><details><summary>提高回复的权重会发生什么？</summary><p>在其他输入固定时，回复预测值的贡献随权重变化。最终名次还取决于其他候选、修正和过滤；没有真实预测输出不能计算实际排名。</p></details><details><summary>一次举报能抵消多少次点赞？</summary><p>不能从权重直接这样换算：这里相乘的是对特定用户和帖子的预测值，而不是实际互动次数。</p></details><details><summary>为什么没有预填滑块数值？</summary><p>目前没有可核验的真实用户预测输出；因此不编造概率或演示排名。</p></details></div></div>
+  <p class="cite">一手已核验：<a data-x-path="home-mixer/params/param.rs" data-x-line="396" data-x-end="508">权重参数 L396–508</a>；<a data-x-path="xai-value-model/scoring.rs" data-x-line="57" data-x-end="139">加权评分 L57–139</a>；<a data-x-path="home-mixer/scorers/value_model.rs" data-x-line="8" data-x-end="84">评分调用 L8–84</a>。固定提交的代码不证明实际线上权重。</p>
+</section>
+<section class="slide gutter" data-part="3" data-t="+" data-title="优化目标与用户福祉">
+  <div class="formhead"><b>平台推荐 · 4 / 5</b><span>代理指标</span></div>
+  <h2>可预测的行为，就是用户得到的价值吗？</h2>
+  <div class="grid2"><div class="sheet"><h3>代码可以告诉我们</h3><p>模型预测多种行为，评分代码把预测值与权重结合。行为可被定义和计算，但它们不直接等同于满意度或信息价值。</p><p class="cite"><a data-x-path="home-mixer/scorers/phoenix_scorer.rs" data-x-line="104" data-x-end="144">预测结果 L104–144</a> · <a data-x-path="xai-value-model/scoring.rs" data-x-line="57" data-x-end="139">加权计算 L57–139</a> · 一手代码已核验</p></div><div class="sheet"><h3>还需要独立证据</h3><p>长时间阅读可能对应不同体验；回复也可能有不同动机。仅凭代码无法判断用户是否受益，也无法确认商业目标的具体优先级。</p><div class="weld"><b>区分三个层次：</b>模型预测任务 → 排序使用的目标 → 平台商业目标。它们有关联，但不能直接画等号。</div></div></div>
+</section>
+<section class="slide gutter" data-part="3" data-t="+" data-title="从推荐机制到研究问题">
+  <div class="formhead"><b>平台推荐 · 5 / 5</b><span>提出可检验的问题</span></div>
+  <h2>互动越多，用户获得的价值越高吗？</h2>
+  <div class="grid2"><div class="sheet"><h3>研究命题</h3><p class="lede">预测互动价值更高的推荐，是否也得到更高的用户满意度与信息价值评价？</p><p>这是待检验的问题，不是源码已经证明的结论。</p></div><div class="sheet"><h3>如何设计观察？</h3><ol><li>明确“价值”：让参与者评价满意度与信息帮助，而不是只统计点击。</li><li>记录推荐及评价，说明样本、时间、账户和观察条件。</li><li>比较行为与评价；要判断推荐策略的因果影响，需设计可执行的对照并考虑混杂因素。</li></ol><p>外部观察通常看不到预测分数、未召回候选或线上配置，要保留这些证据缺口。</p></div></div>
 </section>
 
 <section class="slide gutter" data-part="0" data-t="+" data-title="我们的群在哪里长期交流">
@@ -1760,7 +1832,7 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
       '仓库里的结构不是某个用户的真实预测输出；本页不生成行为概率。'],
     ['按目标加权，再选择内容', 'value_model 读取参数；compute_weighted_score 对各预测头乘权重后求和。还存在条件权重和 offset；TopKScoreSelector 对候选最终 score 排序截取。',
       link('home-mixer/params/param.rs',396,508,'默认权重 L396–508') + '；' + link('xai-value-model/scoring.rs',57,139,'加权求和 L57–139') + '；' + link('home-mixer/selectors/top_k_score_selector.rs',10,33,'TopK 选择 L10–33'),
-      '下一页模拟器只选择部分概率头，省略完整系统的重排、过滤和混排。'],
+      '加权只是评分的一部分，完整系统还有重排、过滤和混排。'],
     ['分发历史回到下一次请求', 'UpdateServedHistorySideEffect 写入已分发内容；ServedHistoryQueryHydrator 在后续请求读取历史并构建 served_ids。与此同时，行为历史序列是预测输入，形成可追踪的反馈路径。',
       link('home-mixer/side_effects/update_served_history_side_effect.rs',31,77,'分发后写入 L31–77') + '；' + link('home-mixer/query_hydrators/served_history_query_hydrator.rs',25,79,'下一次请求回读 L25–79'),
       '这证明信息反馈路径，不证明某次点击会即时重训，也不证明特定心理或社会后果。']
@@ -1812,6 +1884,72 @@ $("#showCalc").onclick = () => $("#calcAns").classList.add("on");
   draw();
 })();
 
+
+/* ---------------- X map explanations ---------------- */
+(() => {
+  const root = 'https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/';
+  const tree = 'https://github.com/xai-org/x-algorithm/tree/5ed796374ea48ee26058aab66ab10c266bea2bef/';
+  const ref = (path, lines, label) => `<a href="${root}${path}${lines}" target="_blank" rel="noopener">${label}</a>`;
+  const directory = (path, label) => `<a href="${tree}${path}" target="_blank" rel="noopener">${label}（代码目录）</a>`;
+  const readme = ref('README.md', '#system-architecture', 'README：请求路径与组件');
+  const items = {
+    user: ['用户上下文', '请求会读取用户的行为历史等上下文。行为结构定义和实际采集、填充、保存是不同环节。', ref('home-mixer/query_hydrators/scoring_sequence_query_hydrator.rs','#L90-L121','历史序列读取 L90–121') + '；' + ref('phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto','#L1519-L1544','行为结构 L1519–1544'), '客户端完整采集链和实际留存未核实。'],
+    thunder: ['Thunder：关注账号候选', '从关注账号的近期帖子中提供候选，进入后续流程，并不意味着全部会展示。', readme + '；' + directory('thunder','Thunder'), '此处 README 描述候选来源；仓库目录供进一步查看实现。'],
+    retrieval: ['Phoenix Retrieval：向量召回', '把用户与帖子表示为向量，查找接近的帖子，提供未关注账号的候选。召回回答“考虑哪些”，不是最终排序。', readme + '；' + directory('phoenix','Phoenix'), '仓库说明该组件的设计；线上开关、数据与效果未核实。'],
+    clusters: ['SimClusters：社群召回', '根据用户与帖子的互动关系构建社群，用聚类帮助寻找候选。', readme + '；' + directory('simclusters','SimClusters'), '不能据此推断某位用户具体属于什么社群。'],
+    filter: ['候选补充与初步过滤', '多个来源的候选合并后，补充帖子和作者等特征，并在评分前应用去重、屏蔽、静音等过滤。热门帖子也是可能的候选来源。', readme + '；' + directory('home-mixer/filters','过滤器'), '不同过滤器可受配置影响；不能据此确认所有请求的实际执行情况。'],
+    predict: ['Phoenix：行为预测', '排序模型对每条候选预测多种用户行为；代码中也有连续值预测。预测是模型输出，不是实际发生的行为。', ref('home-mixer/util/phoenix_request.rs','#L290-L303','候选与历史进入请求 L290–303') + '；' + ref('home-mixer/scorers/phoenix_scorer.rs','#L104-L144','调用预测和取回结果 L104–144'), '公开代码不提供本页用户的真实预测值。'],
+    score: ['加权评分与重排', '评分将预测值与权重结合；还可对重复作者等进行修正，并通过 VMRanker 重排。最后的选择器按得分选取候选。', ref('xai-value-model/scoring.rs','#L57-L139','加权评分 L57–139') + '；' + ref('home-mixer/selectors/top_k_score_selector.rs','#L10-L33','选择 L10–33') + '；' + directory('vm-ranker','VMRanker'), '权重作用于预测值，不是累计互动次数；不保证每个线上请求启用重排。'],
+    visibility: ['可见性判断', '规则根据内容与观看者关系等信息作出可见性判断；选择后的过滤器会移除判为 drop 的帖子。', ref('home-mixer/filters/vf_filter.rs','','可见性过滤器') + '；' + ref('visibility-filtering/models/verdict.rs','','判决类型') + '；' + readme, '开源规则和线上配置可能不完整；无法从最终页面单独判断某条内容是否被过滤。'],
+    feed: ['混排后的 For You', '已排序的帖子与广告、关注推荐等其他内容混排，形成最终信息流。', ref('home-mixer/selectors/blender_selector.rs','','BlenderSelector 实现') + '；' + readme, '流程简化了具体选择器和配置；最终位置不能单独解释为模型分数。']
+  };
+  // Pseudocode is explanatory, not executable source. Only names explicitly identified
+  // as source fields/symbols below are intended to match the fixed commit.
+  const implementation = {
+    user: ['实际字段：UserAction.userId、tweetInfo、actionInfo、adInfo；ActionInfo.engagementTimeMs、actionName。', `user_id → fetch action sequence
+→ UserActionSequence
+→ model history input`],
+    thunder: ['概念输入：followed accounts、recent posts；具体字段名待核验。', `followed accounts
+→ retrieve recent posts
+→ candidate posts`],
+    retrieval: ['概念输入：viewer embedding、post embeddings；具体字段名待核验。', `viewer history → viewer embedding
+posts → post embeddings
+→ nearest post candidates`],
+    clusters: ['概念输入：accounts、posts、engagement graph、clusters；具体字段名待核验。', `engagement graph → clusters
+viewer-related clusters → post candidates`],
+    filter: ['概念输入：post text、media、author details、blocks、mutes；具体结构字段名待核验。', `candidate sources → merge candidates
+→ hydrate post and author data
+→ filter duplicates / blocked / muted`],
+    predict: ['实际符号：history_seq、actions、candidate_scores；预测结果示例：favorite_score、reply_score、report_score。', `history_seq + candidates → prediction request
+dispatch.predict(request) → candidate_scores
+→ prediction values per candidate`],
+    score: ['实际符号：compute_weighted_score、TopKScoreSelector；预测值包括 probability 和 continuous values。', `weighted score = Σ(weight × prediction)
+→ apply configured adjustments
+→ TopKScoreSelector`],
+    visibility: ['README 所述判决类别：ALLOW、NOTICE、INTERSTITIAL、DROP；实际字段与规则依条件而异。', `post + viewer + rules → verdict
+if verdict == DROP: remove candidate
+otherwise: handle according to verdict`],
+    feed: ['概念输入：ranked posts、ads、Who to Follow；混排字段名待核验。', `ranked posts + ads + Who to Follow
+→ blend according to product rules
+→ For You feed`]
+  };
+  const panel = document.querySelector('#xMapDetail');
+  const hits = [...document.querySelectorAll('.x-map .x-hit')];
+  function show(hit) {
+    const [title, body, refs, boundary] = items[hit.dataset.xInfo];
+    const [fields, pseudo] = implementation[hit.dataset.xInfo];
+    hits.forEach(el => el.setAttribute('aria-pressed', String(el === hit)));
+    panel.hidden = false;
+    panel.innerHTML = `<button type="button" class="btn" aria-label="关闭环节说明">关闭</button><h3>${title}</h3><p>${body}</p><p><b>字段与输入：</b>${fields}</p><p class="cite">Pseudocode：根据下列源码概括；除标明的实际字段或符号外，英文名称是解释性标签，并非代码原文。</p><pre></pre><p class="cite">源码：${refs}</p><p class="cite">边界：${boundary} 固定提交 5ed7963；线上实际配置待核验。</p>`;
+    panel.querySelector('pre').textContent = pseudo;
+    panel.querySelector('button').onclick = () => { panel.hidden = true; hit.setAttribute('aria-pressed','false'); hit.focus(); fit(); };
+    fit();
+  }
+  hits.forEach(hit => {
+    hit.addEventListener('click', () => show(hit));
+    hit.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); show(hit); } });
+  });
+})();
 
 /* ---------------- start ---------------- */
 const m = /^#s(\d+)$/.exec(location.hash);
