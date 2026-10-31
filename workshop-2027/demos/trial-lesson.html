@@ -86,13 +86,14 @@ button { cursor: pointer; }
 .top-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding-block: 8px; }
 .brand { font-family: var(--f-display); font-weight: 900; font-size: 15px; letter-spacing: .02em; white-space: nowrap; }
 .steps3 { display: flex; gap: 4px; flex-wrap: wrap; }
-.steps3 span { font-size: 13px; padding: 2px 10px; border: 1px solid var(--rule); border-radius: 3px; color: var(--ink-3); white-space: nowrap; }
-.steps3 span.on { color: var(--sheet); border-color: transparent; }
-.steps3 span.on[data-p="1"] { background: var(--rec); }
-.steps3 span.on[data-p="2"] { background: var(--miss); }
-.steps3 span.on[data-p="3"] { background: var(--dec); }
-.steps3 span.on[data-p="4"] { background: var(--ok); }
-.steps3 span.on[data-p="0"], .steps3 span.on[data-p="5"] { background: var(--ink); }
+.steps3 button { font-size: 13px; padding: 2px 10px; border: 1px solid var(--rule); border-radius: 3px; color: var(--ink-3); white-space: nowrap; background: transparent; line-height: inherit; }
+.steps3 button:hover { border-color: var(--ink-2); color: var(--ink); }
+.steps3 button.on { color: var(--sheet); border-color: transparent; }
+.steps3 button.on[data-p="1"] { background: var(--rec); }
+.steps3 button.on[data-p="2"] { background: var(--miss); }
+.steps3 button.on[data-p="3"] { background: var(--dec); }
+.steps3 button.on[data-p="4"] { background: var(--ok); }
+.steps3 button.on[data-p="0"], .steps3 button.on[data-p="5"] { background: var(--ink); }
 .tools { margin-left: auto; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .btn { border: 1px solid var(--rule); background: var(--sheet); padding: 4px 10px; border-radius: 4px; font-size: 14px; line-height: 1.4; }
 .btn:hover { border-color: var(--ink-3); }
@@ -176,6 +177,7 @@ th { font-size: 13px; color: var(--ink-3); font-weight: 500; letter-spacing: .04
 .pool { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; padding: 10px; border: 1px dashed var(--rule); border-radius: 6px; margin-bottom: 14px; }
 .chip { border: 1px solid var(--rule); background: var(--sheet); border-radius: 999px; padding: 4px 12px; font-size: 15px; }
 .chip:hover { border-color: var(--ink-3); }
+.chip:disabled { opacity: 1; color: var(--ink); cursor: default; }
 .chip small { color: var(--ink-3); font-size: 12px; margin-left: 4px; }
 .bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 @media (max-width: 700px) { .bins { grid-template-columns: 1fr; } }
@@ -345,7 +347,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   <div class="top-row gutter">
     <span class="brand">一个人怎样变成一个数字</span>
     <div class="steps3" id="steps3" aria-label="四道工序">
-      <span data-p="1">① 被记录</span><span data-p="2">② 没被记录</span><span data-p="3">③ 被用来做决定</span><span data-p="4">④ 被看见</span>
+      <button type="button" data-p="1">① 被记录</button><button type="button" data-p="2">② 没被记录</button><button type="button" data-p="3">③ 被用来做决定</button><button type="button" data-p="4">④ 被看见</button>
     </div>
     <div class="tools">
       <button class="btn" id="timerBtn" title="开始 / 暂停计时（T）"><span class="clock" id="clock">00:00</span> <span id="timerState">开始计时</span></button>
@@ -421,15 +423,16 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 <!-- 2 ============================================================ -->
 <section class="slide gutter" data-part="1" data-t="3-6" data-title="小周的 15 分钟">
   <div class="formhead"><b>要点一 · 被记录</b><span>活动 · 聊天区 · 3 分钟</span></div>
-  <h2>小周的 15 分钟，系统记下了什么？</h2>
+  <h2>小周的 15 分钟，系统可能记下什么？</h2>
   <div class="row" style="align-items:flex-start">
     <p class="story" id="storyText">晚上 11:40，小周躺在宿舍床上打开抖音，刷了 15 分钟：划过 20 条视频，看完其中 6 条，给 2 条点赞，在 1 条下面评论了一句，搜索了一次"周末 乐队演出"。</p>
   </div>
   <div class="row" style="margin-bottom:10px">
     <button class="btn" data-copy="storyCopy">复制题目到聊天区</button>
-    <span class="muted">学员在聊天区列出"系统可能记下了什么"。之后点下面的卡片，把它们放进三栏。</span>
+    <span class="muted">先请学员猜；按讲师备注中的编号点击卡片，逐项揭晓并放进三栏。</span>
   </div>
-  <div class="pool" id="pool" aria-label="待分类"></div>
+  <p class="muted" style="margin-bottom:5px">答案卡片已隐藏 · 编号对照表在“讲师备注” · “待核”表示政策未证实该具体字段或标签</p>
+  <div class="pool" id="pool" aria-label="待揭晓答案卡片"></div>
   <div class="bins">
     <div class="bin" data-k="you"><h3>你提供的 <span class="c" data-count="you">0</span></h3><div class="chips"></div></div>
     <div class="bin" data-k="obs"><h3>被观察到的 <span class="c" data-count="obs">0</span></h3><div class="chips"></div></div>
@@ -437,7 +440,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   </div>
   <div class="row" style="margin-top:12px">
     <button class="btn primary" id="sortAll">全部揭晓</button>
-    <button class="btn" id="sortReset">重来</button>
+    <button class="btn" id="sortReset">重新隐藏</button>
     <span class="muted" id="sortQ"></span>
   </div>
   <pre id="storyCopy" hidden>【小周的 15 分钟】晚上 11:40，小周躺在宿舍床上打开抖音，刷了 15 分钟：划过 20 条视频，看完其中 6 条，给 2 条点赞，在 1 条下面评论了一句，搜索了一次"周末 乐队演出"。
@@ -446,15 +449,17 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <h3>3–6 分钟 · 小周（聊天区活动）</h3>
     <ul>
       <li>读出小周的 15 分钟，复制题目进聊天区，给 2 分钟。<b>不让学员打开自己的账号。</b></li>
-      <li>边读聊天区，边点卡片归类。学员通常只想到"你提供的"一栏，后两栏要讲师补。</li>
-      <li>"完播率"标了"派生"：系统记的是第几秒开始、第几秒划走，<b>完播率是事后算出来的</b>，算什么、怎么算是平台的选择。这句话正好接下一页的"分母"。</li>
-      <li>追问："这三栏里，哪一栏你能要求平台给你一份副本？"（推断出来的标签，下载个人数据时通常拿不到。）</li>
-      <li>原始事件的字段依据讲师从业经验；以抖音现行隐私政策列出的类别为公开佐证（课前核对）。</li>
-      <li>"所在城市"：搜"周末 乐队演出"，平台结合 IP 推断你在哪个城市、想去哪里的演出。下一页把同样的问题换到 AI 上展开讲。</li>
+      <li>边读聊天区，按下列编号逐项揭晓并归类；学员没提到的内容可最后点“全部揭晓”。点“重新隐藏”可再进行一次。</li>
+      <li><b>答案卡片编号：</b>① 评论文字；② 搜索词；③ 点赞视频；④ IP 地址；⑤ 设备型号与系统；⑥ 网络类型；⑦ 打开时间；⑧ 播放及划走时间；⑨ 看完视频占比（题设计算）；⑩ 使用时长；⑪ 深夜使用频率；⑫ 喜欢现场音乐；⑬ 所在城市；⑭ 作息不规律；⑮ 周末有空、愿意花钱。</li>
+      <li>这些是讨论可能的数据类别与推断，不等于证明抖音实际记录了每一项或生成了这些标签。尤其“作息不规律”“愿意花钱”等标签需平台运行证据才能作为事实。</li>
+      <li>⑧ 具体播放／划走时间戳、⑩ 打开与结束时间的记录精度：政策只描述浏览、日志等类别，未确认具体字段，列为待核。⑨ “6/20”仅是题设中看完的视频数除以划过的视频数，并不证明平台这样定义或使用完播率；⑪ 深夜使用频率需要多次使用记录，一次 15 分钟不够计算。</li>
+      <li>追问：“这三栏里，哪一栏你能要求平台给你一份副本？”政策列有个人信息查阅路径，但本课尚未核验实际返回字段，不能断言标签通常拿不到。</li>
+      <li><b>对照抖音 2026-09-18 生效版政策：</b>①评论、③点赞：§1.2 明示登录后记录相关互动；②搜索：§1.2、§1.5.1 提及搜索信息；④IP、⑤硬件型号和系统版本、⑥网络接入类型：§1.5.1、§1.7 分别列出相关类别。政策声明不等于实际采集日志，也不证明每个字段每次都进入推荐。⑦题目中的 23:40 是虚构情景，政策提到操作／服务日志，未确认本事件时间字段。</li>
+      <li>⑫–⑮ 是课堂提出的可能推断，不是抖音已使用的真实标签。§1.5.1 描述可能利用设备、位置、行为和资料预测偏好；§1.2 提及网络信息如 IP 对应的地区可用于内容展示，但不支持断言特定个人的所在地、作息、消费能力或逐项标签已被准确推断。</li>
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
-      <li><a href="https://www.douyin.com/" target="_blank" rel="noopener">抖音隐私政策（课前在 App「设置 → 隐私政策」核对现行版本的收集类别）</a></li>
+      <li><a href="https://www.douyin.com/draft/douyin_agreement/douyin_agreement_privacy.html?id=6773901168964798477" target="_blank" rel="noopener">抖音隐私政策 §1.2、§1.5.1、§1.7（2026-09-18 生效；本次核读）</a></li>
       <li><a href="https://nyupress.org/9781479857593/we-are-data/" target="_blank" rel="noopener">Cheney-Lippold 2017, We Are Data</a></li>
     </ul>
   </aside>
@@ -488,12 +493,26 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     </div>
     <div class="sheet">
       <h3>回到小周</h3>
-      <p>你在使用 AI 时，服务方至少能看到你的<b>账号、网络、设备设置、使用时间和对话内容</b>。哪怕你隐藏了 IP，时区、语言和你自己说出的话仍然能认出你。</p>
+      <p>使用互联网 App 时，服务方可能获取<b>账号、网络、设备设置、使用时间和你输入的内容</b>；具体取决于 App、使用场景和权限。即使隐藏 IP，时区、语言和你提供的文字也可能成为识别线索，但不一定能认出你。</p>
       <p>小周搜的"周末 乐队演出"也一样：<mark>最能暴露身份的，往往是自己写下的文字</mark>。这和 Day 2 的再识别是同一个道理。</p>
       <p class="cite">讲的是"能被看到什么"，不是"一定被看了什么"。报告是一家公司的单方面说法。</p>
     </div>
   </div>
+  <details class="sheet" id="douyinPolicyDetails" style="margin-top:16px">
+    <summary><b>点击展开：抖音隐私政策列出的信息与用途</b></summary>
+    <p class="cite" style="margin-top:10px">依据<a href="https://www.douyin.com/draft/douyin_agreement/douyin_agreement_privacy.html?id=6773901168964798477" target="_blank" rel="noopener">抖音隐私政策</a>（2026-09-11 更新、09-18 生效；2026-10-31 核读）。以下为条款摘要；使用与收集依具体功能、设备、权限和政策条件而异。</p>
+    <table><thead><tr><th>信息类别</th><th>抖音政策所述场景或可能使用的信息</th></tr></thead><tbody>
+      <tr><td>联系与账号</td><td>注册登录的手机号；头像、昵称，用户可选择填写性别、生日、地区等；经授权可用通讯录推荐朋友（§1.1、§1.4.2）。</td></tr>
+      <tr><td>设备、网络与日志</td><td>硬件型号、操作系统版本、设备标识符、IP、网络接入类型和服务日志等，政策列有安全运营等用途（§1.7）。</td></tr>
+      <tr><td>位置</td><td>授权的位置及网络位置；精确定位涉及相应权限。拒绝位置权限时，政策说明仍可能依据 IP 等提供地区相关内容（§1.2）。</td></tr>
+      <tr><td>使用行为与内容</td><td>登录后记录点击、浏览、分享、关注、收藏、反馈、发布、点赞、评论等；搜索、发布内容相关处理另有说明（§1.2–§1.4）。</td></tr>
+      <tr><td>权限与特定功能</td><td>摄像头、麦克风、剪贴板、日历、传感器及身份核验等对应特定功能或场景；并非每项都为一般浏览或推荐自动开启（§1.1、§1.3、§1.4、§1.6、§3.1.2）。</td></tr>
+      <tr><td>个性化推荐</td><td>政策称可能使用设备、位置、行为、用户填写的资料及经授权或合作方提供的信息预测偏好；可管理或关闭个性化内容推荐（§1.5.1、§3.1.5）。</td></tr>
+    </tbody></table>
+    <p class="cite" style="margin-top:8px">这是平台的公开政策说明，不是客户端采集日志或推荐源码；不能由此断言小周的某个字段一定被收集，也不能还原排序逻辑。</p>
+  </details>
   <aside class="notes">
+    <h3>抖音政策对照（点页面内的折叠区展开）</h3><p>用户提供的条款摘录可以作为检索线索；本页以本次核读的 2026-09-18 生效版<a href="https://www.douyin.com/draft/douyin_agreement/douyin_agreement_privacy.html?id=6773901168964798477">抖音隐私政策</a>为准，避免将不同版本或适用场景混同。1.2 列出浏览互动；1.5.1 描述推荐可能使用的类别与偏好预测；1.7 列出设备、IP、网络类型与日志；3.1.2 列有系统权限管理。截图、政策、采集日志和模型实现是不同证据层次。</p>
     <h3>6–8 分钟 · 佐证展开</h3>
     <ul>
       <li>逐行讲表格，重点停在"对话内容本身"（高亮行）：技术手段藏住了，自己说出来了。接回小周：他的评论和搜索词，也是"自己说出来的"。</li>
@@ -538,7 +557,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
         <p id="sameEquation" style="margin:0"></p>
       </div>
       <div class="row" style="align-items:flex-end; gap:20px; margin-top:12px">
-        <div><div class="big" id="uniqOut" style="font-size:56px">0%</div><div class="muted">在这 73,126 人里<br>独一无二的人</div></div>
+        <div><div class="big" id="uniqOut" style="font-size:56px">0%</div><div class="muted">在这批样本中，<br>所选属性组合没有第二个人</div></div>
         <div><div class="big" id="sameOut" style="font-size:56px; color:var(--ink-2)">73,126</div><div class="muted">平均每人有几个"一模一样"的人<br>（含自己）</div></div>
       </div>
       <div class="uniqbar"><div id="uniqFill"></div></div>
@@ -580,6 +599,27 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li>一句话：<b>"同意"在设计上就是读不完的。</b>这是 Day 2 知情同意讨论的入口。</li>
       <li>超时：只讲左边，右边一句话带过"244 小时 / 年"。</li>
     </ul>
+    <h3>六项组合：具体复算过程（2026-10-31）</h3>
+    <ol>
+      <li><b>原始数据：</b>Claude 的历史记录显示，数据下载自美国普查局 2023 年 ACS 1-year PUMS 马萨诸塞州个人文件；本次找回原始 CSV 并逐行读取，共 <b>73,126 条个人样本记录</b>。<a href="https://www2.census.gov/programs-surveys/acs/data/pums/2023/1-Year/csv_pma.zip">人口普查局原始下载</a>；<a href="data/acs-2023-pums-verification.md">本次复核记录及脚本</a>。文件与本地原 ZIP 的散列一致；本次未从官网重新下载比对散列。</li>
+      <li><b>取六项：</b>地区 <code>PUMA</code>、年龄 <code>AGEP</code>、性别 <code>SEX</code>、婚姻状况 <code>MAR</code>、公民身份 <code>CIT</code>、职业 <code>OCCP</code>；保留每条记录的原始字段值，空值按单独类别处理。地区是 PUMA，不是邮编；年龄不是完整出生日期。</li>
+      <li><b>一步一步数实际组合：</b>从同一批 73,126 条记录出发，依次加入下列字段；每一步都对已经选中的字段组合去重，而不是把每列类别数直接相乘。
+        <table><thead><tr><th>加入的字段</th><th>该字段在样本中的取值数</th><th>至此实际不同组合数</th></tr></thead><tbody>
+          <tr><td>PUMA 地区</td><td>54</td><td>54 组</td></tr>
+          <tr><td>＋ AGEP 年龄</td><td>92</td><td>4,938 组</td></tr>
+          <tr><td>＋ SEX 性别</td><td>2</td><td>9,677 组</td></tr>
+          <tr><td>＋ MAR 婚姻状况</td><td>5</td><td>19,792 组</td></tr>
+          <tr><td>＋ CIT 公民身份</td><td>5</td><td>28,139 组</td></tr>
+          <tr><td>＋ OCCP 职业</td><td>517（含一类空值）</td><td><b>57,020 组</b></td></tr>
+        </tbody></table>
+        <p>公式：实际组数 = 不同的 <code>(PUMA, AGEP, SEX, MAR, CIT, OCCP)</code> 六元组的数量。比如地区×年龄的理论组合上限是 54 × 92 = 4,968，但样本里实际只出现 4,938 种。把六列类别数相乘得到 54 × 92 × 2 × 5 × 5 × 517 = 128,422,800，只是所有取值的理论笛卡尔组合，不是实际组数；很多组合未出现，也不能假设属性独立或均匀。</p>
+      </li>
+      <li><b>按完全相同的六字段值分组：</b>73,126 条记录形成 <b>57,020 组</b>，其中 <b>50,635 组仅有一条记录</b>。每个单人组对应一个样本内没有相同六项组合的人。</li>
+      <li><b>计算：</b>50,635 ÷ 73,126 × 100% = <b>69.2435%（约 69.24%）</b>；平均同组人数（含自己）按 Σ(组人数²) ÷ 73,126 得 <b>2.30077（约 2.30）</b>。前者是样本内唯一比例；后者等于随机抽取一条样本记录后，其所在组的人数平均值。</li>
+      <li><b>与页面核对：</b>原 Claude 脚本对 15 个属性组合预计算并嵌入页面；本次用六项的原始字段元组重新分组，独立复核结果与预计算的 69.24% 和 2.30 一致。其他组合未逐一复核。</li>
+      <li><b>职业的具体取值：</b>当前样本有 <b>516 个非空 OCCP 代码</b>，另有 <b>25,955 条空值</b>。原脚本把空值当作一类，合计 517 种取值；空值不等于全部都是失业者。<a href="https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2023.pdf">2023 PUMS 数据字典</a></li>
+      <li><b>边界：</b>上述为未使用 PWGTP 权重的样本内统计；样本内唯一不等于全州唯一，也不等于真实再识别成功。另一个“完整出生日期”模式把随机日序号加在年龄后，是模拟而非真实生日，不可与本次年龄模式的复算混为一谈。</li>
+    </ol>
     <h3>左边的数字是怎么算的</h3>
     <ul>
       <li><b>数据</b>：美国普查局 2023 年 ACS 1 年期公开微观样本（PUMS），马萨诸塞州个人文件与住户文件（按 SERIALNO 合并），共 73,126 人，约占全州人口 1%。</li>
@@ -592,7 +632,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
           <li>婚姻状况 → MAR → 已婚 / 丧偶 / 离婚 / 分居 / 从未结婚。</li>
           <li>公民身份 → CIT → 美国本土出生 / 美属地区出生 / 父母是美国人但生在海外 / 入籍 / 不是公民。</li>
           <li>雇佣类别 → COW → 给谁打工：私营公司、非营利机构、地方 / 州 / 联邦政府、自雇（注册或未注册公司）、家庭帮工无薪、失业。</li>
-          <li>职业 → OCCP → 具体做什么工作，517 类。</li>
+          <li>职业 → OCCP → 516 个非空职业代码加一类空值，共 517 种取值。</li>
           <li>房贷 → TEN → 住房是怎么来的：买房还在还贷 / 买房已还清 / 租房 / 不付租金住。</li>
           <li>工作所在州 → POWSP → 在哪个州（或国外）上班，可以和住的州不同。</li>
           <li>种族 → RAC1P → 8 类。</li>
@@ -602,7 +642,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
           <li>家庭车辆数 → VEH → 家里有几辆车，0–6 辆以上。</li>
         </ul>
         不适用或没回答的（如不上班的人没有通勤信息，约一半人）算作单独一类，所以“不上班”本身也是一条线索。页面上把鼠标停在每个选项上也能看到对应变量。</li>
-      <li><b>能被唯一确定的人</b> = 按所选属性把 73,126 人分组，组里只有自己一个人的人数 ÷ 73,126。全部 32,767 种组合都事先算好嵌进页面，所以点哪个组合都是真实计算的结果。</li>
+      <li><b>能被唯一确定的人</b> = 按所选属性把 73,126 人分组，组里只有自己一个人的人数 ÷ 73,126。组合预计算后嵌入页面；本次仅对上述六项组合直接复算，其他组合尚未逐一复核。</li>
       <li><b>平均每人有几个一模一样的人</b> = Σ(每组人数²) ÷ 73,126：随便挑一个人，和他所选属性全部相同的人数（含自己）的平均。</li>
       <li><b>"完整出生日期"模式</b>：公开数据只有年龄。Rocher 等人的做法是"由年龄推得、月和日随机"，这里照做（固定随机种子，每人随机一个出生日）。所以这个模式下的出生日期是<b>模拟的</b>，不是真实生日。</li>
       <li><b>几组参考数</b>（年龄模式）：地区 + 年龄 + 性别 0.5%；再加子女数 12.3%；再加职业 58.0%（地区 + 年龄 + 性别 + 职业）；15 项全选 91.5%。完整出生日期模式：地区 + 出生日期 + 性别 97.4%；15 项 99.96%。</li>
@@ -612,7 +652,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     </ul>
     <h3>动态公式怎么讲</h3>
     <p><b>先解释分组：</b>“按你勾选的属性，所有已选属性都相同的人放进同一组。多勾一项，原来的组就可能继续拆小。”</p>
-    <p><b>‘仅含 1 人的组数’是什么意思？</b>“就是只有一个人的组有多少个。每个这样的组都对应一个在样本里独一无二的人，所以单人组的组数，等于单人组里的人数。”因此，独一无二的比例＝单人组的人数 ÷ 总人数 × 100%。若当前显示约 78.0%，意思是样本里约 78% 的人找不到另一位所选属性全部相同的人；这个数随勾选变化，不是固定结论。</p>
+    <p><b>‘仅含 1 人的组数’是什么意思？</b>“就是只有一个人的组有多少个。每个这样的组都对应一个在样本里独一无二的人，所以单人组的组数，等于单人组里的人数。”因此，独一无二的比例＝单人组的人数 ÷ 总人数 × 100%。如果当前显示 66.9%，意思是在这 73,126 条样本记录中，约 66.9% 的人，其所选属性组合找不到第二个完全相同的人。这个比例随勾选变化，只描述样本内的组合唯一性，不等于识别出了真实姓名，也不能直接推断全州人口。</p>
     <p><b>平均相似人数为什么要平方？</b>“因为我们是对每个人取平均，不是对每个组取平均。一组有 n 人，这 n 人每人的相似人数都是 n（含自己），这一组对总和的贡献就是 n × n＝n²。把各组贡献加起来，再除以总人数，就得到 Σ(每组人数²) ÷ 总人数。”平方来自逐人计数，不是在假设属性独立，也不是把概率相乘。</p>
     <p><b>结果怎么读？</b>“若当前显示 1.53，从样本中等可能随机抽一个人，与他所选属性全部相同的人平均有 1.53 个，包含他自己；减去自己，平均还有 0.53 个同属性的人。”这是平均值，不表示某个人所在的组真的有小数个人。</p>
     <p><b>最后提醒：</b>两个指标描述的是样本内的唯一与相似情况，不直接等于真实世界的识别成功率，也不同于广东页的 1/候选人数。78.0% 和 1.53 是用户当时界面的读数，讲课时以当前勾选结果为准；不从四舍五入后的百分比反推精确人数。</p>
@@ -873,10 +913,10 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <h3>BMI 的线是给谁画的？</h3>
       <ol class="bmi-hist">
         <li><b>1832</b> 比利时统计学家凯特勒用"体重 ÷ 身高²"描述"平均人"：一个<b>人口统计</b>工具，不是用来给个人看病的。</li>
-        <li><b>1972</b> 生理学家基斯把它命名为 BMI。依据是 5 个国家 7,424 名<b>男性</b>的数据。</li>
-        <li><b>2000 年前后</b> 世卫组织把 25 / 30 定为超重 / 肥胖的国际线，用到每个人身上。</li>
+        <li><b>1972</b> 生理学家基斯把它命名为 BMI：研究了 5 个国家约 7,400 名<b>男性</b>。</li>
+        <li><b>1995—2000</b> 世卫组织参考 BMI 与死亡率的关联，统一成人超重 / 肥胖分类线：25 / 30。<a href="https://iris.who.int/bitstream/handle/10665/42330/WHO_TRS_894.pdf?sequence=1#page=20" target="_blank" rel="noopener">WHO 依据</a></li>
         <li><b>2004</b> 世卫专家组：很多亚洲人群在 BMI 低于 25 时糖尿病、心血管风险就已升高，建议在 23 / 27.5 加"行动点"。中国标准用 24 / 28。</li>
-        <li><b>2025</b> 《柳叶刀》委员会：BMI 只能用来筛查，诊断肥胖要加腰围等直接测量。</li>
+        <li><b>2025</b> 《柳叶刀》委员会建议：多数情况下结合腰围等确认脂肪过多，再评估临床影响。</li>
       </ol>
       <div class="slider"><label for="bmiH">身高</label><output id="bmiHo"></output><input type="range" id="bmiH" min="145" max="195" step="1" value="170"></div>
       <div class="slider"><label for="bmiW">体重</label><output id="bmiWo"></output><input type="range" id="bmiW" min="40" max="110" step="1" value="70"></div>
@@ -885,8 +925,8 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     </div>
     <div class="sheet">
       <h3>小结两句</h3>
-      <p><b>1. 一条用了很久的线，不一定是从所有人身上算出来的。</b>BMI 的相关研究和标准有各自的研究人群与用途。先问：这条线是从谁身上算出来的？</p>
-      <p><b>2. 把人"算进来"只是第一步。</b>不同标准和测量方式可能带来不同判断。</p>
+      <p><b>1. 同一个 BMI，并不意味着同一种身体。</b></p>
+      <p><b>2. 问题不只在测量误差，还在于数字被如何使用。</b></p>
     </div>
   </div>
   <aside class="notes">
@@ -894,12 +934,23 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <ul>
       <li><b>BMI（约 1 分钟）</b>：拖身高、体重，停在 170 cm、70 kg（BMI 24.2）：按世卫国际标准"正常"，按中国标准"超重"，按世卫亚洲行动点"风险升高"。<b>同一个人，换一条线就换一个类别。</b>再讲左边的来历：一个描述人群的统计量，用男性数据命名，后来变成给每个人下诊断的线，之后才陆续加了分人群的线和腰围。</li>
       <li>BMI 的说法边界：凯特勒的本意是描述人群（Eknoyan 2008）；基斯 1972 年的数据只有男性（论文摘要）。网上常说"基斯明确说 BMI 不适合个人诊断"，这句我没能在原文里核实到，课上不要这样引用。世卫 2004 年的专家组<b>没有</b>改国际标准，只是加了供各国参考的行动点（23、27.5、32.5、37.5）。</li>
+      <li><b>Keys 1972 的样本：不是只有欧洲男性。</b>原文包含 12 个男性样本组，来自<b>美国、芬兰、意大利、日本和南非</b>；包括日本农民和渔民、芬兰及意大利地区居民、美国铁路职工，以及南非开普敦的男性职工。原文强调南非样本不具代表性；所有样本均为男性，不能视为五国全民的代表样本。<a href="https://eurekamag.com/research/000/115/000115160.pdf" target="_blank" rel="noopener">Keys 等 1972 原文，第 334–335 页及摘要</a>。<b>人数核验：</b>论文摘要写 7,424 人，正文表格前写 7,426 人；原文内部数字不一致，所以页面采用“约 7,400 人”，不把任何一个数字当作已确定总数。此研究比较身高体重指标，并非 WHO 25 / 30 界限的单一制定样本。</li>
+      <li><b>WHO 25 / 30 的依据：</b>WHO 2000 年报告第 8–9 页写明，分类与 WHO 1995 年方案一致，主要依据 BMI 与死亡率的关联；统一分界也便于比较人群。它是基于既有证据的专家分类，并非一项有单一样本量的原始实验。25 / 30 是成人分类线，不应套用于所有年龄，也不意味着跨过界限健康风险突然跳变。<a href="https://iris.who.int/bitstream/handle/10665/42330/WHO_TRS_894.pdf?sequence=1#page=20" target="_blank" rel="noopener">WHO 2000 原报告，第 8–9 页</a></li>
       <li>过渡到要点三："这一页里，一条线决定了谁算病人。接下来看：一个数字被直接拿来做决定时，会发生什么？"</li>
     </ul>
+    <h3>BMI、肥胖诊断与减肥：研究发现和英文原文</h3>
+    <p><b>讲述切入：</b>值得追问的不是“想减肥的人用 BMI 是不是错的”，而是：当一个原本用于分类和风险筛查的数字，被当作判断个人是否患病、是否健康、或减肥是否安全的唯一答案时，我们漏掉了什么？以下是已核读的一手研究或研究者本人发表的系统综述；原文为简短摘录，链接可查看论文。</p>
+    <ul>
+      <li><b>诊断建议：不能仅凭一条线判断临床疾病。</b>Rubino 等，2025，<i>The Lancet Diabetes &amp; Endocrinology</i>，专家委员会共识：BMI 不能区分脂肪和肌肉，也不能直接显示器官功能；委员会建议大多数情况下用腰围等人体测量或直接体脂测量，确认脂肪过多，再结合器官功能或日常活动受限情况评估“临床肥胖”。BMI 大于 40 时，委员会认为实践中可以假定脂肪过多，无需额外确认，但仍需临床评估，不能自动等同于临床肥胖。<b>这是委员会提出的诊断框架，并非所有机构已经统一采用的标准。</b><br>英文原文：“Current BMI-based measures of obesity can both underestimate and overestimate adiposity …”（基于 BMI 的肥胖测量既可能低估，也可能高估脂肪过多。）<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11870235/" target="_blank" rel="noopener">论文全文</a></li>
+      <li><b>漏掉的人：BMI 达不到门槛，不等于体脂一定不高。</b>Okorodudu 等，2010，<i>International Journal of Obesity</i>，系统综述与荟萃分析：纳入 25 篇研究、32 个样本，共 31,968 人，以身体成分测量的体脂百分比作为参照。常用 BMI 门槛识别高体脂的合并敏感度为 50%（95% 置信区间 43%–57%），特异度为 90%（86%–94%）。各研究差异很大；这是在研究所用体脂参照标准下的汇总结果，<b>不是说所有肥胖诊断都错了一半</b>，高体脂也不自动等于临床疾病。<br>英文原文：“high specificity, but low sensitivity to identify adiposity”（特异度高，但识别脂肪过多的敏感度低）。<a href="https://pubmed.ncbi.nlm.nih.gov/20125098/" target="_blank" rel="noopener">论文摘要及期刊链接</a></li>
+      <li><b>被一概而论的人：BMI 类别不等于完整健康状况。</b>Tomiyama 等，2016，<i>International Journal of Obesity</i>：分析美国 NHANES 2005–2012 年的 40,420 名成年人，按研究中的多项心代谢指标定义，约 29% 的 BMI 肥胖组处于心代谢健康状态，而 BMI 正常组中超过 30% 处于心代谢不健康状态。这是一次横断面研究，对应特定指标与时间点，不能说明这些人将来没有风险，也不能否定 BMI 与群体健康风险之间的关联。<br>英文原文：“over 30% of normal weight individuals were cardiometabolically unhealthy.”（正常体重组中超过 30% 的人心代谢指标不健康。）<a href="https://pubmed.ncbi.nlm.nih.gov/26841729/" target="_blank" rel="noopener">论文及全文链接</a></li>
+      <li><b>减肥时容易忽略的风险：BMI 正常不代表快速减重一定安全。</b>Garber 等，2019，<i>Pediatrics</i>：研究 116 名因限制性饮食障碍住院的 12–24 岁患者；在入院数据中，不论入院体重如何，较快的体重下降与较低心率有关。临床评估因此也应关注体重变化史和营养状况。这是特定住院患者的观察性分析，<b>不能推广为所有减肥者的风险比例，也不能据此断言 BMI 导致饮食障碍</b>。<br>英文原文：“Weight history was independently associated with markers of malnutrition”（体重变化史与营养不良指标独立相关）。<a href="https://pubmed.ncbi.nlm.nih.gov/31694978/" target="_blank" rel="noopener">论文及全文链接</a></li>
+    </ul>
+    <p><b>讲师提醒：</b>腰围属于间接的人体测量，并非直接测量体脂。应按上面的框架讲清 BMI &gt; 40 的例外，以及脂肪过多与临床肥胖的区别。</p>
     <h3>证据链接</h3>
     <ul class="links">
       <li><a href="https://doi.org/10.1093/ndt/gfm517" target="_blank" rel="noopener">Eknoyan 2008, Adolphe Quetelet (1796–1874): the average man and indices of obesity, Nephrol Dial Transplant 23:47（BMI 的人口统计本意）</a></li>
-      <li><a href="https://doi.org/10.1093/ije/dyu058" target="_blank" rel="noopener">Keys et al. 1972, Indices of relative weight and obesity（IJE 2014 重刊；7,424 名男性、5 国）</a></li>
+      <li><a href="https://doi.org/10.1093/ije/dyu058" target="_blank" rel="noopener">Keys et al. 1972, Indices of relative weight and obesity（IJE 2014 重刊；约 7,400 名男性、5 国，原文总数有出入）</a></li>
       <li><a href="https://doi.org/10.1016/S0140-6736(03)15268-3" target="_blank" rel="noopener">WHO Expert Consultation 2004, Appropriate body-mass index for Asian populations, Lancet 363:157（23 / 27.5）</a></li>
       <li><a href="https://wsbz.nhc.gov.cn/wsbzw/upload/news/0c786e8e45394fdb9e471f02bf48cbcc.pdf" target="_blank" rel="noopener">WS/T 428-2013《成人体重判定》（24 / 28）</a></li>
       <li><a href="https://doi.org/10.1016/S2213-8587(24)00316-4" target="_blank" rel="noopener">Rubino et al. 2025, Lancet Diabetes & Endocrinology Commission on clinical obesity</a></li>
@@ -1408,7 +1459,11 @@ function go(i, push = true) {
   $("#counter").textContent = `${cur + 1} / ${slides.length}`;
   const t = parseT(s.dataset.t);
   $("#curTitle").textContent = s.dataset.title + (t ? `　· 计划 ${t[0]}–${t[1]} 分` : "　· 附加");
-  $$("#steps3 span").forEach(sp => sp.classList.toggle("on", sp.dataset.p === s.dataset.part));
+  $$("#steps3 button").forEach(sp => {
+    const active = sp.dataset.p === s.dataset.part;
+    sp.classList.toggle("on", active);
+    if (active) sp.setAttribute("aria-current", "step"); else sp.removeAttribute("aria-current");
+  });
   $("#notesBody").innerHTML = s.querySelector("aside.notes")?.innerHTML || "<p>本页没有备注。</p>";
   $$("#menuList button").forEach((b, k) => b.setAttribute("aria-current", k === cur));
   const plan = $("#ruler .plan");
@@ -1420,6 +1475,12 @@ function go(i, push = true) {
 }
 $("#prev").onclick = () => go(cur - 1);
 $("#next").onclick = () => go(cur + 1);
+$$("#steps3 button").forEach(button => {
+  button.onclick = () => {
+    const first = slides.findIndex(slide => slide.dataset.part === button.dataset.p);
+    if (first >= 0) go(first);
+  };
+});
 
 // ruler
 (() => {
@@ -1502,7 +1563,7 @@ setInterval(tick, 1000);
 
 /* ---------------- keyboard ---------------- */
 addEventListener("keydown", e => {
-  if (e.target.closest("input, textarea, select") || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.target.closest("input, textarea, select") || (e.key === " " && e.target.closest("#steps3 button")) || e.metaKey || e.ctrlKey || e.altKey) return;
   const k = e.key;
   if (k === "ArrowRight" || k === "PageDown" || k === " ") { e.preventDefault(); go(cur + 1); }
   else if (k === "ArrowLeft" || k === "PageUp") { e.preventDefault(); go(cur - 1); }
@@ -1526,24 +1587,33 @@ $$("[data-reveal]").forEach(b => b.onclick = () => { $("#" + b.dataset.reveal).c
 /* ---------------- 小周 sorting ---------------- */
 const ITEMS = [
   ["评论里的那一句话", "you"], ["搜索词：周末 乐队演出", "you"], ["点赞的 2 条视频", "you"],
-  ["IP 地址", "obs"], ["设备型号、系统版本", "obs"], ["网络类型（Wi-Fi / 4G）", "obs"], ["打开时间 23:40", "obs"],
-  ["每条视频开始播放和划走的时间戳", "obs"], ["完播率 6/20", "obs", "派生"], ["本次使用时长 15 分钟", "obs", "派生"], ["深夜使用频率", "obs", "派生"],
-  ["标签：喜欢现场音乐", "inf"], ["标签：所在城市", "inf"], ["标签：作息不规律", "inf"], ["标签：周末有空、愿意花钱", "inf"]
+  ["IP 地址", "obs"], ["设备型号、系统版本", "obs"], ["网络类型（Wi-Fi / 4G）", "obs"], ["打开时间 23:40", "obs", "字段待核"],
+  ["每条视频开始播放和划走的时间戳", "obs", "字段待核"], ["看完视频占比 6/20", "obs", "题设计算"], ["本次使用时长 15 分钟", "obs", "字段待核"], ["深夜使用频率", "obs", "需多次记录"],
+  ["标签：喜欢现场音乐", "inf", "课堂推测"], ["标签：所在城市", "inf", "课堂推测"], ["标签：作息不规律", "inf", "课堂推测"], ["标签：周末有空、愿意花钱", "inf", "课堂推测"]
 ];
 const LBL = { you: "你提供的", obs: "被观察到的", inf: "被推断的" };
 function buildSort() {
   $("#pool").innerHTML = ""; $$(".bin .chips").forEach(c => c.innerHTML = "");
-  ITEMS.forEach(([t, k, tag]) => {
+  ITEMS.forEach(([t, k, tag], i) => {
     const b = document.createElement("button");
     b.className = "chip"; b.type = "button"; b.dataset.k = k;
-    b.innerHTML = t + (tag ? `<small>${tag}</small>` : "");
-    b.title = "点击放进：" + LBL[k];
+    b.dataset.index = i;
+    b.textContent = `揭晓 ${i + 1}`;
+    b.setAttribute("aria-label", `揭晓第 ${i + 1} 项`);
     b.onclick = () => place(b);
     $("#pool").appendChild(b);
   });
   $("#sortQ").textContent = ""; counts();
 }
-function place(b) { $(`.bin[data-k="${b.dataset.k}"] .chips`).appendChild(b); b.onclick = null; b.disabled = false; counts(); }
+function place(b) {
+  const [text, k, tag] = ITEMS[Number(b.dataset.index)];
+  b.textContent = text;
+  if (tag) { const small = document.createElement("small"); small.textContent = tag; b.appendChild(small); }
+  b.removeAttribute("aria-label");
+  b.title = LBL[k];
+  $(`.bin[data-k="${k}"] .chips`).appendChild(b);
+  b.onclick = null; b.disabled = true; counts();
+}
 function counts() {
   ["you", "obs", "inf"].forEach(k => $(`[data-count="${k}"]`).textContent = $$(`.bin[data-k="${k}"] .chip`).length);
   if (!$("#pool").children.length) $("#sortQ").textContent = "追问：这三栏里，哪一栏你能要求平台给你一份副本？";
@@ -1566,7 +1636,7 @@ buildSort();
     ["婚姻状况", "已婚 / 离婚 / 丧偶 / 分居 / 未婚", "MAR"],
     ["是不是美国公民", "本土出生 / 海外出生 / 入籍 / 不是公民", "CIT"],
     ["给谁打工", "公司 / 非营利 / 政府 / 自己当老板", "COW 雇佣类别；不工作的人算一类"],
-    ["具体职业", "517 种，如护士、程序员", "OCCP；不工作的人算一类"],
+    ["具体职业", "517 类（含空值）", "OCCP：516 个非空代码，另将空值作为一类"],
     ["房子是租是买", "有房贷 / 已还清 / 租房 / 免费住", "TEN（原文叫“房贷”）"],
     ["在哪个州上班", "马萨诸塞 / 邻州…", "POWSP；不上班的人算一类"],
     ["种族", "8 类", "RAC1P"],
@@ -1587,7 +1657,7 @@ buildSort();
     const averageText = avg >= 10 ? fmt(avg) : avg.toFixed(2);
     const selected = ATTR.flatMap(([name], i) => boxes[i].checked ? [i === 1 ? (mode === "age" ? "年龄" : "出生日期（模拟月日）") : name] : []);
     $("#uniqGrouping").textContent = selected.length ? `按「${selected.join(" ＋ ")}」分组，所选属性全部相同的人归为同组。` : "未选属性：所有 73,126 人归为同一组。";
-    $("#uniqEquation").textContent = `独一无二的比例＝${m ? "仅含 1 人的组数" : "0"} ÷ 73,126 × 100% ≈ ${uniqueText}`;
+    $("#uniqEquation").textContent = `在这 73,126 人中，约 ${uniqueText} 的人找不到第二个所选属性完全相同的人。`;
     $("#sameEquation").textContent = `平均相似人数（含自己）＝${m ? "Σ(每组人数²)" : "73,126 × 73,126"} ÷ 73,126 ≈ ${averageText}`;
     $("#uniqOut").textContent = uniqueText;
     $("#uniqFill").style.width = pc + "%";
