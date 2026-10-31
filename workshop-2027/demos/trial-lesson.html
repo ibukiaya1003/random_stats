@@ -135,6 +135,9 @@ th { font-size: 13px; color: var(--ink-3); font-weight: 500; letter-spacing: .04
 .pipeline .n { font-family: var(--f-mono); font-size: 12px; color: var(--ink-3); }
 .pipeline .w { font-family: var(--f-display); font-weight: 900; font-size: 28px; }
 .pipeline .d { color: var(--ink-2); font-size: 15px; }
+.pipeline.pipeline-four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 900px) { .pipeline.pipeline-four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .pipeline.pipeline-four { grid-template-columns: 1fr; } }
 @media (max-width: 700px) { .pipeline { grid-template-columns: 1fr; } .pipeline > div { border-right: 0; } }
 
 /* ---------- sort chips (小周) ---------- */
@@ -325,16 +328,17 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   <div class="formhead"><b>试讲 · 45 分钟</b><span>唯理寒假工作坊 2027 · 社会数据科学</span></div>
   <h1>一个人是怎样变成一个数字的？</h1>
   <p class="lede">这个数字又会怎样回过头来，决定这个人的处境？</p>
-  <div class="pipeline">
+  <div class="pipeline pipeline-four">
     <div style="border-color: var(--rec)"><div class="n">工序一 · 要点一</div><div class="w">被记录</div><div class="d">你留下的每一秒都可能成为数据；记下来之后，还要被定义、被算成比例。</div></div>
     <div style="border-color: var(--miss)"><div class="n">工序二 · 要点二</div><div class="w">没被记录</div><div class="d">有些人根本不在表格里，有些人找不到自己的格子，有些人被看见却被读错。</div></div>
     <div style="border-color: var(--dec)"><div class="n">工序三 · 要点三</div><div class="w">被用来做决定</div><div class="d">一个看似合理的计算规则被自动执行，错误由谁承担？</div></div>
+    <div style="border-color: var(--ok)"><div class="n">工序四</div><div class="w">被看见</div><div class="d">我们在平台看到的内容，代表了谁的声音？</div></div>
   </div>
   <aside class="notes">
     <h3>0–1 分钟 · 今天的问题</h3>
     <ul>
       <li>一句话开场："今天我们只问一个问题：<b>一个人是怎样变成一个数字的？这个数字又会怎样回过头来决定这个人的处境？</b>"</li>
-      <li>指着三栏：被记录 → 没被记录 → 被用来做决定。每一道都可能出错，而且错误不是平均分配的。</li>
+      <li>指着四栏：被记录 → 没被记录 → 被用来做决定 → 被看见。第四栏提出待研究的问题：我们看到的内容代表了谁的声音？</li>
       <li>不讲引子和课程框架。点"开始计时"后翻页。</li>
     </ul>
     <h3>快捷键</h3>
@@ -466,7 +470,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
         </ul>
       </li>
       <li>引文已对照原文（✅）：https://www.anthropic.com/threat-intelligence-report-september-2026</li>
-      <li>时间来源：小周活动压到 3 分钟、分母切换器 2 分钟、五问 2 分钟。超时就只讲表格的高亮行和"回到小周"。</li>
+      <li>时间来源：小周活动压到 3 分钟、分母切换器 2 分钟、数字体检表 2 分钟。超时就只讲表格的高亮行和"回到小周"。</li>
     </ul>
     <h3>证据链接</h3>
     <ul class="links">
@@ -682,36 +686,37 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 </section>
 
 <!-- 4 ============================================================ -->
-<section class="slide gutter" data-part="1" data-t="12-13" data-title="数字体检表五问">
+<section class="slide gutter" data-part="1" data-t="12-13" data-title="数字体检表八问">
   <div class="formhead"><b>要点一 · 被记录</b><span>工具</span></div>
-  <h2>「数字体检表」五问</h2>
-  <p class="lede">拿"2025 年广东上本科线的比例是 50.3%"来体检。点开每一项。</p>
+  <h2>「数字体检表」八问</h2>
+  <p class="lede">看到一个数字，可以从这八个维度检查它。</p>
   <div class="grid2">
-    <div class="checks" id="checks">
-      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>01</em>来源：谁收集的，为什么收集？</span><span class="a">分子（本科线以上 36.82 万）来自省政府网发布的高考数据，分母（考生 73.24 万）来自媒体转引；初中毕业生来自统计局公报，技工院校来自人社厅。几个数字出自不同部门、不同渠道。</span></span></button>
-      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>02</em>定义："本科"指什么？</span><span class="a">"上本科线"不等于"上了本科"：本科批实际投档 28.40 万（占考生 38.8%），投档也还不是最终录取。而且只算普通类，艺术、体育类不在里面。定义一换，分子就变。</span></span></button>
-      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>03</em>分母：除以谁？</span><span class="a">考生 73.24 万里有往届生，又不含艺术、体育类和春季高考。换成普高毕业生是 50.0%，换成这一届初中毕业生是 27.6%。</span></span></button>
-      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>04</em>比较对象：和谁比？</span><span class="a">和去年比、和全国比、物理类和历史类比（约 63% vs 31%），结论不同。一个比例单独出现时，先问"高还是低，是相对于什么"。</span></span></button>
-      <button class="check" aria-expanded="false"><span class="box"></span><span><span class="q"><em>05</em>不确定性：有多准？</span><span class="a">按"同一届"拼起来已经比较接近，但考生里的往届生人数没有公布，技工院校也招往届生，所以只能粗估。真正追踪同一批人，需要队列数据。</span></span></button>
-    </div>
     <div class="sheet">
-      <h3>研究五步法 · 第一步</h3>
-      <p><b>把观点改写成可以被证伪的命题。</b>标准是：这个问题能不能得出"否"？</p>
       <table>
+        <thead><tr><th>检查维度</th><th>具体要问的问题</th></tr></thead>
         <tbody>
-          <tr><th>观点</th><td>"现在考本科越来越容易了。"</td></tr>
-          <tr><th>命题</th><td>2025 年广东<mark>本科线以上人数 ÷ 高考普通类考生人数</mark>，是否高于 2020 年的同一比例？</td></tr>
-          <tr><th>写清楚</th><td>谁、和谁比、比什么、什么时间</td></tr>
+          <tr><th>1. 来源</th><td>谁生产了这个数字？能找到原始数据或完整报告吗？</td></tr>
+          <tr><th>2. 定义</th><td>“活跃用户”“收入”“失业”具体如何定义？</td></tr>
+          <tr><th>3. 分母</th><td>百分比是除以谁？全部用户、付费用户，还是受访者？</td></tr>
+          <tr><th>4. 范围</th><td>涵盖什么时间、地域、人群？是否有被排除者？</td></tr>
+          <tr><th>5. 方法</th><td>普查、随机调查、自愿问卷、平台后台数据，还是模型估计？</td></tr>
+          <tr><th>6. 不确定性</th><td>有多少样本？有无误差、缺失、偏差或置信区间？</td></tr>
+          <tr><th>7. 可比性</th><td>与其他年份、地区或平台相比，统计口径是否相同？</td></tr>
+          <tr><th>8. 解释</th><td>数字实际支持什么结论？报道有没有暗示未经证明的因果关系？</td></tr>
         </tbody>
       </table>
-      <p class="cite" style="margin-top:10px">改写之后，五问里的每一项都有了明确答案，别人也能用同样的数据来反驳你。</p>
+    </div>
+    <div class="sheet">
+      <h3>下一步：把观点变成研究问题</h3>
+      <p>从原始观点出发，拆解概念、定义指标、选择比较对象，再写出可检验的预测并规定判定方式。</p>
+      <p class="muted">下一页以“外卖平台越来越压榨骑手”为例，展开六个步骤。</p>
     </div>
   </div>
   <aside class="notes">
-    <h3>12–13 分钟 · 五问（压缩到 1 分钟：只点开"分母"和"不确定性"）</h3>
+    <h3>12–13 分钟 · 数字体检表八问</h3>
     <ul>
-      <li>五问：来源、定义、分母、比较对象、不确定性。逐个点开，每项 20 秒。</li>
-      <li>右侧给研究五步法第一步。示例命题是讲师自拟的，用于演示写法，没有给出答案。</li>
+      <li>八问：来源、定义、分母、范围、方法、不确定性、可比性、解释。时间紧时可先选分母、范围与解释展开讨论。</li>
+      <li>右侧预告下一页的研究方法六步；骑手例子是研究问题的写法，并非对现实情况的实证结论。</li>
       <li>时间够可以让学员在聊天区改写一句："女性看病时更容易被忽视。"（下一页的 VIRGO 就是研究者的写法。）时间不够直接翻页。</li>
       <li>过渡："小周的一举一动被记到了每一秒。但接下来我们会看到，有些人想被看见，却根本不在数据里。"</li>
     </ul>
@@ -723,6 +728,27 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li><a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/methods-five-steps.md" target="_blank" rel="noopener">研究五步法 methods-five-steps.md</a></li>
     </ul>
   </aside>
+</section>
+
+
+
+<section class="slide gutter" data-part="1" data-t="+" data-title="研究方法：从观点到检验">
+  <div class="formhead"><b>要点一 · 被记录</b><span>研究方法 · 六步</span></div>
+  <h2>从一个观点，到可以检验的问题</h2>
+  <div class="grid2">
+    <div class="sheet">
+      <p><b>1. 写下原始观点。</b>例如“外卖平台越来越压榨骑手”。这包含价值判断，也包含可能的经验事实。</p>
+      <p><b>2. 拆解抽象概念。</b>“压榨”可能意味着净收入下降、劳动时长增加、劳动强度增加、事故风险上升或缺少议价能力。不能默认这些是同一件事。</p>
+      <p><b>3. 定义测量指标。</b>例如：<br><span class="num">每小时净收入＝（接单收入＋奖励－工作相关成本）÷ 总工作小时数</span>。<br>总工作时间是否包含等单时间，需要预先规定。</p>
+    </div>
+    <div class="sheet">
+      <p><b>4. 明确比较对象。</b>例如：“同一城市的骑手，在促销日与非促销日，每小时净收入是否存在差异？”</p>
+      <p><b>5. 写出可检验的预测。</b>例如 H₀：两类日期的平均每小时净收入相同；H₁：不同。也可以事先提出有方向的假设。</p>
+      <p><b>6. 规定判定方式。</b>收集哪些记录、如何抽样、比较什么指标、哪些结果支持或不支持假设，并说明哪些因素可能混淆观察结果。</p>
+    </div>
+  </div>
+  <p class="cite" style="margin-top:12px">这是研究设计的例子，尚未给出数据或研究结论；观察到差异本身不能直接证明促销导致了差异。</p>
+  <aside class="notes"><h3>从观点到可检验的预测</h3><p>“压榨”涉及价值判断，净收入只是可能的经验指标之一，不能把它等同于概念的全部。先界定收入、成本和工作时间，再确定比较对象与记录获取方式；促销日与非促销日可能在需求、天气和骑手构成等方面不同，这些是需要研究的潜在混淆因素，并非已确认的本案例事实。</p><p>H₀ 和 H₁ 是关于所定义总体平均值的待检验命题。统计结果不能单独证明原始价值判断；对等单时间、支出、缺失和样本选择的定义会影响结论。可与上一页八问一起使用。</p><p class="cite">项目背景：<a href="https://github.com/ibukiaya1003/random_stats/blob/claude/fervent-bohr-6pvnyl/workshop-2027/methods-five-steps.md">研究方法材料</a>；本页六步根据课堂需求组织。</p></aside>
 </section>
 
 <!-- 5 ============================================================ -->
