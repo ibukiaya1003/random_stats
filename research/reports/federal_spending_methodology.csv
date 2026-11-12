@@ -1,0 +1,23 @@
+﻿step,field_or_topic,transformation_or_definition,source_or_note
+01,Data source,"Economic Report of the President 2026, Appendix B, Table B-47, annual outlays by function.",https://www.govinfo.gov/content/pkg/ERP-2026/pdf/ERP-2026-appendixB.pdf
+02,Time axis,Fiscal years 1960-2025 inclusive (66 annual observations).,"FY is fiscal year, not calendar year."
+03,Units,"All dollar amounts are billions of nominal USD, not inflation-adjusted.",1.0 = US$1 billion.
+04,Total denominator,"Use total federal outlays, including on-budget and off-budget spending.",total
+05,Category mapping: defense,National defense -> defense.,Federal functional spending classification
+06,Category mapping: international,International affairs -> international.,Federal functional spending classification
+07,Category mapping: health,Health -> health (does not include separately listed Medicare).,Federal functional spending classification
+08,Category mapping: medicare,Medicare -> medicare.,Federal functional spending classification
+09,Category mapping: income security,Income security -> income_security.,Federal functional spending classification
+10,Category mapping: social security,Social security -> social_security.,Federal functional spending classification
+11,Category mapping: net interest,Net interest -> net_interest.,Federal functional spending classification
+12,Category mapping: other,Other outlays -> other. Includes education and space/science among other functions; NOT a dedicated R&D category.,Federal functional spending classification
+13,Percentage formula,Each *_pct_total = corresponding * / total * 100.,Example: FY1960 defense = 48.1/92.2*100 = 52.169197%.
+14,Stacking,For each year show eight segment percentages in one 100% stacked bar.,Minor discrepancies from 100% are published source rounding.
+15,Rounding check,categories_sum = sum of eight raw expenditure categories; rounding_difference = total - categories_sum.,Never silently modify original category values to force exact reconciliation.
+16,1976 transition quarter,"Not included as a separate annual column, even though the transition quarter may be reported in other federal fiscal history series.",1960-2025 annual-year observations only.
+17,Interpretation,"Other is not technology; federal R&D also appears within national defense, health and other sectors.",Do not add R&D to these segments without netting out cross-category overlap.
+18,Reference for more detailed functions,"OMB historical functional expenditure tables (e.g., Table 3.2) support more detailed research/education/space splits. ",https://www.whitehouse.gov/omb/information-resources/budget/historical-tables/
+19,1960–1965 Medicare,"B–47 displays dots, not numerical zero. The original chart and CSV encoded these as 0 for plotting; the source status column preserves this distinction.",https://www.govinfo.gov/content/pkg/ERP-2026/pdf/ERP-2026-table47.pdf
+20,Validation,Compared all 66 annual totals and eight categories against Table B–47. Source dots were treated as described in step 19; 1976 transition quarter excluded.,https://www.govinfo.gov/content/pkg/ERP-2026/pdf/ERP-2026-table47.pdf
+21,Provenance status,Official published Table B–47 directly inspected. It credits Treasury and OMB; upstream underlying series were not separately audited.,https://www.govinfo.gov/content/pkg/ERP-2026/pdf/ERP-2026-table47.pdf
+22,Rounding,Source values are published to 0.1 billion; derived percentages use those rounded values. Sum and difference are arithmetic from displayed values.,Difference may reflect rounding.

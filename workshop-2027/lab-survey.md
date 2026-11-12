@@ -169,7 +169,10 @@
 | [QSIDE Datasets](https://qsideinstitute.org/qside-datasets/) | 博物馆艺术家多样性、创作领域代表性、数学编委性别、数学教职招聘、COMPAS 前后量刑、Superfund 场地与种族、Opportunity Youth（16–24 岁）等 | 视数据集而定 | OSF 下载；引用格式见各 OSF 仓库 | A1–A5 |
 | [JUSTFAIR](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0241381) | 联邦法院量刑决定，关联被告人口特征、罪名、刑期与判案法官 | 2001–2018 年近 60 万条 | 见论文的数据说明 | — |
 | [Stanford Open Policing Project](https://openpolicing.stanford.edu/) | 标准化的警察拦停记录 | 超过 2 亿条 | CSV 下载，附分析教程 | A6 |
+| [Stanford DIME 4.0](https://data.stanford.edu/dime) | 美国政治捐款、候选人及委员会数据，含基于捐款的意识形态估计 | 1979–2024 年；项目称涵盖超过 8.5 亿条个人和组织捐款记录 | 汇总数据、按年份的捐款记录及 SQLite 数据库可下载；公开明细有排除范围，见下方说明 | — |
 | [Data Harm Record](https://datajusticelab.org/project/data-harm-record/) | 算法系统已造成伤害的案例汇编，每条附原始来源 | 2017 年首发，2020 年更新 | 网页 | A8 |
+
+**DIME 使用说明（一手已核验，2026-11-12）**：[Stanford 官方数据页](https://data.stanford.edu/dime)称，数据库涵盖美国地方、州和联邦选举的捐款，另有州和联邦候选人及委员会资料；捐款者、政治行动委员会和候选人是页面列出的分析单位。公开下载的逐笔捐款记录排除取自 Center for Responsive Politics/NIMSP 数据库的记录；页面说明这部分须联系项目负责人申请，且限严格学术用途，因此不能把公开明细视为完整总体。页面同时提供变量手册和验证资料；CFscores 是估计值，实际分析前应核对其构建方法与适用范围。页面标明数据采用 [ODC-BY 1.0](https://opendatacommons.org/licenses/by/1-0/)，使用须署名；具体下载文件及受限资料的使用条件应再次核对。官方推荐引用：Bonica, Adam. 2024. *Database on Ideology, Money in Politics, and Elections: Public version 4.0*. Stanford University Libraries. 本条登记数据源，尚未下载或逐文件核验数据。
 
 ### 教学工具与资源
 
