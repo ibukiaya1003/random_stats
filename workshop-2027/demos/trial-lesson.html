@@ -524,14 +524,24 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li><b>使用时要注意</b>
         <ul>
           <li>语境：报告讲的是追查恶意使用者，不是说公司在逐个监看普通用户。说"能被看到什么"，不说"一定被看了什么"。</li>
-          <li>立场：报告是一家公司对竞争对手的单方面指控，被点名的公司未必认可。说"Anthropic 的报告称"，不说成已证实的事实。</li>
+          <li>立场：案例来自 Anthropic 的调查和归因；涉及竞争对手的指控尤其可能有利益冲突。被点名实体的回应和独立证据需另行核查。说“Anthropic 的报告称”，不把其归因当作已独立证实的事实。</li>
           <li>与本课的关系：报告点名的公司里包括 DeepSeek，而正式上课用的是 DeepSeek API。这正说明课程规则为什么写着"大模型实验不输入任何真实个人信息"（course-plan 6.5 节）。<b>是否在课上点名具体公司，需先与组委确认</b>；未确认前只说"一些模型公司"。</li>
-          <li>报告涉及伊朗、俄罗斯等国家背景的案例：只引用数据类型，不展开政治内容。</li>
+          <li>下方具体案例供讲师理解报告语境；是否展开国家背景可按课程需要选择，保持归因和证据边界。</li>
         </ul>
       </li>
       <li>引文已对照原文（✅）：https://www.anthropic.com/threat-intelligence-report-september-2026</li>
       <li>时间来源：小周活动压到 3 分钟、分母切换器 2 分钟、数字体检表 2 分钟。超时就只讲表格的高亮行和"回到小周"。</li>
     </ul>
+    <h3>报告中的具体实体、用途与识别线索</h3>
+    <p>以下均为 <a href="https://www.anthropic.com/threat-intelligence-report-september-2026" target="_blank" rel="noopener">Anthropic 2026 年 9 月报告</a>的个案叙述（一手报告已核读；有关行为和身份归因尚未独立核验）。GTG 编号是 Anthropic 给行为者或活动使用的内部代号，并非司法认定的真实身份。报告选择的是值得注意的案例，不代表一般用户的使用情况。</p>
+    <ul>
+      <li><b>GTG-34001 · 影响力行动：</b>Anthropic 将三个账号分别关联到伊朗的伊斯兰文化与传播组织（ICCO）等机构；据称使用 Claude 制作宣传活动计划、虚拟身份和目标资料。报告说操作人员虽使用 VPN 和外国手机号，仍在对话中提到地点、机构和角色；公司又结合文件页脚及公开信息作归因。<b>对应页面：</b>对话内容本身可能成为识别线索。</li>
+      <li><b>GTG-14022 · 舆情监测：</b>Anthropic 称一个位于中国的行为者用 Claude 汇总文章、按政治敏感性分类并生成政府简报。它对“为政府客户工作的承包商”是<b>中等置信度</b>判断；对两组账号属于同一行为者是<b>高置信度</b>判断。其列出的线索包括简体中文、zh-CN、活动时间以及共享基础设施。<b>对应页面：</b>多种信号组合有助于归因，但任何单一线索都不能证明身份。</li>
+      <li><b>GTG-15001 · 交友应用：</b>Anthropic 称一家应用工作室使用 Claude 开发交友应用网络，并驱动假扮真人的聊天角色，诱导用户付费互动；报告还称它封禁了相关账号。<b>对应页面：</b>观察对话和系统使用方式可能帮助识别滥用，但报告也说欺骗及付费模式并非在每次对话内部都可见。</li>
+      <li><b>GTG-16002 / GTG-16001 · 对话转发与模型训练：</b>Anthropic 分别指称 Moonshot AI 和 DeepSeek 将部分用户请求转发给 Claude，并利用部分交互收集模型训练数据。报告明确说，对 Moonshot 是否通知用户并不知情；对 DeepSeek，报告判断相关用户<b>很可能</b>不知情。<b>对应页面：</b>用户输入的信息可能流向原先没有意识到的另一家公司；这些是 Anthropic 的指控，不等于已独立证实所有相关请求均被转发或用户均未同意。</li>
+      <li><b>GTG-16006 · 使用量：</b>Anthropic 将一项模型训练数据处理活动归因于智谱（Zhipu / Z.ai），称 2026 年 6 月的十天内记录了 770,609 次通过相关处理流程的交互。这个数字是<b>特定流程与时间窗口</b>下的计数，不代表所有用户都受到同样监测。</li>
+    </ul>
+    <p><b>课堂串联：</b>“这些是 Anthropic 声称发现的具体活动。留意它如何把账号、时间、设备和对话内容组合成线索；同时，报告能支持的是公司的观察与判断，不等于我们独立核验了被指控者的身份或行为。”</p>
     <h3>证据链接</h3>
     <ul class="links">
       <li><a href="https://www.anthropic.com/threat-intelligence-report-september-2026" target="_blank" rel="noopener">Anthropic《威胁情报报告》2026 年 9 月（本页全部引文）</a></li>
@@ -550,7 +560,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <h3>自己选属性：多少人变得"独一无二"？</h3>
       <p class="muted" style="margin-bottom:8px">真实数据：美国普查局 2023 年 ACS 公开微观样本，马萨诸塞州 73,126 人。属性就是 Rocher 等人（2019）用的 15 项。</p>
       <div class="seg-btns" id="dobMode" role="group" aria-label="出生信息的精度">
-        <button type="button" data-m="age" aria-pressed="true">公开数据给的：年龄</button>
+        <button type="button" data-m="age" aria-pressed="false">公开数据给的：年龄</button>
         <button type="button" data-m="dob" aria-pressed="false">完整出生日期（按论文做法补月日）</button>
       </div>
       <div class="attrs" id="attrs"></div>
@@ -892,7 +902,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <p class="slide-transition"><b>接上页：</b>“看不见既可能来自没有纳入，也可能来自分类方式。”<br><b>引下页：</b>“下面聚焦后一种：当一条标准线用于分类，它是为谁画的？”</p>
     <h3>15–19 分钟 · 分类小测</h3>
     <ul>
-      <li>请学员在聊天区打 A/B/C，讲师再点。每张卡 30 秒。</li>
+      <li>请学员在聊天区打 A/B/C，讲师再点。每张卡 30 秒；再次点击已选选项可撤销，也可以直接改选其他选项。</li>
       <li>DHS：只访问 15–49 岁女性，因为最初为计划生育设计（HelpAge 政策简报，课前核对）。</li>
       <li>VIRGO（已对照摘要）：Lichtman et al., <i>Circulation</i>, 2018，美国 103 家医院 18–55 岁心梗住院患者（女 2,009、男 976）。胸痛是两性的主要症状（女 87.0%、男 89.5%）。入院前曾因类似症状就医的（女 29.5%、男 22.1%）中，53% 的女性、37% 的男性说医生认为"不是心脏问题"。注意分母是"之前就过医的人"。</li>
       <li>广东约 23 万人的卡片回扣"三个分母"那页的灰色斜线；技工院校由人社部门统计，不在教育统计里。</li>
@@ -926,6 +936,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <ol class="bmi-hist">
         <li><b>1832</b> 比利时统计学家凯特勒用"体重 ÷ 身高²"描述"平均人"：一个<b>人口统计</b>工具，不是用来给个人看病的。</li>
         <li><b>1972</b> 生理学家基斯把它命名为 BMI：研究了 5 个国家约 7,400 名<b>男性</b>。</li>
+        <li><b>1970—80 年代</b> Bray、Garrow 等提出以 BMI 判断和分级肥胖；已有方案使用 30 作为界限。<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11611441/" target="_blank" rel="noopener">历史综述</a></li>
         <li><b>1995—2000</b> 世卫组织参考 BMI 与死亡率的关联，统一成人超重 / 肥胖分类线：25 / 30。<a href="https://iris.who.int/bitstream/handle/10665/42330/WHO_TRS_894.pdf?sequence=1#page=20" target="_blank" rel="noopener">WHO 依据</a></li>
         <li><b>2004</b> 世卫专家组：很多亚洲人群在 BMI 低于 25 时糖尿病、心血管风险就已升高，建议在 23 / 27.5 加"行动点"。中国标准用 24 / 28。</li>
         <li><b>2025</b> 《柳叶刀》委员会建议：多数情况下结合腰围等确认脂肪过多，再评估临床影响。</li>
@@ -944,11 +955,15 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   <aside class="notes">
     <p class="slide-transition"><b>接上页：</b>“一条 BMI 界限可能把不同的身体归进同一类。”<br><b>引下页：</b>“如果一个数字进一步被用于作出决定，后果会是什么？我们看 Robo-debt。”</p>
     <h3>标准与分类 · BMI</h3>
+    <p><b>BMI 适用年龄与判读：</b>本页展示的 WHO 25 / 30 和中国 24 / 28 是<b>成人分类线</b>，不直接套用于儿童。儿童与青少年也可计算 BMI（体重 kg ÷ 身高 m²），但仍在生长，须按年龄和性别对应的生长参考曲线解释。WHO 对 5–19 岁使用 BMI-for-age：超过参考中位数 1 个标准差为超重，超过 2 个标准差为肥胖；对 5 岁以下儿童，WHO 的超重、肥胖定义使用身高别体重。不同机构的年龄衔接并不完全相同：美国 CDC 的儿童青少年 BMI 计算器用于 2–19 岁，成人计算器用于 20 岁及以上。BMI 是评估的一部分，个人健康判断还需结合其他信息。<a href="https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight" target="_blank" rel="noopener">WHO 肥胖与超重定义</a>；<a href="https://www.who.int/toolkits/growth-reference-data-for-5to19-years/indicators/bmi-for-age" target="_blank" rel="noopener">WHO 5–19 岁 BMI 生长参考</a>；<a href="https://www.cdc.gov/bmi/child-teen-calculator/" target="_blank" rel="noopener">CDC 儿童青少年计算器</a>；<a href="https://wsbz.nhc.gov.cn/wsbzw/upload/news/0c786e8e45394fdb9e471f02bf48cbcc.pdf" target="_blank" rel="noopener">中国《成人体重判定》</a>。以上一手资料已核读；不同标准的年龄范围和用途应分别解释。</p>
     <ul>
       <li><b>BMI（约 1 分钟）</b>：拖身高、体重，停在 170 cm、70 kg（BMI 24.2）：按世卫国际标准"正常"，按中国标准"超重"，按世卫亚洲行动点"风险升高"。<b>同一个人，换一条线就换一个类别。</b>再讲左边的来历：一个描述人群的统计量，用男性数据命名，后来变成给每个人下诊断的线，之后才陆续加了分人群的线和腰围。</li>
       <li>BMI 的说法边界：凯特勒的本意是描述人群（Eknoyan 2008）；基斯 1972 年的数据只有男性（论文摘要）。网上常说"基斯明确说 BMI 不适合个人诊断"，这句我没能在原文里核实到，课上不要这样引用。世卫 2004 年的专家组<b>没有</b>改国际标准，只是加了供各国参考的行动点（23、27.5、32.5、37.5）。</li>
       <li><b>Keys 1972 的样本：不是只有欧洲男性。</b>原文包含 12 个男性样本组，来自<b>美国、芬兰、意大利、日本和南非</b>；包括日本农民和渔民、芬兰及意大利地区居民、美国铁路职工，以及南非开普敦的男性职工。原文强调南非样本不具代表性；所有样本均为男性，不能视为五国全民的代表样本。<a href="https://eurekamag.com/research/000/115/000115160.pdf" target="_blank" rel="noopener">Keys 等 1972 原文，第 334–335 页及摘要</a>。<b>人数核验：</b>论文摘要写 7,424 人，正文表格前写 7,426 人；原文内部数字不一致，所以页面采用“约 7,400 人”，不把任何一个数字当作已确定总数。此研究比较身高体重指标，并非 WHO 25 / 30 界限的单一制定样本。</li>
       <li><b>WHO 25 / 30 的依据：</b>WHO 2000 年报告第 8–9 页写明，分类与 WHO 1995 年方案一致，主要依据 BMI 与死亡率的关联；统一分界也便于比较人群。它是基于既有证据的专家分类，并非一项有单一样本量的原始实验。25 / 30 是成人分类线，不应套用于所有年龄，也不意味着跨过界限健康风险突然跳变。<a href="https://iris.who.int/bitstream/handle/10665/42330/WHO_TRS_894.pdf?sequence=1#page=20" target="_blank" rel="noopener">WHO 2000 原报告，第 8–9 页</a></li>
+      <li><b>WHO 是怎么得出分类的？</b>这是一份专家咨询报告，综合既有流行病学证据，不是新招募一批人做实验、用一个公式算出 25 和 30。报告沿用 1995 年 WHO 成人分类，以 BMI 与死亡率的关联为主要依据；统一分界也有利于不同人群和不同时期作比较。2000 年版本另外细分 35–39.9，理由是 BMI 高于 35 时管理方案有所不同。报告没有提供能从单一数据集精确重现 25 / 30 的计算式或统一样本量。<a href="https://iris.who.int/bitstream/handle/10665/42330/WHO_TRS_894.pdf?sequence=1#page=20" target="_blank" rel="noopener">WHO 2000，§2.3，第 8–9 页（一手已核读）</a></li>
+      <li><b>报告使用的研究例子，不是“制定标准的唯一研究”：</b>WHO 第 44–45 页引用 Manson 等 1995 年护士健康研究的 BMI 与死亡率关系图。该前瞻性队列分析纳入 115,195 名美国注册护士，1976 年提供身高、体重和吸烟等问卷数据，跟踪死亡至 1992 年；研究比较不同 BMI 组的死亡率，并考察吸烟和既有疾病等因素。原论文基于一个 249 人子样本估计，队列约 98% 为白人；WHO 也提示中年职业女性不能代表所有人群。这项观察研究支持讨论群体关联，不能单独证明个人因果关系，也不是 25 / 30 的全部来源。<a href="https://www.nejm.org/doi/full/10.1056/NEJM199509143331101" target="_blank" rel="noopener">Manson 等 1995 原论文（方法）</a>；<a href="https://iris.who.int/bitstream/handle/10665/42330/WHO_TRS_894.pdf?sequence=1#page=57" target="_blank" rel="noopener">WHO 2000，图 4.2</a></li>
+      <li><b>更早的界限怎么挑选？</b>历史研究转引 WHO 1995 年报告称，专家当时主要目测 BMI 与死亡率关系，认为 30 位于曲线弯折附近；本次尚未直接核读 1995 年报告第 313 页的相关段落，因此这一方法属于<b>二手已核读、一手待核验</b>，也不能据此还原一个被验证的最优界限。<a href="https://www.research.ed.ac.uk/files/14658708/FLETCHER_Defining_an_Epidemic.pdf" target="_blank" rel="noopener">Fletcher 2014 历史研究</a>；<a href="https://iris.who.int/bitstream/handle/10665/37003/WHO_TRS_854.pdf?sequence=1" target="_blank" rel="noopener">WHO 1995 原报告</a>。</li>
       <li><b>谁把 BMI 用于肥胖分类？</b>不宜断言某个人是历史上绝对的“第一个”。<b>1972，Keys 等</b>比较身高体重指标与体脂测量，将体重除以身高平方命名为 BMI；他们认为 BMI 可作为相对肥胖的指标，但并未在这项研究中定出今天的 25 / 30 国际界限。<a href="https://eurekamag.com/research/000/115/000115160.pdf" target="_blank" rel="noopener">Keys 等 1972 原文，第 339–340 页（一手已核读）</a>。</li>
       <li><b>1978，George Bray：</b>后来的学术综述将他列为早期使用 BMI 分界进行肥胖分类的研究者之一，称其提出 BMI &gt; 30 为肥胖。<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11611441/" target="_blank" rel="noopener">Heymsfield 等历史综述（二手已核读）</a>；<a href="https://pubmed.ncbi.nlm.nih.gov/711370/" target="_blank" rel="noopener">Bray 1978 论文摘要（一手摘要已核读）</a>未列出该界限，论文内原始图表尚待核验。</li>
       <li><b>1981，John Garrow：</b>历史资料称他提出了以 25、30、40 等 BMI 值划分肥胖程度的方案；1981 年原书尚未核读。<a href="https://www.bmj.com/content/bmj/291/6496/655.full.pdf" target="_blank" rel="noopener">Truswell，BMJ 1985，第 657 页（一手已核读）</a>已将 BMI 30 作为肥胖起点，并注明其表格部分依据 Garrow 1981 年著作及英国皇家医学院报告。随后 WHO 在 1995—2000 年通过专家报告推进成人分类的国际统一，见上一条。</li>
@@ -993,6 +1008,15 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
   <p class="cite" style="margin-top:10px">点击年份查看事件 · <a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=29" target="_blank" rel="noopener">皇家调查委员会报告：方案与时间线</a> · <a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case" target="_blank" rel="noopener">Victoria Legal Aid：Amato 案通俗说明</a> · <a href="https://www.bbc.com/news/world-australia-66130105" target="_blank" rel="noopener">BBC：调查结果与当事人经历</a></p>
   <aside class="notes">
     <p class="slide-transition"><b>接上页：</b>“从分类走到决定，关键是看机构怎样使用数据、谁承担解释的责任。”<br><b>引下页：</b>“接下来用一道手算题，体验收入平均法会怎样影响计算。”</p><h3>从预算到个人：Robo-debt</h3>
+    <h3>Robo-debt 之前：福利怎么发、怎么核查？</h3>
+    <ol>
+      <li><b>发放：</b>对于 Newstart、Austudy、Youth Allowance 等涉及收入审查的福利，领取者须申报每两周的收入；Centrelink 据此计算相应期间的福利金额。不是所有福利都使用完全相同的申报与核算规则。<a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case" target="_blank" rel="noopener">Victoria Legal Aid：Robo-debt 案件说明</a>。</li>
+      <li><b>事后发现差异：</b>Centrelink 在方案之前已经将申报记录与澳大利亚税务局（ATO）取得的雇主 PAYG 收入数据进行比对，筛选需要核查的差异；<b>有差异只是核查线索，并不自动等于欠款</b>。例如同一雇主的商号与公司名不同，也可能造成表面上的不匹配。<a href="https://www.monash.edu/__data/assets/pdf_file/0007/3365503/report_of-the-royal-commission-into-the-robodebt-scheme.pdf" target="_blank" rel="noopener">皇家调查委员会报告第 474 页，2.1 节</a>。</li>
+      <li><b>工作人员调查：</b>方案之前，合规工作人员先人工查看记录，能解释的差异就更新记录；不能解释时联系领取者，请其说明或提供材料。如果领取者没有回应，报告记载工作人员会联系已列出的雇主索取包括工资单在内的信息；Victoria Legal Aid 说明也可能联系银行，以取得各个两周期间收入的证据。<a href="https://www.monash.edu/__data/assets/pdf_file/0007/3365503/report_of-the-royal-commission-into-the-robodebt-scheme.pdf" target="_blank" rel="noopener">皇家调查报告第 474–475 页</a>；<a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case" target="_blank" rel="noopener">Victoria Legal Aid 案件说明</a>。</li>
+      <li><b>计算及例外：</b>工作人员人工计算是否多发及欠款。皇家调查报告记录的旧流程中，收入平均数据只在尝试各种方式取得实际收入信息之后才可能使用；调查委员会另认定，并不存在已建立的做法：仅因领取者未回应，就单靠平均值举债。因此不要说“以前从来不用平均”，也不要把流程描述为每案绝不出错。<a href="https://www.monash.edu/__data/assets/pdf_file/0007/3365503/report_of-the-royal-commission-into-the-robodebt-scheme.pdf" target="_blank" rel="noopener">皇家调查报告第 475 页及对既有做法的认定</a>。</li>
+    </ol>
+    <p><b>和 Robo-debt 的区别：</b>数据比对和两周申报不是新发明。方案先在 2015 年试点，后来经历不同阶段；在线合规（OCI）阶段减少了事前人工调查，特定情况下在领取者未回应或未提供充分信息时使用平均收入自动计算并发出债务通知。并非每个阶段、每个案件都完全没有工作人员参与。<a href="https://www.monash.edu/__data/assets/pdf_file/0007/3365503/report_of-the-royal-commission-into-the-robodebt-scheme.pdf" target="_blank" rel="noopener">皇家调查报告第 474–476 页</a>。</p>
+    <p><b>可直接讲：</b>“原来政府也会用税务数据找出可能有差异的个案，但工作人员还要核查记录，必要时找当事人和雇主拿证据。Robo-debt 把更多步骤推向自动化，在一些人没有回应时，用平均值作为举债依据。”</p>
     <p><b>谁的数据、怎么算？</b>Centrelink 取得税务局保存的、雇主就某位领取者在相关期间申报的 PAYG 就业收入，与领取者此前向福利机构申报的收入比对。出现差异后要求解释；在特定情形下，将一段时期的收入平均分配到该期间每个两周，再估算福利和债务。雇主申报期不总是完整一年，不能一律说除以 26，也不能假设所有人都如实申报或所有差异都说明欠款。<a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=30">皇家调查报告概述 PDF 第 30 页</a>。</p>
     <p><b>谁举证？</b>政府需要充分依据认定债务；实践中，系统要求领取者解释差异，未回应或缺少足够信息时可能用平均值举债。找旧工资单、联系雇主和申请复核的负担往往落在个人身上。不是一有差异就必然立刻发债务通知。<a href="https://www.legalaid.vic.gov.au/depth-look-our-robo-debt-test-case">法律援助机构的 Amato 案</a>；<a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=32">报告概述 PDF 第 32 页</a>。</p>
     <p><b>2015：</b>预算一揽子措施预计五年节省 17 亿澳元，大部分来自就业收入比对；这是当年预计节省，不能称为实际节省或仅为人力成本。2015 年曾试点。<a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf#page=29">报告 PDF 第 29 页</a>。</p>
@@ -1081,7 +1105,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     <div class="audit" id="audit"></div>
   </div>
   <aside class="notes">
-    <p class="slide-transition"><b>接上页：</b>“审计一个决定，要能追问数据、规则、责任和申诉方式。”<br><b>引下页：</b>“接着换一种决定：平台的信息流让哪些内容被看见？先从谁在发声说起。”</p>
+    <p class="slide-transition"><b>接上页：</b>“审计一个决定，要能追问数据、规则、责任和申诉方式。”<br><b>引下页：</b>“接着换一种决定：平台的信息流如何选择内容，让我们从推荐流程开始。”</p>
     <h3>39–42 分钟 · 主持讨论</h3>
     <ul>
       <li>每个问题先等 10 秒，没人说话就点名，不自己抢答。</li>
@@ -1107,6 +1131,133 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
       <li><a href="https://www.croakey.org/wp-content/uploads/2023/07/report_of-the-royal-commission-into-the-robodebt-scheme.pdf" target="_blank" rel="noopener">皇家调查委员会报告第 1 卷（PDF 镜像）：概述 xxiii–xxv 页（PDF 第 29–31 页：起源、法律意见、提交内阁的方案），第 2 章"Overview of the origins of Robodebt"</a></li>
       <li><a href="https://robodebt.royalcommission.gov.au" target="_blank" rel="noopener">Royal Commission 报告（试点与合法性审查）</a></li>
     </ul>
+  </aside>
+</section>
+
+
+
+<section class="slide gutter" data-part="4" data-t="+" data-title="X 推荐架构：从候选到信息流">
+  <div class="formhead"><b>工序四 · 被看见</b><span>一张推荐系统地图 · 平台推荐 1 / 5</span></div>
+  <h2>你的 For You 由什么决定？</h2>
+  <div class="x-map" role="group" aria-label="推荐流程图：用户上下文分流到 Thunder、Phoenix 和 SimClusters，汇合后依次进入特征补充与过滤、行为预测、评分和重排、可见性判断，最后与其他内容混排形成信息流。">
+    <svg viewBox="0 0 1450 440" aria-label="点击任一环节查看解释和代码">
+      <defs><marker id="xArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#627e69"/></marker></defs>
+      <g stroke="#1d2b22" stroke-width="2.5" fill="none"><circle cx="65" cy="172" r="24"/><path d="M65 197 L65 258 M65 218 L30 235 M65 218 L100 235 M65 258 L38 290 M65 258 L93 290"/></g>
+      <text x="65" y="325" text-anchor="middle" class="label">用户</text><text x="65" y="351" text-anchor="middle" class="minor">历史与上下文</text>
+      <path class="path" d="M110 222 C175 222 180 65 250 65"/><path class="path" d="M110 222 H250"/><path class="path" d="M110 222 C175 222 180 375 250 375"/>
+      <path class="box" d="M255 20 Q330 14 405 20 L408 109 Q330 115 252 109 Z"/><text x="330" y="58" text-anchor="middle" class="label">Thunder</text><text x="330" y="85" text-anchor="middle" class="minor">关注账号</text>
+      <path class="box" d="M255 175 Q330 169 405 175 L408 266 Q330 272 252 266 Z"/><text x="330" y="215" text-anchor="middle" class="label">Phoenix</text><text x="330" y="243" text-anchor="middle" class="minor">向量召回</text>
+      <path class="box" d="M255 330 Q330 324 405 330 L408 420 Q330 426 252 420 Z"/><text x="330" y="370" text-anchor="middle" class="label">SimClusters</text><text x="330" y="398" text-anchor="middle" class="minor">互动社群</text>
+      <path class="path" d="M410 65 C455 65 445 221 500 221"/><path class="path" d="M410 221 H500"/><path class="path" d="M410 375 C455 375 445 221 500 221"/>
+      <path class="box" d="M505 163 Q570 157 635 163 L638 280 Q570 286 502 280 Z"/><text x="570" y="201" text-anchor="middle" class="label">补充与过滤</text><text x="570" y="231" text-anchor="middle" class="minor">候选特征 · 去重</text><text x="570" y="255" text-anchor="middle" class="minor">屏蔽 · 静音等</text>
+      <path class="path" d="M640 221 H680"/>
+      <path class="box accent" d="M685 151 Q750 145 815 151 L818 292 Q750 298 682 292 Z"/><text x="750" y="192" text-anchor="middle" class="label">行为预测</text><text x="750" y="222" text-anchor="middle" class="minor">点赞 · 回复</text><text x="750" y="246" text-anchor="middle" class="minor">阅读 · 举报等</text><text x="750" y="270" text-anchor="middle" class="minor">Phoenix Ranker</text>
+      <path class="path" d="M820 221 H860"/>
+      <path class="box" d="M865 163 Q930 157 995 163 L998 280 Q930 286 862 280 Z"/><text x="930" y="201" text-anchor="middle" class="label">评分与重排</text><text x="930" y="231" text-anchor="middle" class="minor">权重 · 作者重复</text><text x="930" y="255" text-anchor="middle" class="minor">可选多样性</text>
+      <path class="path" d="M1000 221 H1040"/>
+      <path d="M1060 175 Q1115 165 1145 153 Q1175 165 1230 175 Q1227 260 1145 291 Q1063 260 1060 175 Z" fill="none" stroke="#1d2b22" stroke-width="2.5"/><path d="M1108 220 l25 25 47 -54" fill="none" stroke="#a35442" stroke-width="4"/><text x="1145" y="325" text-anchor="middle" class="label">可见性</text><text x="1145" y="351" text-anchor="middle" class="minor">允许 · 提示 · 移除</text>
+      <path class="path" d="M1232 221 H1275"/>
+      <path class="box" d="M1280 155 Q1340 150 1400 155 L1403 289 Q1340 295 1277 289 Z"/><path d="M1300 181 H1380 M1300 203 H1370 M1300 225 H1380 M1300 247 H1363" stroke="#1d2b22" stroke-width="2.5"/><text x="1340" y="325" text-anchor="middle" class="label">For You</text><text x="1340" y="351" text-anchor="middle" class="minor">混排广告等</text>
+      <rect class="x-hit" data-x-info="user" x="10" y="140" width="105" height="220" rx="7" role="button" tabindex="0" aria-label="用户：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="thunder" x="250" y="15" width="160" height="100" rx="6" role="button" tabindex="0" aria-label="Thunder：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="retrieval" x="250" y="170" width="160" height="100" rx="6" role="button" tabindex="0" aria-label="Phoenix 召回：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="clusters" x="250" y="325" width="160" height="100" rx="6" role="button" tabindex="0" aria-label="SimClusters：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="filter" x="500" y="158" width="140" height="127" rx="6" role="button" tabindex="0" aria-label="补充与过滤：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="predict" x="680" y="146" width="140" height="150" rx="6" role="button" tabindex="0" aria-label="行为预测：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="score" x="860" y="158" width="140" height="127" rx="6" role="button" tabindex="0" aria-label="评分与重排：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="visibility" x="1050" y="148" width="190" height="210" rx="6" role="button" tabindex="0" aria-label="可见性：查看解释和代码" aria-pressed="false"/>
+      <rect class="x-hit" data-x-info="feed" x="1274" y="150" width="132" height="208" rx="6" role="button" tabindex="0" aria-label="For You 信息流：查看解释和代码" aria-pressed="false"/>
+    </svg>
+  </div>
+  <p class="muted" style="margin:7px 0">点击图中任一环节，查看解释与固定版本源码；也可用 Tab 和 Enter 操作。</p>
+  <div class="x-map-detail" id="xMapDetail" hidden aria-live="polite"></div>
+  <p class="cite" style="margin-top:9px">图示改编自 <a href="https://cneuralnetwork.github.io/x-algorithm-explained/#top" target="_blank" rel="noopener">cneuralnetwork, “What actually decides your For You feed?”</a>；机制依据 <a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/README.md#system-architecture" target="_blank" rel="noopener">X 固定提交源码</a>。简化示意；线上配置待核验。</p>
+  <aside class="notes">
+    <p class="slide-transition"><b>接上页：</b>“从政府决策转到平台推荐：谁能看到什么，同样取决于一连串选择。”<br><b>引下页：</b>“接下来打开其中一层：公开代码定义了哪些行为结构，又记录了什么分发历史？”</p><h3>For You 希望帮助平台实现什么？产品目标与业务指标</h3>
+<p><b>产品层面的公开表述（一手已核读）：</b>X 的 <a href="https://help.x.com/en/resources/recommender-systems/for-you-home-timeline-recommendations" target="_blank" rel="noopener">For You 官方说明</a>说，它希望从大量帖子中找到近期、相关的内容，并利用用户互动信号提供积极体验。这里是产品目标的表述；“相关”与“积极体验”并没有在该页面被定义成一个可核验的单一 KPI。</p>
+<ul>
+<li><b>日活与回访：</b>Twitter 2021 年向美国证券交易委员会提交的<a href="https://www.sec.gov/Archives/edgar/data/1418091/000141809122000029/twtr-20211231.htm" target="_blank" rel="noopener">年度报告，Key Metrics</a>将可变现日活（mDAU）及其增长列为衡量公司目标、受众规模和活跃情况的关键指标。mDAU 指在当日通过可展示广告的渠道或付费产品登录、使用的账号；可变现不等于每个账号当天一定看到广告或付费。这是<b>2021 年 Twitter 公司层面的历史披露</b>，不是已经核验的 2026 年 For You 团队考核指标。</li>
+<li><b>广告互动与商业收入：</b>同一份 2021 年年报把广告互动变化和每次广告互动成本等列为业务指标，并说明推广广告可出现在时间线中，按广告主目标优化。<a href="https://help.x.com/en/resources/recommender-systems/for-you-home-timeline-recommendations" target="_blank" rel="noopener">X 目前的产品说明</a>也说 For You 可能展示推广帖子。由此可提出商业逻辑：一个让人愿意回来、使用的平台，可以为广告展示和互动创造机会；<b>这是基于业务模式的推论</b>，不证明有机帖子排序直接最大化广告收入或任何特定转化率。</li>
+<li><b>使用时长、留存是否是 For You 的核心 KPI？</b>公开代码确有帖子层面的停留相关预测值；但那不等于已经证实平台把总使用时长、次日留存或人均广告收入作为 For You 团队的首要指标。课上可以把这些列为<b>需要寻找指标定义、团队目标及实验结果才能验证的研究问题</b>，不能说“源码证明 X 的唯一目标是让你刷得越久越好”。</li>
+</ul>
+<p><b>建议讲法：</b>“从用户角度看，For You 试图让信息流相关、有吸引力；从平台经营角度，日活、广告互动与收入是有历史披露的业务指标。产品是否提高留存、时长或收入，得看具体实验和指标，不能只凭排序代码断言。”</p>
+<h3>讲述：一次请求，六种决策</h3><ol><li><b>候选：</b>Home Mixer 获取用户上下文与行为历史。Thunder 返回关注账号的近期帖子；Phoenix retrieval 与 SimClusters 寻找其他候选，也有热门帖来源。之后补充特征并初步过滤，包括去重与屏蔽、静音等规则。</li><li><b>预测：</b>Phoenix 排序模型结合用户历史与候选帖，预测点赞、回复、转发、阅读、举报等行为。预测值不是实际行为，也不是满意度。</li><li><b>价值：</b>评分代码将行为预测值与配置权重结合。部分输出为连续值，并不都是概率；权重不是实际互动次数的兑换比例。</li><li><b>排列：</b>评分还可能经过重复作者等修正；VMRanker 可以利用内容表示进行多样性重排。作者衰减与 VMRanker 是不同机制，具体线上是否启用待核验。</li><li><b>可见性：</b>规则依据内容标签、用户关系及其他条件判定允许、提示、遮罩或移除。可见性过滤也用于其他路径，此图突出选择后的步骤。</li><li><b>混排：</b>已排序帖子与广告、关注推荐等产品内容被组合，形成最终信息流。可见结果无法单独说明帖子是未被召回、排序靠后还是被过滤。</li></ol><h3>证据与边界</h3><p>一手已核验：xai-org/x-algorithm 固定提交 <code>5ed796374ea48ee26058aab66ab10c266bea2bef</code> 的 <a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/README.md#system-architecture">README 请求路径与组件</a>、<a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/home-mixer/scorers/value_model.rs#L8-L84">value_model.rs L8–84</a>、<a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/xai-value-model/scoring.rs#L57-L139">scoring.rs L57–139</a>。代码说明该版本的实现，不能证明每次线上请求的开关、效果或生产数据。六个问题的组织方式参考第三方 <a href="https://cneuralnetwork.github.io/x-algorithm-explained/#top">X algorithm field map</a>；其审计所用提交与本课不同。</p></aside>
+</section>
+
+<!-- 15 ============================================================ -->
+<section class="slide gutter" data-part="4" data-t="+" data-title="X：行为数据结构与分发记录">
+  <div class="formhead"><b>工序四 · 被看见</b><span>X 开源代码 · 平台推荐 数据基础</span></div>
+  <h2>X 的源码，实际定义了哪些行为字段？</h2>
+  <p class="muted">政府决策之后，看平台如何利用行为数据作预测与分发：迭代频率、速度及其后果需要哪些实际运行数据才能比较？</p>
+  <div class="grid2">
+    <div>
+      <h3>行为结构：谁、哪条内容、什么动作</h3>
+      <pre class="code">message UserAction {
+  uint64 userId = 1;
+  TweetInfo tweetInfo = 2;
+  ActionInfo actionInfo = 3;
+  AdInfo adInfo = 4;
+}</pre>
+      <p style="margin-top:12px"><span class="num">ActionInfo</span> 另含 <span class="num">engagementTimeMs</span>、<span class="num">actionName</span>、<span class="num">userActionMeta</span>。动作枚举包含点赞、回复、停留、不感兴趣、举报。</p>
+
+      <table style="margin-top:12px"><thead><tr><th>元数据字段原名</th><th>代码能确认的内容</th></tr></thead><tbody><tr><td class="num">dwellTime</td><td>停留值；此处未标注单位</td></tr><tr><td class="num">clientPlatform</td><td>客户端平台</td></tr><tr><td class="num">ipAddress / timeZone</td><td>IP 地址 / 时区</td></tr><tr><td class="num">searchQuery</td><td>搜索词</td></tr></tbody></table>
+
+    </div>
+    <div class="sheet">
+      <h3>已找到写入实现：记录“发给了你什么”</h3>
+      <p><span class="num">UpdateServedHistorySideEffect</span> 为选中的内容构建分发记录，包括请求标识、帖子、位置、得分等，再调用 <span class="num">client.put(...)</span>。</p>
+
+      <p>存储客户端把 <span class="num">ServedHistory</span> 序列化，按用户、平台和时间组成键，写入 Manhattan。</p>
+
+      <div class="weld"><b>分清三件事：</b>定义了行为字段；实现了某类记录写入；某个用户实际被记录了什么。这里前两件可查代码，第三件需要实际日志与运行配置。</div>
+      <p style="margin-top:12px">“已分发”也不等于“用户实际看见”。完整客户端采集链、字段覆盖率和留存期，本次未核实。</p>
+    </div>
+  </div>
+  <p class="cite x-version" style="margin-top:12px"></p>
+<aside class="notes">
+    <p class="slide-transition"><b>接上页：</b>“数据结构告诉我们代码允许表达什么，不能单独证明每个字段都被采集。”<br><b>引下页：</b>“再看行为历史如何进入预测，以及哪些分发记录可能回到后续请求。”</p><h3>从实际数据结构开始</h3><p>这页替换了之前虚构的JSON日志。所有字段名、结构和写入调用都来自固定commit。存储证据只对应分发历史，不把它冒充所有行为事件的存储实现。触发受is_prod和EnableUrtMigrationComponents约束。</p><p>完整台账：data/trial-evidence-2026-10-29.md。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">源码原文节选与字段：<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1519" data-x-end="1544">recsys.proto L1519–1544</a>；<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="443" data-x-end="474">动作枚举 L443–474</a>。</p><p class="cite"><a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1374" data-x-end="1400">UserActionMeta L1374–1400</a>。这是数据结构定义，不能推出所有字段每次都采集、填充或保存。</p><p class="cite"><a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="31" data-x-end="77">触发条件与写入调用 L31–77</a>；<a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="145" data-x-end="180">条目构造 L145–180</a>。</p><p class="cite"><a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="154" data-x-end="170">存储实现 L154–170</a>；<a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="37" data-x-end="44">用户 / 平台键 L37–44</a>。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p></aside>
+</section>
+
+<section class="slide gutter" data-part="4" data-t="+" data-title="X：从行为序列到推荐反馈">
+  <div class="formhead"><b>工序四 · 被看见</b><span>点击环节，查看对应源码 · 平台推荐 2 / 5</span></div>
+  <h2>历史怎样进入预测，预测怎样变成顺序？</h2>
+  <div class="seg-btns" id="xTraceSteps" role="group" aria-label="X 源码链路"><button type="button" data-trace="0" aria-pressed="true">1 行为序列</button><button type="button" data-trace="1" aria-pressed="false">2 特征编码</button><button type="button" data-trace="2" aria-pressed="false">3 预测</button><button type="button" data-trace="3" aria-pressed="false">4 加权与排序</button><button type="button" data-trace="4" aria-pressed="false">5 反馈回读</button></div>
+  <div class="sheet" id="xTracePanel" aria-live="polite"></div>
+  <div class="grid2" style="margin-top:18px">
+    <div><h3>可以据代码讨论</h3><p>行为与分发历史会影响后续请求的输入。选择什么预测目标、怎样给目标加权、是否过滤已分发内容，是不同环节的设计决定。</p><p>闭环也可能减少重复、响应负反馈；是否加强某类内容，需要实际分发数据或实验来检验。</p></div>
+    <div><h3>模型预测的是什么？</h3><p>代码包含点赞、回复、停留和负面反馈等预测头。预测是对可能行为的估计，不是已经发生的行为，也不是对满意度的直接测量。</p></div>
+  </div>
+  <p class="cite x-version" style="margin-top:12px"></p>
+<aside class="notes">
+    <p class="slide-transition"><b>接上页：</b>“我们看到的是代码中可追踪的历史与预测路径，不是每一次线上行为的全貌。”<br><b>引下页：</b>“下面把评分环节单独拿出来：不同预测结果怎样被赋予不同权重？”</p><h3>闭环的证据与边界</h3><p>历史序列通过聚合服务读取；动作编码由multi_hot_to_embeddings实现；候选与序列装入预测请求；预测头传入value_model；分发历史由side effect写入，下次请求回读为served_ids。每一步的精确链接在页内交互中。</p><p>不能从这条链直接断言每次互动立即重训、用户被心理奖励强化，或争议内容一定放大。可以把这些说法改写为待实验检验的研究问题。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">评分示例以固定版本公开默认权重为依据；开源仓库不提供本页用户的真实预测输出，也不能证明线上配置。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p><h3>各环节证据边界（讲师）</h3><ul><li><b>读取行为序列：</b>能确认服务端读取接口；客户端如何采集每个动作、保留多久，尚缺完整证据。</li><li><b>把动作编码成模型特征：</b>特征由代码处理得到；“喜欢争吵”不是这里直接记录的字段。</li><li><b>预测动作概率与连续值：</b>仓库里的结构不是某个用户的真实预测输出；本页不生成行为概率。</li><li><b>按目标加权，再选择内容：</b>加权只是评分的一部分，完整系统还有重排、过滤和混排。</li><li><b>分发历史回到下一次请求：</b>这证明信息反馈路径，不证明某次点击会即时重训，也不证明特定心理或社会后果。</li></ul></aside>
+</section>
+
+<section class="slide gutter" data-part="4" data-t="+" data-title="X：行为预测如何转成分数">
+  <div class="formhead"><b>工序四 · 被看见</b><span>预测值 × 权重 · 平台推荐 3 / 5</span></div>
+  <h2>平台如何给不同行为赋予价值？</h2>
+  <div class="grid2"><div class="sheet"><h3>一个评分环节的核心形式</h3><p style="font-size:1.6em" class="num">加权分数 = Σ（权重 × 预测值）</p><p>预测值可以是行为概率或连续数值；权重由配置提供。各项单位不同，不能把每个预测值都当作概率。</p><p>这是评分环节的概括；代码还包含条件权重、分数变换和其他修正。</p></div><div class="sheet"><h3>课堂互动：点开讨论</h3><details><summary>提高回复的权重会发生什么？</summary><p>在其他输入固定时，回复预测值的贡献随权重变化。最终名次还取决于其他候选、修正和过滤；没有真实预测输出不能计算实际排名。</p></details><details><summary>一次举报能抵消多少次点赞？</summary><p>不能从权重直接这样换算：这里相乘的是对特定用户和帖子的预测值，而不是实际互动次数。</p></details><details><summary>为什么没有预填滑块数值？</summary><p>目前没有可核验的真实用户预测输出；因此不编造概率或演示排名。</p></details></div></div>
+  <p class="cite">一手已核验：<a data-x-path="home-mixer/params/param.rs" data-x-line="396" data-x-end="508">权重参数 L396–508</a>；<a data-x-path="xai-value-model/scoring.rs" data-x-line="57" data-x-end="139">加权评分 L57–139</a>；<a data-x-path="home-mixer/scorers/value_model.rs" data-x-line="8" data-x-end="84">评分调用 L8–84</a>。固定提交的代码不证明实际线上权重。</p>
+
+  <aside class="notes">
+    <p class="slide-transition"><b>接上页：</b>“行为预测进入评分后，不同权重会影响候选内容的分数。”<br><b>引下页：</b>“但一个行为更容易被预测或获得更高分，是否就代表用户得到更多价值？”</p>
+  </aside>
+</section>
+<section class="slide gutter" data-part="4" data-t="+" data-title="优化目标与用户福祉">
+  <div class="formhead"><b>工序四 · 被看见</b><span>代理指标 · 平台推荐 4 / 5</span></div>
+  <h2>可预测的行为，就是用户得到的价值吗？</h2>
+  <div class="grid2"><div class="sheet"><h3>代码可以告诉我们</h3><p>模型预测多种行为，评分代码把预测值与权重结合。行为可被定义和计算，但它们不直接等同于满意度或信息价值。</p><p class="cite"><a data-x-path="home-mixer/scorers/phoenix_scorer.rs" data-x-line="104" data-x-end="144">预测结果 L104–144</a> · <a data-x-path="xai-value-model/scoring.rs" data-x-line="57" data-x-end="139">加权计算 L57–139</a> · 一手代码已核验</p></div><div class="sheet"><h3>还需要独立证据</h3><p>长时间阅读可能对应不同体验；回复也可能有不同动机。仅凭代码无法判断用户是否受益，也无法确认商业目标的具体优先级。</p><div class="weld"><b>区分三个层次：</b>模型预测任务 → 排序使用的目标 → 平台商业目标。它们有关联，但不能直接画等号。</div></div></div>
+
+  <aside class="notes">
+    <p class="slide-transition"><b>接上页：</b>“平台可以为可观测行为设定目标，用户福祉则需要另外定义和测量。”<br><b>引下页：</b>“接下来把这个疑问写成一个可研究的问题，而不急着预设结论。”</p>
+  </aside>
+</section>
+<section class="slide gutter" data-part="4" data-t="+" data-title="从推荐机制到研究问题">
+  <div class="formhead"><b>工序四 · 被看见</b><span>提出可检验的问题 · 平台推荐 5 / 5</span></div>
+  <h2>互动越多，用户获得的价值越高吗？</h2>
+  <div class="grid2"><div class="sheet"><h3>研究命题</h3><p class="lede">预测互动价值更高的推荐，是否也得到更高的用户满意度与信息价值评价？</p><p>这是待检验的问题，不是源码已经证明的结论。</p></div><div class="sheet"><h3>如何设计观察？</h3><ol><li>明确“价值”：让参与者评价满意度与信息帮助，而不是只统计点击。</li><li>记录推荐及评价，说明样本、时间、账户和观察条件。</li><li>比较行为与评价；要判断推荐策略的因果影响，需设计可执行的对照并考虑混杂因素。</li></ol><p>外部观察通常看不到预测分数、未召回候选或线上配置，要保留这些证据缺口。</p></div></div>
+
+  <aside class="notes">
+    <p class="slide-transition"><b>接上页：</b>“要回答互动与价值的关系，需要先定义指标、比较对象和观察方法。”<br><b>引下页：</b>“再往前一步：平台上是谁在发帖？发帖多是否就意味着被看见得多？”</p>
   </aside>
 </section>
 
@@ -1150,7 +1301,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     </div>
   </div>
   <aside class="notes">
-    <p class="slide-transition"><b>接上页：</b>“我们从个人能否质疑一个决定，转到平台上哪些声音可能被看到。”<br><b>引下页：</b>“发帖量还不是曝光量；要理解中间发生了什么，先看推荐系统的整体路径。”</p><h3>这些是抽样调查吗？</h3><p>是：四项研究都从调查样本中选取愿意提供 Twitter 账号的美国成年人，再把问卷与账号行为数据相连；部分分析使用公开账号的实际推文。账号行为不是只靠受访者回忆，但研究对象仍是经过筛选的样本，并非美国或全球 Twitter 账号的普查。2019 和 2023 报告明确介绍了加权；不要把样本中的推文总量当作全平台总量。</p><h3>讲述顺序</h3><p>先问“看到很多帖子，能否推断大多数人都这样想？”再展示各项研究，区分谁在平台上、谁发帖、内容如何分发、谁实际看到。Pew 的结果回答发帖生产的集中程度，不提供这些帖子的曝光份额或观点代表性。</p><h3>2019：样本与收集方法（一手已核验）</h3>
+    <p class="slide-transition"><b>接上页：</b>“推荐影响哪些内容被看到，但发帖本身也可能集中在少数人手中。”<br><b>引下页：</b>“理解谁在发声与谁被看见的区别后，我们再回到自己的平台选择。”</p><h3>这些是抽样调查吗？</h3><p>是：四项研究都从调查样本中选取愿意提供 Twitter 账号的美国成年人，再把问卷与账号行为数据相连；部分分析使用公开账号的实际推文。账号行为不是只靠受访者回忆，但研究对象仍是经过筛选的样本，并非美国或全球 Twitter 账号的普查。2019 和 2023 报告明确介绍了加权；不要把样本中的推文总量当作全平台总量。</p><h3>讲述顺序</h3><p>先问“看到很多帖子，能否推断大多数人都这样想？”再展示各项研究，区分谁在平台上、谁发帖、内容如何分发、谁实际看到。Pew 的结果回答发帖生产的集中程度，不提供这些帖子的曝光份额或观点代表性。</p><h3>2019：样本与收集方法（一手已核验）</h3>
 <p><b>样本：</b>2018 年 11 月 21 日至 12 月 17 日，Ipsos 从美国成年人的 KnowledgePanel 在线调查样本中筛选 Twitter 用户；4,829 人回应，3,649 人确认使用 Twitter，3,293 人同意提供账号并完成问卷。剔除无效或不属于目标个人用户的账号后，最终有 <b>2,791 人</b>。这是经过筛选与加权的调查样本，不是全球 Twitter 用户普查。<a href="https://www.pewresearch.org/internet/2019/04/24/sizing-up-twitter-users-methodology/">Pew 2019 方法</a></p>
 <p><b>收集：</b>参与者同意研究者访问其账号，并将问卷回答与 Twitter 账号行为信息相连；Twitter API 提供公开和私密账号的汇总统计。研究者将样本加权，使其与 Pew 2018 年 11 月的美国 Twitter 用户调查基准相匹配。<a href="https://www.pewresearch.org/internet/2019/04/24/sizing-up-twitter-users/">Pew 2019 报告：调查与账号匹配</a></p>
 <p><b>报告结果：</b>最活跃 10% 用户产生约 80% 的美国成年用户推文；总体用户的每月发帖中位数为 2 条，前 10% 用户内部的中位数为每月 138 条。</p>
@@ -1167,123 +1318,6 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
 <p><b>报告结果：</b>收购后，最活跃的 20% 美国成年用户产生该群体约 98% 的推文。</p>
 <h3>SpaceX 月活口径（一手公司披露已核验）</h3><p><a href="https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm">SpaceX S-1 申报文件</a>称，截至 2026 年 3 月 31 日，Grok 和 X 合并约 5.5 亿月活跃用户。MAU 定义为截至统计日的 30 天内，通过网页或移动应用至少一次与 Grok 或 X 互动的注册用户；公司按登录流量尝试对跨平台用户去重，并说明可能无法消除全部重复，因此是估算值。这是公司在 SEC 文件中的运营指标披露，本页未核实它是否经独立审计。全球合并 MAU 和 Pew 的美国成年 Twitter 用户研究属于不同总体与时间，不能相除或套用比例。</p>
 <h3>研究边界</h3><p>四份是一手研究报告，不是全球普查。它们的分组、样本及测量方式不同；20%/98% 与 10%/80% 不能直接比较成集中度变化。发帖量不等于获得的曝光，也不自动代表其他人的态度。</p></aside>
-</section>
-
-<section class="slide gutter" data-part="4" data-t="+" data-title="X 推荐架构：从候选到信息流">
-  <div class="formhead"><b>平台推荐 · 1 / 5</b><span>一张推荐系统地图</span></div>
-  <h2>你的 For You 由什么决定？</h2>
-  <div class="x-map" role="group" aria-label="推荐流程图：用户上下文分流到 Thunder、Phoenix 和 SimClusters，汇合后依次进入特征补充与过滤、行为预测、评分和重排、可见性判断，最后与其他内容混排形成信息流。">
-    <svg viewBox="0 0 1450 440" aria-label="点击任一环节查看解释和代码">
-      <defs><marker id="xArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#627e69"/></marker></defs>
-      <g stroke="#1d2b22" stroke-width="2.5" fill="none"><circle cx="65" cy="172" r="24"/><path d="M65 197 L65 258 M65 218 L30 235 M65 218 L100 235 M65 258 L38 290 M65 258 L93 290"/></g>
-      <text x="65" y="325" text-anchor="middle" class="label">用户</text><text x="65" y="351" text-anchor="middle" class="minor">历史与上下文</text>
-      <path class="path" d="M110 222 C175 222 180 65 250 65"/><path class="path" d="M110 222 H250"/><path class="path" d="M110 222 C175 222 180 375 250 375"/>
-      <path class="box" d="M255 20 Q330 14 405 20 L408 109 Q330 115 252 109 Z"/><text x="330" y="58" text-anchor="middle" class="label">Thunder</text><text x="330" y="85" text-anchor="middle" class="minor">关注账号</text>
-      <path class="box" d="M255 175 Q330 169 405 175 L408 266 Q330 272 252 266 Z"/><text x="330" y="215" text-anchor="middle" class="label">Phoenix</text><text x="330" y="243" text-anchor="middle" class="minor">向量召回</text>
-      <path class="box" d="M255 330 Q330 324 405 330 L408 420 Q330 426 252 420 Z"/><text x="330" y="370" text-anchor="middle" class="label">SimClusters</text><text x="330" y="398" text-anchor="middle" class="minor">互动社群</text>
-      <path class="path" d="M410 65 C455 65 445 221 500 221"/><path class="path" d="M410 221 H500"/><path class="path" d="M410 375 C455 375 445 221 500 221"/>
-      <path class="box" d="M505 163 Q570 157 635 163 L638 280 Q570 286 502 280 Z"/><text x="570" y="201" text-anchor="middle" class="label">补充与过滤</text><text x="570" y="231" text-anchor="middle" class="minor">候选特征 · 去重</text><text x="570" y="255" text-anchor="middle" class="minor">屏蔽 · 静音等</text>
-      <path class="path" d="M640 221 H680"/>
-      <path class="box accent" d="M685 151 Q750 145 815 151 L818 292 Q750 298 682 292 Z"/><text x="750" y="192" text-anchor="middle" class="label">行为预测</text><text x="750" y="222" text-anchor="middle" class="minor">点赞 · 回复</text><text x="750" y="246" text-anchor="middle" class="minor">阅读 · 举报等</text><text x="750" y="270" text-anchor="middle" class="minor">Phoenix Ranker</text>
-      <path class="path" d="M820 221 H860"/>
-      <path class="box" d="M865 163 Q930 157 995 163 L998 280 Q930 286 862 280 Z"/><text x="930" y="201" text-anchor="middle" class="label">评分与重排</text><text x="930" y="231" text-anchor="middle" class="minor">权重 · 作者重复</text><text x="930" y="255" text-anchor="middle" class="minor">可选多样性</text>
-      <path class="path" d="M1000 221 H1040"/>
-      <path d="M1060 175 Q1115 165 1145 153 Q1175 165 1230 175 Q1227 260 1145 291 Q1063 260 1060 175 Z" fill="none" stroke="#1d2b22" stroke-width="2.5"/><path d="M1108 220 l25 25 47 -54" fill="none" stroke="#a35442" stroke-width="4"/><text x="1145" y="325" text-anchor="middle" class="label">可见性</text><text x="1145" y="351" text-anchor="middle" class="minor">允许 · 提示 · 移除</text>
-      <path class="path" d="M1232 221 H1275"/>
-      <path class="box" d="M1280 155 Q1340 150 1400 155 L1403 289 Q1340 295 1277 289 Z"/><path d="M1300 181 H1380 M1300 203 H1370 M1300 225 H1380 M1300 247 H1363" stroke="#1d2b22" stroke-width="2.5"/><text x="1340" y="325" text-anchor="middle" class="label">For You</text><text x="1340" y="351" text-anchor="middle" class="minor">混排广告等</text>
-      <rect class="x-hit" data-x-info="user" x="10" y="140" width="105" height="220" rx="7" role="button" tabindex="0" aria-label="用户：查看解释和代码" aria-pressed="false"/>
-      <rect class="x-hit" data-x-info="thunder" x="250" y="15" width="160" height="100" rx="6" role="button" tabindex="0" aria-label="Thunder：查看解释和代码" aria-pressed="false"/>
-      <rect class="x-hit" data-x-info="retrieval" x="250" y="170" width="160" height="100" rx="6" role="button" tabindex="0" aria-label="Phoenix 召回：查看解释和代码" aria-pressed="false"/>
-      <rect class="x-hit" data-x-info="clusters" x="250" y="325" width="160" height="100" rx="6" role="button" tabindex="0" aria-label="SimClusters：查看解释和代码" aria-pressed="false"/>
-      <rect class="x-hit" data-x-info="filter" x="500" y="158" width="140" height="127" rx="6" role="button" tabindex="0" aria-label="补充与过滤：查看解释和代码" aria-pressed="false"/>
-      <rect class="x-hit" data-x-info="predict" x="680" y="146" width="140" height="150" rx="6" role="button" tabindex="0" aria-label="行为预测：查看解释和代码" aria-pressed="false"/>
-      <rect class="x-hit" data-x-info="score" x="860" y="158" width="140" height="127" rx="6" role="button" tabindex="0" aria-label="评分与重排：查看解释和代码" aria-pressed="false"/>
-      <rect class="x-hit" data-x-info="visibility" x="1050" y="148" width="190" height="210" rx="6" role="button" tabindex="0" aria-label="可见性：查看解释和代码" aria-pressed="false"/>
-      <rect class="x-hit" data-x-info="feed" x="1274" y="150" width="132" height="208" rx="6" role="button" tabindex="0" aria-label="For You 信息流：查看解释和代码" aria-pressed="false"/>
-    </svg>
-  </div>
-  <p class="muted" style="margin:7px 0">点击图中任一环节，查看解释与固定版本源码；也可用 Tab 和 Enter 操作。</p>
-  <div class="x-map-detail" id="xMapDetail" hidden aria-live="polite"></div>
-  <p class="cite" style="margin-top:9px">图示改编自 <a href="https://cneuralnetwork.github.io/x-algorithm-explained/#top" target="_blank" rel="noopener">cneuralnetwork, “What actually decides your For You feed?”</a>；机制依据 <a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/README.md#system-architecture" target="_blank" rel="noopener">X 固定提交源码</a>。简化示意；线上配置待核验。</p>
-  <aside class="notes">
-    <p class="slide-transition"><b>接上页：</b>“从内容产生到进入信息流，中间经过候选、预测、排序和其他步骤。”<br><b>引下页：</b>“接下来打开其中一层：公开代码定义了哪些行为结构，又记录了什么分发历史？”</p><h3>讲述：一次请求，六种决策</h3><ol><li><b>候选：</b>Home Mixer 获取用户上下文与行为历史。Thunder 返回关注账号的近期帖子；Phoenix retrieval 与 SimClusters 寻找其他候选，也有热门帖来源。之后补充特征并初步过滤，包括去重与屏蔽、静音等规则。</li><li><b>预测：</b>Phoenix 排序模型结合用户历史与候选帖，预测点赞、回复、转发、阅读、举报等行为。预测值不是实际行为，也不是满意度。</li><li><b>价值：</b>评分代码将行为预测值与配置权重结合。部分输出为连续值，并不都是概率；权重不是实际互动次数的兑换比例。</li><li><b>排列：</b>评分还可能经过重复作者等修正；VMRanker 可以利用内容表示进行多样性重排。作者衰减与 VMRanker 是不同机制，具体线上是否启用待核验。</li><li><b>可见性：</b>规则依据内容标签、用户关系及其他条件判定允许、提示、遮罩或移除。可见性过滤也用于其他路径，此图突出选择后的步骤。</li><li><b>混排：</b>已排序帖子与广告、关注推荐等产品内容被组合，形成最终信息流。可见结果无法单独说明帖子是未被召回、排序靠后还是被过滤。</li></ol><h3>证据与边界</h3><p>一手已核验：xai-org/x-algorithm 固定提交 <code>5ed796374ea48ee26058aab66ab10c266bea2bef</code> 的 <a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/README.md#system-architecture">README 请求路径与组件</a>、<a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/home-mixer/scorers/value_model.rs#L8-L84">value_model.rs L8–84</a>、<a href="https://github.com/xai-org/x-algorithm/blob/5ed796374ea48ee26058aab66ab10c266bea2bef/xai-value-model/scoring.rs#L57-L139">scoring.rs L57–139</a>。代码说明该版本的实现，不能证明每次线上请求的开关、效果或生产数据。六个问题的组织方式参考第三方 <a href="https://cneuralnetwork.github.io/x-algorithm-explained/#top">X algorithm field map</a>；其审计所用提交与本课不同。</p></aside>
-</section>
-
-<!-- 15 ============================================================ -->
-<section class="slide gutter" data-part="4" data-t="+" data-title="X：行为数据结构与分发记录">
-  <div class="formhead"><b>平台推荐 · 数据基础</b><span>X 开源代码</span></div>
-  <h2>X 的源码，实际定义了哪些行为字段？</h2>
-  <p class="muted">政府决策之后，看平台如何利用行为数据作预测与分发：迭代频率、速度及其后果需要哪些实际运行数据才能比较？</p>
-  <div class="grid2">
-    <div>
-      <h3>行为结构：谁、哪条内容、什么动作</h3>
-      <pre class="code">message UserAction {
-  uint64 userId = 1;
-  TweetInfo tweetInfo = 2;
-  ActionInfo actionInfo = 3;
-  AdInfo adInfo = 4;
-}</pre>
-      <p style="margin-top:12px"><span class="num">ActionInfo</span> 另含 <span class="num">engagementTimeMs</span>、<span class="num">actionName</span>、<span class="num">userActionMeta</span>。动作枚举包含点赞、回复、停留、不感兴趣、举报。</p>
-
-      <table style="margin-top:12px"><thead><tr><th>元数据字段原名</th><th>代码能确认的内容</th></tr></thead><tbody><tr><td class="num">dwellTime</td><td>停留值；此处未标注单位</td></tr><tr><td class="num">clientPlatform</td><td>客户端平台</td></tr><tr><td class="num">ipAddress / timeZone</td><td>IP 地址 / 时区</td></tr><tr><td class="num">searchQuery</td><td>搜索词</td></tr></tbody></table>
-
-    </div>
-    <div class="sheet">
-      <h3>已找到写入实现：记录“发给了你什么”</h3>
-      <p><span class="num">UpdateServedHistorySideEffect</span> 为选中的内容构建分发记录，包括请求标识、帖子、位置、得分等，再调用 <span class="num">client.put(...)</span>。</p>
-
-      <p>存储客户端把 <span class="num">ServedHistory</span> 序列化，按用户、平台和时间组成键，写入 Manhattan。</p>
-
-      <div class="weld"><b>分清三件事：</b>定义了行为字段；实现了某类记录写入；某个用户实际被记录了什么。这里前两件可查代码，第三件需要实际日志与运行配置。</div>
-      <p style="margin-top:12px">“已分发”也不等于“用户实际看见”。完整客户端采集链、字段覆盖率和留存期，本次未核实。</p>
-    </div>
-  </div>
-  <p class="cite x-version" style="margin-top:12px"></p>
-<aside class="notes">
-    <p class="slide-transition"><b>接上页：</b>“数据结构告诉我们代码允许表达什么，不能单独证明每个字段都被采集。”<br><b>引下页：</b>“再看行为历史如何进入预测，以及哪些分发记录可能回到后续请求。”</p><h3>从实际数据结构开始</h3><p>这页替换了之前虚构的JSON日志。所有字段名、结构和写入调用都来自固定commit。存储证据只对应分发历史，不把它冒充所有行为事件的存储实现。触发受is_prod和EnableUrtMigrationComponents约束。</p><p>完整台账：data/trial-evidence-2026-10-29.md。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">源码原文节选与字段：<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1519" data-x-end="1544">recsys.proto L1519–1544</a>；<a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="443" data-x-end="474">动作枚举 L443–474</a>。</p><p class="cite"><a data-x-path="phoenix/crates/serving/xai-recsys-proto/proto/recsys.proto" data-x-line="1374" data-x-end="1400">UserActionMeta L1374–1400</a>。这是数据结构定义，不能推出所有字段每次都采集、填充或保存。</p><p class="cite"><a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="31" data-x-end="77">触发条件与写入调用 L31–77</a>；<a data-x-path="home-mixer/side_effects/update_served_history_side_effect.rs" data-x-line="145" data-x-end="180">条目构造 L145–180</a>。</p><p class="cite"><a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="154" data-x-end="170">存储实现 L154–170</a>；<a data-x-path="home-mixer/clients/served_history_client.rs" data-x-line="37" data-x-end="44">用户 / 平台键 L37–44</a>。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p></aside>
-</section>
-
-<section class="slide gutter" data-part="4" data-t="+" data-title="X：从行为序列到推荐反馈">
-  <div class="formhead"><b>平台推荐 · 2 / 5</b><span>点击环节，查看对应源码</span></div>
-  <h2>历史怎样进入预测，预测怎样变成顺序？</h2>
-  <div class="seg-btns" id="xTraceSteps" role="group" aria-label="X 源码链路"><button type="button" data-trace="0" aria-pressed="true">1 行为序列</button><button type="button" data-trace="1" aria-pressed="false">2 特征编码</button><button type="button" data-trace="2" aria-pressed="false">3 预测</button><button type="button" data-trace="3" aria-pressed="false">4 加权与排序</button><button type="button" data-trace="4" aria-pressed="false">5 反馈回读</button></div>
-  <div class="sheet" id="xTracePanel" aria-live="polite"></div>
-  <div class="grid2" style="margin-top:18px">
-    <div><h3>可以据代码讨论</h3><p>行为与分发历史会影响后续请求的输入。选择什么预测目标、怎样给目标加权、是否过滤已分发内容，是不同环节的设计决定。</p><p>闭环也可能减少重复、响应负反馈；是否加强某类内容，需要实际分发数据或实验来检验。</p></div>
-    <div><h3>模型预测的是什么？</h3><p>代码包含点赞、回复、停留和负面反馈等预测头。预测是对可能行为的估计，不是已经发生的行为，也不是对满意度的直接测量。</p></div>
-  </div>
-  <p class="cite x-version" style="margin-top:12px"></p>
-<aside class="notes">
-    <p class="slide-transition"><b>接上页：</b>“我们看到的是代码中可追踪的历史与预测路径，不是每一次线上行为的全貌。”<br><b>引下页：</b>“下面把评分环节单独拿出来：不同预测结果怎样被赋予不同权重？”</p><h3>闭环的证据与边界</h3><p>历史序列通过聚合服务读取；动作编码由multi_hot_to_embeddings实现；候选与序列装入预测请求；预测头传入value_model；分发历史由side effect写入，下次请求回读为served_ids。每一步的精确链接在页内交互中。</p><p>不能从这条链直接断言每次互动立即重训、用户被心理奖励强化，或争议内容一定放大。可以把这些说法改写为待实验检验的研究问题。</p><h3>来源、口径与核验记录（讲师）</h3><p class="cite">评分示例以固定版本公开默认权重为依据；开源仓库不提供本页用户的真实预测输出，也不能证明线上配置。</p><h3>版本与适用范围（讲师）</h3><p>一手已核验；核验日期2026-10-29。xai-org/x-algorithm固定commit 5ed796374ea48ee26058aab66ab10c266bea2bef。这里只能确认该版本实现，线上开关、字段覆盖率与实际留存尚未核实。</p><h3>各环节证据边界（讲师）</h3><ul><li><b>读取行为序列：</b>能确认服务端读取接口；客户端如何采集每个动作、保留多久，尚缺完整证据。</li><li><b>把动作编码成模型特征：</b>特征由代码处理得到；“喜欢争吵”不是这里直接记录的字段。</li><li><b>预测动作概率与连续值：</b>仓库里的结构不是某个用户的真实预测输出；本页不生成行为概率。</li><li><b>按目标加权，再选择内容：</b>加权只是评分的一部分，完整系统还有重排、过滤和混排。</li><li><b>分发历史回到下一次请求：</b>这证明信息反馈路径，不证明某次点击会即时重训，也不证明特定心理或社会后果。</li></ul></aside>
-</section>
-
-<section class="slide gutter" data-part="4" data-t="+" data-title="X：行为预测如何转成分数">
-  <div class="formhead"><b>平台推荐 · 3 / 5</b><span>预测值 × 权重</span></div>
-  <h2>平台如何给不同行为赋予价值？</h2>
-  <div class="grid2"><div class="sheet"><h3>一个评分环节的核心形式</h3><p style="font-size:1.6em" class="num">加权分数 = Σ（权重 × 预测值）</p><p>预测值可以是行为概率或连续数值；权重由配置提供。各项单位不同，不能把每个预测值都当作概率。</p><p>这是评分环节的概括；代码还包含条件权重、分数变换和其他修正。</p></div><div class="sheet"><h3>课堂互动：点开讨论</h3><details><summary>提高回复的权重会发生什么？</summary><p>在其他输入固定时，回复预测值的贡献随权重变化。最终名次还取决于其他候选、修正和过滤；没有真实预测输出不能计算实际排名。</p></details><details><summary>一次举报能抵消多少次点赞？</summary><p>不能从权重直接这样换算：这里相乘的是对特定用户和帖子的预测值，而不是实际互动次数。</p></details><details><summary>为什么没有预填滑块数值？</summary><p>目前没有可核验的真实用户预测输出；因此不编造概率或演示排名。</p></details></div></div>
-  <p class="cite">一手已核验：<a data-x-path="home-mixer/params/param.rs" data-x-line="396" data-x-end="508">权重参数 L396–508</a>；<a data-x-path="xai-value-model/scoring.rs" data-x-line="57" data-x-end="139">加权评分 L57–139</a>；<a data-x-path="home-mixer/scorers/value_model.rs" data-x-line="8" data-x-end="84">评分调用 L8–84</a>。固定提交的代码不证明实际线上权重。</p>
-
-  <aside class="notes">
-    <p class="slide-transition"><b>接上页：</b>“行为预测进入评分后，不同权重会影响候选内容的分数。”<br><b>引下页：</b>“但一个行为更容易被预测或获得更高分，是否就代表用户得到更多价值？”</p>
-  </aside>
-</section>
-<section class="slide gutter" data-part="4" data-t="+" data-title="优化目标与用户福祉">
-  <div class="formhead"><b>平台推荐 · 4 / 5</b><span>代理指标</span></div>
-  <h2>可预测的行为，就是用户得到的价值吗？</h2>
-  <div class="grid2"><div class="sheet"><h3>代码可以告诉我们</h3><p>模型预测多种行为，评分代码把预测值与权重结合。行为可被定义和计算，但它们不直接等同于满意度或信息价值。</p><p class="cite"><a data-x-path="home-mixer/scorers/phoenix_scorer.rs" data-x-line="104" data-x-end="144">预测结果 L104–144</a> · <a data-x-path="xai-value-model/scoring.rs" data-x-line="57" data-x-end="139">加权计算 L57–139</a> · 一手代码已核验</p></div><div class="sheet"><h3>还需要独立证据</h3><p>长时间阅读可能对应不同体验；回复也可能有不同动机。仅凭代码无法判断用户是否受益，也无法确认商业目标的具体优先级。</p><div class="weld"><b>区分三个层次：</b>模型预测任务 → 排序使用的目标 → 平台商业目标。它们有关联，但不能直接画等号。</div></div></div>
-
-  <aside class="notes">
-    <p class="slide-transition"><b>接上页：</b>“平台可以为可观测行为设定目标，用户福祉则需要另外定义和测量。”<br><b>引下页：</b>“接下来把这个疑问写成一个可研究的问题，而不急着预设结论。”</p>
-  </aside>
-</section>
-<section class="slide gutter" data-part="4" data-t="+" data-title="从推荐机制到研究问题">
-  <div class="formhead"><b>平台推荐 · 5 / 5</b><span>提出可检验的问题</span></div>
-  <h2>互动越多，用户获得的价值越高吗？</h2>
-  <div class="grid2"><div class="sheet"><h3>研究命题</h3><p class="lede">预测互动价值更高的推荐，是否也得到更高的用户满意度与信息价值评价？</p><p>这是待检验的问题，不是源码已经证明的结论。</p></div><div class="sheet"><h3>如何设计观察？</h3><ol><li>明确“价值”：让参与者评价满意度与信息帮助，而不是只统计点击。</li><li>记录推荐及评价，说明样本、时间、账户和观察条件。</li><li>比较行为与评价；要判断推荐策略的因果影响，需设计可执行的对照并考虑混杂因素。</li></ol><p>外部观察通常看不到预测分数、未召回候选或线上配置，要保留这些证据缺口。</p></div></div>
-
-  <aside class="notes">
-    <p class="slide-transition"><b>接上页：</b>“要回答互动与价值的关系，需要先定义指标、比较对象和观察方法。”<br><b>引下页：</b>“回到我们自己的选择：长期交流放在哪个平台，要考虑哪些取舍？”</p>
-  </aside>
 </section>
 
 <section class="slide gutter" data-part="0" data-t="+" data-title="我们的群在哪里长期交流">
@@ -1313,7 +1347,7 @@ pre.code { background: var(--field); border-radius: 6px; padding: 12px 14px; fon
     </div>
   </div>
   <aside class="notes">
-    <p class="slide-transition"><b>接上页：</b>“研究平台时我们关注它的目标和影响；选择交流空间时，我们也可以明确自己的目标。”<br><b>引下页：</b>“带着这些取舍，回到今天的四道工序，做最后的出门卡。”</p>
+    <p class="slide-transition"><b>接上页：</b>“从推荐机制到发声分布，我们看到了平台中不同层次的选择；现在来明确我们自己的目标。”<br><b>引下页：</b>“带着这些取舍，回到今天的四道工序，做最后的出门卡。”</p>
     <h3>用自己的取舍重画决策树</h3>
     <p><b>每个人的取舍不同，决策树里的节点也可以不同。</b>金钱和时间是讲师日常会考虑的权衡；也可以从关系、隐私、便利、价值观或其他关心的因素出发。请学员自己定义“便利”“稳定”和需要比较的节点。</p>
     <p>这是讨论用的选项树，不是含可靠机会概率的完整期望值模型。A、B 的零元指存在免费方案，不代表没有隐性成本，也不代表所有服务免费。假如熟人都在大平台，可以认为便利较高；小平台便利中等及大平台稳定性较高仅是讨论判断，缺少同口径数据，不能作为事实结论。B 的稳定性需要按运营者核查；C 依赖托管商，也依赖管理员、网络和备份。</p>
@@ -1691,6 +1725,7 @@ buildSort();
   const lbl = () => { box.children[1].firstChild.nextSibling.textContent = mode === "age" ? " 年龄" : " 出生日期"; box.children[1].lastChild.textContent = mode === "age" ? "公开数据只给年龄" : "补到具体哪一天"; };
   function calc() {
     const m = boxes.reduce((acc, b, i) => acc | (b.checked ? 1 << i : 0), 0);
+    $$("#dobMode button").forEach(b => b.setAttribute("aria-pressed", boxes[1].checked && b.dataset.m === mode));
     const pc = T[mode].u[m] / 100, avg = m ? T[mode].a[m] : N;
     const uniqueText = (pc >= 99.95 && pc < 100 ? pc.toFixed(2) : pc.toFixed(1)) + "%";
     const averageText = avg >= 10 ? fmt(avg) : avg.toFixed(2);
@@ -1705,12 +1740,12 @@ buildSort();
     $("#weldBox").hidden = !weld;
     fit();
   }
-  function setMode(m) { mode = m; $$("#dobMode button").forEach(b => b.setAttribute("aria-pressed", b.dataset.m === m)); lbl(); calc(); }
+  function setMode(m) { mode = m; boxes[1].checked = true; lbl(); calc(); }
   $$("#dobMode button").forEach(b => b.onclick = () => setMode(b.dataset.m));
   box.addEventListener("change", calc); box.addEventListener("input", calc); addEventListener("pageshow", calc);
   $("#weldBtn").onclick = () => { boxes.forEach((b, i) => b.checked = i < 4); setMode("dob"); };
   $("#attrAll").onclick = () => { boxes.forEach(b => b.checked = true); calc(); };
-  $("#attrNone").onclick = () => { boxes.forEach(b => b.checked = false); calc(); };
+  $("#attrNone").onclick = () => { boxes.forEach(b => b.checked = false); mode = "age"; lbl(); calc(); };
   lbl(); calc();
 })();
 
@@ -1804,11 +1839,18 @@ const QUIZ = [
 ];
 QUIZ.forEach(([q, ans, why]) => {
   const c = document.createElement("div"); c.className = "qcard";
-  c.innerHTML = `<div>${q}</div><div class="opts">${["A", "B", "C"].map(x => `<button type="button" data-x="${x}">${x}</button>`).join("")}</div><div class="fb"></div>`;
+  c.innerHTML = `<div>${q}</div><div class="opts">${["A", "B", "C"].map(x => `<button type="button" data-x="${x}" aria-pressed="false">${x}</button>`).join("")}</div><div class="fb" aria-live="polite"></div>`;
   $$("button", c).forEach(b => b.onclick = () => {
-    const ok = b.dataset.x === ans;
-    b.classList.add(ok ? "right" : "wrong");
-    if (ok) { $(".fb", c).textContent = why; $$("button", c).forEach(x => x.disabled = true); }
+    const selected = b.getAttribute("aria-pressed") === "true";
+    $$("button", c).forEach(x => { x.classList.remove("right", "wrong"); x.setAttribute("aria-pressed", "false"); });
+    $(".fb", c).textContent = "";
+    if (!selected) {
+      const ok = b.dataset.x === ans;
+      b.classList.add(ok ? "right" : "wrong");
+      b.setAttribute("aria-pressed", "true");
+      if (ok) $(".fb", c).textContent = why;
+    }
+    fit();
   });
   $("#quiz").appendChild(c);
 });
