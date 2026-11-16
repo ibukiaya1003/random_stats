@@ -1,5 +1,7 @@
 # Reference 链接
 
+- [DH Guide](https://www.dhguide.org/) — 用户提供的参考链接；网站内容待核验。
+
 - [Harvard Data Science Review (HDSR)](https://hdsr.mitpress.mit.edu/) — 数据科学期刊；用户提供的参考链接。
   - [Recreations in Randomness](https://hdsr.mitpress.mit.edu/recreations-in-randomness) — 用户提供的栏目链接；相关摘录见 [Philosophy 摘录](philosophy.md)。
   - [Broadening Access to Data Science Education（用户提供的文章链接）](https://hdsr.mitpress.mit.edu/pub/tke5kviu/release/2?readingCollection=588fa300) — 本次页面未能打开；标题来自用户提供的配图，文章信息待核验。[摘录与 Data 8 初查](philosophy.md#数据科学教育伦理与社会参与)。
